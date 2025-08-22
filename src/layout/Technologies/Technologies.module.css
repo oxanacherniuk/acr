@@ -1,0 +1,43 @@
+.slider {
+    background: var(--tools-bg);
+    border-radius: 40px;
+    border-top: 16px solid white;
+    border-bottom: 16px solid white;
+}
+
+.slider-inner {
+    display: flex;
+    gap: 45px;
+    padding-bottom: 70px;
+}
+
+.slider-title {
+    font-size: 25px;
+    color: var(--accent-dark);
+    font-family: var(--sk-font);
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+    padding-bottom: 65px;
+    max-width: 100%;
+}
+
+.slider-card {
+    min-width: 119px;
+    max-width: 156px;
+}
+
+.tool-image {
+    display: block; 
+    margin: auto;
+}
+
+.tool-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    text-align: center;
+}
+

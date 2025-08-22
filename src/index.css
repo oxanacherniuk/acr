@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: 'SK Cuber';
+  src: url('../src/assets/fonts/sk-cuber.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --title-gradient: linear-gradient(90deg, rgba(87, 134, 153, 1) 0%, rgba(41, 58, 69, 1) 11%, rgba(87, 134, 153, 1) 19%, rgba(87, 134, 153, 1) 38%, rgba(41, 58, 69, 1) 49%, rgba(87, 134, 153, 1) 60%, rgba(41, 58, 69, 1) 72%, rgba(87, 134, 153, 1) 79%, rgba(129, 164, 179, 1) 90%, rgba(171, 195, 204, 1) 100%);
+  --accent-light: #578699;
+  --accent-dark: #293A45;
+  --black: #000;
+  --grey: #575757;
+  --grey-light: #F1F1F3;
+  --button-gradient: linear-gradient(90deg, rgba(87, 134, 153, 1) 0%, rgba(211, 211, 211, 1) 18%, rgba(87, 134, 153, 1) 30%, rgba(87, 134, 153, 1) 62%, rgba(219, 219, 219, 1) 72%, rgba(87, 134, 153, 1) 79%, rgba(171, 195, 204, 1) 100%);
+  --banner-gradient: linear-gradient(180deg, rgba(239, 239, 239, 1) 0%, rgba(230, 248, 255, 1) 22%, rgba(247, 247, 248, 1) 61%, rgba(239, 239, 239, 1) 100%);
+  --sk-font: 'SK Cuber';
+  --montserrat-font: 'Montserrat', sans-serif;
+  --dev-bg: linear-gradient(180deg, rgba(250, 250, 250, 1) 0%, rgba(198, 216, 223, 1) 50%, rgba(240, 240, 240, 1) 85%);
+  --tools-bg: linear-gradient(180deg, rgba(199, 211, 214, 1) 0%, rgba(247, 248, 248, 1) 27%);
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+ul,
+ol,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.d-block {
+  display: block;
+}
+
+input {
+  outline: none !important;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}

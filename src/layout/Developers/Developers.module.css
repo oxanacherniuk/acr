@@ -1,0 +1,85 @@
+.developers {
+    border-top: 16px solid white;
+    border-bottom: 16px solid white;
+    border-radius: 27px;
+    position: relative;
+    background: var(--dev-bg);
+}
+
+.left-hand {
+    position: absolute;
+    top: 53px;
+    left: 0;
+}
+
+.right-hand {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+
+.developers-title {
+    font-size: 25px;
+    color: var(--accent-dark);
+    font-family: var(--sk-font);
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.developers-box {
+    margin-top: 65px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.developer-card {
+    background-color: white;
+    width: 380px;
+    height: 380px;
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 29.7px rgba(0, 0, 0, .15));
+}
+
+.developer-photo {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 316px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.name {
+    font-family: var(--sk-font);
+    font-size: 20px;
+    margin: 0;
+    color: var(--accent-dark);
+}
+
+.button-potfolio {
+    display: flex;
+    align-items: center;
+}
+
+.button-potfolio span {
+    font-family: var(--sk-font);
+    font-size: 12px;
+    margin-right: 10px;
+    text-decoration: underline;
+    color: var(--accent-light);
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
