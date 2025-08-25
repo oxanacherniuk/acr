@@ -21,7 +21,7 @@ export function FooterLayout() {
                         <ul className={styles['footer-links']}>
                             <li className={styles['footer-link']}><a href="">Услуги</a></li>
                             <li className={styles['footer-link']}><a href="">Аустаффинг</a></li>
-                            <li className={styles['footer-link']}><a href="">Политика конфиденциальности</a></li>
+                            <li className={styles['footer-link']}><a href="/soglasie-obrabotka-pers-dannih">Политика конфиденциальности</a></li>
                         </ul>
                     </div>
                     <div className={styles['footer-box__col']}>
