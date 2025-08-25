@@ -1,0 +1,77 @@
+.amenities {
+    background: linear-gradient(135deg, rgba(248, 248, 249, 1) 12%, rgba(241, 247, 249, 1) 28%, rgba(245, 245, 247, 1) 42%, rgba(229, 237, 240, 1) 60%, rgba(255, 255, 255, 1) 81%, rgba(241, 241, 243, 1) 100%);
+    border-radius: 24px;
+    border-top: 16px solid white;
+    border-bottom: 16 px solid white;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.amenities-box {
+    margin-top: 70px;
+    margin-bottom: 93px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.amenities-title {
+    font-size: 25px;
+    color: var(--accent-dark);
+    font-family: var(--sk-font);
+    text-align: center;
+    display: block;
+    margin: auto;
+    max-width: 100% !important;
+}
+
+.amenities-card {
+    background-color: white;
+    width: 380px;
+    border-radius: 20px;
+    height: 240px;
+    cursor: url('./assets/images/cursor-hover.svg'), auto;
+    filter: drop-shadow(0px 2px 35.4px rgba(0, 0, 0, .10));
+}
+
+.card-title {
+    margin-top: 35px;
+    margin-left: 35px;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: var(--montserrat-font);
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.card-text {
+    color: var(--grey);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--montserrat-font);
+    margin-top: 15px;
+    margin-left: 35px;
+    margin-bottom: 20px;
+}
+
+.amenities-bottom {
+    display: flex;
+    max-width: 340px;
+    max-height: 37px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-price {
+    color: var(--grey);
+    font-size: 14px;
+    font-weight: 400;
+    font-family: var(--montserrat-font);
+    margin: 0;
+    margin-left: 35px;
+}
+
+.text-bold {
+    font-size: 17px;
+    font-weight: 700;
+}

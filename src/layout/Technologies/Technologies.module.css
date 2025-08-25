@@ -41,3 +41,25 @@
     text-align: center;
 }
 
+@media screen and (max-width: 600px) {
+    .slider-title {
+        padding-top: 65px;
+        font-size: 16px;
+        padding-bottom: 35px;
+    }
+
+    .tool-image {
+        width: 50px;
+    }
+
+    .tool-name {
+        font-size: 14px;
+    }
+
+    .slider-inner {
+        display: flex;
+        gap: 5px;
+        padding-bottom: 40px;
+    }
+}
+

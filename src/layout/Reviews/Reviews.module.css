@@ -106,7 +106,7 @@ p.review-text {
     height: 45px;
     border: 1px solid var(--accent-light);
     border-radius: 10px;
-    cursor: pointer;
+    cursor: url('./assets/images/cursor-hover.svg'), auto;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -132,7 +132,7 @@ p.review-text {
     border-radius: 50%;
     border: none;
     background: rgba(87, 134, 153, 0.3);
-    cursor: pointer;
+    cursor: url('./assets/images/cursor-hover.svg'), auto;
     transition: all 0.3s ease;
 }
 
@@ -143,4 +143,30 @@ p.review-text {
 
 .dot:hover {
     background: rgba(87, 134, 153, 0.7);
+}
+
+@media screen and (max-width: 565px) {
+    .reviews-container {
+        overflow: auto;
+    }
+
+    .reviews-title {
+        font-size: 16px;
+        padding-top: 65px;
+        margin-bottom: 35px;
+    }
+
+    .reviews-box, .reviews-dots {
+        display: none;
+    }
+
+    .reviews-track {
+        display: flex;
+        overflow-y: hidden;
+        gap: 15px;
+    }
+
+    .reviews {
+        padding-bottom: 45px;
+    }
 }

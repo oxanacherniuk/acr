@@ -8,7 +8,7 @@ export function FooterLayout() {
     return (
         <div className={styles['footer']}>
             <div className='container'>
-                <a href=""><img src={Logo} alt="Логотип" /></a>
+                <a href=""><img className={styles['logo-img']} src={Logo} alt="Логотип" /></a>
                 <div className={styles['footer-box']}>
                     <div className={styles['footer-box__col']}>
                         <ul className={styles['col-address']}>
@@ -26,9 +26,9 @@ export function FooterLayout() {
                     </div>
                     <div className={styles['footer-box__col']}>
                         <div className={styles['footer-socials']}>
-                            <a href=""><TelegramIcon /></a>
-                            <a href=""><VkIcon /></a>
-                            <a href=""><WhatsapIcon /></a>
+                            <a className={styles['footer-social']} href=""><TelegramIcon /></a>
+                            <a className={styles['footer-social']} href=""><VkIcon /></a>
+                            <a className={styles['footer-social']} href=""><WhatsapIcon /></a>
                         </div>
                         <p className={styles['footer-subtext']}>ⓒ 2025 АЦР</p>
                     </div>

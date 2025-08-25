@@ -25,7 +25,10 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  cursor: url('./assets/images/cursor.svg'), auto;
 }
+
+
 
 *,
 *::after,
@@ -43,6 +46,16 @@ ol,
 button {
   margin: 0;
   padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+div,
+img,
+input {
+  cursor: url('./assets/images/cursor.svg'), auto;
 }
 
 body {
@@ -75,10 +88,11 @@ li {
 
 a {
   text-decoration: none;
+  cursor: url('./assets/images/cursor-hover.svg'), auto;
 }
 
 button {
   border: none;
-  cursor: pointer;
+  cursor: url('./assets/images/cursor-hover.svg'), auto;
   transition: 0.2s;
 }

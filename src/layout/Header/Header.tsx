@@ -22,7 +22,7 @@ export function HeaderLayout() {
             <div className='container'>
                 <div className={styles['header-box']}>
                     <a href="/" className={styles['logo']}>
-                        <img src={logo} alt="Логотип АЦР" />
+                        <img className={styles['logo-img']} src={logo} alt="Логотип АЦР" />
                     </a>
                     
                     <button 
@@ -38,7 +38,7 @@ export function HeaderLayout() {
                     <nav className={styles['nav']}>
                         <ul className={styles['nav-list']}>
                             <li>
-                                <a href="" className={styles['nav-link']}>Услуги</a>
+                                <a href="/amenties" className={styles['nav-link']}>Услуги</a>
                             </li>
                             <li>
                                 <a href="" className={styles['nav-link']}>Аутстаффинг</a>

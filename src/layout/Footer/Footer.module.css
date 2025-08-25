@@ -14,7 +14,7 @@
     font-family: var(--montserrat-font);
     font-weight: 400;
     font-size: 16px;
-    cursor: pointer;
+    cursor: url('./assets/images/cursor-hover.svg'), auto;
 }
 
 .address,
@@ -34,4 +34,41 @@
 .footer-socials a {
     display: block;
     margin-left: 35px;
+}
+
+.logo-img {
+    width: 75px;
+}
+
+@media screen and (max-width: 700px) {
+    .address, .footer-link a, .footer-subtext {
+        font-size: 12px;
+    }
+
+    .footer-socials {
+        display: none;
+    }
+
+    .footer-subtext {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .footer-link {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .footer-box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: start;
+    }
+
+    .footer {
+        padding-bottom: 0;
+        max-height: 300px;
+    }
 }

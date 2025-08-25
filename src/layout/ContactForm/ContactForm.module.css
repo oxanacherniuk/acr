@@ -73,7 +73,7 @@
     padding: 24px 60px;
     width: 355px;
     display: block;
-    border-radius: 15px;
+    border-radius: 16px;
     background: white;
     border: none;
     position: relative;
@@ -112,7 +112,7 @@
     border: none;
     padding: 24px 80px 20px;
     z-index: 1;
-    cursor: pointer;
+    cursor: url('./assets/images/cursor-hover.svg'), auto;
 }
 
 .contact-button::before {
@@ -145,4 +145,96 @@
     bottom: 0;
     z-index: 1;
     border-bottom-left-radius: 30px;
+}
+
+@media screen and (max-width: 900px) {
+    .contact-banner {
+        display: none;
+    }
+
+    .contact-box {
+        max-width: 555px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contact-form {
+        position: static;
+        padding-top: 30px;
+        height: 100%;
+    }
+
+    .input-group {
+        max-width: 355px;
+        margin: auto;
+        margin-top: 15px;
+    }
+
+    .contact-button {
+        display: block;
+        margin: auto;
+        margin-top: 15px;
+    }
+
+    .contact-text {
+        margin: auto;
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    .contact-title {
+        font-size: 16px;
+        margin-bottom: 35px;
+    }
+
+    .contact {
+        padding-top: 65px;
+        padding-bottom: 65px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .contact-input {
+        font-size: 12px;
+        padding: 16px 40px;
+        width: 275px;
+        border-radius: 12px;
+    }
+
+    .input-group {
+        max-width: 275px;
+    }
+
+    .input-icon {
+        left: 15px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .contact-button {
+        display: block;
+        margin: auto;
+        border-radius: 6px;
+        margin-top: 15px;
+        padding: 16px 40px 12px;
+    }
+
+    .input-group::after {
+        border-radius: 12px;
+    }
+
+    .contact-form {
+        padding-top: 15px;
+    }
+
+    .contact-text {
+        font-size: 10px;
+        max-width: 275px;
+        margin-top: 15px;
+    }
+
+    .contact-box {
+        max-height: 340px;
+    }
 }

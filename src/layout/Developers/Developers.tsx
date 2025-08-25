@@ -12,11 +12,11 @@ export function DevelopersLayout() {
         <div className={styles['developers']}>
             <img className={styles['left-hand']} src={LeftHand} alt="" />
             <img className={styles['right-hand']} src={RightHand} alt="" />
-            <div className='container'>
+            <div className={styles['container-dev']}>
                 <p className={styles['developers-title']}>наши разработчики</p>
                 <div className={styles['developers-box']}>
                     <div className={styles['developer-card']}>
-                        <img className={styles['developer-photo']} src={Pavel} alt="" />
+                        <img className={styles['developer-photo__pavel']} src={Pavel} alt="" />
                         <div className={styles['card-bottom']}>
                             <p className={styles['name']}>павел</p>
                             <a className={styles['button-potfolio']} href=""><span>в портфолио</span> <PortfolioArrow /></a>
