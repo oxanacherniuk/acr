@@ -22,7 +22,6 @@ export function ReviewsLayout() {
         setCurrentGroup(groupIndex);
     };
 
-    // Вычисляем смещение для трека
     const trackOffset = -currentGroup * (277 + 30) * slidesToShow;
 
     return (

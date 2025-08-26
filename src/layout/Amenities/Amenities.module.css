@@ -4,13 +4,16 @@
     border-top: 16px solid white;
     border-bottom: 16 px solid white;
     padding-top: 70px;
-    padding-bottom: 70px;
+    padding-bottom: 40px;
 }
 
 .amenities-box {
     margin-top: 70px;
     margin-bottom: 93px;
-    display: flex;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     justify-content: space-between;
 }
 
@@ -29,7 +32,7 @@
     width: 380px;
     border-radius: 20px;
     height: 240px;
-    cursor: url('./assets/images/cursor-hover.svg'), auto;
+    cursor: pointer;
     filter: drop-shadow(0px 2px 35.4px rgba(0, 0, 0, .10));
 }
 
@@ -50,6 +53,7 @@
     font-weight: 500;
     font-family: var(--montserrat-font);
     margin-top: 15px;
+    max-width: 320px;
     margin-left: 35px;
     margin-bottom: 20px;
 }
@@ -74,4 +78,74 @@
 .text-bold {
     font-size: 17px;
     font-weight: 700;
+}
+
+@media screen and (max-width: 1300px) {
+    .amenities-box {
+        margin: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-items: center;
+        margin-top: 35px;
+        margin-bottom: 40px;
+        max-width: 900px;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .amenities-box {
+        max-width: 650px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+
+    .amenities-card {
+        width: 300px;
+        height: 220px;
+    }
+
+    .card-title {
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 15px;
+    }
+
+    .card-text {
+        margin-left: 20px;
+        max-width: 250px;
+    }
+
+    .card-price {
+        margin-left: 20px;
+    }
+
+    .amenities-bottom {
+        max-width: 280px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .amenities-box {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    .amenities {
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+
+    .amenities-title {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .amenities-title {
+        font-size: 14px;
+    }
 }

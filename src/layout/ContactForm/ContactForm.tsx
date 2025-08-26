@@ -6,7 +6,7 @@ import PhoneIcon from '../../assets/images/phone.svg';
 
 export function ContactLayout() {
     return (
-        <div className={styles['contact']}>
+        <div className={styles['contact']} id='contact'>
             <div className='container'>
                 <p className={styles['contact-title']}>связаться с нами</p>
                 <div className={styles['contact-box']}>

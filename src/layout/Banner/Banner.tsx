@@ -1,4 +1,3 @@
-import { NavigationButton } from '../../components/NavigationButton/NavigationButton';
 import styles from './Banner.module.css';
 import bannerImg from '../../assets/images/banner-image.png';
 
@@ -11,7 +10,9 @@ export function BannerLayout() {
                         <h1>разработка</h1>
                         <h2>web/мобильных приложений</h2>
                         <p> С 2018 года помогаем бизнесу расти, предлагая услуги разработки программного обеспечения "под ключ"</p>
-                        <NavigationButton to={'/'} size="medium" children={'оставить заявку'} />
+                        <a href="#contact" className={styles['nav-button']}>
+                            оставить заявку
+                        </a>
                     </div>
                     <div className={styles['right-col']}>
                         <img src={bannerImg} alt="Ai" />

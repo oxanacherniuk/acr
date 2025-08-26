@@ -1,0 +1,210 @@
+.developer-page {
+    border-radius: 40px;
+    border-top: 16px solid white;
+    border-bottom: 16px solid white;
+    background: var(--dev-bg);
+    padding-top: 25px;
+    padding-bottom: 100px;
+}
+
+.back-button {
+    font-family: var(--montserrat-font);
+    font-size: 16px;
+    color: var(--accent-dark);
+    font-weight: 500;
+}
+
+.developer-header {
+    margin-top: 35px;
+}
+
+.developer-photo-large {
+    display: block;
+    margin: auto;
+}
+
+.developer-info {
+    max-width: 300px;
+    margin: auto;
+}
+
+.developer-title {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.position {
+    margin: 0;
+    text-align: center;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.developer-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 480px;
+    margin-bottom: 50px;
+}
+
+.developer-ellipse {
+    border-radius: 50%;
+    background-color: white;
+}
+
+.developer-photo-large {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.developer-info h1 {
+    font-size: 32px;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+    font-family: var(--sk-font);
+}
+
+.position {
+    font-size: 18px;
+    color: var(--grey-dark);
+    font-family: var(--montserrat-font);
+}
+
+.portfolio-section h2 {
+    font-size: 24px;
+    color: var(--accent-dark);
+    margin-bottom: 30px;
+    font-family: var(--sk-font);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.portfolio-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-image-container {
+    max-height: 450px;
+    /* Максимальная высота */
+    overflow-y: auto;
+    /* Вертикальный скролл */
+    overflow-x: hidden;
+    /* Горизонтальный скролл скрываем */
+    width: 100%;
+}
+
+.portfolio-image {
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Стили для скроллбара как в портфолио */
+.portfolio-image-container::-webkit-scrollbar {
+    width: 8px;
+    /* Ширина скроллбара */
+}
+
+.portfolio-image-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Светлый фон трека */
+    border-radius: 4px;
+}
+
+.portfolio-image-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    /* Серый ползунок */
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+    /* Отступ вокруг ползунка */
+}
+
+.portfolio-image-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.portfolio-image-container {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-item {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+
+    .portfolio-image-container {
+        max-height: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio-grid {
+        display: flex;
+        overflow-y: hidden;
+        gap: 15px;
+    }
+
+    .developer-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .developer-info {
+        max-width: 100%;
+    }
+
+    .developer-title {
+        font-size: 20px !important;
+    }
+
+    .portfolio-section h2 {
+        text-align: center;
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+        font-size: 22px !important;
+    }
+
+    .portfolio-image-container, .portfolio-item {
+        min-width: 300px;
+        width: 300px;
+    }
+
+    .portfolio-item {
+        margin: auto;
+    }
+}

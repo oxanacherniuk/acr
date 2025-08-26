@@ -1,0 +1,220 @@
+.developers {
+    border-top: 16px solid white;
+    border-bottom: 16px solid white;
+    border-radius: 27px;
+    position: relative;
+    padding-bottom: 90px;
+    background: var(--dev-bg);
+}
+
+.left-hand {
+    position: absolute;
+    top: 53px;
+    left: 0;
+}
+
+.right-hand {
+    position: absolute;
+    bottom: -70px;
+    right: 0;
+}
+
+.developers-title {
+    font-size: 25px;
+    color: var(--accent-dark);
+    font-family: var(--sk-font);
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.container-dev {
+    width: 100%;
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.developers-box {
+    margin-top: 65px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.developer-card {
+    background-color: white;
+    width: 380px;
+    height: 380px;
+    border-radius: 20px;
+    filter: drop-shadow(0px 4px 29.7px rgba(0, 0, 0, .15));
+}
+
+.developer-photo,
+.developer-photo__pavel {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 316px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.name {
+    font-family: var(--sk-font);
+    font-size: 20px;
+    margin: 0;
+    color: var(--accent-dark);
+}
+
+.button-potfolio {
+    display: flex;
+    align-items: center;
+}
+
+.button-potfolio span {
+    font-family: var(--sk-font);
+    font-size: 12px;
+    margin-right: 10px;
+    text-decoration: underline;
+    color: var(--accent-light);
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+    .developer-card {
+        width: 330px;
+        height: 330px;
+    }
+
+    .developer-photo__pavel {
+        width: 215px;
+    }
+
+    .developer-photo {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .developer-card {
+        width: 300px;
+        height: 300px;
+    }
+
+    .developer-photo__pavel {
+        width: 195px;
+    }
+
+    .developer-photo {
+        width: 222px;
+    }
+
+    .card-bottom {
+        max-width: 250px;
+    }
+
+    .name {
+        font-size: 16px;
+    }
+
+    .button-potfolio span {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .developers-box {
+        overflow-y: hidden;
+        gap: 15px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .developer-card {
+        margin-right: 15px;
+    }
+
+    .developer-card {
+        min-width: 300px;
+        min-height: 300px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .developers-box {
+        overflow-y: hidden;
+    }
+
+    .developer-card {
+        margin-right: 15px;
+    }
+
+    .developer-card {
+        min-width: 250px;
+        min-height: 250px;
+    }
+
+    .card-bottom {
+        max-width: 220px;
+    }
+
+    .name {
+        font-size: 12px;
+    }
+
+    .left-hand,
+    .right-hand {
+        width: 200px;
+    }
+
+    .right-hand {
+        bottom: 110px;
+    }
+
+    .left-hand {
+        top: 110px;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    .right-hand {
+        bottom: 40px;
+    }
+
+    .left-hand {
+        top: 38px;
+    }
+
+    .developers-title {
+        font-size: 18px;
+        margin-top: 40px;
+    }
+
+    .developers-box {
+        margin-top: 55px;
+        background-color: transparent;
+    }
+
+    .show-more {
+        margin-bottom: 35px;
+    }
+
+    .container-dev {
+        padding-right: 0;
+        padding-left: 15px;
+    }
+}

@@ -112,7 +112,7 @@
     border: none;
     padding: 24px 80px 20px;
     z-index: 1;
-    cursor: url('./assets/images/cursor-hover.svg'), auto;
+    cursor: pointer;
 }
 
 .contact-button::before {

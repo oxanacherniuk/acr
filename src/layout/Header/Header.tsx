@@ -38,13 +38,13 @@ export function HeaderLayout() {
                     <nav className={styles['nav']}>
                         <ul className={styles['nav-list']}>
                             <li>
+                                <a href="/" className={styles['nav-link']}>Главная</a>
+                            </li>
+                            <li>
                                 <a href="/amenties" className={styles['nav-link']}>Услуги</a>
                             </li>
                             <li>
-                                <a href="" className={styles['nav-link']}>Аутстаффинг</a>
-                            </li>
-                            <li>
-                                <a href="" className={styles['nav-link']}>Разработчики</a>
+                                <a href="/developers" className={styles['nav-link']}>Разработчики</a>
                             </li>
                         </ul>
                     </nav>

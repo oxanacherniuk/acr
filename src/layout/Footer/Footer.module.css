@@ -14,7 +14,7 @@
     font-family: var(--montserrat-font);
     font-weight: 400;
     font-size: 16px;
-    cursor: url('./assets/images/cursor-hover.svg'), auto;
+    cursor:pointer;
 }
 
 .address,

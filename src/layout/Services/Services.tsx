@@ -18,7 +18,7 @@ export function ServicesLayout() {
                             <img className={styles['card-image1']} src={helpWeb} alt="" />
                         </div>
                         <div className={styles['card-big']}>
-                            <p className={styles['card-title']}>B2B и Аутстаффинг</p>
+                            <p className={styles['card-title']}>Разработка чат-ботов в Telegram</p>
                             <p className={styles['card-text']}>Выберите специалиста и сразу приступайте <br />к работе — а мы возьмем на себя все <br /> документы и HR-процессы.</p>
                             <img className={styles['card-image2']} src={helpAutstaff} />
                         </div>
