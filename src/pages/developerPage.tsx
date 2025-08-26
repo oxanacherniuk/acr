@@ -4,7 +4,7 @@ import styles from '../layout/BigDevelopers/Developer.module.css';
 import { HeaderLayout } from '../layout/Header/Header';
 import { FooterLayout } from '../layout/Footer/Footer';
 
-export function DeveloperPage() {
+export default function DeveloperPage() {
     const { id } = useParams<{ id: string }>();
     const developer = developers.find(dev => dev.id === id);
 
