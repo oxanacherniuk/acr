@@ -1,87 +1,119 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Reviews.module.css';
 import { reviews } from './review';
-import LeftArrow from '../../assets/images/arrow-left.png';
-import RightArrow from '../../assets/images/arrow-right.png';
 
 export function ReviewsLayout() {
-    const [currentGroup, setCurrentGroup] = useState(0);
-    const slidesToShow = 4;
-    const totalSlides = reviews.length;
-    const totalGroups = Math.ceil(totalSlides / slidesToShow);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [touchStart, setTouchStart] = useState(0);
+    const [touchEnd, setTouchEnd] = useState(0);
+    const reviewRef = useRef<HTMLDivElement>(null);
 
     const nextSlide = () => {
-        setCurrentGroup(prev => (prev >= totalGroups - 1 ? 0 : prev + 1));
+        setCurrentIndex(prev => (prev >= reviews.length - 1 ? 0 : prev + 1));
     };
 
     const prevSlide = () => {
-        setCurrentGroup(prev => (prev === 0 ? totalGroups - 1 : prev - 1));
+        setCurrentIndex(prev => (prev === 0 ? reviews.length - 1 : prev - 1));
     };
 
-    const goToSlide = (groupIndex: number) => {
-        setCurrentGroup(groupIndex);
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setTouchStart(e.targetTouches[0].clientX);
     };
 
-    const trackOffset = -currentGroup * (277 + 30) * slidesToShow;
+    const handleTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        
+        const distance = touchStart - touchEnd;
+        const minSwipeDistance = 50; 
+
+        if (distance > minSwipeDistance) {
+            nextSlide();
+        } else if (distance < -minSwipeDistance) {
+            prevSlide();
+        }
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
+    const currentReview = reviews[currentIndex];
 
     return (
         <div className={styles['reviews']}>
             <div className='container'>
-                <p className={styles['reviews-title']}>Что о нас говорят</p>
+                <p className={styles['reviews-title']}>отзывы</p>
                 
-                <div className={styles['reviews-container']}>
+                <div className={styles['review-container']}>
                     <div 
-                        className={styles['reviews-track']}
-                        style={{ 
-                            transform: `translateX(${trackOffset}px)`,
-                            transition: 'transform 0.3s ease'
-                        }}
+                        className={styles['review-card']}
+                        ref={reviewRef}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                        style={{ cursor: 'grab' }}
                     >
-                        {reviews.map((review) => (
-                            <div key={review.id} className={styles['review-card']}>
-                                <div className={styles['review-top']}>
-                                    <img 
-                                        className={styles['review-photo']} 
-                                        src={review.photo} 
-                                        alt={review.name} 
-                                    />
-                                    <p className={styles['review-name']}>{review.name}</p>
-                                </div>
-                                <div className={styles['review-content']}>
-                                    <p className={styles['review-text']}>{review.text}</p>
-                                </div>
+                        <div className={styles['review-top']}>
+                            <img 
+                                className={styles['review-photo']} 
+                                src={currentReview.photo} 
+                                alt={currentReview.name} 
+                            />
+                            <div className={styles['review-info']}>
+                                <p className={styles['review-name']}>{currentReview.name}</p>
+                                <p className={styles['review-position']}></p>
                             </div>
-                        ))}
-                    </div>
-                </div>
+                        </div>
+                        
+                        <div className={styles['review-content']}>
+                            <p className={styles['review-text']}>"{currentReview.text}"</p>
+                        </div>
 
-                <div className={styles['reviews-dots']}>
-                    {Array.from({ length: totalGroups }).map((_, index) => (
-                        <button
-                            key={index}
-                            className={`${styles['dot']} ${
-                                currentGroup === index ? styles['dot-active'] : ''
-                            }`}
-                            onClick={() => goToSlide(index)}
-                        />
-                    ))}
-                </div>
-            </div>
-            
-            <div className={styles['reviews-box']}>
-                <div className={styles['reviews-buttons']}>
-                    <button 
-                        className={styles['reviews-button__left']}
-                        onClick={prevSlide}
-                    >
-                        <img src={LeftArrow} alt="Назад" />
-                    </button>
-                    <button 
-                        className={styles['reviews-button__right']}
-                        onClick={nextSlide}
-                    >
-                        <img src={RightArrow} alt="Вперед" />
-                    </button>
+                        <div className={styles['swipe-indicator']}>
+                            <span>← Свайпните →</span>
+                        </div>
+                        
+                        <div className={styles['review-navigation']}>
+                            <div className={styles['navigation-buttons']}>
+                                <button 
+                                    className={styles['nav-button']}
+                                    onClick={prevSlide}
+                                    aria-label="Предыдущий отзыв"
+                                >
+                                    <div className={styles['button-circle']}>
+                                        <span className={styles['arrow']}>←</span>
+                                    </div>
+                                </button>
+                                
+                                <button 
+                                    className={styles['nav-button']}
+                                    onClick={nextSlide}
+                                    aria-label="Следующий отзыв"
+                                >
+                                    <div className={styles['button-circle']}>
+                                        <span className={styles['arrow']}>→</span>
+                                    </div>
+                                </button>
+                            </div>
+                            
+                            <div className={styles['review-counter']}>
+                                {String(currentIndex + 1).padStart(2, '0')}/{String(reviews.length).padStart(2, '0')}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

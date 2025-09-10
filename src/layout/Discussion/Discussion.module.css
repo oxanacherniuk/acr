@@ -1,88 +1,237 @@
 .discussion {
-    padding: 55px 0;
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.discussion-inner {
-    margin: auto;
+    background: white;
+    padding: 300px 0;
+    color: #000;
+    min-height: 80vh;
     display: flex;
-    padding: 30px 100px;
-    justify-content: space-between;
-    align-items: baseline;
-    border-radius: 23px;
-    max-width: 995px;
-    max-height: 140px;
-    filter: drop-shadow(0px 2px 25.8px rgba(0, 0, 0, .25));
-    background: RGBA(255, 255, 255, 0.5);
-    background: linear-gradient(90deg, rgba(255, 255, 255, .5) 0%, rgba(87, 134, 153, .5) 50%, rgba(255, 255, 255, .5) 100%);
+    align-items: center;
+    justify-content: center;
     position: relative;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
 }
 
-.discussion-inner::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    background: linear-gradient(90deg, rgba(87, 134, 153, 1) 0%, rgba(211, 211, 211, 1) 18%, rgba(87, 134, 153, 1) 30%, rgba(87, 134, 153, 1) 62%, rgba(219, 219, 219, 1) 72%, rgba(87, 134, 153, 1) 79%, rgba(171, 195, 204, 1) 100%);
-    border-radius: 24px;
-    z-index: -1;
-    padding: 1px;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+.discussion.black-background {
+    background: #000;
+}
+
+.discussion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.initial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
 }
 
 .discussion-title {
-    font-size: 20px;
-    font-family: var(--sk-font);
-    color: var(--accent-dark);
+    font-size: 4.5rem;
+    font-weight: 700;
+    font-family: var(--manrope-font);
+    margin: 0;
+    color: #000;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
-@media screen and (max-width: 850px) {
-    .discussion-title {
-        margin: 0;
-        font-size: 16px;
+.discussion.black-background .discussion-title {
+    color: #fff;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 40px;
+    position: relative;
+}
+
+.yes-button,
+.no-button {
+    padding: 25px 60px;
+    font-size: 1.8rem;
+    font-family: var(--manrope-font);
+    font-weight: 600;
+    border: 2px solid var(--accent-light);
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    z-index: 20;
+}
+
+.yes-button {
+    background: transparent;
+    color: var(--accent-light);
+}
+
+.yes-button:hover:not(:disabled) {
+    background: transparent;
+    color: var(--accent-light);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 136, 255, 0.3);
+}
+
+.yes-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.no-button {
+    border-color: #ff4757;
+    color: #ff4757;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.no-button:hover:not(:disabled) {
+    background: rgba(255, 71, 87, 0.1);
+}
+
+.no-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.door-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.door-left,
+.door-right {
+    flex: 1;
+    background: #fff;
+    transition: transform 1s ease-in-out;
+    transform: translateX(0);
+    box-shadow: 0 15px 600px rgba(161, 161, 161, 0.4);
+}
+
+.is-animating .door-left {
+    transform: translateX(-100%);
+}
+
+.is-animating .door-right {
+    transform: translateX(100%);
+}
+
+.success-content {
+    position: relative;
+    z-index: 15;
+    animation: fadeInUp 1s ease-out 0.5s both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    width: 100%;
+}
+
+.connect-button {
+    margin-right: 40px;
+}
+
+.connect-button:hover {
+    transform: translateY(-5px) !important;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
     }
 
-    .discussion-inner {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .discussion-title {
+        font-size: 3.5rem;
+    }
+
+    .yes-button,
+    .no-button {
         padding: 20px 50px;
-        border-radius: 14px;
+        font-size: 1.5rem;
+    }
+
+    .connect-button {
+        padding: 25px 60px !important;
+        font-size: 1.6rem !important;
     }
 }
 
-@media screen and (max-width: 625px) {
+@media screen and (max-width: 768px) {
     .discussion {
-        padding: 35px 0;
-    }
-
-    .discussion-inner {
-        display: grid;
-        justify-items: center;
-        justify-content: center;
-        padding: 30px 100px 20px;
+        padding: 150px 0;
     }
 
     .discussion-title {
-        text-align: center;
-        margin-bottom: 15px;
+        font-size: 2.5rem;
+    }
+
+    .buttons-container {
+        gap: 25px;
+    }
+
+    .yes-button,
+    .no-button {
+        padding: 18px 40px;
+        font-size: 1.3rem;
+    }
+
+    .connect-button {
+        padding: 20px 50px !important;
+        font-size: 1.4rem !important;
+    }
+
+    .initial-content {
+        gap: 40px;
     }
 }
 
-@media screen and (max-width: 525px) {
-    .discussion-inner {
-        width: 100%;
-        padding: 30px 0 20px;
+@media screen and (max-width: 480px) {
+    .discussion {
+        padding: 100px 0;
     }
-}
 
-@media screen and (max-width: 400px) {
     .discussion-title {
-        font-size: 14px;
+        font-size: 2rem;
+    }
+
+    .yes-button,
+    .no-button {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+    }
+
+    .connect-button {
+        padding: 18px 40px !important;
+        font-size: 1.2rem !important;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .initial-content {
+        gap: 30px;
     }
 }

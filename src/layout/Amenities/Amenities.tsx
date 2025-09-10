@@ -12,7 +12,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Функциональный одностраничный сайт - идеальное решение для эффективного продвижения и демонстрации сильных сторон продукта.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>25 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                     <div className={styles['amenities-card']}>
@@ -20,7 +20,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Откройте для себя новый канал продаж с помощью создания современного и функционального интернет-магазина с корзиной, оформлением заказов, оповещениями и админ-панелью.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>200 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                     <div className={styles['amenities-card']}>
@@ -28,7 +28,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Откройте представительство своей компании в интернете с помощью создания современного и функционального корпоративного сайта.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>150 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                     <div className={styles['amenities-card']}>
@@ -37,7 +37,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Упаковка школы "под ключ": фирменный стиль, создание многостраничного сайта с личным кабинетом, создание чат-бота для Vk, Telegram. Полное техническое и маркетинговое сопровождение.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>180 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                     <div className={styles['amenities-card']}>
@@ -46,7 +46,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Упаковка школы "под ключ": фирменный стиль, создание многостраничного сайта с личным кабинетом, создание чат-бота для Vk, Telegram. Полное техническое и маркетинговое сопровождение.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>999 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                     <div className={styles['amenities-card']}>
@@ -55,7 +55,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-text']}>Упаковка школы "под ключ": фирменный стиль, создание многостраничного сайта с личным кабинетом, создание чат-бота для Vk, Telegram. Полное техническое и маркетинговое сопровождение.</p>
                         <div className={styles['amenities-bottom']}>
                             <p className={styles['card-price']}>от <span className={styles['text-bold']}>999 000 </span>₽</p>
-                            <NavigationButton size='small' to={'/'} children={"Связаться"} />
+                            <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
                 </div>

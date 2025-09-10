@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeaderLayout } from '../layout/Header/Header';
 import { BannerLayout } from '../layout/Banner/Banner';
 import { ServicesLayout } from '../layout/Services/Services';
@@ -8,19 +7,38 @@ import { ReviewsLayout } from '../layout/Reviews/Reviews';
 import { DiscussionLayout } from '../layout/Discussion/Discussion';
 import { ContactLayout } from '../layout/ContactForm/ContactForm';
 import { FooterLayout } from '../layout/Footer/Footer';
+import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
+import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
+import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
+import BannnerMP4 from '../assets/video/banner (online-video-cutter.com).mp4';
 
 const IndexPage: React.FC = () => {
     return (
         <div>
             <HeaderLayout />
-            <BannerLayout />
+            <div className='AiBanner'>
+                <video 
+                    className='banner-video'
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                >
+                    <source src={BannnerMP4} type="video/mp4" />
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <BannerLayout />
+            </div>
+            <SecondBannerLayout />
             <ServicesLayout />
             <DevelopersLayout />
             <DiscussionLayout />
             <TechnologiesLayout />
             <ReviewsLayout />
+            <PortfolioLayout />
             <ContactLayout />
             <FooterLayout />
+            <BottomNavigation />
         </div>
     );
 };

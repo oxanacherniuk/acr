@@ -1,58 +1,46 @@
 .developer-page {
-    border-radius: 40px;
-    border-top: 16px solid white;
-    border-bottom: 16px solid white;
-    background: var(--dev-bg);
-    padding-top: 25px;
-    padding-bottom: 100px;
+    padding: 120px 0;
+    background: #000000;
+    color: #ffffff;
+    position: relative;
 }
 
 .back-button {
-    font-family: var(--montserrat-font);
-    font-size: 16px;
-    color: var(--accent-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--manrope-font);
+    font-size: 1.1rem;
+    color: white;
     font-weight: 500;
-}
-
-.developer-header {
-    margin-top: 35px;
-}
-
-.developer-photo-large {
-    display: block;
-    margin: auto;
-}
-
-.developer-info {
-    max-width: 300px;
-    margin: auto;
-}
-
-.developer-title {
-    margin: 0 auto;
-    text-align: center;
-}
-
-.position {
-    margin: 0;
-    text-align: center;
+    text-decoration: none;
+    margin-bottom: 60px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .back-button:hover {
-    text-decoration: underline;
+    color: #00bfff;
+    transform: translateX(-5px);
 }
 
 .developer-header {
     display: flex;
     align-items: center;
-    gap: 30px;
-    max-width: 480px;
-    margin-bottom: 50px;
+    gap: 50px;
+    margin-bottom: 80px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
 }
 
 .developer-ellipse {
     border-radius: 50%;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border: 2px solid rgba(0, 191, 255, 0.3);
+    flex-shrink: 0;
 }
 
 .developer-photo-large {
@@ -60,87 +48,126 @@
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
+    transition: all 0.3s ease;
 }
 
-.developer-info h1 {
-    font-size: 32px;
-    color: var(--accent-dark);
-    margin-bottom: 10px;
-    font-family: var(--sk-font);
+.developer-photo-large:hover {
+    transform: scale(1.05);
+}
+
+.developer-info {
+    flex: 1;
+}
+
+.developer-title {
+    font-size: 3rem;
+    color: var(--accent-light);
+    margin-bottom: 15px;
+    font-family: var(--manrope-font);
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .position {
-    font-size: 18px;
-    color: var(--grey-dark);
-    font-family: var(--montserrat-font);
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--manrope-font);
+    margin: 0;
+    font-weight: 400;
 }
 
-.portfolio-section h2 {
-    font-size: 24px;
-    color: var(--accent-dark);
-    margin-bottom: 30px;
-    font-family: var(--sk-font);
+.portfolio-section {
+    margin-top: 80px;
 }
 
-.portfolio-grid {
+.portfolio-title {
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 80px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.portfolio-box {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: auto;
+    padding: 0 20px;
 }
 
-.portfolio-item {
-    background: white;
-    border-radius: 15px;
+.portfolio-card {
+    width: 100%;
+    height: auto;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 0.3s ease forwards;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 191, 255, 0.3);
 }
 
 .portfolio-image-container {
-    max-height: 450px;
-    /* Максимальная высота */
-    overflow-y: auto;
-    /* Вертикальный скролл */
-    overflow-x: hidden;
-    /* Горизонтальный скролл скрываем */
     width: 100%;
+    height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .portfolio-image {
-    background-color: white;
     width: 100%;
     height: auto;
+    max-height: none;
     display: block;
+    object-fit: contain;
 }
 
-/* Стили для скроллбара как в портфолио */
+.portfolio-name {
+    padding: 30px 20px;
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--manrope-font);
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Стили для скроллбара */
 .portfolio-image-container::-webkit-scrollbar {
     width: 8px;
-    /* Ширина скроллбара */
 }
 
 .portfolio-image-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    /* Светлый фон трека */
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
 }
 
 .portfolio-image-container::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    /* Серый ползунок */
+    background: rgba(0, 191, 255, 0.3);
     border-radius: 4px;
-    border: 2px solid #f1f1f1;
-    /* Отступ вокруг ползунка */
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .portfolio-image-container::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+    background: rgba(0, 191, 255, 0.5);
 }
 
 .portfolio-image-container {
     scrollbar-width: thin;
-    scrollbar-color: #c1c1c1 #f1f1f1;
+    scrollbar-color: rgba(0, 191, 255, 0.3) rgba(255, 255, 255, 0.05);
 }
 
 @keyframes fadeIn {
@@ -155,56 +182,143 @@
     }
 }
 
-.portfolio-item {
-    animation: fadeIn 0.3s ease forwards;
+@media screen and (max-width: 1250px) {
+    .portfolio-title {
+        width: 100%;
+        text-align: center;
+    }
+
+    .portfolio-box {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+    }
 }
 
-@media screen and (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
+@media screen and (max-width: 1024px) {
+    .developer-title {
+        font-size: 2.5rem;
+    }
+
+    .position {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-title {
+        font-size: 2.5rem;
+        margin-bottom: 60px;
     }
 
     .portfolio-image-container {
-        max-height: 400px;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .developer-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .developer-title {
+        font-size: 2rem;
+    }
+
+    .position {
+        font-size: 1.1rem;
+    }
+
+    .portfolio-box {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+
+    .portfolio-image-container {
+        height: 500px;
+    }
+
+    .portfolio-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .developer-page {
+        padding: 80px 0;
+    }
+
+    .developer-header {
+        padding: 25px;
+        margin-bottom: 60px;
+    }
+
+    .developer-photo-large {
+        width: 180px;
+        height: 180px;
+    }
+
+    .portfolio-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .portfolio-image-container {
+        height: 400px;
+    }
+
+    .portfolio-name {
+        padding: 20px;
+        font-size: 1rem;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .portfolio-grid {
-        display: flex;
-        overflow-y: hidden;
-        gap: 15px;
+    .developer-page {
+        padding: 60px 0;
+    }
+
+    .back-button {
+        font-size: 1rem;
+        padding: 8px 16px;
+        margin-bottom: 40px;
     }
 
     .developer-header {
-        flex-direction: column;
-        text-align: center;
+        padding: 20px;
+        margin-bottom: 50px;
         gap: 20px;
     }
 
-    .developer-info {
-        max-width: 100%;
+    .developer-photo-large {
+        width: 150px;
+        height: 150px;
     }
 
     .developer-title {
-        font-size: 20px !important;
+        font-size: 1.8rem;
     }
 
-    .portfolio-section h2 {
-        text-align: center;
-        display: block;
-        margin: auto;
-        margin-bottom: 20px;
-        font-size: 22px !important;
+    .position {
+        font-size: 1rem;
     }
 
-    .portfolio-image-container, .portfolio-item {
-        min-width: 300px;
-        width: 300px;
+    .portfolio-title {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
     }
 
-    .portfolio-item {
-        margin: auto;
+    .portfolio-image-container {
+        height: 300px;
+    }
+
+    .portfolio-box {
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .portfolio-name {
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }

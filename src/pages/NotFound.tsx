@@ -1,7 +1,6 @@
 import type { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-// допиши стили 
 const NotFound = (): ReactElement => {
   return (
     <div className="not-found-container">

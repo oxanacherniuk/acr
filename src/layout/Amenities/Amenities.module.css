@@ -1,5 +1,4 @@
 .amenities {
-    background: linear-gradient(135deg, rgba(248, 248, 249, 1) 12%, rgba(241, 247, 249, 1) 28%, rgba(245, 245, 247, 1) 42%, rgba(229, 237, 240, 1) 60%, rgba(255, 255, 255, 1) 81%, rgba(241, 241, 243, 1) 100%);
     border-radius: 24px;
     border-top: 16px solid white;
     border-bottom: 16 px solid white;
@@ -18,9 +17,11 @@
 }
 
 .amenities-title {
-    font-size: 25px;
+    font-size: 27px;
     color: var(--accent-dark);
-    font-family: var(--sk-font);
+    font-family: var(--montserrat-font);
+    text-transform: uppercase;
+    font-weight: 700;
     text-align: center;
     display: block;
     margin: auto;
@@ -136,16 +137,16 @@
 @media screen and (max-width: 565px) {
     .amenities {
         padding-top: 50px;
-        padding-bottom: 20px;
+        padding-bottom: 0px;
     }
 
     .amenities-title {
-        font-size: 16px;
+        font-size: 19px;
     }
-}
 
-@media screen and (max-width: 410px) {
-    .amenities-title {
-        font-size: 14px;
+    .amenities {
+        border-radius: 15px;
+        border-top: 8px solid white;
+        border-bottom: 8px solid white;
     }
 }

@@ -23,7 +23,7 @@ export default function DeveloperPage() {
         <div>
             <HeaderLayout />
             <div className={styles['developer-page']}>
-                <div className="container">
+                <div className='container'>
                     <Link to="/developers" className={styles['back-button']}>
                     ← Назад к разработчикам
                     </Link>
@@ -43,10 +43,10 @@ export default function DeveloperPage() {
                     </div>
 
                     <div className={styles['portfolio-section']}>
-                    <h2>Портфолио работ</h2>
-                    <div className={styles['portfolio-grid']}>
+                    <p className={styles['portfolio-title']}>портфолио работ</p>
+                    <div className={styles['portfolio-box']}>
                         {developer.portfolio.map((image, index) => (
-                        <div key={index} className={styles['portfolio-item']}>
+                        <div key={index} className={styles['portfolio-card']}>
                             <div className={styles['portfolio-image-container']}>
                                 <img 
                                 src={image} 
@@ -54,6 +54,7 @@ export default function DeveloperPage() {
                                 className={styles['portfolio-image']}
                                 />
                             </div>
+                            <p className={styles['portfolio-name']}>Работа {index + 1}</p>
                         </div>
                         ))}
                     </div>

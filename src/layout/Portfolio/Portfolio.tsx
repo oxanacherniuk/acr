@@ -5,7 +5,7 @@ import { sites } from './sites';
 export function PortfolioLayout() {
     const [showAll, setShowAll] = useState(false);
     
-    const displayedSites = showAll ? sites : sites.slice(0, 6);
+    const displayedSites = showAll ? sites : sites.slice(0, 3);
     
     const toggleShowAll = () => {
         setShowAll(!showAll);
@@ -14,7 +14,7 @@ export function PortfolioLayout() {
     return (
         <div className={styles['portfolio']}>
             <div className='container'>
-                <p className={styles['portfolio-title']}>Наши выполненные проекты</p>
+                <p className={styles['portfolio-title']}>выполненные проекты</p>
                 <div className={styles['portfolio-box']}>
                     {displayedSites.map((site) => (
                         <div key={site.id} className={styles['portfolio-card']}>
@@ -29,13 +29,13 @@ export function PortfolioLayout() {
                         </div>
                     ))}
                 </div>
-                {sites.length > 6 && (
+                {sites.length > 3 && (
                     <div>
                         <button 
                             className={styles['portfolio-button']}
                             onClick={toggleShowAll}
                         >
-                            {showAll ? 'Свернуть все' : 'Показать больше'}
+                            {showAll ? 'свернуть все' : 'показать больше'}
                         </button>
                     </div>
                 )}

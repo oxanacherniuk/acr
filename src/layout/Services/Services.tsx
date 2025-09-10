@@ -1,44 +1,185 @@
 import styles from './Services.module.css';
-import helpWeb from '../../assets/images/help-web.png';
-import helpAutstaff from '../../assets/images/help-autst.png';
-import helpAi from '../../assets/images/help-ai.png';
-import helpMobile from '../../assets/images/help-mobile.png';
-import helpDesign from '../../assets/images/help-design.png';
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { websiteTypes } from './variables';
 
 export function ServicesLayout() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [currentPopup, setCurrentPopup] = useState<'websites' | null>(null);
+    const navigate = useNavigate();
+
+    const handleWebAppClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setCurrentPopup('websites');
+        setIsPopupOpen(true);
+    };
+
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+        setCurrentPopup(null);
+    };
+
+    const handlePopupClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+    };
+
+    const handleWebsiteTypeClick = (link: string) => {
+        navigate(link);
+        setIsPopupOpen(false);
+        setCurrentPopup(null);
+    };
+
+    const renderPopupContent = () => {
+        switch (currentPopup) {
+            case 'websites':
+                return (
+                    <>
+                        <div className={styles['website-types']}>
+                            {websiteTypes.map((type, index) => (
+                                <div 
+                                    key={index} 
+                                    className={styles['website-type-item']}
+                                    onClick={() => handleWebsiteTypeClick(type.link)}
+                                >
+                                    <div className={styles['website-type-content']}>
+                                        <div className={styles['website-type-info']}>
+                                            <div className={styles['website-type-header']}>
+                                                <h4 className={styles['website-type-title']}>{type.title}</h4>
+                                                <span className={styles['website-type-price']}>{type.price}</span>
+                                            </div>
+                                            <p className={styles['website-type-description']}>{type.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className={styles['website-type-link']}>
+                                        Подробнее →
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                );
+            default:
+                return null;
+        }
+    };
+    
     return (
-        <div className={styles['services']}>
+        <div className={styles['services']} ref={sectionRef}>
             <div className='container'>
                 <div className={styles['services-box']}>
-                    <p className={styles['services-title']}>Мы можем вам помочь</p>
-                    <div className={styles['top-row']}>
-                        <div className={styles['card-big']}>
-                            <p className={styles['card-title']}>РАЗРАБОТКА WEB ПРИЛОЖЕНИЙ</p>
-                            <p className={styles['card-text']}>Разрабатываем веб-приложения c нуля или <br />подключаемся на любой стадии проекта</p>
-                            <img className={styles['card-image1']} src={helpWeb} alt="" />
+                    <p className={styles['services-title']}>
+                        услуги
+                    </p>
+                    
+                    <a href="#" className={styles['service-link']} onClick={handleWebAppClick}>
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>РАЗРАБОТКА САЙТОВ</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Разрабатываем веб-приложения c нуля или подключаемся на любой стадии проекта
+                                </p>
+                            </div>
                         </div>
-                        <div className={styles['card-big']}>
-                            <p className={styles['card-title']}>Разработка чат-ботов в Telegram</p>
-                            <p className={styles['card-text']}>Выберите специалиста и сразу приступайте <br />к работе — а мы возьмем на себя все <br /> документы и HR-процессы.</p>
-                            <img className={styles['card-image2']} src={helpAutstaff} />
+                    </a>
+
+                    <Link to="/services/chat-bots" className={styles['service-link']}>
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>УМНЫЕ ЧАТ-БОТЫ</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Автоматизируем продажи и поддержку 24/7 с помощью интеллектуальных ботов
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles['bottom-row']}>
-                        <div className={styles['card-small']}>
-                            <p className={styles['card-title']}>Внедрение <br />Искусственного <br />интелекта</p>
-                            <img className={styles['card-image3']} src={helpAi} alt="" />
+                    </Link>
+
+                    <Link to="/services/ai" className={styles['service-link']}>
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>ВНЕДРЕНИЕ ИИ</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Интегрируем AI-решения для оптимизации процессов и повышения эффективности бизнеса
+                                </p>
+                            </div>
                         </div>
-                        <div className={styles['card-small']}>
-                            <p className={styles['card-title']}>Разработка<br />мобильных <br />приложений</p>
-                            <img className={styles['card-image4']} src={helpMobile} alt="" />
+                    </Link>
+
+                    <Link to="/services/mobile-app" className={styles['service-link']}>
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Создаем нативные и кроссплатформенные мобильные приложения для iOS и Android
+                                </p>
+                            </div>
                         </div>
-                        <div className={styles['card-small']}>
-                            <p className={styles['card-title']}>дизайн</p>
-                            <img className={styles['card-image5']} src={helpDesign} alt="" />
+                    </Link>
+
+                    <Link to="/services/design" className={styles['service-link']}>
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>ДИЗАЙН</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Разрабатываем современный и функциональный дизайн для цифровых продуктов и брендов
+                                </p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/services/marketing" className={styles['service-link']} >
+                        <div className={styles['service-item']}>
+                            <div className={styles['service-header']}>
+                                <span className={styles['service-subtitle']}>Услуга</span>
+                                <div className={styles['service-arrow']}>→</div>
+                            </div>
+                            <h3 className={styles['service-name']}>DIGITAL-МАРКЕТИНГ</h3>
+                            <div className={styles['service-content']}>
+                                <div className={styles['service-line']}></div>
+                                <p className={styles['service-description']}>
+                                    Привлекаем целевую аудиторию бизнеса, увеличиваем конверсию и повышаем узнаваемость бренда 
+                                </p>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            {isPopupOpen && (
+                <div className={styles['popup-overlay']} onClick={handleClosePopup}>
+                    <div className={styles['popup-content']} onClick={handlePopupClick}>
+                        <button className={styles['popup-close']} onClick={handleClosePopup}>×</button>
+                        <div className={styles['popup-scroll-container']}>
+                            {renderPopupContent()}
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
-    )
+    );
 }

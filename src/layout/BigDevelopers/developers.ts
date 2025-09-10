@@ -1,9 +1,9 @@
-import Pavel from '../../assets/images/pavel.png';
-import Oksana from '../../assets/images/oksana.png';
-import AI from '../../assets/images/ai.png';
-import Platon from '../../assets/images/oksana.png';
-import Irina from '../../assets/images/oksana.png';
-import Maksim from '../../assets/images/oksana.png';
+import Pavel from '../../assets/images/pavel.jpg';
+import Oksana from '../../assets/images/oksana.jpg';
+import Platon from '../../assets/images/platon.jpg';
+import Irina from '../../assets/images/irina.png';
+import Maksim from '../../assets/images/maksim.jpg';
+import AI from '../../assets/images/ai.jpg';
 import OksanaSite1 from '../../assets/images/oksana-site1.png';
 import OksanaSite2 from '../../assets/images/oksana-site2.png';
 import OksanaSite3 from '../../assets/images/oksana-site3.png';
@@ -16,6 +16,8 @@ import PavelSite1 from '../../assets/images/pavel-site1.png';
 import PavelSite2 from '../../assets/images/pavel-site2.png';
 import PavelSite3 from '../../assets/images/pavel-site3.png';
 import PavelSite4 from '../../assets/images/pavel-site4.png';
+import PlatonBot1 from '../../assets/images/platonBot1.png';
+import PlatonBot2 from '../../assets/images/platonBot2.png';
 
 export interface Developer {
     id: string;
@@ -31,7 +33,7 @@ export const developers: Developer[] = [
         id: 'pavel',
         firstName: 'Павел',
         lastName: '',
-        position: 'Backend-разработчик',
+        position: 'Fullstack-разработчик',
         photo: Pavel,
         portfolio: [
         PavelSite1,
@@ -41,21 +43,21 @@ export const developers: Developer[] = [
         ]
     },
     {
-        id: 'ii',
-        firstName: 'ИИ',
+        id: 'platon',
+        firstName: 'Платон',
         lastName: '',
-        position: 'AI разработчик',
-        photo: AI,
+        position: 'Python-разработчик',
+        photo: Platon,
         portfolio: [
-        '/images/portfolio/ii-1.jpg',
-        '/images/portfolio/ii-2.jpg'
+        PlatonBot1,
+        PlatonBot2
         ]
     },
     {
         id: 'oksana',
         firstName: 'Оксана',
         lastName: '',
-        position: 'Frontend разработчик',
+        position: 'Fullstack-разработчик',
         photo: Oksana,
         portfolio: [
         OksanaSite1,
@@ -69,37 +71,27 @@ export const developers: Developer[] = [
         ]
     },
     {
-        id: 'platon',
-        firstName: 'Платон',
+        id: 'maksim',
+        firstName: 'Максим',
         lastName: '',
-        position: 'Fullstack разработчик',
-        photo: Platon,
-        portfolio: [
-        '/images/portfolio/platon-1.jpg',
-        '/images/portfolio/platon-2.jpg'
-        ]
+        position: 'Руководитель, PR-маркетолог',
+        photo: Maksim,
+        portfolio: []
     },
     {
         id: 'irina',
         firstName: 'Ирина',
         lastName: '',
-        position: 'UI/UX дизайнер',
+        position: 'Project менеджер',
         photo: Irina,
-        portfolio: [
-        '/images/portfolio/irina-1.jpg',
-        '/images/portfolio/irina-2.jpg',
-        '/images/portfolio/irina-3.jpg'
-        ]
+        portfolio: []
     },
     {
-        id: 'maksim',
-        firstName: 'Максим',
+        id: 'ai',
+        firstName: 'Ева',
         lastName: '',
-        position: 'Backend разработчик',
-        photo: Maksim,
-        portfolio: [
-        '/images/portfolio/maksim-1.jpg',
-        '/images/portfolio/maksim-2.jpg'
-        ]
+        position: 'Искусственный интеллект',
+        photo: AI,
+        portfolio: []
     }
 ];

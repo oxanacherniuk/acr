@@ -1,0 +1,91 @@
+.navButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+    font-size: 35px;
+    font-family: var(--manrope-font);
+}
+
+.navButton::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #00bfff;
+    transition: width 0.3s ease;
+    z-index: 1;
+}
+
+.navButton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #00bfff;
+    transition: width 0.3s ease;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.navButton:hover {
+    color: #00bfff;
+}
+
+.navButton:hover::before {
+    width: 100%;
+}
+
+.navButton:hover::after {
+    width: 100%;
+}
+
+.navButton.small {
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.navButton.medium {
+    font-size: 35px;
+    padding: 12px 24px;
+}
+
+.navButton.large {
+    font-size: 18px;
+    padding: 16px 32px;
+}
+
+.navButton.small::before {
+    bottom: -3px;
+}
+
+.navButton.medium::before {
+    bottom: -4px;
+}
+
+.navButton.large::before {
+    bottom: -5px;
+}
+
+@media screen and (max-width: 700px) {
+    .navButton.medium {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .navButton.medium {
+        font-size: 22px;
+    }
+}

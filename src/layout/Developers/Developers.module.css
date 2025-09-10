@@ -1,211 +1,264 @@
 .developers {
-    border-top: 16px solid white;
-    border-bottom: 16px solid white;
-    border-radius: 27px;
-    position: relative;
-    background: var(--dev-bg);
-}
-
-.left-hand {
-    position: absolute;
-    top: 53px;
-    left: 0;
-}
-
-.right-hand {
-    position: absolute;
-    bottom: 0px;
-    right: 0;
-}
-
-.developers-title {
-    font-size: 25px;
-    color: var(--accent-dark);
-    font-family: var(--sk-font);
-    text-align: center;
-    display: block;
-    margin: auto;
-    margin-top: 100px;
+    background: #000000;
+    padding: 80px 0;
+    overflow: hidden;
 }
 
 .container-dev {
     width: 100%;
-    max-width: 1230px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 40px;
 }
 
-.developers-box {
-    margin-top: 65px;
+.developers-title {
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 150px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 700;
+}
+
+.developers-carousel {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 45px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px 0;
+    margin: 0 -20px;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+}
+
+.developers-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.developers-carousel:active {
+    cursor: grabbing;
+}
+
+.carousel-inner {
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+    flex-shrink: 0;
 }
 
 .developer-card {
-    background-color: white;
-    width: 380px;
-    height: 380px;
-    border-radius: 20px;
-    filter: drop-shadow(0px 4px 29.7px rgba(0, 0, 0, .15));
+    flex: 0 0 auto;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.developer-photo, .developer-photo__pavel {
-    display: block;
-    margin: auto;
-    margin-top: 25px;
+.developer-photo {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
+}
+
+.developer-photo:hover {
+    transform: scale(1.02);
 }
 
 .card-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 316px;
-    margin: auto;
-    margin-top: 15px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
 }
 
 .name {
-    font-family: var(--sk-font);
     font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
     margin: 0;
-    color: var(--accent-dark);
+    font-family: var(--manrope-font);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    pointer-events: none;
 }
 
-.button-potfolio {
+.button-portfolio {
     display: flex;
     align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: var(--acr-text);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    padding: 12px 0;
+    position: relative;
+    cursor: pointer;
 }
 
-.button-potfolio span {
-    font-family: var(--sk-font);
-    font-size: 12px;
-    margin-right: 10px;
-    text-decoration: underline;
-    color: var(--accent-light);
+.button-portfolio::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #00bfff;
+    transition: width 0.3s ease;
+}
+
+.button-portfolio:hover {
+    color: #00bfff;
+}
+
+.button-portfolio:hover::before {
+    width: 100%;
+}
+
+.button-portfolio span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.button-portfolio::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #00bfff;
+    transition: width 0.3s ease;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+.button-portfolio:hover::after {
+    width: 100%;
+}
+
+.custom-scrollbar {
+    display: none;
 }
 
 .show-more {
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-top: 50px;
 }
 
-@media screen and (max-width: 1200px) {
-    .developer-card {
-        width: 330px;
-        height: 330px;
+@media screen and (max-width: 1024px) {
+    .developers {
+        padding: 60px 0;
     }
 
-    .developer-photo__pavel {
-        width: 215px;
+    .developers-title {
+        font-size: 28px;
+        margin-bottom: 80px;
+    }
+
+    .developer-card {
+        width: 280px;
     }
 
     .developer-photo {
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .developers {
+        padding: 40px 0;
+    }
+
+    .developers-title {
+        font-size: 24px;
+        margin-bottom: 70px;
+    }
+
+    .container-dev {
+        padding: 0 20px;
+    }
+
+    .carousel-inner {
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .developer-card {
         width: 250px;
     }
-}
 
-@media screen and (max-width: 1040px) {
-    .developer-card {
-        width: 300px;
-        height: 300px;
+    .developer-photo {
+        height: 400px;
     }
 
-    .developer-photo__pavel {
-        width: 195px;
+    .name {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .developers {
+        padding: 30px 0;
+    }
+
+    .container-dev {
+        padding: 0 15px;
+    }
+
+    .show-more {
+        margin-top: 30px;
+    }
+
+    .developers-title {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .carousel-inner {
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .developer-card {
+        width: 280px;
     }
 
     .developer-photo {
-        width: 222px;
-    }
-
-    .card-bottom {
-        max-width: 250px;
+        height: 380px;
     }
 
     .name {
         font-size: 16px;
     }
 
-    .button-potfolio span {
-        font-size: 10px;
-    }
-}
-
-@media screen and (max-width: 940px) {
-    .developers-box {
-        overflow-y: hidden;
-    }
-    .developer-card {
-        margin-right: 15px;
-    }
-
-    .developer-card {
-        min-width: 300px;
-        min-height: 300px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .developers-box {
-        overflow-y: hidden;
-    }
-
-    .developer-card {
-        margin-right: 15px;
-    }
-
-    .developer-card {
-        min-width: 250px;
-        min-height: 250px;
-    }
-
-    .card-bottom {
-        max-width: 220px;
-    }
-
-    .name {
-        font-size: 12px;
-    }
-
-    .left-hand, .right-hand {
-        width: 200px;
-    }
-
-    .right-hand {
-        bottom: 110px;
-    }
-
-    .left-hand {
-        top: 110px;
-    }
-}
-
-@media screen and (max-width: 565px) {
-    .right-hand {
-        bottom: 40px;
-    }
-
-    .left-hand {
-        top: 38px;
-    }
-
-    .developers-title {
-        font-size: 18px;
-        margin-top: 50px;
-    }
-
-    .developers-box {
-        margin-top: 25px;
-    }
-
-    .show-more {
-        margin-bottom: 35px;
-    }
-
-    .container-dev {
-        padding-right: 0;
-        padding-left: 15px;
+    .button-portfolio span {
+        font-size: 14px;
     }
 }

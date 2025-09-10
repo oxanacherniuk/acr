@@ -1,65 +1,289 @@
 .slider {
-    background: var(--tools-bg);
-    border-radius: 40px;
-    border-top: 16px solid white;
-    border-bottom: 16px solid white;
+    background: #000000;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.slider-title {
+    font-size: 3rem;
+    text-align: left;
+    margin-bottom: 150px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 700;
+}
+
+.slider-row {
+    overflow: hidden;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.slider-track {
+    width: 100%;
+    overflow: hidden;
 }
 
 .slider-inner {
     display: flex;
-    gap: 45px;
-    padding-bottom: 70px;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
 }
 
-.slider-title {
-    font-size: 25px;
-    color: var(--accent-dark);
-    font-family: var(--sk-font);
-    text-align: center;
-    display: block;
-    margin: auto;
-    padding-top: 100px;
-    padding-bottom: 65px;
-    max-width: 100%;
+.slide-right {
+    animation: slideRight 170s linear infinite;
 }
 
-.slider-card {
-    min-width: 119px;
-    max-width: 156px;
+.slide-left {
+    animation: slideLeft 170s linear infinite;
+}
+
+.slider-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 15px 0;
 }
 
 .tool-image {
-    display: block; 
-    margin: auto;
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .tool-name {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--accent-dark);
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff;
     text-transform: uppercase;
-    text-align: center;
+    margin: 0;
+    font-family: var(--manrope-font);
 }
 
-@media screen and (max-width: 600px) {
+@keyframes slideRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 1200px) {
     .slider-title {
-        padding-top: 65px;
-        font-size: 16px;
-        padding-bottom: 35px;
+        font-size: 42px;
+        margin-bottom: 50px;
+    }
+
+    .slider-inner {
+        gap: 50px;
     }
 
     .tool-image {
-        width: 50px;
+        height: 36px;
+        width: 36px;
+    }
+
+    .tool-name {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .slider-title {
+        font-size: 36px;
+        margin-bottom: 45px;
+    }
+
+    .slider-inner {
+        gap: 45px;
+    }
+
+    .slider-item {
+        gap: 18px;
+        padding: 12px 0;
+    }
+
+    .tool-image {
+        height: 32px;
+        width: 32px;
+    }
+
+    .tool-name {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slider {
+        padding: 70px 0;
+    }
+
+    .slider-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .slider-row {
+        margin-bottom: 30px;
+    }
+
+    .slider-inner {
+        gap: 40px;
+    }
+
+    .slider-item {
+        gap: 16px;
+        padding: 10px 0;
+    }
+
+    .tool-image {
+        height: 30px;
+        width: 30px;
+    }
+
+    .tool-name {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .slider {
+        padding: 60px 0;
+    }
+
+    .slider-title {
+        font-size: 28px;
+        margin-bottom: 35px;
+    }
+
+    .slider-row {
+        margin-bottom: 25px;
+    }
+
+    .slider-inner {
+        gap: 35px;
+    }
+
+    .slider-item {
+        gap: 14px;
+        padding: 8px 0;
+    }
+
+    .tool-image {
+        height: 28px;
+        width: 28px;
+    }
+
+    .tool-name {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .slider-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .slider-row {
+        margin-bottom: 20px;
+    }
+
+    .slider-inner {
+        gap: 30px;
+    }
+
+    .slider-item {
+        gap: 12px;
+        padding: 6px 0;
+    }
+
+    .tool-image {
+        height: 25px;
+        width: 25px;
     }
 
     .tool-name {
         font-size: 14px;
     }
+}
+
+@media screen and (max-width: 480px) {
+    .slider {
+        padding: 50px 0;
+    }
+
+    .slider-title {
+        font-size: 1.8rem;
+        margin-bottom: 50px;
+    }
+
+    .slider-row {
+        margin-bottom: 18px;
+    }
 
     .slider-inner {
-        display: flex;
-        gap: 5px;
-        padding-bottom: 40px;
+        gap: 25px;
+    }
+
+    .slider-item {
+        gap: 10px;
+        padding: 5px 0;
+    }
+
+    .tool-image {
+        height: 22px;
+        width: 22px;
+    }
+
+    .tool-name {
+        font-size: 13px;
+    }
+
+    .slide-right {
+        animation: slideRight 100s linear infinite;
+    }
+
+    .slide-left {
+        animation: slideLeft 100s linear infinite;
     }
 }
 
+@media screen and (max-width: 375px) {
+    .slider-inner {
+        gap: 20px;
+    }
+
+    .slider-item {
+        gap: 8px;
+    }
+
+    .tool-image {
+        height: 20px;
+        width: 20px;
+    }
+
+    .tool-name {
+        font-size: 12px;
+    }
+}
+
+.slider-row:hover .slider-inner {
+    animation-play-state: paused;
+}
