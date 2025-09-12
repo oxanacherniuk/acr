@@ -575,5 +575,9 @@
         font-size: 1rem;
         max-width: 100%;
     }
+
+    .quiz {
+        margin-top: 80px;
+    }
 }
 

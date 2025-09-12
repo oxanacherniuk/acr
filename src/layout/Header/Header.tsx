@@ -69,7 +69,7 @@ export function HeaderLayout() {
                     </nav>
                     
                     <div className={styles['menu-social-buttons']}>
-                        <a className={styles['social-button']} href="#">
+                        <a className={styles['social-button']} href="https://t.me/KP888_Bot">
                             <img src={TelegramIcon} alt="telegram" />
                         </a>
                         <a className={styles['social-button']} href="#">
@@ -82,11 +82,11 @@ export function HeaderLayout() {
 
                     <div className={styles['contact-info']}>
                         <div className={styles['contact-column']}>
-                            <p className={styles['contact-item']}>+7 (905) 349-14-49</p>
-                            <p className={styles['contact-item']}>acr@mail.ru</p>
+                            <a href="tel:+79053491449"><p className={styles['contact-item']}>+7 (905) 349-14-49</p></a>
+                            <a href="mailto:acr@mail.ru"><p className={styles['contact-item']}>acr@mail.ru</p></a>
                         </div>
                         <div className={styles['contact-column']}>
-                            <p className={styles['contact-item']}>г. Ульяновск, ул. Чайковского, д. 1</p>
+                            <a href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.370973%2C54.333762&mode=whatshere&whatshere%5Bpoint%5D=48.370999%2C54.333752&whatshere%5Bzoom%5D=17&z=17"><p className={styles['contact-item']}>г. Ульяновск, ул. Чайковского, д. 1</p></a>
                             <p className={styles['contact-item']}>Пн-Пт: 9:00-18:00</p>
                         </div>
                     </div>

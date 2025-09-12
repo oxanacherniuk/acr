@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/design-service.png';
+import ServiceImage from '../assets/images/design-service.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -33,6 +33,20 @@ export function ServiceDesign() {
     const [activeTab, setActiveTab] = useState('uiux');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{
+        uiux: HTMLButtonElement | null;
+        branding: HTMLButtonElement | null;
+        marketing: HTMLButtonElement | null;
+        motion: HTMLButtonElement | null;
+    }>({
+        uiux: null,
+        branding: null,
+        marketing: null,
+        motion: null,
+    });
     const fullText = "ДИЗАЙН";
     
     const {
@@ -50,7 +64,24 @@ export function ServiceDesign() {
         }
     });
 
-    // Анимация печати заголовка
+    const centerActiveTab = (key: 'uiux' | 'branding' | 'marketing' | 'motion') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -61,6 +92,80 @@ export function ServiceDesign() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeTab as 'uiux' | 'branding' | 'marketing' | 'motion'));
+    }, [activeTab, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        const tabs = ['uiux', 'branding', 'marketing', 'motion'];
+        const currentIndex = tabs.indexOf(activeTab);
+        
+        if (direction === 'left' && currentIndex < tabs.length - 1) {
+            setActiveTab(tabs[currentIndex + 1]);
+        } else if (direction === 'right' && currentIndex > 0) {
+            setActiveTab(tabs[currentIndex - 1]);
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeTab]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -113,7 +218,7 @@ export function ServiceDesign() {
                         <div className={styles['hero-content']}>
                             <h2>создадим запоминающийся визуал <span className={styles['blue-text']}>за 2-4 недели</span></h2>
                             <p>Профессиональный дизайн, который повышает узнаваемость бренда и улучшает пользовательский опыт.</p>
-                            <NavigationButton to={''} children={'заказать дизайн'} />
+                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'заказать дизайн'} />
                         </div>
                     </div>
 
@@ -144,35 +249,51 @@ export function ServiceDesign() {
                             <div className={styles['info-section']}>
                                 <h3>что входит в наши услуги дизайна?</h3>
                                 
-                                <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
+                                 <div className={styles['tabs']}>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.uiux = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'uiux' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('uiux')}
+                                            onClick={() => { 
+                                                setActiveTab('uiux'); 
+                                                if (isMobile) centerActiveTab('uiux'); 
+                                            }}
                                         >
                                             UI/UX Дизайн
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.branding = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'branding' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('branding')}
+                                            onClick={() => { 
+                                                setActiveTab('branding'); 
+                                                if (isMobile) centerActiveTab('branding'); 
+                                            }}
                                         >
                                             Брендинг
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.marketing = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'marketing' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('marketing')}
+                                            onClick={() => { 
+                                                setActiveTab('marketing'); 
+                                                if (isMobile) centerActiveTab('marketing'); 
+                                            }}
                                         >
                                             Маркетинг материалы
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.motion = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'motion' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('motion')}
+                                            onClick={() => { 
+                                                setActiveTab('motion'); 
+                                                if (isMobile) centerActiveTab('motion'); 
+                                            }}
                                         >
                                             Motion дизайн
                                         </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeTab === 'uiux' && (
                                             <div className={styles['tab-panel']}>
                                                 <ul>
@@ -233,7 +354,7 @@ export function ServiceDesign() {
                                     <p className={styles['price-note']}>Точная стоимость зависит от сложности проекта и объема работ.</p>
                                     <div className={styles['price-inner']}>
                                         <span className={styles['main-price']}>от 80 000 ₽</span>
-                                        <NavigationButton to={''} children={'узнать стоимость'} />
+                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                 </div>
                             </div>

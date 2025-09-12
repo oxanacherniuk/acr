@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/marketing.png';
+import ServiceImage from '../assets/images/marketing.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -33,6 +33,20 @@ export function ServiceMarketing() {
     const [activeService, setActiveService] = useState('complex');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{
+        complex: HTMLButtonElement | null;
+        audit: HTMLButtonElement | null;
+        strategy: HTMLButtonElement | null;
+        smm: HTMLButtonElement | null;
+    }>({
+        complex: null,
+        audit: null,
+        strategy: null,
+        smm: null,
+    });
     const fullText = "DIGITAL-МАРКЕТИНГ";
     
     const {
@@ -50,6 +64,24 @@ export function ServiceMarketing() {
         }
     });
 
+    const centerActiveTab = (key: 'complex' | 'audit' | 'strategy' | 'smm') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -60,6 +92,80 @@ export function ServiceMarketing() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeService as 'complex' | 'audit' | 'strategy' | 'smm'));
+    }, [activeService, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        const tabs = ['complex', 'audit', 'strategy', 'smm'];
+        const currentIndex = tabs.indexOf(activeService);
+        
+        if (direction === 'left' && currentIndex < tabs.length - 1) {
+            setActiveService(tabs[currentIndex + 1]);
+        } else if (direction === 'right' && currentIndex > 0) {
+            setActiveService(tabs[currentIndex - 1]);
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeService]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -139,34 +245,50 @@ export function ServiceMarketing() {
                                 <h3>Полный цикл услуг для вашего роста</h3>
                                 
                                 <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.complex = el; }}
                                             className={`${styles['tab-button']} ${activeService === 'complex' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveService('complex')}
+                                            onClick={() => { 
+                                                setActiveService('complex'); 
+                                                if (isMobile) centerActiveTab('complex'); 
+                                            }}
                                         >
                                             Комплексное продвижение
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.audit = el; }}
                                             className={`${styles['tab-button']} ${activeService === 'audit' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveService('audit')}
+                                            onClick={() => { 
+                                                setActiveService('audit'); 
+                                                if (isMobile) centerActiveTab('audit'); 
+                                            }}
                                         >
                                             Аудит и аналитика
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.strategy = el; }}
                                             className={`${styles['tab-button']} ${activeService === 'strategy' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveService('strategy')}
+                                            onClick={() => { 
+                                                setActiveService('strategy'); 
+                                                if (isMobile) centerActiveTab('strategy'); 
+                                            }}
                                         >
                                             Стратегия развития
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.smm = el; }}
                                             className={`${styles['tab-button']} ${activeService === 'smm' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveService('smm')}
+                                            onClick={() => { 
+                                                setActiveService('smm'); 
+                                                if (isMobile) centerActiveTab('smm'); 
+                                            }}
                                         >
                                             SMM
                                         </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeService === 'complex' && (
                                             <div className={styles['tab-panel']}>
                                                 <h4 className={styles['price-note']}>Что входит:</h4>

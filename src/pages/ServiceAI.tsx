@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/ai-service.png';
+import ServiceImage from '../assets/images/ai-service.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -33,6 +33,20 @@ export function ServiceAI() {
     const [activeTab, setActiveTab] = useState('solutions');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{
+        solutions: HTMLButtonElement | null;
+        integration: HTMLButtonElement | null;
+        technologies: HTMLButtonElement | null;
+        support: HTMLButtonElement | null;
+    }>({
+        solutions: null,
+        integration: null,
+        technologies: null,
+        support: null,
+    });
     const fullText = "Внедрение ИИ";
     
     const {
@@ -50,6 +64,24 @@ export function ServiceAI() {
         }
     });
 
+    const centerActiveTab = (key: 'solutions' | 'integration' | 'technologies' | 'support') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -60,6 +92,80 @@ export function ServiceAI() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeTab as 'solutions' | 'integration' | 'technologies' | 'support'));
+    }, [activeTab, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        const tabs = ['solutions', 'integration', 'technologies', 'support'];
+        const currentIndex = tabs.indexOf(activeTab);
+        
+        if (direction === 'left' && currentIndex < tabs.length - 1) {
+            setActiveTab(tabs[currentIndex + 1] as typeof activeTab);
+        } else if (direction === 'right' && currentIndex > 0) {
+            setActiveTab(tabs[currentIndex - 1] as typeof activeTab);
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeTab]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -117,11 +223,9 @@ export function ServiceAI() {
                                 Используйте силу машинного обучения и нейронных сетей для создания 
                                 интеллектуальных систем, способных трансформировать ваши бизнес-процессы.
                             </p>
-                            <NavigationButton to={''} children={'обсудить внедрение'} />
+                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'обсудить внедрение'} />
                         </div>
                     </div>
-
-                    {/* Остальной код остается без изменений */}
                     <div className={styles['benefits-section']}>
                         <h3>почему выбирают внедрение ИИ?</h3>
                         <div className={styles['benefits-grid']}>
@@ -150,34 +254,50 @@ export function ServiceAI() {
                                 <h3>что входит во внедрение искусственного интеллекта?</h3>
                                 
                                 <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.solutions = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'solutions' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('solutions')}
+                                            onClick={() => { 
+                                                setActiveTab('solutions'); 
+                                                if (isMobile) centerActiveTab('solutions'); 
+                                            }}
                                         >
                                             AI-решения
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.integration = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'integration' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('integration')}
+                                            onClick={() => { 
+                                                setActiveTab('integration'); 
+                                                if (isMobile) centerActiveTab('integration'); 
+                                            }}
                                         >
                                             Интеграция
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.technologies = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'technologies' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('technologies')}
+                                            onClick={() => { 
+                                                setActiveTab('technologies'); 
+                                                if (isMobile) centerActiveTab('technologies'); 
+                                            }}
                                         >
                                             Технологии
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.support = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'support' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('support')}
+                                            onClick={() => { 
+                                                setActiveTab('support'); 
+                                                if (isMobile) centerActiveTab('support'); 
+                                            }}
                                         >
                                             Поддержка
                                         </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeTab === 'solutions' && (
                                             <div className={styles['tab-panel']}>
                                                 <ul>
@@ -250,7 +370,7 @@ export function ServiceAI() {
 
                                     <div className={styles['price-inner']}>
                                         <span className={styles['main-price']}>от 200 000 ₽</span>
-                                        <NavigationButton to={''} children={'узнать стоимость'} />
+                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                 </div>
                             </div>

@@ -62,7 +62,7 @@ export function FooterLayout() {
                         <div className={styles['footer-box__col']}>
                             <ul className={styles['footer-links']}>
                                 <li className={`${styles['footer-link']} ${isVisible ? styles['animate-item-4'] : ''}`}>
-                                    <a href="/amenties">Услуги</a>
+                                    <a href="/services">Услуги</a>
                                 </li>
                                 <li className={`${styles['footer-link']} ${isVisible ? styles['animate-item-5'] : ''}`}>
                                     <a href="/developers">Разработчики</a>
@@ -78,7 +78,7 @@ export function FooterLayout() {
                                 <a className={styles['footer-social']} href="">
                                     <img src={VkIcon} alt="" />
                                 </a>
-                                <a className={styles['footer-social']} href="">
+                                <a className={styles['footer-social']} href="https://t.me/KP888_Bot">
                                     <img src={TelegramIcon} alt="" />
                                 </a>
                                 <a className={styles['footer-social']} href="">

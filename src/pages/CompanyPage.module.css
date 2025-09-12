@@ -100,7 +100,7 @@
     font-size: 1.7rem;
     line-height: 1.3;
     color: rgba(255, 255, 255, 0.9);
-    font-family: var(--acr-text);
+    font-family: var(--manrope-font);
     margin: 0;
 }
 
@@ -313,17 +313,6 @@
     }
 }
 
-.requisites-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease 0.4s;
-}
-
-.requisites-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .requisites-title {
     font-size: 2.2rem;
     color: var(--accent-light);
@@ -347,11 +336,6 @@
 .requisites-item {
     padding: 0px 25px 25px 0px;
     border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.requisites-item:hover {
-    transform: translateY(-3px);
 }
 
 .requisites-subtitle {
@@ -423,11 +407,11 @@
     }
 
     .requisites-card {
-        padding: 20px;
+        padding: 0px;
     }
 
     .requisites-item {
-        padding: 15px;
+        padding: 0px;
     }
 
     .requisites-subtitle {
@@ -814,6 +798,10 @@
     .cta-title {
         font-size: 1.8rem;
     }
+
+    .company-content {
+        gap: 30px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -824,8 +812,53 @@
     .value-item,
     .timeline-item,
     .team-member,
-    .stat-item,
-    .process-step {
+    .stat-item
+    {
         padding: 20px;
+    }
+
+    .company-content {
+        gap: 20px;
+    }
+
+    .value-item {
+        padding: 0;
+    }
+
+    .values-section {
+        margin: 40px 0;
+    }
+
+    .about-text p {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        margin-bottom: 20px;
+    }
+
+    .value-title {
+        margin-top: 20px;
+    }
+
+    .history-section, .team-section, .stats-section, .process-section {
+        margin: 20px 0;
+    }
+
+    .team-description, .process-description {
+        font-size: 1.1rem;
+    }
+
+    .contacts-section {
+        margin: 40px 0;
+    }
+
+    .contact-item, .process-step, .contacts-grid {
+        padding: 0;
+    }
+
+    .process-step {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }

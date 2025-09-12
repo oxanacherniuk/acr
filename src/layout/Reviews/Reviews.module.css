@@ -440,3 +440,127 @@
 .review-card {
     overflow: hidden;
 }
+
+.review-card.swipe-left {
+    animation: swipeLeft 0.3s ease forwards;
+}
+
+.review-card.swipe-right {
+    animation: swipeRight 0.3s ease forwards;
+}
+
+@keyframes swipeLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes swipeRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 769px) {
+    .swipe-indicator {
+        display: block !important;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-family: var(--manrope-font);
+        text-align: center;
+        animation: pulse 2s infinite;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px 16px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .review-card:hover {
+        cursor: grab;
+    }
+
+    .review-card:active {
+        cursor: grabbing;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.review-card.dragging {
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.1s ease;
+}
+
+@media (min-width: 769px) {
+    .review-navigation {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .swipe-indicator {
+        display: block;
+        bottom: 20px;
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .review-navigation {
+        display: none;
+    }
+}

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/chat-bots-service.png';
+import ServiceImage from '../assets/images/chat-bots-service.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -34,6 +34,13 @@ export function ServiceChatBots() {
     const [platform, setPlatform] = useState('');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{ sales: HTMLButtonElement | null; service: HTMLButtonElement | null }>({
+    sales: null,
+    service: null,
+    });
     const fullText = "Умные чат-боты";
     
     const {
@@ -51,6 +58,24 @@ export function ServiceChatBots() {
         }
     });
 
+    const centerActiveTab = (key: 'sales' | 'service') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -61,6 +86,77 @@ export function ServiceChatBots() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeTab as 'sales' | 'service'));
+    }, [activeTab, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        if (direction === 'left') {
+            setActiveTab('service');
+        } else if (direction === 'right') {
+            setActiveTab('sales');
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50; // минимальное расстояние для свайпа
+        const restraint = 100; // максимальное отклонение по вертикали
+        const allowedTime = 300; // максимальное время свайпа
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeTab]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -115,7 +211,7 @@ export function ServiceChatBots() {
                         <div className={styles['hero-content']}>
                             <h2>Умные чат-боты: автоматизируйте продажи и поддержку <span className={styles['blue-text']}>24/7</span></h2>
                             <p>Внедряем chat-боты, которые не просто отвечают, а ведут диалог, собирают заявки, консультируют и экономят до 30% вашего бюджета на операционные задачи.</p>
-                            <NavigationButton to={''} children={'рассчитать стоимость'} />
+                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'рассчитать стоимость'} />
                         </div>
                     </div>
 
@@ -143,22 +239,25 @@ export function ServiceChatBots() {
                                 <h3>какие задачи решают наши боты?</h3>
                                 
                                 <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
-                                        <button 
-                                            className={`${styles['tab-button']} ${activeTab === 'sales' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('sales')}
-                                        >
-                                            Продажи и лиды
-                                        </button>
-                                        <button 
-                                            className={`${styles['tab-button']} ${activeTab === 'service' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('service')}
-                                        >
-                                            Клиентский сервис
-                                        </button>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
+                                    <button
+                                        ref={(el) => { tabBtnRefs.current.sales = el; }}
+                                        className={`${styles['tab-button']} ${activeTab === 'sales' ? styles['active'] : ''}`}
+                                        onClick={() => { setActiveTab('sales'); if (isMobile) centerActiveTab('sales'); }}
+                                    >
+                                        Продажи и лиды
+                                    </button>
+
+                                    <button
+                                        ref={(el) => { tabBtnRefs.current.service = el; }}
+                                        className={`${styles['tab-button']} ${activeTab === 'service' ? styles['active'] : ''}`}
+                                        onClick={() => { setActiveTab('service'); if (isMobile) centerActiveTab('service'); }}
+                                    >
+                                        Клиентский сервис
+                                    </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeTab === 'sales' && (
                                             <div className={styles['tab-panel']}>
                                                 <ul>
@@ -246,7 +345,7 @@ export function ServiceChatBots() {
                                 <div className={styles['price-block']}>
                                     <div className={styles['price-inner']}>
                                         <span className={styles['main-price']}>от 90 000 ₽</span>
-                                        <NavigationButton to={''} children={'узнать стоимость'} />
+                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                     <p className={styles['price-note']}>Базовая комплектация включает:</p>
                                     <div className={styles['punct-panel']}>
@@ -276,7 +375,7 @@ export function ServiceChatBots() {
                                                 <div className={styles['option-price']}>+40 000 ₽</div>
                                             </div>
                                         </div>
-                                        <NavigationButton to={''} children={'получить расчет'} />
+                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'получить расчет'} />
                                     </div>
                                 </div>
                             </div>

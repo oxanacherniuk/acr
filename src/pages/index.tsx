@@ -1,4 +1,3 @@
-import { HeaderLayout } from '../layout/Header/Header';
 import { BannerLayout } from '../layout/Banner/Banner';
 import { ServicesLayout } from '../layout/Services/Services';
 import { DevelopersLayout } from '../layout/Developers/Developers';
@@ -11,6 +10,7 @@ import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
 import BannnerMP4 from '../assets/video/banner (online-video-cutter.com).mp4';
+import { HeaderLayout } from '../layout/Header/Header';
 
 const IndexPage: React.FC = () => {
     return (

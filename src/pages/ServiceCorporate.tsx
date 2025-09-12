@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import CorporateImage from '../assets/images/corporate.png';
+import CorporateImage from '../assets/images/corporate.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -33,6 +33,20 @@ export function ServiceCorporate() {
     const [activeTab, setActiveTab] = useState('foundation');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{
+        foundation: HTMLButtonElement | null;
+        strategy: HTMLButtonElement | null;
+        functionality: HTMLButtonElement | null;
+        technical: HTMLButtonElement | null;
+    }>({
+        foundation: null,
+        strategy: null,
+        functionality: null,
+        technical: null,
+    });
     const fullText = "Корпоративный сайт";
     
     const {
@@ -50,6 +64,24 @@ export function ServiceCorporate() {
         }
     });
 
+    const centerActiveTab = (key: 'foundation' | 'strategy' | 'functionality' | 'technical') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -60,6 +92,80 @@ export function ServiceCorporate() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeTab as 'foundation' | 'strategy' | 'functionality' | 'technical'));
+    }, [activeTab, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        const tabs = ['foundation', 'strategy', 'functionality', 'technical'];
+        const currentIndex = tabs.indexOf(activeTab);
+        
+        if (direction === 'left' && currentIndex < tabs.length - 1) {
+            setActiveTab(tabs[currentIndex + 1] as typeof activeTab);
+        } else if (direction === 'right' && currentIndex > 0) {
+            setActiveTab(tabs[currentIndex - 1] as typeof activeTab);
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeTab]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -79,7 +185,7 @@ export function ServiceCorporate() {
             alert('Произошла ошибка при отправке формы');
         }
     };
-
+    
     return (
         <div>
             <HeaderLayout />
@@ -121,7 +227,7 @@ export function ServiceCorporate() {
                                 Откройте представительство своей компании в интернете с помощью создания 
                                 современного и функционального корпоративного сайта.
                             </p>
-                            <NavigationButton to={''} children={'обсудить проект'} />
+                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'обсудить проект'} />
                         </div>
                     </div>
 
@@ -153,34 +259,50 @@ export function ServiceCorporate() {
                                 <h3>что входит в стоимость корпоративного сайта?</h3>
                                 
                                 <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.foundation = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'foundation' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('foundation')}
+                                            onClick={() => { 
+                                                setActiveTab('foundation'); 
+                                                if (isMobile) centerActiveTab('foundation'); 
+                                            }}
                                         >
                                             Фундамент и Безопасность
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.strategy = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'strategy' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('strategy')}
+                                            onClick={() => { 
+                                                setActiveTab('strategy'); 
+                                                if (isMobile) centerActiveTab('strategy'); 
+                                            }}
                                         >
                                             Стратегия и Дизайн
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.functionality = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'functionality' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('functionality')}
+                                            onClick={() => { 
+                                                setActiveTab('functionality'); 
+                                                if (isMobile) centerActiveTab('functionality'); 
+                                            }}
                                         >
                                             Функционал
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.technical = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'technical' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('technical')}
+                                            onClick={() => { 
+                                                setActiveTab('technical'); 
+                                                if (isMobile) centerActiveTab('technical'); 
+                                            }}
                                         >
                                             Техническое качество
                                         </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeTab === 'foundation' && (
                                             <div className={styles['tab-panel']}>
                                                 <ul>
@@ -195,7 +317,7 @@ export function ServiceCorporate() {
                                             <div className={styles['tab-panel']}>
                                                 <ul>
                                                     <li>Анализ тематики и конкурентов</li>
-                                                    <li>Анализ целевой аудитории</li>
+                                                    <li>Анализ целеной аудитории</li>
                                                     <li>Маркетинговая стратегия</li>
                                                     <li>Индивидуальный мотивирующий дизайн</li>
                                                     <li>Полная проработка структуры сайта (до 20 страниц)</li>
@@ -245,7 +367,7 @@ export function ServiceCorporate() {
                                     <p className={styles['price-note']}>Итоговая стоимость рассчитывается индивидуально, исходя из сложности дизайна и объема функционала</p>
                                     <div className={styles['price-inner']}>
                                         <span className={styles['main-price']}>от 200 000 ₽</span>
-                                        <NavigationButton to={''} children={'узнать стоимость'} />
+                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                 </div>
                             </div>

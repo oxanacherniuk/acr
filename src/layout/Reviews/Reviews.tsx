@@ -6,6 +6,9 @@ export function ReviewsLayout() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+    const [mouseStart, setMouseStart] = useState(0);
+    const [mouseEnd, setMouseEnd] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
     const reviewRef = useRef<HTMLDivElement>(null);
 
     const nextSlide = () => {
@@ -34,6 +37,44 @@ export function ReviewsLayout() {
             nextSlide();
         } else if (distance < -minSwipeDistance) {
             prevSlide();
+        }
+        
+        setTouchStart(0);
+        setTouchEnd(0);
+    };
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setMouseStart(e.clientX);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+        setMouseEnd(e.clientX);
+    };
+
+    const handleMouseUp = () => {
+        if (!isDragging) return;
+        
+        const distance = mouseStart - mouseEnd;
+        const minSwipeDistance = 50;
+
+        if (distance > minSwipeDistance) {
+            nextSlide();
+        } else if (distance < -minSwipeDistance) {
+            prevSlide();
+        }
+        
+        setIsDragging(false);
+        setMouseStart(0);
+        setMouseEnd(0);
+    };
+
+    const handleMouseLeave = () => {
+        if (isDragging) {
+            setIsDragging(false);
+            setMouseStart(0);
+            setMouseEnd(0);
         }
     };
 
@@ -64,7 +105,11 @@ export function ReviewsLayout() {
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
-                        style={{ cursor: 'grab' }}
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseLeave}
+                        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
                     >
                         <div className={styles['review-top']}>
                             <img 

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { HeaderLayout } from '../layout/Header/Header';
 import styles from './ServicePage.module.css';
 import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/mobile-app-service.png';
+import ServiceImage from '../assets/images/mobile-app-service.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
 import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
@@ -33,6 +33,20 @@ export function ServiceMobileApp() {
     const [activeTab, setActiveTab] = useState('development');
     const [displayTitle, setDisplayTitle] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const tabsContentRef = useRef<HTMLDivElement>(null);
+    const tabsHeaderRef = useRef<HTMLDivElement>(null);
+    const tabBtnRefs = useRef<{
+        development: HTMLButtonElement | null;
+        design: HTMLButtonElement | null;
+        functionality: HTMLButtonElement | null;
+        publication: HTMLButtonElement | null;
+    }>({
+        development: null,
+        design: null,
+        functionality: null,
+        publication: null,
+    });
     const fullText = "Мобильные приложения";
     
     const {
@@ -50,6 +64,24 @@ export function ServiceMobileApp() {
         }
     });
 
+    const centerActiveTab = (key: 'development' | 'design' | 'functionality' | 'publication') => {
+        const container = tabsHeaderRef.current;
+        const btn = tabBtnRefs.current[key];
+        if (!container || !btn) return;
+
+        const cRect = container.getBoundingClientRect();
+        const bRect = btn.getBoundingClientRect();
+
+        const currentLeft = container.scrollLeft;
+        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
+        const target = currentLeft + delta;
+
+        const max = container.scrollWidth - container.clientWidth;
+        const next = Math.max(0, Math.min(max, target));
+
+        container.scrollTo({ left: next, behavior: 'smooth' });
+    };
+
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
@@ -60,6 +92,80 @@ export function ServiceMobileApp() {
             return () => clearTimeout(timer);
         }
     }, [currentIndex, fullText]);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+        requestAnimationFrame(() => centerActiveTab(activeTab as 'development' | 'design' | 'functionality' | 'publication'));
+    }, [activeTab, isMobile]);
+
+    const handleSwipe = (direction: 'left' | 'right') => {
+        const tabs = ['development', 'design', 'functionality', 'publication'];
+        const currentIndex = tabs.indexOf(activeTab);
+        
+        if (direction === 'left' && currentIndex < tabs.length - 1) {
+            setActiveTab(tabs[currentIndex + 1]);
+        } else if (direction === 'right' && currentIndex > 0) {
+            setActiveTab(tabs[currentIndex - 1]);
+        }
+    };
+
+    const setupSwipe = (element: HTMLElement) => {
+        let startX: number;
+        let startY: number;
+        let distX: number;
+        let distY: number;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+
+        let startTime: number;
+
+        element.addEventListener('touchstart', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            startX = touchObj.pageX;
+            startY = touchObj.pageY;
+            startTime = new Date().getTime();
+            e.preventDefault();
+        }, false);
+
+        element.addEventListener('touchend', (e: TouchEvent) => {
+            const touchObj = e.changedTouches[0];
+            distX = touchObj.pageX - startX;
+            distY = touchObj.pageY - startY;
+            const elapsedTime = new Date().getTime() - startTime;
+
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        handleSwipe('right');
+                    } else {
+                        handleSwipe('left');
+                    }
+                }
+            }
+            e.preventDefault();
+        }, false);
+    };
+
+    useEffect(() => {
+        if (isMobile && tabsContentRef.current) {
+            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
+            if (tabPanel) {
+                setupSwipe(tabPanel as HTMLElement);
+            }
+        }
+    }, [isMobile, activeTab]);
 
     const onSubmit = async (data: { phone: string; }) => {
         try {
@@ -149,34 +255,50 @@ export function ServiceMobileApp() {
                                 <h3>что входит в разработку мобильного приложения?</h3>
                                 
                                 <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']}>
+                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.development = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'development' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('development')}
+                                            onClick={() => { 
+                                                setActiveTab('development'); 
+                                                if (isMobile) centerActiveTab('development'); 
+                                            }}
                                         >
                                             Разработка
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.design = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'design' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('design')}
+                                            onClick={() => { 
+                                                setActiveTab('design'); 
+                                                if (isMobile) centerActiveTab('design'); 
+                                            }}
                                         >
                                             Дизайн и UX
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.functionality = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'functionality' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('functionality')}
+                                            onClick={() => { 
+                                                setActiveTab('functionality'); 
+                                                if (isMobile) centerActiveTab('functionality'); 
+                                            }}
                                         >
                                             Функционал
                                         </button>
                                         <button 
+                                            ref={(el) => { tabBtnRefs.current.publication = el; }}
                                             className={`${styles['tab-button']} ${activeTab === 'publication' ? styles['active'] : ''}`}
-                                            onClick={() => setActiveTab('publication')}
+                                            onClick={() => { 
+                                                setActiveTab('publication'); 
+                                                if (isMobile) centerActiveTab('publication'); 
+                                            }}
                                         >
                                             Публикация
                                         </button>
                                     </div>
 
-                                    <div className={styles['tabs-content']}>
+                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
                                         {activeTab === 'development' && (
                                             <div className={styles['tab-panel']}>
                                                 <ul>

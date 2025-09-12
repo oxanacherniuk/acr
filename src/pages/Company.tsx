@@ -18,7 +18,7 @@ export default function CompanyPage() {
             <div className={styles['company-page']}>
                 <div className='container'>
                     <div className={`${styles['company-header']} ${isVisible ? styles['visible'] : ''}`}>
-                        <h1 className={styles['company-title']}>Мы не просто создаем сайты. Мы развиваем бизнес с помощью digital-инструментов</h1>
+                        <h1 className={styles['company-title']}>Мы не просто создаем сайты. <br /> Мы <span style={{ color: 'white' }}>развиваем бизнес</span>  с помощью digital-инструментов</h1>
                         <div className={styles['title-decoration']}></div>
                     </div>
 
