@@ -3,9 +3,11 @@ import styles from './Developers.module.css';
 import Pavel from '../../assets/images/pavel.jpg';
 import Oksana from '../../assets/images/oksana.jpg';
 import Maxim from '../../assets/images/maksim.jpg';
-import Irina from '../../assets/images/irina.png';
+import Irina from '../../assets/images/irina.jpg';
 import Platon from '../../assets/images/platon.jpg';
-import AI from '../../assets/images/ai.jpg';
+import Elena from '../../assets/images/elena.jpg';
+import Lev from '../../assets/images/lev.jpg';
+import AI from '../../assets/images/eva.jpg';
 import PortfolioArrow from '../../assets/icons/PortfolioArrow';
 import { NavigationButtonWhite } from '../../components/NavigationButtonWhite/NavigationButtonWhite';
 
@@ -121,13 +123,14 @@ export function DevelopersLayout(): JSX.Element {
     }, [updateScrollbar]);
 
     const developers: Developer[] = [
-        { id: 1, name: 'Павел', photo: Pavel, link: '/developer/pavel' },
-        { id: 2, name: 'Платон', photo: Platon, link: '/developer/platon' },
-        { id: 3, name: 'Оксана', photo: Oksana, link: '/developer/oksana' },
-        { id: 4, name: 'Максим', photo: Maxim, link: '/developer/maksim' },
-        { id: 5, name: 'Ирина', photo: Irina, link: '/developer/irina' },
-        { id: 6, name: 'Ева', photo: AI, link: '/developer/ai' },
-        { id: 7, name: 'Степан', photo: Maxim, link: '/developer/stepan' },
+        { id: 1, name: 'Ева', photo: AI, link: '/developer/ai' },
+        { id: 2, name: 'Павел', photo: Pavel, link: '/developer/pavel' },
+        { id: 3, name: 'Платон', photo: Platon, link: '/developer/platon' },
+        { id: 4, name: 'Оксана', photo: Oksana, link: '/developer/oksana' },
+        { id: 5, name: 'Максим', photo: Maxim, link: '/developer/maksim' },
+        { id: 6, name: 'Ирина', photo: Irina, link: '/developer/irina' },
+        { id: 7, name: 'Елена', photo: Elena, link: '/developer/elena' },
+        { id: 8, name: 'Лев', photo: Lev, link: '/developer/lev' },
     ];
 
     return (

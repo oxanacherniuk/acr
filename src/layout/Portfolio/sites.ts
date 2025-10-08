@@ -1,14 +1,14 @@
-import OksanaSite1 from '../../assets/images/oksana-site1.png';
-import OksanaSite2 from '../../assets/images/oksana-site2.png';
-import OksanaSite3 from '../../assets/images/oksana-site3.png';
-import OksanaSite4 from '../../assets/images/oksana-site4.png';
-import OksanaSite5 from '../../assets/images/oksana-site5.png';
-import OksanaSite6 from '../../assets/images/oksana-site6.png';
-import OksanaSite7 from '../../assets/images/oksana-site7.png';
-import PavelSite1 from '../../assets/images/pavel-site1.png';
-import PavelSite2 from '../../assets/images/pavel-site2.png';
-import PavelSite3 from '../../assets/images/pavel-site3.png';
-import PavelSite4 from '../../assets/images/pavel-site4.png';
+import OksanaSite1 from '../../assets/images/oksana-site1.webp';
+import OksanaSite2 from '../../assets/images/oksana-site2.webp';
+import OksanaSite3 from '../../assets/images/oksana-site3.webp';
+import OksanaSite4 from '../../assets/images/oksana-site4.webp';
+import OksanaSite5 from '../../assets/images/oksana-site5.webp';
+import OksanaSite6 from '../../assets/images/oksana-site6.webp';
+import OksanaSite7 from '../../assets/images/oksana-site7.webp';
+import PavelSite1 from '../../assets/images/pavel-site1.webp';
+import PavelSite2 from '../../assets/images/pavel-site2.webp';
+import PavelSite3 from '../../assets/images/pavel-site3.webp';
+import PavelSite4 from '../../assets/images/pavel-site4.webp';
 
 export const sites = [
     {

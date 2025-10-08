@@ -1,4 +1,3 @@
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { FooterLayout } from '../layout/Footer/Footer';
 import { HeaderLayout } from '../layout/Header/Header';
 import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
@@ -11,7 +10,6 @@ const ServicesPage: React.FC = () => {
             <ServicesLayout />
             <PortfolioLayout />
             <FooterLayout />
-            <BottomNavigation />
         </div>
     )
 };

@@ -8,7 +8,6 @@ import TelegramIcon from '../assets/images/tg.svg';
 import ShopImage from '../assets/images/internet-shop.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { NavigationButton } from '../components/NavigationButton/NavigationButton';
 
 const schema = yup.object({
@@ -540,7 +539,6 @@ export function ServiceEcommerce() {
                 </div>
             </div>
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 }

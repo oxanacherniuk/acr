@@ -8,7 +8,6 @@ import TelegramIcon from '../assets/images/tg.svg';
 import ServiceImage from '../assets/images/ai-service.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { NavigationButton } from '../components/NavigationButton/NavigationButton';
 
 const schema = yup.object({
@@ -513,7 +512,6 @@ export function ServiceAI() {
                 </div>
             </div>
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 }

@@ -7,7 +7,6 @@ import { DiscussionLayout } from '../layout/Discussion/Discussion';
 import { ContactLayout } from '../layout/ContactForm/ContactForm';
 import { FooterLayout } from '../layout/Footer/Footer';
 import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
 import BannnerMP4 from '../assets/video/banner (online-video-cutter.com).mp4';
 import { HeaderLayout } from '../layout/Header/Header';
@@ -38,7 +37,6 @@ const IndexPage: React.FC = () => {
             <PortfolioLayout />
             <ContactLayout />
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 };

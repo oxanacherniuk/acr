@@ -1,81 +1,104 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faHome, 
+    faUsers, 
+    faCogs, 
+    faBuilding,
+    type IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './BottomNavigation.module.css';
 
-import HomeIcon from '../../assets/images/home.svg';
-import ServicesIcon from '../../assets/images/code.svg';
-import DevelopersIcon from '../../assets/images/developers.svg';
-import CompanyIcon from '../../assets/images/about.svg';
-
 interface NavigationItem {
-    path: string;
+    id: string;
     label: string;
-    icon: string;
-    alt: string;
+    icon: IconDefinition;
+    color: string;
+    path: string;
 }
 
-const navigationItems: NavigationItem[] = [
-    {
-        path: '/',
-        label: 'Главная',
-        icon: HomeIcon,
-        alt: 'Иконка главной страницы'
-    },
-    {
-        path: '/services',
-        label: 'Услуги',
-        icon: ServicesIcon,
-        alt: 'Иконка услуг'
-    },
-    {
-        path: '/developers',
-        label: 'Разработчики',
-        icon: DevelopersIcon,
-        alt: 'Иконка разработчиков'
-    },
-    {
-        path: '/company',
-        label: 'О компании',
-        icon: CompanyIcon,
-        alt: 'Иконка о компании'
-    }
-];
-
 const BottomNavigation: React.FC = () => {
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
+    const [activeItem, setActiveItem] = useState<string>(getActiveItemFromPath());
 
-    const handleNavigation = (path: string) => {
-        navigate(path);
+    function getActiveItemFromPath(): string {
+        switch (location.pathname) {
+            case '/':
+                return 'm-home';
+            case '/developers':
+                return 'm-team';
+            case '/services':
+                return 'm-services';
+            case '/company':
+                return 'm-company';
+            default:
+                return 'm-home';
+        }
+    }
+
+    const navigationItems: NavigationItem[] = [
+        { id: 'm-home', label: 'Главная', icon: faHome, color: '#00bfff', path: '/' },
+        { id: 'm-team', label: 'Команда', icon: faUsers, color: '#f48d4e', path: '/developers' },
+        { id: 'm-services', label: 'Услуги', icon: faCogs, color: '#00bfff', path: '/services' },
+        { id: 'm-company', label: 'О нас', icon: faBuilding, color: '#f48d4e', path: '/company' }
+    ];
+
+    const handleItemClick = (item: NavigationItem) => {
+        setActiveItem(item.id);
+        navigate(item.path);
+    };
+
+    const getSelectorPosition = () => {
+        const index = navigationItems.findIndex(item => item.id === activeItem);
+        const itemWidth = 66;
+        const margin = 12;
+        const basePosition = 8;
+        return basePosition + index * (itemWidth + margin * 2);
+    };
+
+    const getSelectorColor = () => {
+        const item = navigationItems.find(item => item.id === activeItem);
+        return item ? item.color : '#39a1f4';
     };
 
     return (
-        <nav className={styles.bottomNav}>
-        <div className={styles.navContainer}>
-            {navigationItems.map((item) => {
-            const isActive = location.pathname === item.path;
-            
-            return (
-                <button
-                key={item.path}
-                className={`${styles.navItem} ${isActive ? styles.active : ''}`}
-                onClick={() => handleNavigation(item.path)}
-                aria-label={item.label}
-                aria-current={isActive ? 'page' : undefined}
-                >
-                <div className={styles.iconContainer}>
-                    <img
-                    src={item.icon}
-                    alt={item.alt}
-                    className={styles.icon}
-                    />
-                </div>
-                <span className={styles.label}>{item.label}</span>
-                </button>
-            );
-            })}
+        <div className={styles.containerNav}>
+            <nav className={styles.menu}>
+                {navigationItems.map((item) => (
+                    <div key={item.id} className={styles.navItem}>
+                        <input
+                            type="radio"
+                            name="nav-item"
+                            id={item.id}
+                            checked={activeItem === item.id}
+                            onChange={() => handleItemClick(item)}
+                            className={styles.input}
+                        />
+                        <label 
+                            htmlFor={item.id}
+                            className={styles.label}
+                            style={{ '--sel': item.color } as React.CSSProperties}
+                        >
+                            <FontAwesomeIcon 
+                                icon={item.icon} 
+                                className={styles.navIcon}
+                            />
+                            {item.label}
+                        </label>
+                    </div>
+                ))}
+                
+                <div 
+                    className={styles.selector}
+                    style={{
+                        left: `${getSelectorPosition()}px`,
+                        '--hole': getSelectorColor()
+                    } as React.CSSProperties}
+                />
+            </nav>
         </div>
-        </nav>
     );
 };
 

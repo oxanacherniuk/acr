@@ -2,8 +2,6 @@ import { useState, useRef, type MouseEvent } from 'react';
 import styles from './Discussion.module.css';
 import { LinkButton } from '../../components/LinkButton/LinkButton';
 import telegramImg from '../../assets/images/telegram.png';
-import maxImg from '../../assets/images/max color.svg';
-import vkImg from '../../assets/images/vk color.svg';
 
 export function DiscussionLayout() {
     const [isAccepted, setIsAccepted] = useState(false);
@@ -110,7 +108,7 @@ export function DiscussionLayout() {
                                 >
                                     Связаться
                                 </LinkButton>
-                                <LinkButton 
+                                {/* <LinkButton 
                                     target='_blank' 
                                     to={'https://wa.me/your-number'} 
                                     icon={maxImg} 
@@ -125,7 +123,7 @@ export function DiscussionLayout() {
                                     className={styles['connect-button']}
                                 >
                                     Связаться
-                                </LinkButton>
+                                </LinkButton> */}
                             </div>
                         </div>
                     )}

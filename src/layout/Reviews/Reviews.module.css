@@ -564,3 +564,74 @@
         display: none;
     }
 }
+
+.add-review-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.add-review-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+    font-size: 35px;
+    font-family: var(--manrope-font);
+}
+
+.add-review-button::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #00bfff;
+    transition: width 0.3s ease;
+    z-index: 1;
+}
+
+.add-review-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #00bfff;
+    transition: width 0.3s ease;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.add-review-button:hover {
+    color: #00bfff;
+}
+
+.add-review-button:hover::before {
+    width: 100%;
+}
+
+.add-review-button:hover::after {
+    width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .add-review-button {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .add-review-button {
+        font-size: 22px;
+    }
+}

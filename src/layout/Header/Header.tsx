@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import logoIcon from '../../assets/images/logo-icon.svg';
-import TelegramIcon from '../../assets/images/tg.svg';
-import VkIcon from '../../assets/images/vk.svg';
-import MaxIcon from '../../assets/images/max.svg';
+// import TelegramIcon from '../../assets/images/tg.svg';
+// import VkIcon from '../../assets/images/vk.svg';
+// import MaxIcon from '../../assets/images/max.svg';
 
 export function HeaderLayout() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,7 +68,7 @@ export function HeaderLayout() {
                         </ul>
                     </nav>
                     
-                    <div className={styles['menu-social-buttons']}>
+                    {/* <div className={styles['menu-social-buttons']}>
                         <a className={styles['social-button']} href="https://t.me/KP888_Bot">
                             <img src={TelegramIcon} alt="telegram" />
                         </a>
@@ -78,12 +78,12 @@ export function HeaderLayout() {
                         <a className={styles['social-button']} href="#">
                             <img src={MaxIcon} alt="max" />
                         </a>
-                    </div>
+                    </div> */}
 
                     <div className={styles['contact-info']}>
                         <div className={styles['contact-column']}>
                             <a href="tel:+79053491449"><p className={styles['contact-item']}>+7 (905) 349-14-49</p></a>
-                            <a href="mailto:acr@mail.ru"><p className={styles['contact-item']}>acr@mail.ru</p></a>
+                            <a href="mailto:acr-agency@yandex.ru"><p className={styles['contact-item']}>acr-agency@yandex.ru</p></a>
                         </div>
                         <div className={styles['contact-column']}>
                             <a href="https://yandex.ru/maps/195/ulyanovsk/?ll=48.370973%2C54.333762&mode=whatshere&whatshere%5Bpoint%5D=48.370999%2C54.333752&whatshere%5Bzoom%5D=17&z=17"><p className={styles['contact-item']}>г. Ульяновск, ул. Чайковского, д. 1</p></a>

@@ -4,7 +4,6 @@ import { HeaderLayout } from '../layout/Header/Header';
 import ServiceImage from '../assets/images/web-app-service.png';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 
 export function ServiceWebApp() {
     return (
@@ -77,7 +76,6 @@ export function ServiceWebApp() {
                 </div>
             </div>
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 }

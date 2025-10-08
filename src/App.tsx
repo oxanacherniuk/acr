@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigationType } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/index';
 import DevelopersPage from './pages/developers';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -17,240 +16,134 @@ import { ServiceCorporate } from './pages/ServiceCorporate';
 import './App.css';
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
 import { ServiceMarketing } from './pages/ServiceMarketing';
+import BottomNavigation from './components/BottomNavigation/BottomNavigation';
 
-type NavigationType = 'POP' | 'PUSH' | 'REPLACE';
-
-function AnimatedRoutes() {
+function AppRoutes() {
   const location = useLocation();
-  const navigationType = useNavigationType();
-
-  const getAnimation = (type: NavigationType) => {
-    if (type === 'POP') {
-      return {
-        initial: { x: -300, opacity: 0 },
-        animate: { x: 0, opacity: 1 },
-        exit: { x: 300, opacity: 0 }
-      };
-    } else {
-      return {
-        initial: { x: 300, opacity: 0 },
-        animate: { x: 0, opacity: 1 },
-        exit: { x: -300, opacity: 0 }
-      };
-    }
-  };
-
-  const animation = getAnimation(navigationType);
 
   return (
-    <AnimatePresence mode='wait'>
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <div className="motion-div">
-              <HomePage />
-            </div>
-          }
-        />
-        <Route
-          path="/developers"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <DevelopersPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/company"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <CompanyPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/developer/:id"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <DeveloperPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/soglasie-obrabotka-pers-dannih"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <PrivacyPolicy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <Services />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/landings"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 1, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceLandings />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/ecommerce"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceEcommerce />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/corporate"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceCorporate />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/web-app"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceWebApp />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/chat-bots"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceChatBots />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/ai"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceAI />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/mobile-app"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceMobileApp />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/design"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceDesign />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/services/marketing"
-          element={
-            <motion.div
-              initial={animation.initial}
-              animate={animation.animate}
-              exit={animation.exit}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="motion-div"
-            >
-              <ServiceMarketing />
-            </motion.div>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+    <Routes location={location} key={location.pathname}>
+      <Route
+        path="/"
+        element={
+          <div className="page-container">
+            <HomePage />
+          </div>
+        }
+      />
+      <Route
+        path="/developers"
+        element={
+          <div className="page-container">
+            <DevelopersPage />
+          </div>
+        }
+      />
+      <Route
+        path="/company"
+        element={
+          <div className="page-container">
+            <CompanyPage />
+          </div>
+        }
+      />
+      <Route
+        path="/developer/:id"
+        element={
+          <div className="page-container">
+            <DeveloperPage />
+          </div>
+        }
+      />
+      <Route
+        path="/soglasie-obrabotka-pers-dannih"
+        element={
+          <div className="page-container">
+            <PrivacyPolicy />
+          </div>
+        }
+      />
+      <Route
+        path="/services"
+        element={
+          <div className="page-container">
+            <Services />
+          </div>
+        }
+      />
+      <Route
+        path="/services/landings"
+        element={
+          <div className="page-container">
+            <ServiceLandings />
+          </div>
+        }
+      />
+      <Route
+        path="/services/ecommerce"
+        element={
+          <div className="page-container">
+            <ServiceEcommerce />
+          </div>
+        }
+      />
+      <Route
+        path="/services/corporate"
+        element={
+          <div className="page-container">
+            <ServiceCorporate />
+          </div>
+        }
+      />
+      <Route
+        path="/services/web-app"
+        element={
+          <div className="page-container">
+            <ServiceWebApp />
+          </div>
+        }
+      />
+      <Route
+        path="/services/chat-bots"
+        element={
+          <div className="page-container">
+            <ServiceChatBots />
+          </div>
+        }
+      />
+      <Route
+        path="/services/ai"
+        element={
+          <div className="page-container">
+            <ServiceAI />
+          </div>
+        }
+      />
+      <Route
+        path="/services/mobile-app"
+        element={
+          <div className="page-container">
+            <ServiceMobileApp />
+          </div>
+        }
+      />
+      <Route
+        path="/services/design"
+        element={
+          <div className="page-container">
+            <ServiceDesign />
+          </div>
+        }
+      />
+      <Route
+        path="/services/marketing"
+        element={
+          <div className="page-container">
+            <ServiceMarketing />
+          </div>
+        }
+      />
+    </Routes>
   );
 }
 
@@ -259,7 +152,8 @@ function App() {
     <div className="app">
       <Router>
         <ScrollToTop />
-        <AnimatedRoutes />
+        <AppRoutes />
+        <BottomNavigation />
       </Router>
     </div>
   );

@@ -1,5 +1,5 @@
 import styles from './Services.module.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { websiteTypes } from './variables';
 
@@ -8,6 +8,30 @@ export function ServicesLayout() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [currentPopup, setCurrentPopup] = useState<'websites' | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isPopupOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+
+        return () => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+        };
+    }, [isPopupOpen]);
 
     const handleWebAppClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -171,7 +195,7 @@ export function ServicesLayout() {
                 </div>
             </div>
             {isPopupOpen && (
-                <div className={styles['popup-overlay']} onClick={handleClosePopup}>
+                <div className={`${styles['popup-overlay']} ${isPopupOpen ? styles['popup-overlay-active'] : ''}`} onClick={handleClosePopup}>
                     <div className={styles['popup-content']} onClick={handlePopupClick}>
                         <button className={styles['popup-close']} onClick={handleClosePopup}>×</button>
                         <div className={styles['popup-scroll-container']}>

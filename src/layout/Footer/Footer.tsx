@@ -1,8 +1,8 @@
 import styles from './Footer.module.css';
 import Logo from '../../assets/images/logo.svg';
-import TelegramIcon from '../../assets/images/tg.svg';
-import VkIcon from '../../assets/images/vk.svg';
-import MaxIcon from '../../assets/images/max.svg';
+// import TelegramIcon from '../../assets/images/tg.svg';
+// import VkIcon from '../../assets/images/vk.svg';
+// import MaxIcon from '../../assets/images/max.svg';
 import { useEffect, useRef, useState } from 'react';
 
 export function FooterLayout() {
@@ -74,7 +74,7 @@ export function FooterLayout() {
                         </div>
                         
                         <div className={styles['footer-box__col']}>
-                            <div className={`${styles['footer-socials']} ${isVisible ? styles['animate-socials'] : ''}`}>
+                            {/* <div className={`${styles['footer-socials']} ${isVisible ? styles['animate-socials'] : ''}`}>
                                 <a className={styles['footer-social']} href="">
                                     <img src={VkIcon} alt="" />
                                 </a>
@@ -84,7 +84,7 @@ export function FooterLayout() {
                                 <a className={styles['footer-social']} href="">
                                     <img src={MaxIcon} alt="" />
                                 </a>
-                            </div>
+                            </div> */}
                             <p className={`${styles['footer-subtext']} ${isVisible ? styles['animate-subtext'] : ''}`}>
                                 ⓒ 2025 АЦР
                             </p>

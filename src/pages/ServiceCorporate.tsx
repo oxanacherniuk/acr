@@ -8,7 +8,6 @@ import TelegramIcon from '../assets/images/tg.svg';
 import CorporateImage from '../assets/images/corporate.webp';
 import { QuizLayout } from '../layout/Quiz/Quiz';
 import { FooterLayout } from '../layout/Footer/Footer';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 import { NavigationButton } from '../components/NavigationButton/NavigationButton';
 
 const schema = yup.object({
@@ -393,7 +392,7 @@ export function ServiceCorporate() {
                                     <div className={styles['timeline-item']}>
                                         <span className={styles['timeline-days']}>Этап 4</span>
                                         <h4>Наполнение</h4>
-                                        <p>Помогаем с подготовкой и публикацией текстов и изображений.</p>
+                                        <p>Работаем с подготовкой и публикацией текстов и изображений.</p>
                                     </div>
                                     <div className={styles['timeline-item']}>
                                         <span className={styles['timeline-days']}>Этап 5</span>
@@ -510,7 +509,6 @@ export function ServiceCorporate() {
                 </div>
             </div>
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 }

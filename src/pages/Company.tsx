@@ -3,7 +3,6 @@ import { HeaderLayout } from '../layout/Header/Header';
 import { FooterLayout } from '../layout/Footer/Footer';
 import styles from './CompanyPage.module.css';
 import CompanyPhoto from '../assets/images/company-photo.jpg';
-import BottomNavigation from '../components/BottomNavigation/BottomNavigation';
 
 export default function CompanyPage() {
     const [isVisible, setIsVisible] = useState(false);
@@ -51,34 +50,43 @@ export default function CompanyPage() {
                         </div>
 
                         <div className={`${styles['values-section']} ${isVisible ? styles['visible'] : ''}`}>
-                            <h3 className={styles['section-title']}>наша философия: осознанный подход к развитию вашего бизнеса</h3>
+                            <h3 className={styles['section-title']}>наша философия: системный подход к развитию Вашего бизнеса.</h3>
                             <div className={styles['values-grid']}>
                                 <div className={styles['value-item']}>
-                                    <h4 className={styles['value-title']}>Анализ — наше второе имя</h4>
+                                    <h4 className={styles['value-title']}>Новаторство</h4>
                                     <p className={styles['value-text']}>
-                                        Мы не начинаем работу без глубокого погружения в ваш бизнес, рынок и цели. 
-                                        Каждое наше решение основано на данных, а не на интуиции.
+                                        Мы мыслим современно и следим за всеми тенденциями в дизайне и IT направлении.
                                     </p>
                                 </div>
                                 <div className={styles['value-item']}>
-                                    <h4 className={styles['value-title']}>Комплексность и синергия</h4>
+                                    <h4 className={styles['value-title']}>Результативность</h4>
                                     <p className={styles['value-text']}>
-                                        Мы объединяем разработку и маркетинг в единый процесс. Это позволяет избежать 
-                                        разрозненности и получить максимальный результат от вложений.
+                                        Мы смотрим на сайт со стороны предпринимателя и со стороны бизнеса, для которого важны цели, важен результат.
                                     </p>
                                 </div>
                                 <div className={styles['value-item']}>
-                                    <h4 className={styles['value-title']}>Партнерство, а не подряд</h4>
+                                    <h4 className={styles['value-title']}>Эффективность</h4>
                                     <p className={styles['value-text']}>
-                                        Мы искренне заинтересованы в вашем успехе. Вы получаете не просто исполнителя, 
-                                        а надежного советника и партнера в digital-среде.
+                                        Мы создаем многофункциональные корпоративные ресурсы, которые работают на Ваш имидж и бизнес-цели 24/7.
                                     </p>
                                 </div>
                                 <div className={styles['value-item']}>
-                                    <h4 className={styles['value-title']}>Прозрачность и ясность</h4>
+                                    <h4 className={styles['value-title']}>Ориентация на клиента</h4>
                                     <p className={styles['value-text']}>
-                                        Вы всегда понимаете, на каком этапе находится проект, какие задачи решаются 
-                                        и как расходуется бюджет. Мы говорим с вами на одном языке.
+                                        Создаем и эффективно настраиваем интернет магазины, которые действительно продают.
+                                    </p>
+                                </div>
+                                <div className={styles['value-item']}>
+                                    <h4 className={styles['value-title']}>Компетентность</h4>
+                                    <p className={styles['value-text']}>
+                                        Создаем и интегрируем кроссплатформенные системы для задач любой сложности.
+                                    </p>
+                                </div>
+                                <div className={styles['value-item']}>
+                                    <h4 className={styles['value-title']}>Надежность</h4>
+                                    <p className={styles['value-text']}>
+                                        Мы обеспечим надежную техническую поддержку Вашего сайта и IT проекта.
+                                        Мы создаем Ваши работающие активы.
                                     </p>
                                 </div>
                             </div>
@@ -118,19 +126,14 @@ export default function CompanyPage() {
                             </p>
                             <div className={styles['team-grid']}>
                                 <div className={styles['team-member']}>
-                                    <h4 className={styles['member-name']}>Алексей Петров</h4>
-                                    <p className={styles['member-position']}>Стратег, аналитик</p>
-                                    <p className={styles['member-description']}>Опыт в digital — 12 лет. Специализируется на комплексных digital-стратегиях</p>
+                                    <h4 className={styles['member-name']}>Игорь Адаев</h4>
+                                    <p className={styles['member-position']}>Директор</p>
+                                    <p className={styles['member-description']}>Специалист по выстраиванию бизнес-процессов. Опыт 16 лет</p>
                                 </div>
                                 <div className={styles['team-member']}>
-                                    <h4 className={styles['member-name']}>Мария Сидорова</h4>
-                                    <p className={styles['member-position']}>Lead Designer</p>
-                                    <p className={styles['member-description']}>Специализируется на интерфейсах, повышающих конверсию. Опыт 8 лет</p>
-                                </div>
-                                <div className={styles['team-member']}>
-                                    <h4 className={styles['member-name']}>Дмитрий Иванов</h4>
-                                    <p className={styles['member-position']}>Технический директор</p>
-                                    <p className={styles['member-description']}>Эксперт в высоконагруженных системах и сложной интеграции. Опыт 10 лет</p>
+                                    <h4 className={styles['member-name']}>Максим Баранов</h4>
+                                    <p className={styles['member-position']}>Директор по развитию</p>
+                                    <p className={styles['member-description']}>Специалист по маркетингу и интеграции бизнес-процессов.</p>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +208,7 @@ export default function CompanyPage() {
                                             КПП 732601001<br/>
                                             ОГРН 1127325002573<br/>
                                             ОКПО 97638790<br/>
-                                            Основной ОКВЭД 22.22
+                                            Основной ОКВЭД 62.0 Разработка компьютерного программного обеспечения, консультационные услуги в данной области и другие сопутствующие услуги
                                         </p>
                                     </div>
                                     
@@ -216,12 +219,12 @@ export default function CompanyPage() {
                                             г. Ульяновск, ул. Чайковского, д. 1 <br/><br/>
 
                                             <strong>Юридический адрес:</strong><br/>
-                                            432063, РФ, Ульяновская обл.,<br/>
-                                            г. Ульяновск, ул. Кирова, д. 6, кв. 397<br/><br/>
+                                            РФ, Ульяновская обл.,<br/>
+                                            г. Ульяновск, ул. Чайковского, д. 1<br/><br/>
                                             
                                             <strong>Почтовый адрес:</strong><br/>
-                                            432063, РФ, Ульяновская обл.,<br/>
-                                            г. Ульяновск, ул. Кирова, д. 6, кв. 397
+                                            РФ, Ульяновская обл.,<br/>
+                                            г. Ульяновск, ул. Чайковского, д. 1
                                         </p>
                                     </div>
                                     
@@ -244,7 +247,7 @@ export default function CompanyPage() {
                                 <div className={styles['contact-item']}>
                                     <div className={styles['contact-info']}>
                                         <h4>Email</h4>
-                                        <p>info@acr-development.ru</p>
+                                        <p>acr-agency@yandex.ru</p>
                                     </div>
                                 </div>
                                 <div className={styles['contact-item']}>
@@ -281,7 +284,6 @@ export default function CompanyPage() {
                 </div>
             </div>
             <FooterLayout />
-            <BottomNavigation />
         </div>
     );
 }

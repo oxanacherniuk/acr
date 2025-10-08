@@ -12,7 +12,7 @@
     font-weight: 900;
     line-height: 1.1;
     font-family: var(--manrope-font);
-    color: var(--accent-light);
+    color: #3789A8;
     margin: 0;
     letter-spacing: 0.01em;
     padding-bottom: 70px;
@@ -123,7 +123,7 @@
     .banner-title {
         font-size: 1.4rem;
         padding-bottom: 10px;
-        color: #000;
+        color: #3789A8;
     }
 }
 
@@ -140,21 +140,22 @@
 
 @media (max-width: 1300px) and (min-width: 1091px) {
     .banner-bigtitle {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
     }
 
     .banner-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 }
 
 @media (max-width: 1700px) and (min-width: 1301px) {
     .banner-bigtitle {
-        font-size: 6rem;
+        font-size: 4.5rem;
     }
 
     .banner-title {
-        font-size: 3.375rem;
+        font-size: 3rem;
+        max-width: 800px;
     }
 }
 
@@ -191,5 +192,11 @@
         animation: none;
         opacity: 1;
         transform: none;
+    }
+}
+
+@media screen and (max-width: 2500px) {
+    .banner-bigtitle {
+        padding-bottom: 0 !important;
     }
 }

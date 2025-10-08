@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Reviews.module.css';
 import { reviews } from './review';
+import { ReviewFormPopup } from '../../components/ReviewFormPopup/ReviewFormPopup';
 
 export function ReviewsLayout() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,6 +10,7 @@ export function ReviewsLayout() {
     const [mouseStart, setMouseStart] = useState(0);
     const [mouseEnd, setMouseEnd] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
+    const [isFormPopupOpen, setIsFormPopupOpen] = useState(false);
     const reviewRef = useRef<HTMLDivElement>(null);
 
     const nextSlide = () => {
@@ -76,6 +78,14 @@ export function ReviewsLayout() {
             setMouseStart(0);
             setMouseEnd(0);
         }
+    };
+
+    const handleOpenFormPopup = () => {
+        setIsFormPopupOpen(true);
+    };
+
+    const handleCloseFormPopup = () => {
+        setIsFormPopupOpen(false);
     };
 
     useEffect(() => {
@@ -160,7 +170,21 @@ export function ReviewsLayout() {
                         </div>
                     </div>
                 </div>
+
+                <div className={styles['add-review-button-container']}>
+                    <button 
+                        className={styles['add-review-button']}
+                        onClick={handleOpenFormPopup}
+                    >
+                        оставить отзыв
+                    </button>
+                </div>
             </div>
+
+            <ReviewFormPopup 
+                isOpen={isFormPopupOpen}
+                onClose={handleCloseFormPopup}
+            />
         </div>
     );
 }
