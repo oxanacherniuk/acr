@@ -1,7 +1,7 @@
 import { LinkButton } from '../../components/LinkButton/LinkButton';
 import styles from './SecondBanner.module.css';
 import { useEffect, useRef, useState } from 'react';
-
+import but from "../../assets/video/but2.webm"
 export function SecondBannerLayout() {
     const [isVisible, setIsVisible] = useState(false);
     const bannerRef = useRef<HTMLDivElement>(null);
@@ -27,12 +27,13 @@ export function SecondBannerLayout() {
     }, []);
 
     return (
-        <div ref={bannerRef} className={styles['banner']}>
+        <div date-color="dark" ref={bannerRef}  className={styles['banner']}>
             <div className='container'>
                 <div className={styles['banner-content']}>
                     <LinkButton 
                         to={''} 
-                        children={'смотреть'} 
+                        videoType='video/webm'
+                        videoSrc={but}
                         className={`${isVisible ? styles['button-visible'] : ''}`}
                     />
                 </div>

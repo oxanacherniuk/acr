@@ -10,12 +10,13 @@ import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
 import BannnerMP4 from '../assets/video/banner (online-video-cutter.com).mp4';
 import { HeaderLayout } from '../layout/Header/Header';
+import { MoveUp } from '../components/Motions';
 
 const IndexPage: React.FC = () => {
     return (
         <div>
             <HeaderLayout />
-            <div className='AiBanner'>
+            <div className='AiBanner '>
                 <video 
                     className='banner-video'
                     autoPlay
@@ -28,7 +29,10 @@ const IndexPage: React.FC = () => {
                 </video>
                 <BannerLayout />
             </div>
-            <SecondBannerLayout />
+            <MoveUp>
+
+                <SecondBannerLayout />
+            </MoveUp>
             <ServicesLayout />
             <DevelopersLayout />
             <DiscussionLayout />

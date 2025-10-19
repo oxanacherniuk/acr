@@ -42,7 +42,7 @@
     height: 0;
     padding-bottom: calc(100% - 16px);
     margin-bottom: 6.6em;
-    background: rgba(255, 255, 255, 0.03);
+    background: #000000;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -60,6 +60,7 @@
     z-index: 10;
     transition: all 0.3s ease;
     background: #0e0e0e;
+    min-height: 97px;
 }
 
 .material-card h2 span {
@@ -78,9 +79,13 @@
     margin-top: 5px;
 }
 
+.material-card.mc-active h2 strong {
+    display: none;
+}
+
 .material-card h2:before,
 .material-card h2:after {
-    content: ' ';
+    content: '';
     position: absolute;
     left: 0;
     top: -16px;
@@ -102,8 +107,8 @@
 }
 
 .material-card h2:after {
-    border-top-color: #424242;
-    border-right-color: #424242;
+    border-top-color: #0e0e0e;
+    border-right-color: #0e0e0e;
     border-bottom-color: transparent;
     border-left-color: transparent;
 }
@@ -121,8 +126,8 @@
 .material-card.mc-active h2:before {
     top: 0;
     border-top-color: transparent;
-    border-right-color: #424242;
-    border-bottom-color: #424242;
+    border-right-color: #0e0e0e;
+    border-bottom-color: #0e0e0e;
     border-left-color: transparent;
 }
 
@@ -170,7 +175,7 @@
 }
 
 .material-card.mc-active .mc-btn-action {
-    top: 62px;
+    top: 70px;
     background: #f5f5f5;
     border-color: #f5f5f5;
     color: #424242;
@@ -271,7 +276,8 @@
 .material-card.mc-active .mc-footer {
     overflow: visible;
     position: absolute;
-    top: calc(100% - 96px);
+    /* top: calc(100% - 96px); */
+    top: calc(100%);
     left: 16px;
     right: 0;
     height: 82px;
@@ -306,6 +312,27 @@
     animation: fa-spin-fast .2s infinite linear;
 }
 
+.material-card .mc-footer h3 {
+    position: absolute;
+    top: 200px;
+    left: 30px;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-transition: all 1.4s;
+    -moz-transition: all 1.4s;
+    -ms-transition: all 1.4s;
+    -o-transition: all 1.4s;
+    transition: all 1.4s;
+    color: #000;
+}
+
+.material-card.mc-active .mc-footer h3 {
+    top: -45px;
+    color: var(--accent-light);
+}
+    
 @keyframes fa-spin-fast {
     0% {
         transform: rotate(0deg);

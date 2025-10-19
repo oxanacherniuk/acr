@@ -84,6 +84,7 @@
 }
 
 .input:checked+.label .navIcon {
+    
     filter:
         brightness(1.5) drop-shadow(0 0 2px var(--sel)) drop-shadow(0 0 6px var(--sel));
     color: var(--sel);

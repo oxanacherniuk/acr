@@ -1,26 +1,55 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import HomePage from './pages/index';
-import DevelopersPage from './pages/developers';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import DeveloperPage from './pages/developerPage';
-import { ServiceDesign } from './pages/ServiceDesign';
-import { ServiceMobileApp } from './pages/ServiceMobileApp';
-import { ServiceAI } from './pages/ServiceAI';
-import { ServiceWebApp } from './pages/ServiceWebApp';
-import { ServiceChatBots } from './pages/ServiceChatBots';
-import Services from './pages/Services';
-import CompanyPage from './pages/Company';
-import { ServiceLandings } from './pages/ServiceLandings';
-import { ServiceEcommerce } from './pages/ServiceEcommerce';
-import { ServiceCorporate } from './pages/ServiceCorporate';
-import './App.css';
-import { ScrollToTop } from './components/ScrollToTop/ScrollToTop';
-import { ServiceMarketing } from './pages/ServiceMarketing';
-import BottomNavigation from './components/BottomNavigation/BottomNavigation';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import HomePage from "./pages/index";
+import DevelopersPage from "./pages/developers";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import DeveloperPage from "./pages/developerPage";
+import { ServiceDesign } from "./pages/ServiceDesign";
+import { ServiceMobileApp } from "./pages/ServiceMobileApp";
+import { ServiceAI } from "./pages/ServiceAI";
+import { ServiceWebApp } from "./pages/ServiceWebApp";
+import { ServiceChatBots } from "./pages/ServiceChatBots";
+import Services from "./pages/Services";
+import CompanyPage from "./pages/Company";
+import { ServiceLandings } from "./pages/ServiceLandings";
+import { ServiceEcommerce } from "./pages/ServiceEcommerce";
+import { ServiceCorporate } from "./pages/ServiceCorporate";
+import "./App.css";
+import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
+import { ServiceMarketing } from "./pages/ServiceMarketing";
+import BottomNavigation from "./components/BottomNavigation/BottomNavigation";
+import { useEffect } from "react";
+import Lenis from "lenis";
 
 function AppRoutes() {
   const location = useLocation();
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: true,
+      touchMultiplier: 2,
+      smoothWheel: true,
+    });
 
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
   return (
     <Routes location={location} key={location.pathname}>
       <Route

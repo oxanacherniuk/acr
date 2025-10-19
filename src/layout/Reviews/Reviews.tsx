@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styles from './Reviews.module.css';
 import { reviews } from './review';
 import { ReviewFormPopup } from '../../components/ReviewFormPopup/ReviewFormPopup';
+import GradientHeadingLite from '../../components/GradientHeading/GradientHeading';
 
 export function ReviewsLayout() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -106,7 +107,9 @@ export function ReviewsLayout() {
     return (
         <div className={styles['reviews']}>
             <div className='container'>
-                <p className={styles['reviews-title']}>отзывы</p>
+                <GradientHeadingLite as='p' className={styles['reviews-title']}  blueBoost={1} baseAngle={45}>
+отзывы
+                </GradientHeadingLite>
                 
                 <div className={styles['review-container']}>
                     <div 

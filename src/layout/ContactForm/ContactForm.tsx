@@ -1,8 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import axios from 'axios';
 import styles from './ContactForm.module.css';
-import type { ContactFormData } from './formTypes';
+import type { ContactFormData } from '../../types/fos';
+import GradientHeadingLite from '../../components/GradientHeading/GradientHeading';
 
 const schema = yup.object({
     name: yup
@@ -38,29 +40,80 @@ export function ContactLayout() {
         }
     });
 
+    // Функция для получения UTM параметров из URL
+    const getUTMParams = () => {
+        if (typeof window === 'undefined') return {};
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+            utm_source: urlParams.get('utm_source') || undefined,
+            utm_medium: urlParams.get('utm_medium') || undefined,
+            utm_campaign: urlParams.get('utm_campaign') || undefined,
+            utm_term: urlParams.get('utm_term') || undefined,
+            utm_content: urlParams.get('utm_content') || undefined,
+        };
+    };
+
     const onSubmit = async (data: ContactFormData) => {
         try {
+            // Форматируем телефон и собираем все данные для таблицы
             const formattedData = {
-                ...data,
-                phone: data.phone.replace(/\D/g, '')
+                name: data.name,
+                email: data.email,
+                phone: data.phone.replace(/\D/g, ''),
+                page_url: window.location.href,
+                referrer: document.referrer || '',
+                user_agent: navigator.userAgent,
+                ...getUTMParams()
             };
 
-            console.log('Данные формы:', formattedData);
+            console.log('Данные для отправки:', formattedData);
+            // const URL = '/api/fos';
+            const URL = 'http://localhost:3010/api/fos';
+            // Отправляем данные на API
+            const response = await axios.post(URL, formattedData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.data.success) {
+                alert('Замечательно! Мы скоро с Вами свяжемся');
+                reset();
+            } else {
+                throw new Error(response.data.error || 'Ошибка при отправке формы');
+            }
             
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            alert('Замечательно! Мы скоро с Вами свяжемся');
-            reset();
         } catch (error) {
             console.error('Ошибка отправки:', error);
-            alert('Произошла ошибка при отправке формы');
+            
+            // Обрабатываем ошибки axios
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    alert(`Ошибка: ${error.response.data.error || 'Произошла ошибка при отправке формы'}`);
+                } else if (error.request) {
+                    alert('Не удалось соединиться с сервером. Проверьте подключение к интернету.');
+                } else {
+                    alert('Произошла ошибка при отправке формы');
+                }
+            } else {
+                alert('Произошла непредвиденная ошибка');
+            }
         }
     };
 
     return (
         <div className={styles['contact']} id='contact'>
             <div className='container'>
-                <p className={styles['contact-title']}>связаться</p>
+                 <GradientHeadingLite
+          as="p"
+          className={styles["contact-title"]}
+          blueBoost={20}
+          track="viewport"
+          baseAngle={25}
+        >
+        связаться
+        </GradientHeadingLite>
                 
                 <div className={styles['contact-box']}>
                     <form 

@@ -190,7 +190,17 @@ export function ServiceCorporate() {
             <HeaderLayout />
             <div className={styles['service-page__top']}> 
                 <div className='container'>
-                    <span className={styles['service-category']}>Услуга</span>
+                    <div className='breadCrumbs'>
+                        <a className='breadCrumbs-item' href="/services">услуги</a><span>|</span>
+                        <p className='breadCrumbs-item end'>
+                            {displayTitle}
+                        </p>
+
+                        <a className='breadCrumbs-item rasdel -b' href="/services/ecommerce">Интернет-магазин</a><span>|</span>
+                        <a className='breadCrumbs-item -b' href="/services/landings">
+                            лендинг
+                        </a>
+                    </div>
                     <div className={styles['service-header']}>
                         <div className={styles['service-header-content']}>
                             <h1 className={styles['service-title']}>

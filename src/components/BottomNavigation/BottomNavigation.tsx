@@ -39,10 +39,10 @@ const BottomNavigation: React.FC = () => {
     }
 
     const navigationItems: NavigationItem[] = [
-        { id: 'm-home', label: 'Главная', icon: faHome, color: '#00bfff', path: '/' },
-        { id: 'm-team', label: 'Команда', icon: faUsers, color: '#f48d4e', path: '/developers' },
-        { id: 'm-services', label: 'Услуги', icon: faCogs, color: '#00bfff', path: '/services' },
-        { id: 'm-company', label: 'О нас', icon: faBuilding, color: '#f48d4e', path: '/company' }
+        { id: 'm-home', label: 'Главная', icon: faHome, color: '#afbfcc' , path: '/' },
+        { id: 'm-team', label: 'Команда', icon: faUsers, color: '#dbe3ea', path: '/developers' },
+        { id: 'm-services', label: 'Услуги', icon: faCogs, color: '#afbfcc', path: '/services' },
+        { id: 'm-company', label: 'О нас', icon: faBuilding, color: '#dbe3ea', path: '/company' }
     ];
 
     const handleItemClick = (item: NavigationItem) => {
@@ -85,7 +85,7 @@ const BottomNavigation: React.FC = () => {
                                 icon={item.icon} 
                                 className={styles.navIcon}
                             />
-                            {item.label}
+                            <span className='text-metallic'>{item.label}</span>
                         </label>
                     </div>
                 ))}

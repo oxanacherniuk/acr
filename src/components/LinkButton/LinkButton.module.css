@@ -7,8 +7,8 @@
     color: #ffffff;
     background: none;
     padding: 0;
-    width: 430px;
-    height: 430px;
+    width: 620px;
+    height: 620px;
     font-size: 2.5rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -17,27 +17,81 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+    /* box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4); */
+}
+
+/* Стили для видео фона */
+.button-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    border-radius: 50%;
+
+    /* filter: blur(8px); */
+    /* transform: scale(1.05); */
+}
+
+/* Затемнение видео для лучшей читаемости текста */
+.link-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    border-radius: 50%;
+    transition: background 0.3s ease;
 }
 
 .link-button::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
+    top: 0%;
+    left: 0%;
+    right: -10px;
+    bottom: -10px;
+    background: inherit;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(5px);
+    box-shadow: inset 1px 1px 20px 35px #000000c2;
+    background: #ffffff00;
     width: 100%;
     height: 100%;
-    transition: left 0.3s ease;
-    z-index: -1;
 }
 
+
+    /* content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    right: -10px;
+    bottom: -10px;
+    background: inherit;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(7px);
+    box-shadow: inset 1px 1px 20px 35px #000000;
+    background: #ffffff00;
+    width: 100%;
+    height: 100%; */
 .link-button:hover::before {
     left: 0;
 }
 
 .link-button:hover {
     color: #00bfff;
-    box-shadow: 0 15px 40px rgba(0, 136, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 136, 255, 0.4) !important;
+}
+
+.link-button:hover::after {
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .button-text {
@@ -54,6 +108,22 @@
     position: relative;
     z-index: 1;
 }
+
+/* Адаптивные стили остаются без изменений, но добавьте для видео */
+@media screen and (max-width: 1200px) {
+    .link-button {
+        width: 350px;
+        height: 350px;
+        font-size: 2.2rem;
+        gap: 18px;
+    }
+
+    .button-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+
 
 @media screen and (max-width: 1200px) {
     .link-button {

@@ -1,10 +1,11 @@
 .banner {
     background: transparent;
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     align-items: flex-end;
     position: relative;
     z-index: 1;
+    
 }
 
 .banner-title {
@@ -73,7 +74,14 @@
         display: none;
     }
 }
-
+.banner-content {
+           width: 100%;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 60vh;
+    }
 @media (max-width: 768px) {
     .banner {
         min-height: 80vh;

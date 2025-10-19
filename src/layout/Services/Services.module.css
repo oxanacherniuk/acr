@@ -14,13 +14,18 @@
 .services-title {
     font-size: 3rem;
     text-align: left;
-    margin-bottom: 150px;
-    color: var(--accent-light);
+    margin-bottom: 100px;
+    /* color: var(--accent-light); */
     font-family: var(--manrope-font);
     font-weight: 700;
-    opacity: 0;
-    transform: translateX(-100px);
-    animation: slideInRight 1s ease forwards;
+ 
+
+  background: var(--silver-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
 }
 
 @keyframes slideInRight {
@@ -86,6 +91,7 @@
     cursor: pointer;
     display: inline-block;
     transition: all 0.4s ease;
+    width: 100%;
 }
 
 .service-name::before {
@@ -229,7 +235,7 @@
     }
 
     .services-box {
-        gap: 40px;
+        gap: 0px;
     }
 
     .services-title {
@@ -311,7 +317,7 @@
     max-height: 90vh;
     text-transform: uppercase;
     position: relative;
-    border: 0.5px solid rgba(100, 100, 100, 0.6);
+    /* border: 0.5px solid rgba(100, 100, 100, 0.6); */
     color: #fff;
     animation: popupFadeInUp 0.5s ease;
     filter: drop-shadow(0px 4px 20px rgba(0, 191, 255, 0.2));

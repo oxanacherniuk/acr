@@ -1,25 +1,25 @@
 @font-face {
-  font-family: 'ACR';
-  src: url('./assets/fonts/Redcollar.woff2') format('woff2');
+  font-family: "ACR";
+  src: url("./assets/fonts/Redcollar.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'ACR text';
-  src: url('./assets/fonts/TTCommons-Medium.woff2') format('woff2');
+  font-family: "ACR text";
+  src: url("./assets/fonts/TTCommons-Medium.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }
 
 :root {
   --accent-light: #00bfff;
-  --accent-dark: #293A45;
+  --accent-dark: #293a45;
   --black: #000;
   --grey: #575757;
-  --grey-light: #F1F1F3;
-  --manrope-font: 'ACR', sans-serif;
-  --acr-text: 'ACR text', sans-serif;
+  --grey-light: #f1f1f3;
+  --manrope-font: "ACR", sans-serif;
+  --acr-text: "ACR text", sans-serif;
 }
 
 html {
@@ -107,13 +107,13 @@ img {
 
 .AiBanner {
   position: relative;
-  height: 90vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 .banner-video {
   position: fixed;
-  bottom: 0;
+  bottom: -10%;
   left: 64%;
   transform: translateX(-50%);
   width: 54%;
@@ -168,7 +168,7 @@ img {
     width: 100%;
     object-fit: scale-down;
     left: 70%;
-    bottom: -30px;
+    /* bottom: -30px; */
   }
 }
 
@@ -178,4 +178,75 @@ h3 {
   margin-bottom: 60px;
   color: var(--accent-light);
   font-size: 2.5rem;
+}
+
+.breadCrumbs {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 30px;
+}
+
+.breadCrumbs-item {
+  color: var(--accent-dark);
+  font-size: 1rem;
+  font-family: var(--manrope-font);
+  text-transform: uppercase;
+
+  transition: 300ms;
+}
+
+.breadCrumbs-item:hover {
+  color: var(--accent-light);
+}
+
+.breadCrumbs-item.end {
+  color: var(--grey);
+  opacity: 0.7;
+}
+
+.breadCrumbs-item.rasdel {
+  margin-left: auto;
+}
+
+/* ===== 1. Фоновый градиент (металлический / серебристо-голубой) ===== */
+:root {
+  --metallic: linear-gradient(
+    135deg,
+    #dbe3ea 0%,
+    /* светлое серебро */ #b4dcea 25%,
+    /* светло-голубой */ #a3c6e0 50%,
+    /* чуть насыщеннее голубой */ #93b6c7 70%,
+    /* уход в металлический голубовато-серый */ #4a6477 100%
+      /* немного тёмного контраста по краю */
+  );
+
+  --silver-light: linear-gradient(
+    135deg,
+    #f4f7fa 0%,
+    /* белый серебристый блик */ #e3edf5 25%,
+    /* светлое серебро */ #dbe3ea 50%,
+    /* лёгкий стальной оттенок */ #b4dcea 75%,
+    /* чуть голубизны */ #a3c6e0 100% /* холодноватое серебро на краю */
+  );
+
+  --silver-balanced: linear-gradient(
+    135deg,
+    #e2e8ee 0%,
+    /* светлый бликовый старт */ #b4dcea 20%,
+    /* голубое серебро */ #a3c6e0 45%,
+    /* металлический переход */ #93b6c7 70%,
+    /* лёгкий серо-металлический тон */ #4a6477 100%
+      /* немного тени для глубины */
+  );
+
+  --silver-dark: linear-gradient(
+    135deg,
+    #cfd8df 0%,
+    /* светлое начало */ #93b6c7 25%,
+    /* холодный металл */ #4a6477 60%,
+    /* насыщенный стальной тон */ #50555a 85%,
+    /* глубокая тень */ #254f63 100% /* акцентный тёмный металл */
+  );
 }

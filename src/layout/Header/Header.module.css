@@ -8,25 +8,62 @@
     transition: all 0.3s ease;
     padding: 20px 0;
 }
+.divider {
+  position: relative;
+  flex: 1;
+  height: 2px;           /* чуть толще, чтобы виден был трек */
+  background: rgba(0,0,0,0.15); /* трек */
+  margin: 0 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;       /* из-за клика для «перемотки» */
+}
+.divider-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 100%;
+  background: black;            /* основной цвет прогресса */
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  transition: transform 0.06s linear; /* быстрый, но не дерганый */
+}
+
+/* если нужна инверсия в «проскролленном» состоянии (на темном фоне) */
+.burger-scrolled .burger-line { background: white; }
+.burger-scrolled::before { border-color: white; }
+/* можно поменять цвет прогресса на светлый при тёмной шапке */
+.header.scrolled .divider-fill {
+  background: var( --accent-light);
+  opacity: 0.95;
+}
 
 .header.scrolled {
-    padding: 25px 0;
-    transform: scaleX(1.02);
-    transform-origin: center;
+  padding: 25px 0;
+  transform: scaleX(1.02);
+  transform-origin: center;
+  /* пример подложки:
+  backdrop-filter: saturate(120%) blur(6px);
+  background: rgba(255,255,255,0.35);
+  */
 }
 
 .header .logo-img {
-    height: 23px;
+    height: 70px;
+}
+.header.scrolled .logo-img {
+    height: 50px;
 }
 
-.divider {
+/* .divider {
     flex: 1;
     height: 0.5px;
     background: black;
     margin: 0 30px;
     opacity: 0.6;
     transition: all 0.3s ease;
-}
+} */
 
 .divider-hidden {
     opacity: 0;
@@ -278,7 +315,7 @@
     }
 
     .header.scrolled .logo-img {
-        height: 16px;
+        height: 20px;
     }
 
     .fullscreen-nav-link {

@@ -34,6 +34,12 @@
 .animate-logo {
     transform: translateY(0);
     opacity: 1;
+
+
+    border-radius: 50%;
+    width: 120px;
+    overflow: hidden;
+    height: 120px;
 }
 
 .logo-img {

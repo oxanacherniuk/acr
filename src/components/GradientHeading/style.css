@@ -1,0 +1,115 @@
+/* ===== База: без «зебры», минимализм */
+.glossy-lite {
+  font-family: var(--manrope-font, system-ui);
+  font-weight: 700;
+  font-size: 3rem;
+  display: inline-block;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  /* управляемые переменные */
+  --angle: 0;
+  --shiftX: 0%;
+  --posX: 50%;
+  --posY: 50%;
+  --posX2: 50%;
+  --posY2: 50%;
+  --posX3: 50%;
+  --posY3: 50%;
+
+  --lampR: 240px;
+  --lampR2: 420px;
+
+  --lintSpec: 0.6;
+  --lintHalo: 0.35;
+  --blue: 1;
+
+  --wAlpha: 0.22;
+
+  /* палитра (темы переопределят) */
+  --c1: #B4DCEA;
+  --c2: #A3C6E0;
+  --c3: #DBE3EA;
+  --c4: #93B6C7;
+  --c5: #AFBFCC;
+
+  /* ===== СЛОИ (без repeating, без псевдо-элементов) ===== */
+  background-image:
+    /* 1) металл */
+    linear-gradient(
+      calc(var(--angle) * 1deg),
+      #ffffff 0%, #e5edf3 8%, #9aaaba 26%, #6f879b 40%,
+      #e1e9f0 58%, #7ea1b7 74%, #6a8ba0 86%, #66aab0 100%
+    ),
+    /* 2) ореол */
+    radial-gradient(
+      circle var(--lampR2) at center,
+      rgba(130, 190, 240, calc(0.38 * var(--lintHalo) * var(--blue))) 0%,
+      rgba(210, 235, 255, calc(0.16 * var(--lintHalo))) 60%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    /* 3) ядро */
+    radial-gradient(
+      circle var(--lampR) at center,
+      rgba(220, 240, 255, calc(0.9 * var(--lintSpec))) 0%,
+      rgba(220, 240, 255, calc(0.42 * var(--lintSpec))) 52%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    /* 4) мягкая волна 1 */
+    radial-gradient(
+      circle calc(var(--lampR) * 1.4) at center,
+      color-mix(in oklab, var(--c1) 100%, transparent calc(100% - var(--wAlpha) * 100%)) 0%,
+      transparent 70%
+    ),
+    /* 5) мягкая волна 2 */
+    radial-gradient(
+      circle calc(var(--lampR) * 1.1) at center,
+      color-mix(in oklab, #1289ea 100%, transparent calc(100% - var(--wAlpha) * 100%)) 0%,
+      transparent 65%
+    ),
+    /* 6) микро-шум (исправленный data-URL, без обратных слэшей) */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128' viewBox='0 0 128 128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 0 0 0 0.015 0.03 0.015 0'/></feComponentTransfer></filter><rect width='128' height='128' filter='url(%23n)'/></svg>");
+
+  background-size:
+    220% 220%,  auto, auto, auto, auto, 128px 128px;
+
+  background-position:
+    calc(50% + var(--shiftX)) 50%,
+    var(--posX) var(--posY),
+    var(--posX) var(--posY),
+    var(--posX2) var(--posY2),
+    var(--posX3) var(--posY3),
+    0 0;
+
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+
+  background-blend-mode: screen, screen, screen, soft-light, soft-light, overlay;
+
+  transition: background-position 140ms cubic-bezier(.22,.61,.36,1);
+}
+
+/* Темы (палитра) */
+.text-logo-on-white {
+  --c1: #1289ea;
+  --c2: #a3c6e0;
+  --c3: #1289ea;
+  --c4: #93b6c7;
+  --c5: #1289ea;
+  /* на белом чуть «чище» блендинг */
+  background-blend-mode: screen, screen, screen, color-dodge, color-dodge, overlay;
+}
+.text-silver-blue-dark {
+  --c1: #1289ea;
+  --c2: #a3c6e0;
+  --c3: #4a6477;
+  --c4: #50555a;
+  --c5: #a3c6e0;
+  background-blend-mode: screen, screen, screen, soft-light, soft-light, overlay;
+}
+
+/* Доступность */
+@media (prefers-reduced-motion: reduce) {
+  .glossy-lite { transition: none; }
+}

@@ -190,7 +190,12 @@ export function ServiceMobileApp() {
             <HeaderLayout />
             <div className={styles['service-page__top']}> 
                 <div className='container'>
-                    <span className={styles['service-category']}>Услуга</span>
+                    <div className='breadCrumbs'>
+                        <a className='breadCrumbs-item' href="/services">услуги</a><span>|</span>
+                        <p className='breadCrumbs-item end'>
+                            {displayTitle}
+                        </p>
+                    </div>
                     <div className={styles['service-header']}>
                         <div className={styles['service-header-content']}>
                             <h1 className={styles['service-title']}>
