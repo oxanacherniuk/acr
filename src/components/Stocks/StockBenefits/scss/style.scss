@@ -1,0 +1,143 @@
+.SBenefits {
+  padding: 80px 0;
+  background: var(--black);
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;
+    margin-bottom: 128px;
+
+    @media (max-width: 1023px) {
+      gap: 48px;
+      margin-bottom: 80px;
+    }
+
+    .vertical-divider {
+      display: none;
+      
+      @media (min-width: 1024px) {
+        display: block;
+        width: 1px;
+        height: 128px;
+        background: linear-gradient(to bottom, transparent, #4B5563, transparent);
+      }
+    }
+
+    .header-content {
+      flex: 1;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      margin-bottom: 16px;
+
+      
+      @media (min-width: 768px) {
+        font-size: 3.5rem;
+      }
+      
+      @media (min-width: 1024px) {
+        font-size: 4rem;
+      }
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: #9CA3AF;
+      margin-top: 32px;
+      max-width: 42rem;
+    }
+  }
+
+  .benefits-grid {
+    display: grid;
+    gap: 80px 96px;
+    
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .benefit-item {
+    position: relative;
+    
+    @media (min-width: 1024px) {
+      &.even-item {
+        padding-right: 48px;
+      }
+      
+      &.odd-item {
+        padding-left: 48px;
+      }
+    }
+
+    .vertical-separator {
+      display: none;
+      
+      @media (min-width: 1024px) {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, #1F2937, transparent);
+      }
+    }
+
+    .benefit-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+
+    .benefit-number {
+    color: #fff;
+      font-size: 3.75rem;
+      opacity: 0.2;
+      transition: opacity 0.3s ease;
+      
+      .benefit-item:hover & {
+        opacity: 0.3;
+      }
+    }
+
+    .benefit-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      color: white;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      
+      .benefit-item:hover & {
+        opacity: 1;
+      }
+    }
+
+    .benefit-text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .benefit-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .benefit-description {
+        font-family: var(--acr-text);
+      color: #9CA3AF;
+      line-height: 1.75;
+      font-size: 1.125rem;
+    }
+  }
+}

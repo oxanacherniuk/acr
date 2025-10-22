@@ -39,10 +39,10 @@ const BottomNavigation: React.FC = () => {
     }
 
     const navigationItems: NavigationItem[] = [
-        { id: 'm-home', label: 'Главная', icon: faHome, color: '#afbfcc' , path: '/' },
-        { id: 'm-team', label: 'Команда', icon: faUsers, color: '#dbe3ea', path: '/developers' },
-        { id: 'm-services', label: 'Услуги', icon: faCogs, color: '#afbfcc', path: '/services' },
-        { id: 'm-company', label: 'О нас', icon: faBuilding, color: '#dbe3ea', path: '/company' }
+        { id: 'm-home', label: 'Главная', icon: faHome, color: '#3fa8d2ff' , path: '/' },
+        { id: 'm-team', label: 'Команда', icon: faUsers, color: '#3fa8d2ff', path: '/developers' },
+        { id: 'm-services', label: 'Услуги', icon: faCogs, color: '#3fa8d2ff', path: '/services' },
+        { id: 'm-company', label: 'О нас', icon: faBuilding, color: '#3fa8d2ff', path: '/company' }
     ];
 
     const handleItemClick = (item: NavigationItem) => {
@@ -54,7 +54,7 @@ const BottomNavigation: React.FC = () => {
         const index = navigationItems.findIndex(item => item.id === activeItem);
         const itemWidth = 66;
         const margin = 12;
-        const basePosition = 8;
+        const basePosition = 13;
         return basePosition + index * (itemWidth + margin * 2);
     };
 

@@ -1,0 +1,171 @@
+.StockFeatures {
+  background-color: #000;
+  color: #fff;
+  padding: 128px 0;
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding: 192px 0;
+  }
+
+  .top-decorative-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #1F2937, transparent);
+  }
+
+//   .container {
+//     max-width: 1200px;
+//     margin: 0 auto;
+//     padding: 0 24px;
+
+//     @media (min-width: 768px) {
+//       padding: 0 32px;
+//     }
+
+//     @media (min-width: 1024px) {
+//       padding: 0 48px;
+//     }
+//   }
+
+  .features-grid {
+    display: grid;
+    gap: 64px;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(12, 1fr);
+      gap: 96px;
+    }
+  }
+
+  .header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media (min-width: 1024px) {
+      grid-column: span 5 / span 5;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .main-title {
+      font-size: 2.25rem;
+      line-height: 1.2;
+      margin: 0 !important;
+
+      @media (min-width: 768px) {
+        font-size: 3rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 3.75rem;
+      }
+    }
+
+    .title-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, #4B5563, transparent);
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      background: linear-gradient(to right, #fff, #6B7280);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.75;
+
+      @media (min-width: 768px) {
+        font-size: 1.875rem;
+      }
+    }
+
+    .description {
+      font-size: 1.25rem;
+      color: #9CA3AF;
+      padding-top: 16px;
+    }
+  }
+
+  .features-section {
+    position: relative;
+
+    @media (min-width: 1024px) {
+      grid-column: span 7 / span 7;
+    }
+
+    .vertical-decorative-line {
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: block;
+        position: absolute;
+        left: -48px;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, #1F2937, transparent);
+      }
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .feature-item {
+      position: relative;
+
+      .feature-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+      }
+
+      .icon-container {
+        flex-shrink: 0;
+        position: relative;
+
+        .feature-icon {
+          width: 48px;
+          height: 48px;
+          color: #fff;
+          opacity: 0.5;
+          transition: opacity 0.3s ease;
+
+          .feature-item:hover & {
+            opacity: 1;
+          }
+        }
+      }
+
+      .text-content {
+        flex: 1;
+        padding-top: 8px;
+
+        .feature-text {
+          font-size: 1.25rem;
+          color: #D1D5DB;
+          line-height: 1.75;
+        }
+      }
+
+      .feature-separator {
+        margin-top: 64px;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(to right, #1F2937, transparent);
+      }
+    }
+  }
+}

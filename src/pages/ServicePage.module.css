@@ -1,6 +1,4 @@
-.service-page__top {
-    padding-top: 150px;
-}
+
 
 .service-page {
     padding: 120px 0;
@@ -9,8 +7,28 @@
     min-height: 100vh;
 }
 
+.service-top{
+    height: 100vh;
+    position: relative;
+
+    padding-top: 150px;
+
+}
+.service-header-video{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+@media screen and (max-width: 450px) {
+    
+.service-top{
+
+    padding-top: 120px;
+
+}
+}
 .service-header {
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
     display: flex;
     gap: 80px;
     align-items: center;
@@ -27,7 +45,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    position: relative;
+    /* position: relative; */
 }
 
 .service-image::before {
@@ -128,7 +146,7 @@
     counter-increment: conditions-counter;
 }
 
-.info-section li {
+.info-section li, .tab-panel li {
     margin-bottom: 75px;
     padding-left: 150px;
     position: relative;
@@ -137,7 +155,7 @@
     counter-increment: conditions-counter;
 }
 
-.info-section li::before {
+.info-section li::before, .tab-panel li::before{
     content: counter(conditions-counter);
     position: absolute;
     left: 0;
@@ -280,7 +298,7 @@
     .service-header {
         flex-direction: column;
         gap: 50px;
-        margin-bottom: 80px;
+        /* margin-bottom: 80px; */
     }
 
     .service-title {
@@ -328,7 +346,7 @@
     }
 
     .service-header {
-        margin-bottom: 60px;
+        /* margin-bottom: 60px; */
         gap: 40px;
     }
 
@@ -394,7 +412,7 @@
     }
 
     .service-header {
-        margin-bottom: 40px;
+        /* margin-bottom: 40px; */
         gap: 30px;
     }
 
@@ -1365,9 +1383,7 @@
         padding-top: 10px;
     }
 
-    .service-page__top {
-        padding-top: 120px;
-    }
+
 
     .faq-item h4 {
         font-size: 1.3rem;
@@ -1441,7 +1457,133 @@
     scroll-snap-align: center;
     transition: transform .2s ease, background-color .3s ease, color .3s ease;
 }
+.timeline-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 40px 0;
+}
 
+.timeline-nav-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.timeline-nav-button:hover {
+  background: rgba(0, 191, 255, 0.3);
+  border-color: #00bfff;
+}
+
+.timeline {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: #00bfff rgba(255, 255, 255, 0.1);
+  flex: 1;
+  margin: 0 15px;
+}
+
+.timeline:active {
+  cursor: grabbing;
+}
+
+.timeline::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+  background: #00bfff;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.timeline::-webkit-scrollbar-thumb:hover {
+  background: #0099cc;
+}
+
+.timeline-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 5px;
+  min-width: 200px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline-days {
+  display: block;
+  background: transparent;
+  color: #fff;
+  padding: 8px 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  text-transform: lowercase;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-family: var(--acr-text);
+  width: fit-content;
+}
+
+.timeline-item h4 {
+  margin-bottom: 10px;
+  font-family: var(--manrope-font);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 1.9rem;
+}
+
+.timeline-item p {
+  margin: 0;
+  opacity: 0.8;
+  margin-top: 20px;
+  font-family: var(--acr-text);
+  font-size: 1.5rem;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .timeline-nav-button {
+    display: none;
+  }
+  
+  .timeline {
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  .timeline-item {
+    min-width: 280px;
+    padding: 20px;
+  }
+}
 @media (max-width: 768px) {
     .tabs-content::after {
         content: '← Свайпните →';

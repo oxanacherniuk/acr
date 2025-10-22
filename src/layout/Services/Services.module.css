@@ -1,7 +1,7 @@
 .services {
     padding: 100px 0;
-    background: #fff;
-    color: #000;
+    background: #000000;
+    color: #ffffff;
     overflow: hidden;
 }
 
@@ -54,7 +54,7 @@
 
 .service-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -65,14 +65,14 @@
     letter-spacing: 0.1em;
     opacity: 0.7;
     font-family: var(--manrope-font);
-    color: #000;
+    color: #ffffff;
 }
 
 .service-arrow {
     font-size: 2rem;
     font-weight: 300;
     transition: transform 0.3s ease;
-    color: #000;
+    color: #ffffff;
 }
 
 .service-link:hover .service-arrow {
@@ -82,11 +82,11 @@
 .service-name {
     font-size: 5.6rem;
     font-family: var(--manrope-font);
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.1;
     text-transform: uppercase;
     margin: 0;
-    color: #000;
+    color: #ffffff;
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -95,7 +95,7 @@
 }
 
 .service-name::before {
-    content: '';
+    /* content: ''; */
     position: absolute;
     top: 0;
     left: -100%;
@@ -117,7 +117,7 @@
 }
 
 .service-link:hover .service-name {
-    text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+    /* text-shadow: 0 0 20px rgba(0, 191, 255, 0.6); */
 }
 
 .service-name span {

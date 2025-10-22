@@ -189,6 +189,12 @@ export function FooterLayout() {
               >
                 ⓒ 2025 АЦР
               </p>
+              <p
+                className={`${styles["footer-link"]} ${isVisible ? styles["animate-subtext"] : ""}`}
+              >
+                <a href="/contact">Контакты</a>
+                
+              </p>
             </div>
           </div>
         </div>

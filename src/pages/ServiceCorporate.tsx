@@ -375,7 +375,7 @@ export function ServiceCorporate() {
                                 <div className={styles['price-block']}>
                                     <p className={styles['price-note']}>Итоговая стоимость рассчитывается индивидуально, исходя из сложности дизайна и объема функционала</p>
                                     <div className={styles['price-inner']}>
-                                        <span className={styles['main-price']}>от 200 000 ₽</span>
+                                        <span className={styles['main-price']}>от 100 000 ₽</span>
                                         <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                 </div>

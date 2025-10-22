@@ -373,7 +373,7 @@ export function ServiceEcommerce() {
                                 <div className={styles['price-block']}>
                                     <p className={styles['price-note']}>Точная стоимость зависит от объема каталога и специфичных интеграций.</p>
                                     <div className={styles['price-inner']}>
-                                        <span className={styles['main-price']}>от 500 000 ₽</span>
+                                        <span className={styles['main-price']}>от 120 000 ₽</span>
                                         <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
                                     </div>
                                     
@@ -442,7 +442,7 @@ export function ServiceEcommerce() {
                                 <div className={styles['faq']}>
                                     <div className={styles['faq-item']}>
                                         <h4>Сколько времени занимает разработка?</h4>
-                                        <p>От 4 до 8 недель в зависимости от сложности проекта и объема каталога</p>
+                                        <p>От 30 до 90 дней в зависимости от сложности проекта и объема каталога</p>
                                     </div>
                                     <div className={styles['faq-item']}>
                                         <h4>Можно ли интегрировать с моей CRM?</h4>

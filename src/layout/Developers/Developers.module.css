@@ -17,7 +17,7 @@
     margin-bottom: 150px;
     color: var(--accent-light);
     font-family: var(--manrope-font);
-    font-weight: 700;
+    font-weight: 900;
 
 
     
@@ -33,6 +33,8 @@
     margin: 0 -20px;
     cursor: grab;
     -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    height: 620px;
 }
 
 .developers-carousel::-webkit-scrollbar {

@@ -306,7 +306,7 @@ export function ServiceMarketing() {
                                                 <h4 className={styles['price-note']}>Кому подходит:</h4>
                                                 <p>Компаниям, которые хотят получать стабильный поток заявок и контролировать рекламный бюджет.</p>
                                                 <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 50 000 ₽</span>
+                                                    <span className={styles['main-price']}>от 25 000 ₽</span>
                                                     <NavigationButton to={'https://t.me/KP888_Bot'} children={'рассчитать под ключ'} />
                                                 </div>
                                             </div>
@@ -323,7 +323,7 @@ export function ServiceMarketing() {
                                                 <h4 className={styles['price-note']}>Кому подходит:</h4>
                                                 <p>Тем, кто хочет понять, что не так с текущим продвижением, и получить дорожную карту для исправления.</p>
                                                 <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 30 000 ₽</span>
+                                                    <span className={styles['main-price']}>от 20 000 ₽</span>
                                                     <NavigationButton to={'https://t.me/KP888_Bot'} children={'заказать аудит'} />
                                                 </div>
                                             </div>

@@ -1,3 +1,4 @@
+import GradientHeadingLite from '../../components/GradientHeading/GradientHeading';
 import styles from './Banner.module.css';
 import { useEffect, useState } from 'react';
 
@@ -38,10 +39,10 @@ export function BannerLayout() {
         <div className={styles['banner']}>
             <div className='container'>
                 <div className={styles['banner-content']}>
-                    <span className={styles['banner-bigtitle']}>
+                    <GradientHeadingLite baseAngle={45} track="viewport" as='span' className={styles['banner-bigtitle']}>
                         {displayText}
                         {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
-                    </span>
+                    </GradientHeadingLite>
                     <h1 className={styles['banner-title']}>
                         {displayTextMini}
                         {startMiniTyping && currentIndexMini < fullTextMini.length && <span className={styles['cursor']}>|</span>}

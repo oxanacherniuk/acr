@@ -3,7 +3,6 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { websiteTypes } from "./variables";
 import { MoveLeft, MoveUp } from "../../components/Motions";
-import GradientHeading from "../../components/GradientHeading/GradientHeading";
 
 export function ServicesLayout() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -100,15 +99,13 @@ export function ServicesLayout() {
       <div className="container">
         <div className={styles["services-box"]}>
           <MoveLeft>
-             <GradientHeading
-  baseAngle={35}
-  safeMargin={0.11}
-  track="viewport"
-  >
+     <h2 className=" text-logo-on-white ">
    услуги
-  </GradientHeading>
+
+          </h2>
            
           </MoveLeft>
+          
           <MoveUp>
             <a
               href="#"
@@ -117,7 +114,7 @@ export function ServicesLayout() {
             >
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -138,7 +135,7 @@ export function ServicesLayout() {
             <Link to="/services/chat-bots" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -158,7 +155,7 @@ export function ServicesLayout() {
             <Link to="/services/ai" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -179,7 +176,7 @@ export function ServicesLayout() {
             <Link to="/services/mobile-app" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -202,7 +199,7 @@ export function ServicesLayout() {
             <Link to="/services/design" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -223,7 +220,7 @@ export function ServicesLayout() {
             <Link to="/services/marketing" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  <span className={styles["service-subtitle"]}>Услуга</span>
+                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>

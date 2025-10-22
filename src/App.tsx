@@ -8,22 +8,24 @@ import HomePage from "./pages/index";
 import DevelopersPage from "./pages/developers";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import DeveloperPage from "./pages/developerPage";
-import { ServiceDesign } from "./pages/ServiceDesign";
+import ServiceDesign from "./pages/ServiceDesign";
 import { ServiceMobileApp } from "./pages/ServiceMobileApp";
-import { ServiceAI } from "./pages/ServiceAI";
+import ServiceAI from "./pages/ServiceAI";
 import { ServiceWebApp } from "./pages/ServiceWebApp";
-import { ServiceChatBots } from "./pages/ServiceChatBots";
+import ServiceChatBots from "./pages/ServiceChatBots";
 import Services from "./pages/Services";
 import CompanyPage from "./pages/Company";
-import { ServiceLandings } from "./pages/ServiceLandings";
+import ServiceLandings from "./pages/ServiceLandings";
 import { ServiceEcommerce } from "./pages/ServiceEcommerce";
 import { ServiceCorporate } from "./pages/ServiceCorporate";
-import "./App.css";
+import "./styles/App.css";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
 import { ServiceMarketing } from "./pages/ServiceMarketing";
 import BottomNavigation from "./components/BottomNavigation/BottomNavigation";
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Contact from "./pages/contact";
+import StockPage from "./pages/StockPage";
 
 function AppRoutes() {
   const location = useLocation();
@@ -132,14 +134,7 @@ function AppRoutes() {
           </div>
         }
       />
-      <Route
-        path="/services/chat-bots"
-        element={
-          <div className="page-container">
-            <ServiceChatBots />
-          </div>
-        }
-      />
+      <Route path="/services/chat-bots" element={<ServiceChatBots />} />
       <Route
         path="/services/ai"
         element={
@@ -169,6 +164,22 @@ function AppRoutes() {
         element={
           <div className="page-container">
             <ServiceMarketing />
+          </div>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <div className="page-container">
+            <Contact />
+          </div>
+        }
+      />
+      <Route
+        path="/stock/:url"
+        element={
+          <div className="page-container">
+            <StockPage />
           </div>
         }
       />

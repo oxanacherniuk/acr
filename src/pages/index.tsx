@@ -8,7 +8,7 @@ import { ContactLayout } from '../layout/ContactForm/ContactForm';
 import { FooterLayout } from '../layout/Footer/Footer';
 import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
-import BannnerMP4 from '../assets/video/banner (online-video-cutter.com).mp4';
+import BannnerMP4 from '../assets/video/bab.mp4';
 import { HeaderLayout } from '../layout/Header/Header';
 import { MoveUp } from '../components/Motions';
 
@@ -29,6 +29,7 @@ const IndexPage: React.FC = () => {
                 </video>
                 <BannerLayout />
             </div>
+            {/* <StockAll/> */}
             <MoveUp>
 
                 <SecondBannerLayout />

@@ -1,0 +1,24 @@
+:root{
+  --service-gap: 24px;
+}
+.service-page__top{ padding: var(--service-gap) 0; }
+.service-header{ display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--service-gap); align-items:center; }
+.service-title{ font-size: clamp(28px, 4vw, 48px); font-weight: 700; }
+.cursor{ animation: blink 1s step-end infinite; }
+@keyframes blink{ 50%{ opacity:0 } }
+.tabs-header{ display:flex; overflow:auto; gap: 12px; }
+.tab-button{ white-space:nowrap; padding: 10px 16px; border-radius: 10px; }
+.tab-button.active{ outline: 2px solid currentColor; }
+.tabs-content{ margin-top: 16px; }
+.feature-grid{ display:grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap: var(--service-gap); }
+.process-steps{ display:grid; gap: 12px; counter-reset: step; }
+.process-steps li{ list-style:none; padding-left: 8px; }
+.faq details{ border:1px solid #e8e8e8; border-radius: 12px; padding: 12px 16px; }
+.cta-contact{ display:grid; grid-template-columns: 64px 1fr; gap: 16px; align-items:start; }
+.service-divider{ border:0; height:1px; background: #ececec; margin: 40px 0; }
+
+.sect{
+  margin: 150px 0;
+}
+
+@media (max-width: 768px){ .service-header{ grid-template-columns: 1fr; } }

@@ -1,5 +1,5 @@
 .discussion {
-    background: white;
+    background: rgb(0, 0, 0);
     padding: 300px 0;
     color: #000;
     min-height: 80vh;
@@ -216,6 +216,7 @@
 
     .discussion-title {
         font-size: 2rem;
+        text-align: center;
     }
 
     .yes-button,

@@ -1,0 +1,1 @@
+export const Divider = () => <hr aria-hidden="true" className="service-divider" />;

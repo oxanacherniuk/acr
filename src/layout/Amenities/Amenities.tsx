@@ -11,7 +11,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-title']}>Продающие <br />лендинги</p>
                         <p className={styles['card-text']}>Функциональный одностраничный сайт - идеальное решение для эффективного продвижения и демонстрации сильных сторон продукта.</p>
                         <div className={styles['amenities-bottom']}>
-                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>25 000 </span>₽</p>
+                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>30 000 </span>₽</p>
                             <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
@@ -19,7 +19,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-title']}>Интернет - магазины</p>
                         <p className={styles['card-text']}>Откройте для себя новый канал продаж с помощью создания современного и функционального интернет-магазина с корзиной, оформлением заказов, оповещениями и админ-панелью.</p>
                         <div className={styles['amenities-bottom']}>
-                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>200 000 </span>₽</p>
+                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>120 000 </span>₽</p>
                             <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
@@ -27,7 +27,7 @@ export function AmenitiesLayout() {
                         <p className={styles['card-title']}>корпоративные <br />сайты</p>
                         <p className={styles['card-text']}>Откройте представительство своей компании в интернете с помощью создания современного и функционального корпоративного сайта.</p>
                         <div className={styles['amenities-bottom']}>
-                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>150 000 </span>₽</p>
+                            <p className={styles['card-price']}>от <span className={styles['text-bold']}>100 000 </span>₽</p>
                             <NavigationButton size='small' to={'https://t.me/KP888_Bot'} children={"Связаться"} />
                         </div>
                     </div>
