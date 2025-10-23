@@ -18,7 +18,8 @@
 .service-divider{ border:0; height:1px; background: #ececec; margin: 40px 0; }
 
 .sect{
-  margin: 150px 0;
+  padding: 150px 0;
+  position: relative;
 }
 
 @media (max-width: 768px){ .service-header{ grid-template-columns: 1fr; } }

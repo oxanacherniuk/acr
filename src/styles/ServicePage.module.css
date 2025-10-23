@@ -1,7 +1,6 @@
 
 
 .service-page {
-    padding: 120px 0;
     background: #000000;
     color: #ffffff;
     min-height: 100vh;
@@ -19,7 +18,7 @@
     position: absolute;
     top: 0;
     right: 0;
-        z-index: -1;
+    z-index: -1;
 }
 @media screen and (max-width: 450px) {
     
@@ -86,7 +85,7 @@
     line-height: 1.1;
     text-transform: uppercase;
     margin: 0;
-    color: #000;
+    color: #fff;
 }
 
 .service-content {
@@ -476,6 +475,7 @@
     line-height: 1.6;
     opacity: 0.8;
     margin-top: 20px;
+    color: #fff;
     font-family: var(--acr-text);
 }
 
@@ -484,7 +484,16 @@
     margin: 80px 0;
     border-radius: 20px;
 }
-
+.hero-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+    opacity: 0.7;
+}
 .hero-content {
     text-align: center;
     max-width: 1300px;
@@ -1253,9 +1262,7 @@
         margin: 80px 0 !important;
     }
 
-    .service-page {
-        padding-top: 60px;
-    }
+
 
     .price-inner {
         margin-bottom: 0;

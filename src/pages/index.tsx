@@ -17,16 +17,17 @@ const IndexPage: React.FC = () => {
         <div>
             <HeaderLayout />
             <div className='AiBanner '>
-                <video 
+                {/* <video 
                     className='banner-video'
                     autoPlay
                     muted
                     loop
                     playsInline
+                    pip="false"
                 >
                     <source src={BannnerMP4} type="video/mp4" />
                     Ваш браузер не поддерживает видео.
-                </video>
+                </video> */}
                 <BannerLayout />
             </div>
             {/* <StockAll/> */}

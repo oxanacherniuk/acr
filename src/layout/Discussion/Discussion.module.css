@@ -69,6 +69,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     z-index: 20;
+    border-radius: var(--br);
 }
 
 .yes-button {

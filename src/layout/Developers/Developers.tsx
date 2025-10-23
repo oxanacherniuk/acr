@@ -184,7 +184,7 @@ export function DevelopersLayout(): JSX.Element {
     <div className={styles['developers']} ref={sectionRef}>
       <div className='container'>
         <MoveLeft>
-          <GradientHeading  theme="onDark" track="element" className={styles["developers-title"]} >
+          <GradientHeading as='h2'  theme="onDark" track="element" className={styles["developers-title"]} >
           команда
 
           </GradientHeading>

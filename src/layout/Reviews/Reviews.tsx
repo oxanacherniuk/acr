@@ -140,9 +140,9 @@ export function ReviewsLayout() {
                             <p className={styles['review-text']}>"{currentReview.text}"</p>
                         </div>
 
-                        <div className={styles['swipe-indicator']}>
+                        {/* <div className={styles['swipe-indicator']}>
                             <span>← Свайпните →</span>
-                        </div>
+                        </div> */}
                         
                         <div className={styles['review-navigation']}>
                             <div className={styles['navigation-buttons']}>
@@ -151,7 +151,7 @@ export function ReviewsLayout() {
                                     onClick={prevSlide}
                                     aria-label="Предыдущий отзыв"
                                 >
-                                    <div className={styles['button-circle']}>
+                                    <div className={styles['button-circle'] + " butt"}>
                                         <span className={styles['arrow']}>←</span>
                                     </div>
                                 </button>
@@ -161,7 +161,7 @@ export function ReviewsLayout() {
                                     onClick={nextSlide}
                                     aria-label="Следующий отзыв"
                                 >
-                                    <div className={styles['button-circle']}>
+                                    <div className={styles['button-circle'] + " butt"}>
                                         <span className={styles['arrow']}>→</span>
                                     </div>
                                 </button>

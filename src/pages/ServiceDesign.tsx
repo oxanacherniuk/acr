@@ -15,8 +15,8 @@ import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
-import ServiceMp4 from "../assets/video/disain.mp4";
-import ServiceWebm from "../assets/video/disain.webm";
+import ServiceMp4 from "../assets/video/disainG.mp4";
+import ServiceWebm from "../assets/video/disainG.mp4";
 export default function ServiceDesign() {
   return (
     <ServiceLayout>

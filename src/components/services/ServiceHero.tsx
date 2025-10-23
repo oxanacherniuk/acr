@@ -1,4 +1,5 @@
 import s from "../../styles/ServicePage.module.css";
+import {  MoveUp } from "../Motions";
 import { NavigationButton } from "../NavigationButton/NavigationButton";
 
 
@@ -17,12 +18,16 @@ export default function ServiceHero({
   buttonText 
 }: ServiceHeroProps) {
   return (
-    <div className={s['hero-block']}>
+    <MoveUp>
+<div className={s['hero-block']}>
       <div className={s['hero-content']}>
         <h2 dangerouslySetInnerHTML={{ __html: title }} />
         <p>{description}</p>
         <NavigationButton to={buttonLink}>{buttonText}</NavigationButton>
       </div>
     </div>
+
+    </MoveUp>
+    
   );
 }
