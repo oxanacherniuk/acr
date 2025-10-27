@@ -38,133 +38,137 @@ interface Developer {
   poster?: string;
 }
 
+
 export function DevelopersLayout(): JSX.Element {
     const [, setIsVisible] = useState<boolean>(false);
     const sectionRef = useRef<HTMLDivElement>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
-    const scrollbarRef = useRef<HTMLDivElement>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
-    const [activeIndex, setActiveIndex] = useState(2); // Центральный элемент по умолчанию
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Определяем мобильное устройство
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const developers: Developer[] = [
-
+        { id: 1, name: 'Ева', link: '/developer/ai', mp4: evaMp4, webm: evaWebm, poster: Eva },
         { id: 2, name: 'Павел', mp4: paMp4, webm: paWebm, poster: Pavel, link: '/developer/pavel' },
         { id: 3, name: 'Платон', mp4: platonMp4, webm: platonWebm, poster: Platon, link: '/developer/platon' },
-                { id: 1, name: 'Ева', link: '/developer/ai', mp4: evaMp4, webm: evaWebm, poster: Eva },
         { id: 4, name: 'Оксана', mp4: oxMp4, webm: oxWebm, poster: Oksana, link: '/developer/oksana' },
         { id: 5, name: 'Максим', mp4: maxMp4, webm: maxWebm, poster: Maxim, link: '/developer/maksim' },
         { id: 6, name: 'Ирина', mp4: iraMp4, webm: iraWebm, poster: Irina, link: '/developer/irina' },
         { id: 7, name: 'Елена', mp4: elenaMp4, webm: elenaWebm, poster: Elena, link: '/developer/elena' },
         { id: 8, name: 'Лев', mp4: levaMp4, webm: levaWebm, poster: Lev, link: '/developer/lev' },
     ];
-
-    // Функция для определения класса карточки в зависимости от позиции
-    const getCardClass = useCallback((index: number): string => {
-        const diff = Math.abs(index - activeIndex);
+// Функция для получения видимых карточек
+    const getVisibleCards = useCallback(() => {
+        const total = developers.length;
+        const visibleIndices = [];
         
-        if (diff === 0) {
-            return styles['active-card']; // Центральный активный
-        } else if (diff === 1) {
-            return styles['adjacent-card']; // Соседние (слева и справа)
-        } else {
-            return styles['distant-card']; // Остальные
-        }
-    }, [activeIndex]);
-
-    const handleCardClick = useCallback((index: number) => {
-        setActiveIndex(index);
-        // Прокручиваем к выбранному элементу
-        if (carouselRef.current) {
-            const cardWidth = 320 + 30; // width + gap
-            const scrollPosition = index * cardWidth - (carouselRef.current.clientWidth / 2 - cardWidth / 2);
-            carouselRef.current.scrollTo({
-                left: scrollPosition,
-                behavior: 'smooth'
+        for (let i = -2; i <= 2; i++) {
+            let index = activeIndex + i;
+            
+            if (index < 0) {
+                index = total + index;
+            } else if (index >= total) {
+                index = index % total;
+            }
+            
+            visibleIndices.push({
+                index,
+                position: i,
+                data: developers[index]
             });
         }
-    }, []);
-
-    const updateScrollbar = useCallback(() => {
-        if (carouselRef.current && scrollbarRef.current) {
-            const carousel = carouselRef.current;
-            const scrollbar = scrollbarRef.current;
-            
-            const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-            const scrollLeft = carousel.scrollLeft;
-            
-            if (scrollWidth > 0) {
-                const thumbPosition = (scrollLeft / scrollWidth) * 100;
-                const thumbWidth = (carousel.clientWidth / carousel.scrollWidth) * 100;
-                
-                scrollbar.style.setProperty('--thumb-position', `${thumbPosition}%`);
-                scrollbar.style.setProperty('--thumb-width', `${thumbWidth}%`);
-            }
-        }
-    }, []);
-
-    const handleMouseDown = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsDragging(true);
-        setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0));
-        setScrollLeft(carouselRef.current?.scrollLeft || 0);
         
-        if (carouselRef.current) {
-            carouselRef.current.style.cursor = 'grabbing';
+        return visibleIndices;
+    }, [activeIndex, developers]);
+
+    const handleCardClick = useCallback((index: number, position: number, event: React.MouseEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (position === 0) {
+            // Если карточка уже активна - переход по ссылке
+            window.location.href = developers[index].link;
+        } else {
+            // Если не активна - делаем активной
+            setActiveIndex(index);
         }
+    }, [developers]);
+
+    const handleNext = useCallback(() => {
+        setActiveIndex(prev => (prev + 1) % developers.length);
+    }, [developers.length]);
+
+    const handlePrev = useCallback(() => {
+        setActiveIndex(prev => (prev - 1 + developers.length) % developers.length);
+    }, [developers.length]);
+
+    // Свайп
+    const handleMouseDown = (e: React.MouseEvent) => {
+        setIsDragging(true);
+        setStartX(e.pageX);
     };
 
-    const handleMouseLeave = () => {
-        if (isDragging) {
-            setIsDragging(false);
-            if (carouselRef.current) {
-                carouselRef.current.style.cursor = 'grab';
-            }
-        }
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-        if (carouselRef.current) {
-            carouselRef.current.style.cursor = 'grab';
-        }
+    const handleTouchStart = (e: React.TouchEvent) => {
+        setIsDragging(true);
+        setStartX(e.touches[0].clientX);
     };
 
     const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging || !carouselRef.current) return;
+        if (!isDragging) return;
         e.preventDefault();
-        const x = e.pageX - (carouselRef.current.offsetLeft || 0);
-        const walk = (x - startX) * 2;
-        carouselRef.current.scrollLeft = scrollLeft - walk;
     };
 
-    // Обновляем активный индекс при скролле
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!carouselRef.current) return;
-            
-            const scrollLeft = carouselRef.current.scrollLeft;
-            const cardWidth = 320 + 30; // width + gap
-            const centerPosition = scrollLeft + carouselRef.current.clientWidth / 2;
-            
-            const newActiveIndex = Math.round(centerPosition / cardWidth);
-            if (newActiveIndex >= 0 && newActiveIndex < developers.length && newActiveIndex !== activeIndex) {
-                setActiveIndex(newActiveIndex);
-            }
-        };
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    };
 
-        const carousel = carouselRef.current;
-        if (carousel) {
-            carousel.addEventListener('scroll', handleScroll);
+    const handleMouseUp = (e: React.MouseEvent) => {
+        if (!isDragging) return;
+        
+        const endX = e.pageX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                handleNext();
+            } else {
+                handlePrev();
+            }
         }
+        
+        setIsDragging(false);
+    };
 
-        return () => {
-            if (carousel) {
-                carousel.removeEventListener('scroll', handleScroll);
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (!isDragging) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 30) {
+            if (diff > 0) {
+                handleNext();
+            } else {
+                handlePrev();
             }
-        };
-    }, [activeIndex, developers.length]);
+        }
+        
+        setIsDragging(false);
+    };
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -180,47 +184,14 @@ export function DevelopersLayout(): JSX.Element {
             observer.observe(sectionRef.current);
         }
 
-        const carousel = carouselRef.current;
-        if (carousel) {
-            carousel.addEventListener('scroll', updateScrollbar);
-            carousel.style.cursor = 'grab';
-            updateScrollbar();
-
-            window.addEventListener('resize', updateScrollbar);
-        }
-
-        const handleScrollbarClick = (e: MouseEvent) => {
-            if (scrollbarRef.current && carouselRef.current) {
-                const scrollbar = scrollbarRef.current;
-                const rect = scrollbar.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const percentage = clickX / rect.width;
-                
-                const scrollWidth = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
-                carouselRef.current.scrollTo({
-                    left: percentage * scrollWidth,
-                    behavior: 'smooth'
-                });
-            }
-        };
-
-        if (scrollbarRef.current) {
-            scrollbarRef.current.addEventListener('click', handleScrollbarClick);
-        }
-
         return () => {
             if (sectionRef.current) {
                 observer.unobserve(sectionRef.current);
             }
-            if (carousel) {
-                carousel.removeEventListener('scroll', updateScrollbar);
-            }
-            window.removeEventListener('resize', updateScrollbar);
-            if (scrollbarRef.current) {
-                scrollbarRef.current.removeEventListener('click', handleScrollbarClick);
-            }
         };
-    }, [updateScrollbar]);
+    }, []);
+
+    const visibleCards = getVisibleCards();
 
     return (
         <div className={styles['developers']} ref={sectionRef}>
@@ -233,38 +204,71 @@ export function DevelopersLayout(): JSX.Element {
             </div>
 
             <div className={styles['container-dev']}>
-                <div
-                    className={styles['developers-carousel']}
+                {/* Кнопки навигации */}
+                <button 
+                    className={styles['nav-button']} 
+                    onClick={handlePrev}
+                    aria-label="Предыдущий"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </button>
+                
+                <button 
+                    className={styles['nav-button']} 
+                    onClick={handleNext}
+                    aria-label="Следующий"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </button>
+
+                <div 
+                    className={styles['circular-carousel']}
                     ref={carouselRef}
                     onMouseDown={handleMouseDown}
-                    onMouseLeave={handleMouseLeave}
-                    onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={() => setIsDragging(false)}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
-                    <div className={styles['carousel-inner']}>
-                        {developers.map((dev, index) => (
+                    <div className={styles['carousel-container']}>
+                        {visibleCards.map(({ index, position, data }) => (
                             <div 
-                                key={dev.id} 
-                                className={`${styles['developer-card-wrapper']} ${getCardClass(index)}`}
-                                onClick={() => handleCardClick(index)}
+                                key={`${data.id}-${position}`}
+                                className={`${styles['card-wrapper']} ${styles[`position-${position}`]}`}
+                                onClick={(e) => handleCardClick(index, position, e)}
                             >
-                                <MoveUp opacity={0} delays={dev.id * 0.1}>
-                                    <VideoCard
-                                        name={dev.name}
-                                        link={dev.link}
-                                        poster={dev.poster}
-                                        mp4={dev.mp4}
-                                        webm={dev.webm}
-                                        isDragging={isDragging}
-                                        isActive={index === activeIndex}
-                                    />
-                                </MoveUp>
+                                <VideoCard
+                                    name={data.name}
+                                    link={data.link}
+                                    poster={data.poster}
+                                    mp4={data.mp4}
+                                    webm={data.webm}
+                                    isDragging={isDragging}
+                                    isActive={position === 0}
+                                    isMobile={isMobile}
+                                />
                             </div>
                         ))}
                     </div>
                 </div>
 
-                <div ref={scrollbarRef} className={styles['custom-scrollbar']} />
+                {/* Индикаторы */}
+                <div className={styles['indicators']}>
+                    {developers.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`${styles['indicator']} ${index === activeIndex ? styles['active'] : ''}`}
+                            onClick={() => setActiveIndex(index)}
+                            aria-label={`Перейти к ${developers[index].name}`}
+                        />
+                    ))}
+                </div>
 
                 <MoveUp>
                     <div className={styles['show-more']}>
