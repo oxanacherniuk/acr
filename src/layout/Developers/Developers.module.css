@@ -6,7 +6,289 @@
 
 .container-dev {
     width: 100%;
+    max-width: 100%;/* Developers.module.css */
+.developers {
+    background: #000000;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.container-dev {
+    width: 100%;
     max-width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.developers-title {
+    font-size: 4.5rem;
+    text-align: left;
+    margin-bottom: 150px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 900;
+}
+
+.developers-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 80px 0;
+    margin: 0 -20px;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    height: 700px;
+    align-items: center;
+}
+
+.developers-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.developers-carousel:active {
+    cursor: grabbing;
+}
+
+.carousel-inner {
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.developer-card-wrapper {
+    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    flex: 0 0 auto;
+}
+
+/* Активная карточка (центр) */
+.active-card {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 3;
+}
+
+.active-card .developer-video {
+    transform: scale(1);
+    filter: brightness(1);
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.3);
+}
+
+/* Соседние карточки (слева и справа) */
+.adjacent-card {
+    transform: scale(0.85);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.adjacent-card .developer-video {
+    transform: scale(0.9);
+    filter: brightness(0.8);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Остальные карточки */
+.distant-card {
+    transform: scale(0.7);
+    opacity: 0.4;
+    z-index: 1;
+}
+
+.distant-card .developer-video {
+    transform: scale(0.8);
+    filter: brightness(0.6);
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.1);
+}
+
+.developer-card {
+    position: relative;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+.developer-video {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    background: #111;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+
+.card-link-layer {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+}
+
+/* Убираем ховер-эффекты для неактивных карточек */
+.distant-card .card-link-layer:hover .developer-video,
+.adjacent-card .card-link-layer:hover .developer-video {
+    transform: inherit;
+}
+
+.active-card .card-link-layer:hover .developer-video {
+    transform: scale(1.05);
+}
+
+.mute-btn {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 4;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.6);
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mute-btn:hover {
+    transform: scale(1.06);
+    background: rgba(0,0,0,0.55);
+    border-color: rgba(255,255,255,0.9);
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+    transition: all 0.5s ease;
+}
+
+/* Для активной карточки подчеркивание имени */
+.active-card .name {
+    position: relative;
+}
+
+.active-card .name::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00bfff;
+    animation: underlineSlide 0.5s ease;
+}
+
+@keyframes underlineSlide {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.name {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: var(--manrope-font);
+    user-select: none;
+    transition: all 0.5s ease;
+}
+
+/* Приглушаем имена для неактивных карточек */
+.adjacent-card .name {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.distant-card .name {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.button-portfolio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: var(--acr-text);
+    color: #ffffff;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    padding: 12px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.button-portfolio::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #00bfff;
+    transition: width 0.3s ease;
+}
+
+.button-portfolio:hover {
+    color: #00bfff;
+}
+
+.button-portfolio:hover::before {
+    width: 100%;
+}
+
+.button-portfolio span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.custom-scrollbar {
+    display: none;
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 1024px) {
+    .developer-card { width: 280px; }
+    .developer-video { height: 450px; }
+}
+
+@media screen and (max-width: 768px) {
+    .developer-card { width: 250px; }
+    .developer-video { height: 400px; }
+    .developers-carousel { height: 600px; padding: 60px 0; }
+}
+
+@media screen and (max-width: 480px) {
+    .developer-card { width: 280px; }
+    .developer-video { height: 380px; }
+    .developers-carousel { height: 550px; padding: 40px 0; }
+}
     margin: 0 auto;
     padding: 0 40px;
 }

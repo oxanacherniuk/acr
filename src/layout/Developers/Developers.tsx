@@ -21,16 +21,14 @@ import oxMp4 from '../../assets/video/ox2.mp4';
 import oxWebm from '../../assets/video/ox2.webm';
 import maxMp4 from '../../assets/video/max.mp4';
 import maxWebm from '../../assets/video/max.webm';
-
 import iraMp4 from '../../assets/video/ira.mp4';
 import iraWebm from '../../assets/video/ira.webm';
-
 import elenaMp4 from '../../assets/video/elena.mp4';
 import elenaWebm from '../../assets/video/elena.webm';
-
 import levaMp4 from '../../assets/video/leva.mp4';
 import levaWebm from '../../assets/video/leva.webm';
 import GradientHeading from '../../components/GradientHeading/GradientHeading';
+
 interface Developer {
   id: number;
   name: string;
@@ -48,6 +46,45 @@ export function DevelopersLayout(): JSX.Element {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(2); // Центральный элемент по умолчанию
+
+    const developers: Developer[] = [
+
+        { id: 2, name: 'Павел', mp4: paMp4, webm: paWebm, poster: Pavel, link: '/developer/pavel' },
+        { id: 3, name: 'Платон', mp4: platonMp4, webm: platonWebm, poster: Platon, link: '/developer/platon' },
+                { id: 1, name: 'Ева', link: '/developer/ai', mp4: evaMp4, webm: evaWebm, poster: Eva },
+        { id: 4, name: 'Оксана', mp4: oxMp4, webm: oxWebm, poster: Oksana, link: '/developer/oksana' },
+        { id: 5, name: 'Максим', mp4: maxMp4, webm: maxWebm, poster: Maxim, link: '/developer/maksim' },
+        { id: 6, name: 'Ирина', mp4: iraMp4, webm: iraWebm, poster: Irina, link: '/developer/irina' },
+        { id: 7, name: 'Елена', mp4: elenaMp4, webm: elenaWebm, poster: Elena, link: '/developer/elena' },
+        { id: 8, name: 'Лев', mp4: levaMp4, webm: levaWebm, poster: Lev, link: '/developer/lev' },
+    ];
+
+    // Функция для определения класса карточки в зависимости от позиции
+    const getCardClass = useCallback((index: number): string => {
+        const diff = Math.abs(index - activeIndex);
+        
+        if (diff === 0) {
+            return styles['active-card']; // Центральный активный
+        } else if (diff === 1) {
+            return styles['adjacent-card']; // Соседние (слева и справа)
+        } else {
+            return styles['distant-card']; // Остальные
+        }
+    }, [activeIndex]);
+
+    const handleCardClick = useCallback((index: number) => {
+        setActiveIndex(index);
+        // Прокручиваем к выбранному элементу
+        if (carouselRef.current) {
+            const cardWidth = 320 + 30; // width + gap
+            const scrollPosition = index * cardWidth - (carouselRef.current.clientWidth / 2 - cardWidth / 2);
+            carouselRef.current.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+    }, []);
 
     const updateScrollbar = useCallback(() => {
         if (carouselRef.current && scrollbarRef.current) {
@@ -68,13 +105,11 @@ export function DevelopersLayout(): JSX.Element {
     }, []);
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        // Предотвращаем поведение по умолчанию для ссылок
         e.preventDefault();
         setIsDragging(true);
         setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0));
         setScrollLeft(carouselRef.current?.scrollLeft || 0);
         
-        // Добавляем класс для изменения курсора
         if (carouselRef.current) {
             carouselRef.current.style.cursor = 'grabbing';
         }
@@ -104,14 +139,32 @@ export function DevelopersLayout(): JSX.Element {
         carouselRef.current.scrollLeft = scrollLeft - walk;
     };
 
-    // Обработчик клика по карточке - предотвращает переход по ссылке при перетаскивании
-    // const handleCardClick = (e: React.MouseEvent) => {
-    //     if (isDragging) {
-    //         e.preventDefault();
-    //         e.stopPropagation();
-    //     }
-    //     // Если не было перетаскивания, переход по ссылке произойдет нормально
-    // };
+    // Обновляем активный индекс при скролле
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!carouselRef.current) return;
+            
+            const scrollLeft = carouselRef.current.scrollLeft;
+            const cardWidth = 320 + 30; // width + gap
+            const centerPosition = scrollLeft + carouselRef.current.clientWidth / 2;
+            
+            const newActiveIndex = Math.round(centerPosition / cardWidth);
+            if (newActiveIndex >= 0 && newActiveIndex < developers.length && newActiveIndex !== activeIndex) {
+                setActiveIndex(newActiveIndex);
+            }
+        };
+
+        const carousel = carouselRef.current;
+        if (carousel) {
+            carousel.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (carousel) {
+                carousel.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [activeIndex, developers.length]);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -130,7 +183,6 @@ export function DevelopersLayout(): JSX.Element {
         const carousel = carouselRef.current;
         if (carousel) {
             carousel.addEventListener('scroll', updateScrollbar);
-            // Устанавливаем начальный курсор
             carousel.style.cursor = 'grab';
             updateScrollbar();
 
@@ -170,61 +222,56 @@ export function DevelopersLayout(): JSX.Element {
         };
     }, [updateScrollbar]);
 
-    const developers: Developer[] = [
-         { id: 1, name: 'Ева', link: '/developer/ai',     mp4: evaMp4,     webm: evaWebm,     poster: Eva },
-        { id: 2, name: 'Павел', mp4: paMp4, webm: paWebm, poster: Pavel, link: '/developer/pavel' },
-        { id: 3, name: 'Платон', mp4: platonMp4, webm: platonWebm, poster: Platon, link: '/developer/platon' },
-        { id: 4, name: 'Оксана', mp4: oxMp4, webm: oxWebm, poster: Oksana, link: '/developer/oksana' },
-        { id: 5, name: 'Максим', mp4: maxMp4, webm: maxWebm, poster: Maxim, link: '/developer/maksim' },
-        { id: 6, name: 'Ирина', mp4: iraMp4, webm: iraWebm, poster: Irina, link: '/developer/irina' },
-        { id: 7, name: 'Елена', mp4: elenaMp4, webm: elenaWebm, poster: Elena, link: '/developer/elena' },
-        { id: 8, name: 'Лев', mp4: levaMp4, webm: levaWebm, poster: Lev, link: '/developer/lev' },
-    ];
-  return (
-    <div className={styles['developers']} ref={sectionRef}>
-      <div className='container'>
-        <MoveLeft>
-          <GradientHeading as='h2'  theme="onDark" track="element" className={styles["developers-title"]} >
-          команда
+    return (
+        <div className={styles['developers']} ref={sectionRef}>
+            <div className='container'>
+                <MoveLeft>
+                    <GradientHeading as='h2' theme="onDark" track="element" className={styles["developers-title"]}>
+                        команда
+                    </GradientHeading>
+                </MoveLeft>
+            </div>
 
-          </GradientHeading>
-        </MoveLeft>
-      </div>
+            <div className={styles['container-dev']}>
+                <div
+                    className={styles['developers-carousel']}
+                    ref={carouselRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                >
+                    <div className={styles['carousel-inner']}>
+                        {developers.map((dev, index) => (
+                            <div 
+                                key={dev.id} 
+                                className={`${styles['developer-card-wrapper']} ${getCardClass(index)}`}
+                                onClick={() => handleCardClick(index)}
+                            >
+                                <MoveUp opacity={0} delays={dev.id * 0.1}>
+                                    <VideoCard
+                                        name={dev.name}
+                                        link={dev.link}
+                                        poster={dev.poster}
+                                        mp4={dev.mp4}
+                                        webm={dev.webm}
+                                        isDragging={isDragging}
+                                        isActive={index === activeIndex}
+                                    />
+                                </MoveUp>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-      <div className={styles['container-dev']}>
-        <div
-          className={styles['developers-carousel']}
-          ref={carouselRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
-          <div className={styles['carousel-inner']}>
-            {developers.map((dev) => (
-              <MoveUp key={dev.id} opacity={0} delays={dev.id * 0.1}>
-                <VideoCard
-                  name={dev.name}
-                  link={dev.link}
-                  poster={dev.poster}
-                  mp4={dev.mp4}
-                  webm={dev.webm}
-                  isDragging={isDragging}
-                />
-              </MoveUp>
-            ))}
-          </div>
+                <div ref={scrollbarRef} className={styles['custom-scrollbar']} />
+
+                <MoveUp>
+                    <div className={styles['show-more']}>
+                        <NavigationButtonWhite to={'/developers'}>показать больше</NavigationButtonWhite>
+                    </div>
+                </MoveUp>
+            </div>
         </div>
-
-        {/* кастомный скроллбар остаётся как был */}
-        <div ref={scrollbarRef} className={styles['custom-scrollbar']} />
-
-        <MoveUp>
-          <div className={styles['show-more']}>
-            <NavigationButtonWhite to={'/developers'}>показать больше</NavigationButtonWhite>
-          </div>
-        </MoveUp>
-      </div>
-    </div>
-  );
+    );
 }

@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { websiteTypes } from "./variables";
 import { MoveLeft, MoveUp } from "../../components/Motions";
+import GradientHeadingLite from "../../components/GradientHeading/GradientHeading";
 
 export function ServicesLayout() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -99,10 +100,10 @@ export function ServicesLayout() {
       <div className="container">
         <div className={styles["services-box"]}>
           <MoveLeft>
-     <h2 className=" text-logo-on-white ">
+              <GradientHeadingLite as='h2'  theme="onDark" track="element" className={styles["developers-title"]} >
    услуги
 
-          </h2>
+                   </GradientHeadingLite>
            
           </MoveLeft>
           

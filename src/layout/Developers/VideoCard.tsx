@@ -5,13 +5,14 @@ import PortfolioArrow from '../../assets/icons/PortfolioArrow';
 type VideoCardProps = {
   name: string;
   link: string;
-  poster?: string;                  // опционально
+  poster: string | undefined;
   mp4: string;
-  webm?: string;
-  isDragging: boolean;              // чтобы не автоплейть во время drag
+  webm: string | undefined;
+  isDragging: boolean;
+  isActive: boolean; // добавляем пропс активности
 };
 
-export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCardProps) {
+export function VideoCard({ name, link, poster, mp4, webm, isDragging, isActive }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [isIntersecting, setIntersecting] = useState(true);
@@ -38,9 +39,8 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
   const safePlay = () => {
     const v = videoRef.current;
     if (!v) return;
-    // на iOS/Android играет только muted без user-gesture
     v.muted = muted;
-    v.play().catch(() => {/* игнорим ошибки автоплея */});
+    v.play().catch(() => {});
   };
 
   const handleMouseEnter = () => {
@@ -56,7 +56,6 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
   };
 
   const handleTouchStart = () => {
-    // на мобилках делаем toggle play/pause
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) safePlay();
@@ -68,27 +67,32 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
 
   const toggleMute: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
-    e.preventDefault(); // чтобы не сработал переход по ссылке
+    e.preventDefault();
     setMuted((m) => {
       const next = !m;
       if (videoRef.current) videoRef.current.muted = next;
       return next;
     });
-    // если звук включили — надо «сдёрнуть» play по gesture, чтобы браузер разрешил звук
     if (videoRef.current && !muted) {
       videoRef.current.play().catch(() => {});
     }
   };
 
-  // Если карточка вне экрана — не пытаемся играть
-  useEffect(() => {
-    if (!isIntersecting) return;
-    // ничего не делаем — ховер сам управляет
-  }, [isIntersecting]);
+  // Определяем классы в зависимости от активности
+  const getCardClass = () => {
+    return `${styles['developer-card']} ${isActive ? styles['active'] : ''}`;
+  };
+
+  const getVideoClass = () => {
+    return `${styles['developer-video']} ${isActive ? styles['active-video'] : ''}`;
+  };
+
+  const getNameClass = () => {
+    return `${styles['name']} ${isActive ? styles['active-name'] : ''}`;
+  };
 
   return (
-    <div className={styles['developer-card']}>
-      {/* Ссылка — основной кликабельный слой */}
+    <div className={getCardClass()}>
       <a
         href={link}
         className={styles['card-link-layer']}
@@ -99,15 +103,13 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
       >
         <video
           ref={videoRef}
-          className={styles['developer-video']}
+          className={getVideoClass()}
           playsInline
           muted={muted}
           preload="metadata"
           poster={poster}
           pip="false"
-          // чтобы браузер не показывал свои контролы
           controls={false}
-          // «без кликов по видео» — вся интеракция через ссылку/кнопку
           onDragStart={(e) => e.preventDefault()}
         >
           {webm && <source src={webm} type="video/webm" />}
@@ -115,7 +117,7 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
         </video>
 
         <div className={styles['card-bottom']}>
-          <p className={styles['name']}>{name}</p>
+          <p className={getNameClass()}>{name}</p>
           <p className={styles['button-portfolio']}>
             <span>перейти</span>
             <PortfolioArrow />
@@ -123,14 +125,12 @@ export function VideoCard({ name, link, poster, mp4, webm, isDragging }: VideoCa
         </div>
       </a>
 
-      {/* Кнопка звука — отдельным слоем СВЕРХУ, вне <a>, чтобы клик не вёл по ссылке */}
       <button
         type="button"
         className={`${styles['mute-btn']} ${muted ? styles['muted'] : styles['unmuted']}`}
         onClick={toggleMute}
         aria-label={muted ? 'Включить звук' : 'Выключить звук'}
       >
-        {/* простые SVG-иконки */}
         {muted ? (
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 10v4h4l5 5V5L9 10H5z" fill="currentColor" opacity="0.7" />

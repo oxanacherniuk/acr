@@ -16,7 +16,7 @@ import {
   // Новые иконки для продвижения
   Trophy, Target, TrendingUp as ChartTrendingUp, Award,
   Megaphone, Search as SearchIcon, MapPin, BarChart3,
-  ArrowUpRight, FileText, CheckCircle2
+   FileText
 } from 'lucide-react';
 import type { ForwardRefExoticComponent } from 'react';
 

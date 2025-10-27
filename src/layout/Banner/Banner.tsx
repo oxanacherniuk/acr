@@ -39,7 +39,7 @@ export function BannerLayout() {
         <div className={styles['banner']}>
             <div className='container'>
                 <div className={styles['banner-content']}>
-                    <GradientHeadingLite baseAngle={45} track="viewport" as='span' className={styles['banner-bigtitle']}>
+                    <GradientHeadingLite baseAngle={45} track="viewport" as='span' className={styles['banner-bigtitle'] + " banner-subtitle"}>
                         {displayText}
                         {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
                     </GradientHeadingLite>

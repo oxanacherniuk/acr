@@ -154,7 +154,7 @@
 .service-line {
     flex: 0 0 50%;
     height: 1px;
-    background: #000;
+    background: linear-gradient(90deg, transparent, var(--silver-light), transparent);
     margin-top: 12px;
     opacity: 0.3;
     transition: all 0.3s ease;
@@ -162,7 +162,7 @@
 
 .service-link:hover .service-line {
     opacity: 0.7;
-    background: linear-gradient(90deg, transparent, #00bfff, transparent);
+    background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
 }
 
 .service-description {
