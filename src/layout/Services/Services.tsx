@@ -100,13 +100,16 @@ export function ServicesLayout() {
       <div className="container">
         <div className={styles["services-box"]}>
           <MoveLeft>
-              <GradientHeadingLite as='h2'  theme="onDark" track="element" className={styles["developers-title"]} >
-   услуги
-
-                   </GradientHeadingLite>
-           
+            <GradientHeadingLite
+              as="h2"
+              theme="onDark"
+              track="element"
+              className={styles["developers-title"]}
+            >
+              услуги
+            </GradientHeadingLite>
           </MoveLeft>
-          
+
           <MoveUp>
             <a
               href="#"
@@ -115,14 +118,13 @@ export function ServicesLayout() {
             >
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
                 <h3 className={styles["service-name"]}>РАЗРАБОТКА САЙТОВ</h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Разрабатываем веб-приложения c нуля или подключаемся на
                     любой стадии проекта
@@ -136,14 +138,13 @@ export function ServicesLayout() {
             <Link to="/services/chat-bots" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
                 <h3 className={styles["service-name"]}>УМНЫЕ ЧАТ-БОТЫ</h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Автоматизируем продажи и поддержку 24/7 с помощью
                     интеллектуальных ботов
@@ -156,14 +157,13 @@ export function ServicesLayout() {
             <Link to="/services/ai" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
                 <h3 className={styles["service-name"]}>ВНЕДРЕНИЕ ИИ</h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Интегрируем AI-решения для оптимизации процессов и повышения
                     эффективности бизнеса
@@ -177,7 +177,6 @@ export function ServicesLayout() {
             <Link to="/services/mobile-app" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
@@ -185,8 +184,8 @@ export function ServicesLayout() {
                 <h3 className={styles["service-name"]}>
                   РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ
                 </h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Создаем нативные и кроссплатформенные мобильные приложения
                     для iOS и Android
@@ -200,14 +199,13 @@ export function ServicesLayout() {
             <Link to="/services/design" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
                 <h3 className={styles["service-name"]}>ДИЗАЙН</h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Разрабатываем современный и функциональный дизайн для
                     цифровых продуктов и брендов
@@ -221,14 +219,13 @@ export function ServicesLayout() {
             <Link to="/services/marketing" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
-                  
                   <MoveLeft delays={0.5}>
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
                 <h3 className={styles["service-name"]}>DIGITAL-МАРКЕТИНГ</h3>
+                <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
-                  <div className={styles["service-line"]}></div>
                   <p className={styles["service-description"]}>
                     Привлекаем целевую аудиторию бизнеса, увеличиваем конверсию
                     и повышаем узнаваемость бренда
@@ -242,16 +239,18 @@ export function ServicesLayout() {
       {isPopupOpen && (
         <div
           className={`${styles["popup-overlay"]} ${isPopupOpen ? styles["popup-overlay-active"] : ""}`}
-          onClick={handleClosePopup}
         >
-          <div className={styles["popup-content"]} onClick={handlePopupClick}>
+          <div className={styles["popup-content"]} onClick={handleClosePopup}>
             <button
               className={styles["popup-close"]}
               onClick={handleClosePopup}
             >
               ×
             </button>
-            <div className={styles["popup-scroll-container"]}>
+            <div
+              onClick={handlePopupClick}
+              className={styles["popup-scroll-container"]}
+            >
               {renderPopupContent()}
             </div>
           </div>

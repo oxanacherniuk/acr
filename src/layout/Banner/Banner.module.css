@@ -8,7 +8,7 @@
 }
 
 .banner-title {
-  font-size: clamp(14px, 3.375rem, 35px);
+  font-size: clamp(14px, 3.375rem, 40px);
   font-weight: 900;
   line-height: 1.1;
   font-family: var(--manrope-font);

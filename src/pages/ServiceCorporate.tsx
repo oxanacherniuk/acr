@@ -1,524 +1,269 @@
-import { useState, useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { HeaderLayout } from '../layout/Header/Header';
-import styles from './ServicePage.module.css';
-import TelegramIcon from '../assets/images/tg.svg';
-import CorporateImage from '../assets/images/corporate.webp';
-import { QuizLayout } from '../layout/Quiz/Quiz';
-import { FooterLayout } from '../layout/Footer/Footer';
-import { NavigationButton } from '../components/NavigationButton/NavigationButton';
-
-const schema = yup.object({
-    name: yup
-        .string()
-        .required('Имя обязательно для заполнения')
-        .min(2, 'Имя должно содержать минимум 2 символа')
-        .max(50, 'Имя слишком длинное')
-        .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/, 'Имя может содержать только буквы'),
-    email: yup
-        .string()
-        .required('Email обязателен для заполнения')
-        .email('Введите корректный email адрес'),
-    phone: yup
-        .string()
-        .required('Телефон обязателен для заполнения')
-        .min(4, 'Телефон должен содержать минимум 4 цифры')
-        .transform((value) => value.replace(/\D/g, ''))
-});
+import ServiceImage from "../assets/images/corporate.webp";
+import { ServiceLayout } from "../components/services/ServiceLayout";
+import { Breadcrumbs } from "../components/services/Breadcrumbs";
+import { ServiceBanner } from "../components/services/ServiceBanner";
+import { Section } from "../components/ui/Section";
+import { Container } from "../components/ui/Container";
+import { FeatureGrid } from "../components/services/FeatureGrid";
+import { FAQ } from "../components/services/FAQ";
+import "../styles/service.css";
+import s from "../styles/ServicePage.module.css";
+import ServiceHero from "../components/services/ServiceHero";
+import { ServiceTabs } from "../components/services/ServiceTabs";
+import * as yup from "yup";
+import { StagesTimeline } from "../components/services/StagesTimeline";
+import { ContactForm } from "../components/services/ContactForm";
+import { QuizLayout } from "../layout/Quiz/Quiz";
+import { InfoSection } from "../components/services/InfoSectionProps";
+// import { InfoSection } from "../components/services/InfoSection";
 
 export function ServiceCorporate() {
-    const [activeTab, setActiveTab] = useState('foundation');
-    const [displayTitle, setDisplayTitle] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const tabsContentRef = useRef<HTMLDivElement>(null);
-    const tabsHeaderRef = useRef<HTMLDivElement>(null);
-    const tabBtnRefs = useRef<{
-        foundation: HTMLButtonElement | null;
-        strategy: HTMLButtonElement | null;
-        functionality: HTMLButtonElement | null;
-        technical: HTMLButtonElement | null;
-    }>({
-        foundation: null,
-        strategy: null,
-        functionality: null,
-        technical: null,
-    });
-    const fullText = "Корпоративный сайт";
-    
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting, isValid },
-        reset,
-    } = useForm({
-        resolver: yupResolver(schema),
-        mode: 'onChange',
-        defaultValues: {
-            name: '',
-            email: '',
-            phone: ''
-        }
-    });
+  return (
+    <ServiceLayout>
+      <div className={s["service-top"]}>
+        <Breadcrumbs
+          title="Корпоративный сайт"
+          links={[
+            {
+              href: "/services/ecommerce",
+              label: "Интернет-магазин",
+              className: "rasdel -b",
+            },
+            {
+              href: "/services/landings",
+              label: "Лендинг",
+              className: "-b",
+            },
+          ]}
+        />
+        <ServiceBanner
+          title="Корпоративный сайт"
+          subtitle="Ваше мощное представительство в интернете. Всё для имиджа, доверия и лидов."
+        //   description="Создадим современный и функциональный сайт, который расскажет о вашей компании лучше любого менеджера и будет работать на вас 24/7."
+          imageSrc={ServiceImage}
+          imageAlt="Современный корпоративный сайт"
+        />
+      </div>
+      
+      <div className={s["service-page"]}>
+        <Section id="hero">
+          <Container>
+            <ServiceHero
+              title="Корпоративный сайт — <br /><span style='color:var(--accent-light)'>лицо вашего бизнеса</span> в digital-пространстве"
+              description="Откройте представительство своей компании в интернете с помощью создания современного и функционального корпоративного сайта."
+              buttonText="обсудить проект"
+              buttonLink="https://t.me/KP888_Bot"
+            />
+          </Container>
+        </Section>
 
-    const centerActiveTab = (key: 'foundation' | 'strategy' | 'functionality' | 'technical') => {
-        const container = tabsHeaderRef.current;
-        const btn = tabBtnRefs.current[key];
-        if (!container || !btn) return;
+        <Section id="benefits">
+          <Container title="почему выбирают корпоративный сайт?">
+            <FeatureGrid
+              items={[
+                {
+                  title: "Укрепление имиджа <br /> и доверия",
+                  text: "Профессиональное представление вашей компании в сети",
+                },
+                {
+                  title: "Привлечение клиентов <br /> и заявок",
+                  text: "Постоянный поток качественных лидов 24/7",
+                },
+                {
+                  title: "Домен и хостинг <br /> в подарок",
+                  text: "Полностью бесплатное размещение в первый год",
+                },
+                {
+                  title: "Полная готовность <br /> к работе",
+                  text: "Запускаем сразу после завершения разработки",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const cRect = container.getBoundingClientRect();
-        const bRect = btn.getBoundingClientRect();
+        <Section id="services">
+          <Container title="что входит в стоимость корпоративного сайта?">
+            <ServiceTabs
+              initialTab="foundation"
+              tabs={[
+                {
+                  id: "foundation",
+                  title: "Фундамент и Безопасность",
+                  items: [
+                    { text: "Домен и хостинг на 1 год в подарок" },
+                    { text: "Установка SSL сертификата" },
+                    { text: "Регулярное резервное копирование" },
+                    { text: "Загрузка сайта на хостинг клиента" },
+                  ],
+                },
+                {
+                  id: "strategy",
+                  title: "Стратегия и Дизайн",
+                  items: [
+                    { text: "Анализ тематики и конкурентов" },
+                    { text: "Анализ целевой аудитории" },
+                    { text: "Маркетинговая стратегия" },
+                    { text: "Индивидуальный мотивирующий дизайн" },
+                    { text: "Полная проработка структуры сайта (до 20 страниц)" },
+                    { text: "Составление УТП" },
+                    { text: "Слайд-шоу на главной странице" },
+                  ],
+                },
+                {
+                  id: "functionality",
+                  title: "Функционал",
+                  items: [
+                    { text: "Подключение окон с рабочими формами заказа" },
+                    { text: "Формы обратной связи (звонок, мессенджер)" },
+                    { text: "Фото- или видео-галерея с увеличением" },
+                    { text: "Фото-, видео-отзывы (на выбор)" },
+                    { text: "Каталог услуг и продукции" },
+                    { text: "Возможность скачать прайс-лист" },
+                    { text: "Модуль с логотипами клиентов и партнеров" },
+                    { text: "Интерактивная карта (Яндекс)" },
+                  ],
+                },
+                {
+                  id: "technical",
+                  title: "Техническое качество",
+                  items: [
+                    { text: "Адаптация для всех устройств" },
+                    { text: "Кроссбраузерность" },
+                    { text: "Базовая СЕО-оптимизация" },
+                    { text: "Ускорение загрузки сайта" },
+                    { text: "Закладываем потенциал для расширения функционала" },
+                    { text: "Тестирование всего проекта на наличие ошибок" },
+                  ],
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const currentLeft = container.scrollLeft;
-        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
-        const target = currentLeft + delta;
+        <Section id="solution">
+          <Container>
+            <InfoSection
+              title="инвестиция в репутацию и рост, а не просто траты на сайт"
+              description="Мы создаем не «визитку», а рабочий маркетинговый инструмент, который окупает вложения за счет привлечения качественных клиентов."
+              priceNotes={[
+                "Итоговая стоимость рассчитывается индивидуально, исходя из сложности дизайна и объема функционала",
+              ]}
+              price="от 100 000 ₽"
+              buttonLink="https://t.me/KP888_Bot"
+              buttonText="узнать стоимость"
+            />
+          </Container>
+        </Section>
 
-        const max = container.scrollWidth - container.clientWidth;
-        const next = Math.max(0, Math.min(max, target));
+        <Section id="process">
+          <Container>
+            <StagesTimeline
+              title="этапы создания вашего сайта"
+              stages={[
+                {
+                  stage: "Этап 1",
+                  title: "Погружение",
+                  description: "Изучаем вашу компанию, ЦА и конкурентов. Согласовываем структуру.",
+                },
+                {
+                  stage: "Этап 2",
+                  title: "Прототип и дизайн",
+                  description: "Разрабатываем макет и уникальный дизайн главной и внутренних страниц.",
+                },
+                {
+                  stage: "Этап 3",
+                  title: "Верстка и интеграция",
+                  description: "Наполняем сайт жизнью: анимации, подключение форм, CMS.",
+                },
+                {
+                  stage: "Этап 4",
+                  title: "Наполнение",
+                  description: "Работаем с подготовкой и публикацией текстов и изображений.",
+                },
+                {
+                  stage: "Этап 5",
+                  title: "Тестирование и запуск",
+                  description: "Проверяем всё на ошибках и запускаем проект.",
+                },
+                {
+                  stage: "Этап 6",
+                  title: "Обучение и поддержка",
+                  description: "Передаем доступы, обучаем ваших сотрудников работе с сайтом.",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        container.scrollTo({ left: next, behavior: 'smooth' });
-    };
+        <Section id="faq">
+          <Container title="ответы на частые вопросы">
+            <FAQ
+              items={[
+                {
+                  q: "Сколько страниц включает корпоративный сайт?",
+                  a: "Обычно от 5 до 20 страниц, включая главную, о компании, услуги, контакты и другие разделы",
+                },
+                {
+                  q: "Можно ли потом расширить функционал?",
+                  a: "Да, мы закладываем потенциал для будущего расширения и добавляем новые модули",
+                },
+                {
+                  q: "Предоставляете ли вы контент?",
+                  a: "Мы помогаем с структурированием, но тексты и фото предоставляет клиент или заказывает отдельно",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-    useEffect(() => {
-        if (currentIndex < fullText.length) {
-            const timer = setTimeout(() => {
-                setDisplayTitle(prev => prev + fullText[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
-            }, 100);
+        <Section id="cta">
+          <Container>
+            <ContactForm
+              title="сделайте первый шаг к сильному имиджу в сети!"
+              description="Оставьте контакты, и наш менеджер подготовит для вас индивидуальное коммерческое предложение в течение дня."
+              fields={[
+                {
+                  name: "name",
+                  type: "text",
+                  placeholder: "Ваше имя",
+                  validation: yup
+                    .string()
+                    .required("Имя обязательно для заполнения")
+                    .min(2, "Имя должно содержать минимум 2 символа")
+                    .max(50, "Имя слишком длинное")
+                    .matches(
+                      /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
+                      "Имя может содержать только буквы",
+                    ),
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Ваш e-mail",
+                  validation: yup
+                    .string()
+                    .required("Email обязателен для заполнения")
+                    .email("Введите корректный email адрес"),
+                },
+                {
+                  name: "phone",
+                  type: "tel",
+                  placeholder: "Ваш номер телефона",
+                  validation: yup
+                    .string()
+                    .required("Телефон обязателен для заполнения")
+                    .min(4, "Телефон должен содержать минимум 4 цифры")
+                    .transform((value: string) => value.replace(/\D/g, "")),
+                },
+              ]}
+              submitText="Оставить заявку"
+            />
+          </Container>
+        </Section>
 
-            return () => clearTimeout(timer);
-        }
-    }, [currentIndex, fullText]);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    useEffect(() => {
-        if (!isMobile) return;
-        requestAnimationFrame(() => centerActiveTab(activeTab as 'foundation' | 'strategy' | 'functionality' | 'technical'));
-    }, [activeTab, isMobile]);
-
-    const handleSwipe = (direction: 'left' | 'right') => {
-        const tabs = ['foundation', 'strategy', 'functionality', 'technical'];
-        const currentIndex = tabs.indexOf(activeTab);
-        
-        if (direction === 'left' && currentIndex < tabs.length - 1) {
-            setActiveTab(tabs[currentIndex + 1] as typeof activeTab);
-        } else if (direction === 'right' && currentIndex > 0) {
-            setActiveTab(tabs[currentIndex - 1] as typeof activeTab);
-        }
-    };
-
-    const setupSwipe = (element: HTMLElement) => {
-        let startX: number;
-        let startY: number;
-        let distX: number;
-        let distY: number;
-        const threshold = 50;
-        const restraint = 100;
-        const allowedTime = 300;
-
-        let startTime: number;
-
-        element.addEventListener('touchstart', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            startX = touchObj.pageX;
-            startY = touchObj.pageY;
-            startTime = new Date().getTime();
-            e.preventDefault();
-        }, false);
-
-        element.addEventListener('touchend', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            distX = touchObj.pageX - startX;
-            distY = touchObj.pageY - startY;
-            const elapsedTime = new Date().getTime() - startTime;
-
-            if (elapsedTime <= allowedTime) {
-                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-                    if (distX > 0) {
-                        handleSwipe('right');
-                    } else {
-                        handleSwipe('left');
-                    }
-                }
-            }
-            e.preventDefault();
-        }, false);
-    };
-
-    useEffect(() => {
-        if (isMobile && tabsContentRef.current) {
-            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
-            if (tabPanel) {
-                setupSwipe(tabPanel as HTMLElement);
-            }
-        }
-    }, [isMobile, activeTab]);
-
-    const onSubmit = async (data: { phone: string; }) => {
-        try {
-            const formattedData = {
-                ...data,
-                phone: data.phone.replace(/\D/g, '')
-            };
-
-            console.log('Данные формы:', formattedData);
-            
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            alert('Замечательно! Мы скоро с Вами свяжемся');
-            reset();
-        } catch (error) {
-            console.error('Ошибка отправки:', error);
-            alert('Произошла ошибка при отправке формы');
-        }
-    };
-    
-    return (
-        <div>
-            <HeaderLayout />
-            <div className={styles['service-page__top']}> 
-                <div className='container'>
-                    <div className='breadCrumbs'>
-                        <a className='breadCrumbs-item' href="/services">услуги</a><span>|</span>
-                        <p className='breadCrumbs-item end'>
-                            {displayTitle}
-                        </p>
-
-                        <a className='breadCrumbs-item rasdel -b' href="/services/ecommerce">Интернет-магазин</a><span>|</span>
-                        <a className='breadCrumbs-item -b' href="/services/landings">
-                            лендинг
-                        </a>
-                    </div>
-                    <div className={styles['service-header']}>
-                        <div className={styles['service-header-content']}>
-                            <h1 className={styles['service-title']}>
-                                {displayTitle}
-                                {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
-                            </h1>
-                            <p className={styles['service-subtitle']}>
-                                Корпоративный сайт — ваше мощное представительство в интернете. 
-                                Всё для имиджа, доверия и лидов.
-                            </p>
-                            <p className={styles['service-subtitle']}>
-                                Создадим современный и функциональный сайт, который расскажет о вашей компании 
-                                лучше любого менеджера и будет работать на вас 24/7.
-                            </p>
-                        </div>
-                        
-                        <div className={styles['service-image']}>
-                            <img 
-                                src={CorporateImage}
-                                alt="Современный корпоративный сайт" 
-                                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles['service-page']}>
-                <div className='container'>
-                    <div className={styles['hero-block']}>
-                        <div className={styles['hero-content']}>
-                            <h2>Корпоративный сайт — <br /> <span className={styles['blue-text']}>лицо вашего бизнеса</span> <br /> в digital-пространстве</h2>
-                            <p>
-                                Откройте представительство своей компании в интернете с помощью создания 
-                                современного и функционального корпоративного сайта.
-                            </p>
-                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'обсудить проект'} />
-                        </div>
-                    </div>
-
-                    <div className={styles['benefits-section']}>
-                        <h3>почему выбирают корпоративный сайт?</h3>
-                        <div className={styles['benefits-grid']}>
-                            <div className={styles['benefit-item']}>
-                                <h4>Укрепление имиджа и доверия</h4>
-                                <p>Профессиональное представление вашей компании в сети</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Привлечение клиентов и заявок</h4>
-                                <p>Постоянный поток качественных лидов 24/7</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Домен и хостинг в подарок</h4>
-                                <p>Полностью бесплатное размещение в первый год</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Полная готовность к работе</h4>
-                                <p>Запускаем сразу после завершения разработки</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles['service-content']}>
-                        <div className={styles['service-info']}> 
-                            <div className={styles['info-section']}>
-                                <h3>что входит в стоимость корпоративного сайта?</h3>
-                                
-                                <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.foundation = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'foundation' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('foundation'); 
-                                                if (isMobile) centerActiveTab('foundation'); 
-                                            }}
-                                        >
-                                            Фундамент и Безопасность
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.strategy = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'strategy' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('strategy'); 
-                                                if (isMobile) centerActiveTab('strategy'); 
-                                            }}
-                                        >
-                                            Стратегия и Дизайн
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.functionality = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'functionality' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('functionality'); 
-                                                if (isMobile) centerActiveTab('functionality'); 
-                                            }}
-                                        >
-                                            Функционал
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.technical = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'technical' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('technical'); 
-                                                if (isMobile) centerActiveTab('technical'); 
-                                            }}
-                                        >
-                                            Техническое качество
-                                        </button>
-                                    </div>
-
-                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
-                                        {activeTab === 'foundation' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Домен и хостинг на 1 год в подарок</li>
-                                                    <li>Установка SSL сертификата</li>
-                                                    <li>Регулярное резервное копирование</li>
-                                                    <li>Загрузка сайта на хостинг клиента</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'strategy' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Анализ тематики и конкурентов</li>
-                                                    <li>Анализ целеной аудитории</li>
-                                                    <li>Маркетинговая стратегия</li>
-                                                    <li>Индивидуальный мотивирующий дизайн</li>
-                                                    <li>Полная проработка структуры сайта (до 20 страниц)</li>
-                                                    <li>Составление УТП</li>
-                                                    <li>Слайд-шоу на главной странице</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'functionality' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Подключение окон с рабочими формами заказа</li>
-                                                    <li>Формы обратной связи (звонок, мессенджер)</li>
-                                                    <li>Фото- или видео-галерея с увеличением</li>
-                                                    <li>Фото-, видео-отзывы (на выбор)</li>
-                                                    <li>Каталог услуг и продукции</li>
-                                                    <li>Возможность скачать прайс-лист</li>
-                                                    <li>Модуль с логотипами клиентов и партнеров</li>
-                                                    <li>Интерактивная карта (Яндекс)</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'technical' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Адаптация для всех устройств</li>
-                                                    <li>Кроссбраузерность</li>
-                                                    <li>Базовая СЕО-оптимизация</li>
-                                                    <li>Ускорение загрузки сайта</li>
-                                                    <li>Закладываем потенциал для расширения функционала</li>
-                                                    <li>Тестирование всего проекта на наличие ошибок</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section']}>
-                                <h3>инвестиция в репутацию и рост, а не просто траты на сайт</h3>
-                                <p className={styles['info-section__text']}>
-                                    Мы создаем не «визитку», а рабочий маркетинговый инструмент, 
-                                    который окупает вложения за счет привлечения качественных клиентов.
-                                </p>
-                                
-                                <div className={styles['price-block']}>
-                                    <p className={styles['price-note']}>Итоговая стоимость рассчитывается индивидуально, исходя из сложности дизайна и объема функционала</p>
-                                    <div className={styles['price-inner']}>
-                                        <span className={styles['main-price']}>от 100 000 ₽</span>
-                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section__stages']}>
-                                <h3>этапы создания вашего сайта</h3>
-                                <div className={styles['timeline']}>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 1</span>
-                                        <h4>Погружение</h4>
-                                        <p>Изучаем вашу компанию, ЦА и конкурентов. Согласовываем структуру.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 2</span>
-                                        <h4>Прототип и дизайн</h4>
-                                        <p>Разрабатываем макет и уникальный дизайн главной и внутренних страниц.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 3</span>
-                                        <h4>Верстка и интеграция</h4>
-                                        <p>Наполняем сайт жизнью: анимации, подключение форм, CMS.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 4</span>
-                                        <h4>Наполнение</h4>
-                                        <p>Работаем с подготовкой и публикацией текстов и изображений.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 5</span>
-                                        <h4>Тестирование и запуск</h4>
-                                        <p>Проверяем всё на ошибках и запускаем проект.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 6</span>
-                                        <h4>Обучение и поддержка</h4>
-                                        <p>Передаем доступы, обучаем ваших сотрудников работе с сайтом.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section__faq']}>
-                                <h3>ответы на частые вопросы</h3>
-                                <div className={styles['faq']}>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Сколько страниц включает корпоративный сайт?</h4>
-                                        <p>Обычно от 5 до 20 страниц, включая главную, о компании, услуги, контакты и другие разделы</p>
-                                    </div>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Можно ли потом расширить функционал?</h4>
-                                        <p>Да, мы закладываем потенциал для будущего расширения и добавляем новые модули</p>
-                                    </div>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Предоставляете ли вы контент?</h4>
-                                        <p>Мы помогаем с структурированием, но тексты и фото предоставляет клиент или заказывает отдельно</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section']}>
-                                <h3>сделайте первый шаг к сильному имиджу в сети!</h3>
-                                <p>Оставьте контакты, и наш менеджер подготовит для вас индивидуальное коммерческое предложение в течение дня.</p>
-                                
-                                <form 
-                                    className={styles['contact-form']} 
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                >
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваше имя' 
-                                            className={`${styles['contact-input']} ${errors.name ? styles['input-error'] : ''}`}
-                                            type="text"
-                                            {...register('name')}
-                                        />
-                                        {errors.name && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.name.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш e-mail' 
-                                            className={`${styles['contact-input']} ${errors.email ? styles['input-error'] : ''}`}
-                                            type="email"
-                                            {...register('email')}
-                                        />
-                                        {errors.email && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.email.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш номер телефона' 
-                                            className={`${styles['contact-input']} ${errors.phone ? styles['input-error'] : ''}`}
-                                            type="tel"
-                                            {...register('phone')}
-                                        />
-                                        {errors.phone && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.phone.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['form-footer']}>
-                                        <p className={styles['privacy-text']}>
-                                            Отправляя заявку, you соглашаетесь с Политикой обработки персональных данных и Правилами пользования сайта
-                                        </p>
-                                        
-                                        <button 
-                                            type="submit" 
-                                            className={styles['contact-button']}
-                                            disabled={isSubmitting || !isValid}
-                                        >
-                                            {isSubmitting ? 'Отправка...' : 'Оставить заявку'}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className={styles['service-cta']}>
-                            <a 
-                                href="https://t.me/KP888_Bot" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className={styles['cta-button']}
-                            >
-                                Обсудить проект
-                                <img src={TelegramIcon} alt="Telegram" />
-                            </a>
-                        </div>
-                    </div>
-                    <QuizLayout />
-                </div>
-            </div>
-            <FooterLayout />
-        </div>
-    );
+        <QuizLayout />
+      </div>
+    </ServiceLayout>
+  );
 }

@@ -1,33 +1,33 @@
-import { useEffect, useRef, useState, useCallback, type JSX } from 'react';
-import styles from './Developers.module.css';
-import Pavel from '../../assets/images/pavel.jpg';
-import Oksana from '../../assets/images/oksana.jpg';
-import Maxim from '../../assets/images/maksim.jpg';
-import Irina from '../../assets/images/irina.jpg';
-import Platon from '../../assets/images/platon.jpg';
-import Elena from '../../assets/images/elena.jpg';
-import Lev from '../../assets/images/lev.jpg';
-import Eva from '../../assets/images/eva.png';
-import { NavigationButtonWhite } from '../../components/NavigationButtonWhite/NavigationButtonWhite';
-import { MoveLeft, MoveUp } from '../../components/Motions';
-import { VideoCard } from './VideoCard';
-import evaMp4 from '../../assets/video/eva.mp4';
-import evaWebm from '../../assets/video/eva.webm';
-import paMp4 from '../../assets/video/pa.mp4';
-import paWebm from '../../assets/video/pa.webm';
-import platonMp4 from '../../assets/video/platon.mp4';
-import platonWebm from '../../assets/video/platon.webm';
-import oxMp4 from '../../assets/video/ox2.mp4';
-import oxWebm from '../../assets/video/ox2.webm';
-import maxMp4 from '../../assets/video/max.mp4';
-import maxWebm from '../../assets/video/max.webm';
-import iraMp4 from '../../assets/video/ira.mp4';
-import iraWebm from '../../assets/video/ira.webm';
-import elenaMp4 from '../../assets/video/elena.mp4';
-import elenaWebm from '../../assets/video/elena.webm';
-import levaMp4 from '../../assets/video/leva.mp4';
-import levaWebm from '../../assets/video/leva.webm';
-import GradientHeading from '../../components/GradientHeading/GradientHeading';
+import { useEffect, useRef, useState, useCallback, type JSX } from "react";
+import styles from "./Developers.module.css";
+import Pavel from "../../assets/images/pavel.jpg";
+import Oksana from "../../assets/images/oksana.jpg";
+import Maxim from "../../assets/images/maksim.jpg";
+import Irina from "../../assets/images/irina.jpg";
+import Platon from "../../assets/images/platon.jpg";
+import Elena from "../../assets/images/elena.jpg";
+import Lev from "../../assets/images/lev.jpg";
+import Eva from "../../assets/images/eva.png";
+import { NavigationButtonWhite } from "../../components/NavigationButtonWhite/NavigationButtonWhite";
+import { MoveLeft, MoveUp } from "../../components/Motions";
+import { VideoCard } from "./VideoCard";
+import evaMp4 from "../../assets/video/eva.mp4";
+import evaWebm from "../../assets/video/eva.webm";
+import paMp4 from "../../assets/video/pa.mp4";
+import paWebm from "../../assets/video/pa.webm";
+import platonMp4 from "../../assets/video/platon.mp4";
+import platonWebm from "../../assets/video/platon.webm";
+import oxMp4 from "../../assets/video/ox2.mp4";
+import oxWebm from "../../assets/video/ox2.webm";
+import maxMp4 from "../../assets/video/max.mp4";
+import maxWebm from "../../assets/video/max.webm";
+import iraMp4 from "../../assets/video/ira.mp4";
+import iraWebm from "../../assets/video/ira.webm";
+import elenaMp4 from "../../assets/video/elena.mp4";
+import elenaWebm from "../../assets/video/elena.webm";
+import levaMp4 from "../../assets/video/leva.mp4";
+import levaWebm from "../../assets/video/leva.webm";
+import GradientHeading from "../../components/GradientHeading/GradientHeading";
 
 interface Developer {
   id: number;
@@ -38,7 +38,6 @@ interface Developer {
   poster?: string;
 }
 
-
 export function DevelopersLayout(): JSX.Element {
     const [, setIsVisible] = useState<boolean>(false);
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -46,19 +45,9 @@ export function DevelopersLayout(): JSX.Element {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, _] = useState(false);
 
-    // Определяем мобильное устройство
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    // Убираем состояние isTransitioning - теперь анимация чисто на CSS
 
     const developers: Developer[] = [
         { id: 1, name: 'Ева', link: '/developer/ai', mp4: evaMp4, webm: evaWebm, poster: Eva },
@@ -70,7 +59,8 @@ export function DevelopersLayout(): JSX.Element {
         { id: 7, name: 'Елена', mp4: elenaMp4, webm: elenaWebm, poster: Elena, link: '/developer/elena' },
         { id: 8, name: 'Лев', mp4: levaMp4, webm: levaWebm, poster: Lev, link: '/developer/lev' },
     ];
-// Функция для получения видимых карточек
+
+    // Функция для получения видимых карточек (не меняется)
     const getVisibleCards = useCallback(() => {
         const total = developers.length;
         const visibleIndices = [];
@@ -99,10 +89,9 @@ export function DevelopersLayout(): JSX.Element {
         event.stopPropagation();
         
         if (position === 0) {
-            // Если карточка уже активна - переход по ссылке
             window.location.href = developers[index].link;
         } else {
-            // Если не активна - делаем активной
+            // Прямая смена индекса - CSS сделает анимацию
             setActiveIndex(index);
         }
     }, [developers]);
@@ -115,7 +104,7 @@ export function DevelopersLayout(): JSX.Element {
         setActiveIndex(prev => (prev - 1 + developers.length) % developers.length);
     }, [developers.length]);
 
-    // Свайп
+    // Свайп (упрощаем)
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
         setStartX(e.pageX);
@@ -124,16 +113,6 @@ export function DevelopersLayout(): JSX.Element {
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
         setStartX(e.touches[0].clientX);
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging) return;
-        e.preventDefault();
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDragging) return;
-        e.preventDefault();
     };
 
     const handleMouseUp = (e: React.MouseEvent) => {
@@ -149,7 +128,6 @@ export function DevelopersLayout(): JSX.Element {
                 handlePrev();
             }
         }
-        
         setIsDragging(false);
     };
 
@@ -166,10 +144,10 @@ export function DevelopersLayout(): JSX.Element {
                 handlePrev();
             }
         }
-        
         setIsDragging(false);
     };
 
+    // Остальной код без изменений...
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -206,40 +184,43 @@ export function DevelopersLayout(): JSX.Element {
             <div className={styles['container-dev']}>
                 {/* Кнопки навигации */}
                 <button 
-                    className={styles['nav-button']} 
+                    className={styles['nav-button'] +" butt"} 
                     onClick={handlePrev}
                     aria-label="Предыдущий"
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <span>
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
+                    </span>
                 </button>
                 
                 <button 
-                    className={styles['nav-button']} 
+                    className={styles['nav-button'] + " butt"} 
                     onClick={handleNext}
                     aria-label="Следующий"
                 >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
+                    </span>
                 </button>
 
                 <div 
                     className={styles['circular-carousel']}
                     ref={carouselRef}
                     onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={() => setIsDragging(false)}
                     onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
                     <div className={styles['carousel-container']}>
                         {visibleCards.map(({ index, position, data }) => (
                             <div 
-                                key={`${data.id}-${position}`}
+                                key={data.id} // Важно: используем стабильный ключ!
                                 className={`${styles['card-wrapper']} ${styles[`position-${position}`]}`}
                                 onClick={(e) => handleCardClick(index, position, e)}
                             >

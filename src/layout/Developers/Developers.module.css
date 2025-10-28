@@ -14,15 +14,6 @@
     position: relative;
 }
 
-.developers-title {
-    font-size: 4.5rem;
-    text-align: left;
-    margin-bottom: 150px;
-    color: var(--accent-light);
-    font-family: var(--manrope-font);
-    font-weight: 900;
-}
-
 .circular-carousel {
     display: flex;
     justify-content: center;
@@ -30,7 +21,24 @@
     height: 600px;
     position: relative;
     perspective: 1000px;
+    cursor: grab;
 }
+
+/* Карусель */
+.circular-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    position: relative;
+    perspective: 1000px;
+    cursor: grab;
+    transition: opacity 0.3s ease; /* Добавляем переход для самого каруселя */
+}
+.circular-carousel:active {
+    cursor: grabbing;
+}
+
 
 .carousel-container {
     display: flex;
@@ -41,12 +49,14 @@
     width: 100%;
 }
 
+/* Карточки */
 .card-wrapper {
     position: absolute;
-    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+    will-change: transform, opacity;
+    transition-property: transform, opacity, filter;
 }
-
 /* Позиции карточек */
 .position--2 {
     transform: translateX(-280px) scale(0.7) rotateY(15deg);
@@ -82,57 +92,103 @@
     filter: blur(1px);
 }
 
-/* Базовые стили карточки */
+/* Карточка разработчика */
 .developer-card {
     position: relative;
     width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+    transition-property: transform, opacity; /* Явное указание свойств */
 }
 
-/* Активная карточка */
 .developer-card.active {
     opacity: 1;
     transform: scale(1);
 }
 
-/* Неактивные карточки */
 .developer-card:not(.active) {
     opacity: 0.7;
     transform: scale(0.9);
 }
 
-/* Видео в активной карточке */
+/* Видео */
+.developer-video {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: var(--br);
+    display: block;
+    background: #111;
+    user-select: none;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, filter;
+    transition-property: transform, filter, box-shadow; /* Явное указание */
+}
+
 .active-video {
     transform: scale(1);
     filter: brightness(1);
     box-shadow: 0 20px 40px rgba(0, 191, 255, 0.3);
 }
 
-/* Видео в неактивных карточках */
 .developer-video:not(.active-video) {
     transform: scale(0.95);
     filter: brightness(0.8);
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
-
-.developer-video {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-    background: #111;
-    user-select: none;
-    transition: all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+/* Обновляем медиа-запросы чтобы тоже имели плавные переходы */
+@media screen and (max-width: 1024px) {
+    .card-wrapper {
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 }
 
-/* Имя в активной карточке */
+@media screen and (max-width: 768px) {
+    .card-wrapper {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-wrapper {
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+}
+
+/* Добавляем класс для отключения переходов во время драга */
+.circular-carousel.no-transition .card-wrapper,
+.circular-carousel.no-transition .developer-card,
+.circular-carousel.no-transition .developer-video {
+    transition: none !important;
+}
+/* Нижняя часть карточки */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+/* Имя */
+.name {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: var(--manrope-font);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 .active-name {
-    position: relative;
     color: #ffffff;
+    font-size: 22px;
+    position: relative;
 }
 
 .active-name::after {
@@ -143,128 +199,10 @@
     width: 100%;
     height: 2px;
     background: #00bfff;
-    animation: underlineSlide 0.5s ease;
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.name:not(.active-name) {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-@keyframes underlineSlide {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-/* Кнопки навигации */
-.nav-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-}
-
-.nav-button:hover {
-    border-color: #00bfff;
-    background: rgba(0, 191, 255, 0.1);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.nav-button:first-of-type {
-    left: 20px;
-}
-
-.nav-button:last-of-type {
-    right: 20px;
-}
-
-/* Индикаторы */
-.indicators {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 40px;
-}
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.indicator.active {
-    background: #00bfff;
-    border-color: #00bfff;
-    transform: scale(1.2);
-}
-
-.indicator:hover {
-    border-color: #00bfff;
-    transform: scale(1.1);
-}
-
-.show-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-/* Адаптивность */
-@media screen and (max-width: 1024px) {
-    .position--2 { transform: translateX(-220px) scale(0.7); }
-    .position--1 { transform: translateX(-110px) scale(0.85); }
-    .position-1 { transform: translateX(110px) scale(0.85); }
-    .position-2 { transform: translateX(220px) scale(0.7); }
-    
-    .developer-card { width: 280px; }
-    .developer-video { height: 450px; }
-}
-
-@media screen and (max-width: 768px) {
-    .circular-carousel { height: 500px; }
-    
-    .position--2 { transform: translateX(-180px) scale(0.65); }
-    .position--1 { transform: translateX(-90px) scale(0.8); }
-    .position-1 { transform: translateX(90px) scale(0.8); }
-    .position-2 { transform: translateX(180px) scale(0.65); }
-    
-    .developer-card { width: 250px; }
-    .developer-video { height: 400px; }
-    
-    .nav-button {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .circular-carousel { height: 450px; }
-    
-    .position--2 { transform: translateX(-140px) scale(0.6); opacity: 0.2; }
-    .position--1 { transform: translateX(-70px) scale(0.75); opacity: 0.4; }
-    .position-1 { transform: translateX(70px) scale(0.75); opacity: 0.4; }
-    .position-2 { transform: translateX(140px) scale(0.6); opacity: 0.2; }
-    
-    .developer-card { width: 220px; }
-    .developer-video { height: 350px; }
-}
-
-/* Стили для кнопки "перейти" */
+/* Кнопка "перейти" */
 .button-portfolio {
     display: flex;
     align-items: center;
@@ -313,48 +251,7 @@
     font-weight: 500;
 }
 
-/* Курсор для интерактивных элементов */
-.card-wrapper {
-    cursor: pointer;
-}
-
-.circular-carousel {
-    cursor: grab;
-}
-
-.circular-carousel:active {
-    cursor: grabbing;
-}
-
-/* Улучшенные стили для карточек */
-.card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    padding: 0 10px;
-}
-
-.name {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
-    text-transform: uppercase;
-    margin: 0;
-    font-family: var(--manrope-font);
-    transition: all 0.5s ease;
-}
-
-.active-name {
-    color: #ffffff;
-    font-size: 22px;
-}
-
-
-/* Дополняем CSS стили */
-
-/* Стили для кнопки звука */
+/* Кнопка звука */
 .mute-btn {
     position: absolute;
     right: 12px;
@@ -362,7 +259,7 @@
     z-index: 10;
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: var(--br);
     border: 1px solid rgba(255, 255, 255, 0.6);
     background: rgba(0, 0, 0, 0.35);
     color: #fff;
@@ -371,7 +268,7 @@
     justify-content: center;
     backdrop-filter: blur(3px);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0.8;
 }
 
@@ -392,8 +289,124 @@
     background: rgba(0, 191, 255, 0.2);
 }
 
-/* Адаптивность для кнопки звука */
+/* Кнопки навигации */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.nav-button:hover:not(:disabled) {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: translateY(-50%) scale(0.95);
+}
+
+.nav-button:first-of-type {
+    left: 20px;
+}
+
+.nav-button:last-of-type {
+    right: 20px;
+}
+
+/* Индикаторы */
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--br);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.indicator.active {
+    background: #00bfff;
+    border-color: #00bfff;
+    transform: scale(1.2);
+}
+
+.indicator:hover:not(.disabled) {
+    border-color: #00bfff;
+    transform: scale(1.1);
+}
+
+.indicator.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.9);
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 1024px) {
+    .position--2 { transform: translateX(-220px) scale(0.7); }
+    .position--1 { transform: translateX(-110px) scale(0.85); }
+    .position-1 { transform: translateX(110px) scale(0.85); }
+    .position-2 { transform: translateX(220px) scale(0.7); }
+    
+    .developer-card { width: 280px; }
+    .developer-video { height: 450px; }
+}
+
 @media screen and (max-width: 768px) {
+    .developers {
+        padding: 60px 0;
+    }
+    
+    .developers-title {
+        font-size: 3rem;
+        margin-bottom: 100px;
+    }
+    
+    .container-dev {
+        padding: 0 20px;
+    }
+    
+    .circular-carousel { 
+        height: 500px; 
+    }
+    
+    .position--2 { transform: translateX(-180px) scale(0.65); }
+    .position--1 { transform: translateX(-90px) scale(0.8); }
+    .position-1 { transform: translateX(90px) scale(0.8); }
+    .position-2 { transform: translateX(180px) scale(0.65); }
+    
+    .developer-card { width: 250px; }
+    .developer-video { height: 400px; }
+    
+    .nav-button {
+        width: 40px;
+        height: 40px;
+    }
+    
     .mute-btn {
         width: 32px;
         height: 32px;
@@ -404,5 +417,60 @@
     .mute-btn svg {
         width: 16px;
         height: 16px;
+    }
+    
+    .name {
+        font-size: 18px;
+    }
+    
+    .active-name {
+        font-size: 20px;
+    }
+    
+    .button-portfolio span {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .developers {
+        padding: 40px 0;
+    }
+    
+    .developers-title {
+        font-size: 2.5rem;
+        margin-bottom: 80px;
+    }
+    
+    .circular-carousel { 
+        height: 450px; 
+    }
+    
+    .position--2 { transform: translateX(-140px) scale(0.6); opacity: 0.2; }
+    .position--1 { transform: translateX(-70px) scale(0.75); opacity: 0.4; }
+    .position-1 { transform: translateX(70px) scale(0.75); opacity: 0.4; }
+    .position-2 { transform: translateX(140px) scale(0.6); opacity: 0.2; }
+    
+    .developer-card { width: 220px; }
+    .developer-video { height: 350px; }
+    
+    .name {
+        font-size: 16px;
+    }
+    
+    .active-name {
+        font-size: 18px;
+    }
+    
+    .button-portfolio span {
+        font-size: 16px;
+    }
+    
+    .indicators {
+        margin-top: 30px;
+    }
+    
+    .show-more {
+        margin-top: 30px;
     }
 }
