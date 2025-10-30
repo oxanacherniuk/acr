@@ -1,5 +1,5 @@
 .StockHero {
-  background-color: #fff;
+  // background-color: #fff;
   padding: 128px 0;
 
   @media (min-width: 768px) {
@@ -30,14 +30,20 @@
       gap: 96px;
     }
   }
-
+.media-column{
+   @media (min-width: 1024px) {
+      position: absolute;
+      z-index: -1;
+      right: 0;
+    }
+}
   .content-column {
     display: flex;
     flex-direction: column;
     gap: 64px;
 
     @media (min-width: 1024px) {
-      grid-column: span 7 / span 7;
+      grid-column: span 8 / span 8;
     }
 
     .text-content {
@@ -69,11 +75,8 @@
       }
 
       .subtitle {
-        font-size: 1.875rem;
-        background: linear-gradient(to right, #111827, #4B5563);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        margin: 0;
+        
 
         @media (min-width: 768px) {
           font-size: 2.25rem;
@@ -89,7 +92,8 @@
       font-size: 1.25rem;
       line-height: 1.75;
       max-width: 42rem;
-
+      color: #fff;
+      margin: 0;
       @media (min-width: 768px) {
         font-size: 1.5rem;
       }
@@ -99,17 +103,17 @@
       padding-top: 24px;
 
       .cta-button {
-        background-color: #000;
-        color: #fff;
+        // background-color: #000;
+        // color: #fff;
         padding: 28px 48px;
         font-size: 1.125rem;
-        border: none;
-        border-radius: 8px;
+        // border: none;
+        // border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        // transition: background-color 0.3s ease;
 
         &:hover {
-          background-color: #374151;
+          // background-color: #374151;
         }
       }
     }

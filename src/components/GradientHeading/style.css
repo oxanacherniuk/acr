@@ -1,8 +1,5 @@
 /* ===== База: без «зебры», минимализм */
 .glossy-lite {
-  font-family: var(--manrope-font, system-ui);
-  font-weight: 700;
-  font-size: 4.5rem;
   display: inline-block;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -130,10 +130,10 @@
     transform: translateX(8px);
 }
 
-.service-link:hover .service-name span:nth-child(2n) {
+/* .service-link:hover .service-name span:nth-child(2n) {
     transform: translateX(12px);
     transition-delay: 0.05s;
-}
+} */
 
 .service-link:hover .service-name span:nth-child(3n) {
     transform: translateX(6px);

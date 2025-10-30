@@ -4,6 +4,9 @@
   padding: 128px 0;
   position: relative;
 }
+.StockFeatures .h2 {
+  margin: 0;
+}
 @media (min-width: 768px) {
   .StockFeatures {
     padding: 192px 0;
@@ -110,6 +113,10 @@
 .StockFeatures .features-section .feature-item {
   position: relative;
 }
+.StockFeatures .features-section .feature-item * {
+  opacity: 0.9;
+  transition: 300ms;
+}
 .StockFeatures .features-section .feature-item .feature-content {
   display: flex;
   align-items: flex-start;
@@ -126,9 +133,6 @@
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
-.feature-item:hover .StockFeatures .features-section .feature-item .icon-container .feature-icon {
-  opacity: 1;
-}
 .StockFeatures .features-section .feature-item .text-content {
   flex: 1;
   padding-top: 8px;
@@ -143,4 +147,7 @@
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, #1F2937, transparent);
+}
+.StockFeatures .features-section .feature-item:hover * {
+  opacity: 1;
 }

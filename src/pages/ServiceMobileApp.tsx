@@ -1,522 +1,283 @@
-import { useState, useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { HeaderLayout } from '../layout/Header/Header';
-import styles from './ServicePage.module.css';
-import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/mobile-app-service.webp';
-import { QuizLayout } from '../layout/Quiz/Quiz';
-import { FooterLayout } from '../layout/Footer/Footer';
-import { NavigationButton } from '../components/NavigationButton/NavigationButton';
-
-const schema = yup.object({
-    name: yup
-        .string()
-        .required('Имя обязательно для заполнения')
-        .min(2, 'Имя должно содержать минимум 2 символа')
-        .max(50, 'Имя слишком длинное')
-        .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/, 'Имя может содержать только буквы'),
-    email: yup
-        .string()
-        .required('Email обязателен для заполнения')
-        .email('Введите корректный email адрес'),
-    phone: yup
-        .string()
-        .required('Телефон обязателен для заполнения')
-        .min(4, 'Телефон должен содержать минимум 4 цифры')
-        .transform((value) => value.replace(/\D/g, ''))
-});
+import ServiceImage from "../assets/images/mobile-app-service.webp";
+import { ServiceLayout } from "../components/services/ServiceLayout";
+import { Breadcrumbs } from "../components/services/Breadcrumbs";
+import { ServiceBanner } from "../components/services/ServiceBanner";
+import { Section } from "../components/ui/Section";
+import { Container } from "../components/ui/Container";
+import { FeatureGrid } from "../components/services/FeatureGrid";
+import { FAQ } from "../components/services/FAQ";
+import "../styles/service.css";
+import s from "../styles/ServicePage.module.css";
+import ServiceHero from "../components/services/ServiceHero";
+import { ServiceTabs } from "../components/services/ServiceTabs";
+import * as yup from "yup";
+import { StagesTimeline } from "../components/services/StagesTimeline";
+import { ContactForm } from "../components/services/ContactForm";
+import { QuizLayout } from "../layout/Quiz/Quiz";
+import { InfoSection } from "../components/services/InfoSectionProps";
 
 export function ServiceMobileApp() {
-    const [activeTab, setActiveTab] = useState('development');
-    const [displayTitle, setDisplayTitle] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const tabsContentRef = useRef<HTMLDivElement>(null);
-    const tabsHeaderRef = useRef<HTMLDivElement>(null);
-    const tabBtnRefs = useRef<{
-        development: HTMLButtonElement | null;
-        design: HTMLButtonElement | null;
-        functionality: HTMLButtonElement | null;
-        publication: HTMLButtonElement | null;
-    }>({
-        development: null,
-        design: null,
-        functionality: null,
-        publication: null,
-    });
-    const fullText = "Мобильные приложения";
-    
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting, isValid },
-        reset,
-    } = useForm({
-        resolver: yupResolver(schema),
-        mode: 'onChange',
-        defaultValues: {
-            name: '',
-            email: '',
-            phone: ''
-        }
-    });
+  return (
+    <ServiceLayout>
+      <div className={s["service-top"]}>
+        <Breadcrumbs
+          title="Мобильные приложения"
+          links={[]}
+        />
+        <ServiceBanner
+          title="Мобильные приложения"
+          subtitle="Создаем нативные и кроссплатформенные мобильные приложения для iOS и Android с фокусом на пользовательский опыт и производительность."
+          imageSrc={ServiceImage}
+          imageAlt="Разработка мобильных приложений"
+        />
+      </div>
+      
+      <div className={s["service-page"]}>
+        <Section id="hero">
+          <Container>
+            <ServiceHero
+              title="создайте мобильное приложение, которое полюбят ваши пользователи"
+              description="Превратите вашу бизнес-идею в современное мобильное приложение, которое будет работать безупречно на iOS и Android."
+              buttonText="обсудить проект"
+              buttonLink="https://t.me/KP888_Bot"
+            />
+          </Container>
+        </Section>
 
-    const centerActiveTab = (key: 'development' | 'design' | 'functionality' | 'publication') => {
-        const container = tabsHeaderRef.current;
-        const btn = tabBtnRefs.current[key];
-        if (!container || !btn) return;
+        <Section id="benefits">
+          <Container title="почему выбирают мобильные приложения?">
+            <FeatureGrid
+              items={[
+                {
+                  title: "Прямой доступ <br /> к клиентам",
+                  text: "Ваше приложение всегда под рукой у пользователей",
+                },
+                {
+                  title: "Высокая <br /> производительность",
+                  text: "Нативные технологии обеспечивают максимальную скорость",
+                },
+                {
+                  title: "Оффлайн-<br />возможности",
+                  text: "Работайте даже без интернет-соединения",
+                },
+                {
+                  title: "Push-<br />уведомления",
+                  text: "Поддерживайте вовлеченность пользователей",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const cRect = container.getBoundingClientRect();
-        const bRect = btn.getBoundingClientRect();
+        <Section id="services">
+          <Container title="что входит в разработку мобильного приложения?">
+            <ServiceTabs
+              initialTab="development"
+              tabs={[
+                {
+                  id: "development",
+                  title: "Разработка",
+                  items: [
+                    { text: "Нативная разработка для iOS" },
+                    { text: "Нативная разработка для Android" },
+                    { text: "Кроссплатформенная разработка" },
+                    { text: "Архитектура приложения (MVP/MVVM)" },
+                    { text: "Интеграция с бэкенд-API" },
+                    { text: "Настройка серверной части" },
+                  ],
+                },
+                {
+                  id: "design",
+                  title: "Дизайн и UX",
+                  items: [
+                    { text: "UI/UX дизайн по гайдлайнам платформ" },
+                    { text: "Прототипирование и вайрфрейминг" },
+                    { text: "Адаптивный дизайн для всех устройств" },
+                    { text: "Разработка иконки и брендинга" },
+                    { text: "Анимации и микроинтеракции" },
+                    { text: "Тестирование юзабилити" },
+                  ],
+                },
+                {
+                  id: "functionality",
+                  title: "Функционал",
+                  items: [
+                    { text: "Push-уведомления" },
+                    { text: "Оффлайн-режим работы" },
+                    { text: "Интеграция с платежными системами" },
+                    { text: "Социальные авторизации" },
+                    { text: "Геолокация и карты" },
+                    { text: "Камера и галерея" },
+                    { text: "Чат и мессенджер" },
+                  ],
+                },
+                {
+                  id: "publication",
+                  title: "Публикация",
+                  items: [
+                    { text: "Подготовка к публикации в App Store" },
+                    { text: "Подготовка к публикации в Google Play" },
+                    { text: "Создание описаний и скриншотов" },
+                    { text: "Настройка метаданных" },
+                    { text: "Помощь с модерацией" },
+                    { text: "Техническая поддержка после запуска" },
+                  ],
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const currentLeft = container.scrollLeft;
-        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
-        const target = currentLeft + delta;
+        <Section id="solution">
+          <Container>
+            <InfoSection
+              title="инвестируйте в мобильное присутствие вашего бизнеса"
+              description="Мобильное приложение — это не просто тренд, а необходимость для современного бизнеса, которая увеличивает лояльность клиентов и открывает новые возможности для роста."
+              priceNotes={[
+                "Точная стоимость зависит от сложности приложения, количество экранов, интеграций и платформ",
+                "Техническая поддержка и обновления включены в стоимость",
+              ]}
+              price="от 250 000 ₽"
+              buttonLink="https://t.me/KP888_Bot"
+              buttonText="узнать стоимость"
+            />
+          </Container>
+        </Section>
 
-        const max = container.scrollWidth - container.clientWidth;
-        const next = Math.max(0, Math.min(max, target));
+        <Section id="process">
+          <Container>
+            <StagesTimeline
+              title="этапы создания вашего мобильного приложения"
+              stages={[
+                {
+                  stage: "Этап 1",
+                  title: "Анализ и планирование",
+                  description: "Изучаем требования, анализируем рынок, разрабатываем ТЗ",
+                },
+                {
+                  stage: "Этап 2",
+                  title: "Дизайн и прототипирование",
+                  description: "Создаем UI/UX дизайн и интерактивные прототипы",
+                },
+                {
+                  stage: "Этап 3",
+                  title: "Разработка",
+                  description: "Программируем приложение и интегрируем с бэкендом",
+                },
+                {
+                  stage: "Этап 4",
+                  title: "Тестирование",
+                  description: "Проводим комплексное тестирование на разных устройствах",
+                },
+                {
+                  stage: "Этап 5",
+                  title: "Публикация",
+                  description: "Помогаем с публикацией в App Store и Google Play",
+                },
+                {
+                  stage: "Этап 6",
+                  title: "Поддержка",
+                  description: "Обеспечиваем техническую поддержку и обновления",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        container.scrollTo({ left: next, behavior: 'smooth' });
-    };
+        <Section id="faq">
+          <Container title="ответы на частые вопросы">
+            <FAQ
+              items={[
+                {
+                  q: "Какие платформы вы поддерживаете?",
+                  a: "Мы разрабатываем приложения для iOS, Android, а также кроссплатформенные решения с использованием React Native",
+                },
+                {
+                  q: "Сколько времени занимает разработка?",
+                  a: "От 1 до 6 месяцев в зависимости от сложности приложения, количества экранов и интеграций",
+                },
+                {
+                  q: "Вы помогаете с публикацией в магазинах приложений?",
+                  a: "Да, мы полностью сопровождаем процесс публикации в App Store и Google Play",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-    useEffect(() => {
-        if (currentIndex < fullText.length) {
-            const timer = setTimeout(() => {
-                setDisplayTitle(prev => prev + fullText[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
-            }, 100);
+        <Section id="cta">
+          <Container>
+            <ContactForm
+              title="создайте мобильное приложение для вашего бизнеса!"
+              description="Оставьте контакты, и наш менеджер подготовит для вас индивидуальное коммерческое предложение в течение дня."
+              fields={[
+                {
+                  name: "name",
+                  type: "text",
+                  placeholder: "Ваше имя",
+                  validation: yup
+                    .string()
+                    .required("Имя обязательно для заполнения")
+                    .min(2, "Имя должно содержать минимум 2 символа")
+                    .max(50, "Имя слишком длинное")
+                    .matches(
+                      /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
+                      "Имя может содержать только буквы",
+                    ),
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Ваш e-mail",
+                  validation: yup
+                    .string()
+                    .required("Email обязателен для заполнения")
+                    .email("Введите корректный email адрес"),
+                },
+                {
+                  name: "phone",
+                  type: "tel",
+                  placeholder: "Ваш номер телефона",
+                  validation: yup
+                    .string()
+                    .required("Телефон обязателен для заполнения")
+                    .min(4, "Телефон должен содержать минимум 4 цифры")
+                    .transform((value: string) => value.replace(/\D/g, "")),
+                },
+                {
+                  name: "platform",
+                  type: "select",
+                  placeholder: "Целевые платформы",
+                  validation: yup.string(),
+                  options: [
+                    { value: "ios", label: "iOS" },
+                    { value: "android", label: "Android" },
+                    { value: "both", label: "iOS и Android" },
+                    { value: "cross", label: "Кроссплатформенное" },
+                  ],
+                },
+                {
+                  name: "app_type",
+                  type: "select",
+                  placeholder: "Тип приложения",
+                  validation: yup.string(),
+                  options: [
+                    { value: "business", label: "Бизнес-приложение" },
+                    { value: "ecommerce", label: "Интернет-магазин" },
+                    { value: "service", label: "Сервисное приложение" },
+                    { value: "social", label: "Социальная сеть" },
+                    { value: "game", label: "Игра" },
+                    { value: "other", label: "Другое" },
+                  ],
+                },
+              ]}
+              submitText="Получить КП"
+            />
+          </Container>
+        </Section>
 
-            return () => clearTimeout(timer);
-        }
-    }, [currentIndex, fullText]);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    useEffect(() => {
-        if (!isMobile) return;
-        requestAnimationFrame(() => centerActiveTab(activeTab as 'development' | 'design' | 'functionality' | 'publication'));
-    }, [activeTab, isMobile]);
-
-    const handleSwipe = (direction: 'left' | 'right') => {
-        const tabs = ['development', 'design', 'functionality', 'publication'];
-        const currentIndex = tabs.indexOf(activeTab);
-        
-        if (direction === 'left' && currentIndex < tabs.length - 1) {
-            setActiveTab(tabs[currentIndex + 1]);
-        } else if (direction === 'right' && currentIndex > 0) {
-            setActiveTab(tabs[currentIndex - 1]);
-        }
-    };
-
-    const setupSwipe = (element: HTMLElement) => {
-        let startX: number;
-        let startY: number;
-        let distX: number;
-        let distY: number;
-        const threshold = 50;
-        const restraint = 100;
-        const allowedTime = 300;
-
-        let startTime: number;
-
-        element.addEventListener('touchstart', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            startX = touchObj.pageX;
-            startY = touchObj.pageY;
-            startTime = new Date().getTime();
-            e.preventDefault();
-        }, false);
-
-        element.addEventListener('touchend', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            distX = touchObj.pageX - startX;
-            distY = touchObj.pageY - startY;
-            const elapsedTime = new Date().getTime() - startTime;
-
-            if (elapsedTime <= allowedTime) {
-                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-                    if (distX > 0) {
-                        handleSwipe('right');
-                    } else {
-                        handleSwipe('left');
-                    }
-                }
-            }
-            e.preventDefault();
-        }, false);
-    };
-
-    useEffect(() => {
-        if (isMobile && tabsContentRef.current) {
-            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
-            if (tabPanel) {
-                setupSwipe(tabPanel as HTMLElement);
-            }
-        }
-    }, [isMobile, activeTab]);
-
-    const onSubmit = async (data: { phone: string; }) => {
-        try {
-            const formattedData = {
-                ...data,
-                phone: data.phone.replace(/\D/g, '')
-            };
-
-            console.log('Данные формы:', formattedData);
-            
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            alert('Замечательно! Мы скоро с Вами свяжемся');
-            reset();
-        } catch (error) {
-            console.error('Ошибка отправки:', error);
-            alert('Произошла ошибка при отправке формы');
-        }
-    };
-
-    return (
-        <div>
-            <HeaderLayout />
-            <div className={styles['service-page__top']}> 
-                <div className='container'>
-                    <div className='breadCrumbs'>
-                        <a className='breadCrumbs-item' href="/services">услуги</a><span>|</span>
-                        <p className='breadCrumbs-item end'>
-                            {displayTitle}
-                        </p>
-                    </div>
-                    <div className={styles['service-header']}>
-                        <div className={styles['service-header-content']}>
-                            <h1 className={styles['service-title']}>
-                                {displayTitle}
-                                {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
-                            </h1>
-                            <p className={styles['service-subtitle']}>
-                                Создаем нативные и кроссплатформенные мобильные приложения для iOS и Android 
-                                с фокусом на пользовательский опыт и производительность.
-                            </p>
-                        </div>
-                        
-                        <div className={styles['service-image']}>
-                            <img 
-                                src={ServiceImage}
-                                alt="Разработка мобильных приложений" 
-                                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles['service-page']}>
-                <div className='container'>
-                    <div className={styles['hero-block']}>
-                        <div className={styles['hero-content']}>
-                            <h2>создайте мобильное приложение, которое полюбят ваши пользователи</h2>
-                            <p>
-                                Превратите вашу бизнес-идею в современное мобильное приложение, 
-                                которое будет работать безупречно на iOS и Android.
-                            </p>
-                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'обсудить проект'} />
-                        </div>
-                    </div>
-
-                    <div className={styles['benefits-section']}>
-                        <h3>почему выбирают мобильные приложения?</h3>
-                        <div className={styles['benefits-grid']}>
-                            <div className={styles['benefit-item']}>
-                                <h4>Прямой доступ к клиентам</h4>
-                                <p>Ваше приложение всегда под рукой у пользователей</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Высокая производительность</h4>
-                                <p>Нативные технологии обеспечивают максимальную скорость</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Оффлайн-возможности</h4>
-                                <p>Работайте даже без интернет-соединения</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Push-уведомления</h4>
-                                <p>Поддерживайте вовлеченность пользователей</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles['service-content']}>
-                        <div className={styles['service-info']}> 
-                            <div className={styles['info-section']}>
-                                <h3>что входит в разработку мобильного приложения?</h3>
-                                
-                                <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.development = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'development' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('development'); 
-                                                if (isMobile) centerActiveTab('development'); 
-                                            }}
-                                        >
-                                            Разработка
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.design = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'design' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('design'); 
-                                                if (isMobile) centerActiveTab('design'); 
-                                            }}
-                                        >
-                                            Дизайн и UX
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.functionality = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'functionality' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('functionality'); 
-                                                if (isMobile) centerActiveTab('functionality'); 
-                                            }}
-                                        >
-                                            Функционал
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.publication = el; }}
-                                            className={`${styles['tab-button']} ${activeTab === 'publication' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveTab('publication'); 
-                                                if (isMobile) centerActiveTab('publication'); 
-                                            }}
-                                        >
-                                            Публикация
-                                        </button>
-                                    </div>
-
-                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
-                                        {activeTab === 'development' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Нативная разработка для iOS</li>
-                                                    <li>Нативная разработка для Android</li>
-                                                    <li>Кроссплатформенная разработка</li>
-                                                    <li>Архитектура приложения (MVP/MVVM)</li>
-                                                    <li>Интеграция с бэкенд-API</li>
-                                                    <li>Настройка серверной части</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'design' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>UI/UX дизайн по гайдлайнам платформ</li>
-                                                    <li>Прототипирование и вайрфрейминг</li>
-                                                    <li>Адаптивный дизайн для всех устройств</li>
-                                                    <li>Разработка иконки и брендинга</li>
-                                                    <li>Анимации и микроинтеракции</li>
-                                                    <li>Тестирование юзабилити</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'functionality' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Push-уведомления</li>
-                                                    <li>Оффлайн-режим работы</li>
-                                                    <li>Интеграция с платежными системами</li>
-                                                    <li>Социальные авторизации</li>
-                                                    <li>Геолокация и карты</li>
-                                                    <li>Камера и галерея</li>
-                                                    <li>Чат и мессенджер</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                        {activeTab === 'publication' && (
-                                            <div className={styles['tab-panel']}>
-                                                <ul>
-                                                    <li>Подготовка к публикации в App Store</li>
-                                                    <li>Подготовка к публикации в Google Play</li>
-                                                    <li>Создание описаний и скриншотов</li>
-                                                    <li>Настройка метаданных</li>
-                                                    <li>Помощь с модерацией</li>
-                                                    <li>Техническая поддержка после запуска</li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section']}>
-                                <h3>инвестируйте в мобильное присутствие вашего бизнеса</h3>
-                                <p className={styles['price-note']}>
-                                    Мобильное приложение — это не просто тренд, а необходимость 
-                                    для современного бизнеса, которая увеличивает лояльность 
-                                    клиентов и открывает новые возможности для роста.
-                                </p>
-                                
-                                <div className={styles['price-block']}>
-                                    <p className={styles['price-note']}>
-                                        Точная стоимость зависит от сложности приложения, 
-                                        количество экранов, интеграций и платформ
-                                    </p>
-                                    <p className={styles['price-note']}>
-                                        Техническая поддержка и обновления включены в стоимость
-                                    </p>
-                                    <div className={styles['price-inner']}>
-                                        <span className={styles['main-price']}>от 250 000 ₽</span>
-                                        <NavigationButton to={'https://t.me/KP888_Bot'} children={'узнать стоимость'} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section__stages']}>
-                                <h3>этапы создания вашего мобильного приложения</h3>
-                                <div className={styles['timeline']}>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 1</span>
-                                        <h4>Анализ и планирование</h4>
-                                        <p>Изучаем требования, анализируем рынок, разрабатываем ТЗ</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 2</span>
-                                        <h4>Дизайн и прототипирование</h4>
-                                        <p>Создаем UI/UX дизайн и интерактивные прототипы</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 3</span>
-                                        <h4>Разработка</h4>
-                                        <p>Программируем приложение и интегрируем с бэкендом</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 4</span>
-                                        <h4>Тестирование</h4>
-                                        <p>Проводим комплексное тестирование на разных устройствах</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 5</span>
-                                        <h4>Публикация</h4>
-                                        <p>Помогаем с публикацией в App Store и Google Play</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>Этап 6</span>
-                                        <h4>Поддержка</h4>
-                                        <p>Обеспечиваем техническую поддержку и обновления</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section__faq']}>
-                                <h3>ответы на частые вопросы</h3>
-                                <div className={styles['faq']}>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Какие платформы вы поддерживаете?</h4>
-                                        <p>Мы разрабатываем приложения для iOS, Android, а также кроссплатформенные решения с использованием React Native</p>
-                                    </div>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Сколько времени занимает разработка?</h4>
-                                        <p>От 1 до 6 месяцев в зависимости от сложности приложения, количества экранов и интеграций</p>
-                                    </div>
-                                    <div className={styles['faq-item']}>
-                                        <h4>Вы помогаете с публикацией в магазинах приложений?</h4>
-                                        <p>Да, мы полностью сопровождаем процесс публикации в App Store и Google Play</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section']}>
-                                <h3>создайте мобильное приложение для вашего бизнеса!</h3>
-                                <p>Оставьте контакты, и наш менеджер подготовит для вас индивидуальное коммерческое предложение в течение дня.</p>
-                                
-                                <form 
-                                    className={styles['contact-form']} 
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                >
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваше имя' 
-                                            className={`${styles['contact-input']} ${errors.name ? styles['input-error'] : ''}`}
-                                            type="text"
-                                            {...register('name')}
-                                        />
-                                        {errors.name && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.name.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш e-mail' 
-                                            className={`${styles['contact-input']} ${errors.email ? styles['input-error'] : ''}`}
-                                            type="email"
-                                            {...register('email')}
-                                        />
-                                        {errors.email && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.email.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш номер телефона' 
-                                            className={`${styles['contact-input']} ${errors.phone ? styles['input-error'] : ''}`}
-                                            type="tel"
-                                            {...register('phone')}
-                                        />
-                                        {errors.phone && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.phone.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['form-footer']}>
-                                        <p className={styles['privacy-text']}>
-                                            Отправляя заявку, вы соглашаетесь с Политикой обработки персональных данных и Правилами пользования сайта
-                                        </p>
-                                        
-                                        <button 
-                                            type="submit" 
-                                            className={styles['contact-button']}
-                                            disabled={isSubmitting || !isValid}
-                                        >
-                                            {isSubmitting ? 'Отправка...' : 'Получить КП'}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className={styles['service-cta']}>
-                            <a 
-                                href="https://t.me/KP888_Bot" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className={styles['cta-button']}
-                            >
-                                Обсудить проект
-                                <img src={TelegramIcon} alt="Telegram" />
-                            </a>
-                        </div>
-                    </div>
-                    <QuizLayout />
-                </div>
-            </div>
-            <FooterLayout />
-        </div>
-    );
+        <QuizLayout />
+      </div>
+    </ServiceLayout>
+  );
 }

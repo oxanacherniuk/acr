@@ -15,8 +15,8 @@ import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
-import ServiceMp4 from "../assets/video/lending.mp4";
-import ServiceWebm from "../assets/video/lending.webm"
+import ServiceMp4 from "../assets/video/lending2.mp4";
+import ServiceWebm from "../assets/video/lending2.webm"
 export default function ServiceLandings() {
   return (
     <ServiceLayout>
@@ -54,7 +54,7 @@ export default function ServiceLandings() {
         <Section id="hero">
           <Container>
             <ServiceHero
-              title="запустите продажи с мощного лендинга <br><span style='color:var(--accent-light)'>за 10 дней</span>"
+              title="запустите продажи с мощного лендинга <span style='color:var(--accent-light)'>за 10 дней</span>"
               description="Функциональный одностраничный сайт - идеальное решение для эффективного продвижения и демонстрации сильных сторон продукта."
               buttonText="заказать лендинг"
               buttonLink="https://t.me/KP888_Bot"

@@ -1,13 +1,24 @@
 import s from "../../styles/ServicePage.module.css";
 import { NavigationButton } from "../NavigationButton/NavigationButton";
 
+export interface OptionItem {
+  name: string;
+  price: string;
+}
+
+export interface AdditionalOptions {
+  title: string;
+  items: OptionItem[];
+}
+
 export interface InfoSectionProps {
   title: string;
   description: string;
-  priceNotes?: string[] ;
+  priceNotes?: string[];
   price: string;
   buttonLink: string;
   buttonText: string;
+  additionalOptions?: AdditionalOptions;
 }
 
 export function InfoSection({
@@ -16,12 +27,13 @@ export function InfoSection({
   priceNotes,
   price,
   buttonLink,
-  buttonText
+  buttonText,
+  additionalOptions
 }: InfoSectionProps) {
   return (
     <div className={s['info-section']}>
-      <h3>{title}</h3>
-      <p className={s['price-note']}>{description}</p>
+      <h3 className="glossy-lite text-silver-blue-dark h2">{title}</h3>
+      <p className={s['info-section__text']}>{description}</p>
       
       <div className={s['price-block']}>
         {priceNotes && priceNotes.map((note, index) => (
@@ -34,6 +46,20 @@ export function InfoSection({
           <span className={s['main-price']}>{price}</span>
           <NavigationButton to={buttonLink}>{buttonText}</NavigationButton>
         </div>
+
+        {additionalOptions && (
+          <div className={s['additional-options']}>
+            <h3>{additionalOptions.title}</h3>
+            <div className={s['additional-options-grid']}>
+              {additionalOptions.items.map((option, index) => (
+                <div key={index} className={s['option-item']}>
+                  <div className={s['option-name']}>{option.name}</div>
+                  <div className={s['option-price']}>{option.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

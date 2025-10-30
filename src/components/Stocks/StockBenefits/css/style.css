@@ -27,6 +27,7 @@
 }
 .SBenefits .section-header .header-content {
   flex: 1;
+  display: flex;
 }
 .SBenefits .section-header .section-title {
   font-size: 3rem;
@@ -126,4 +127,13 @@
   color: #9CA3AF;
   line-height: 1.75;
   font-size: 1.125rem;
+}
+.SBenefits .benefit-item:hover .benefit-number {
+  opacity: 0.3;
+}
+.SBenefits .benefit-item:hover .benefit-icon {
+  opacity: 1;
+}
+.SBenefits .benefit-item:hover .h3 {
+  opacity: 1;
 }

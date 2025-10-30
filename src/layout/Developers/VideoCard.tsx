@@ -11,6 +11,8 @@ type VideoCardProps = {
   isDragging: boolean;
   isActive: boolean;
   isMobile: boolean;
+  setMuted: () => void;
+  muted: boolean;
 };
 
 export function VideoCard({
@@ -22,9 +24,10 @@ export function VideoCard({
   isDragging,
   isActive,
   isMobile,
+  setMuted,
+  muted
 }: VideoCardProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
   const [isIntersecting, setIntersecting] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -74,7 +77,7 @@ export function VideoCard({
   const toggleMute: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    setMuted((m) => !m);
+    setMuted();
   };
 
   // Определяем классы

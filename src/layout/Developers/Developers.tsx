@@ -46,6 +46,7 @@ export function DevelopersLayout(): JSX.Element {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [isMobile, _] = useState(false);
+    const [muted, setMuted] = useState(true);
 
     // Убираем состояние isTransitioning - теперь анимация чисто на CSS
 
@@ -175,7 +176,7 @@ export function DevelopersLayout(): JSX.Element {
         <div className={styles['developers']} ref={sectionRef}>
             <div className='container'>
                 <MoveLeft>
-                    <GradientHeading as='h2' theme="onDark" track="element" className={styles["developers-title"]}>
+                    <GradientHeading as='h2' theme="onDark" track="element" className="h2">
                         команда
                     </GradientHeading>
                 </MoveLeft>
@@ -233,6 +234,8 @@ export function DevelopersLayout(): JSX.Element {
                                     isDragging={isDragging}
                                     isActive={position === 0}
                                     isMobile={isMobile}
+                                    setMuted={()=> setMuted((m) => !m)}
+                                    muted={muted}
                                 />
                             </div>
                         ))}

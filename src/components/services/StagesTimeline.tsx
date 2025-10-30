@@ -63,7 +63,7 @@ export function StagesTimeline({ title, stages }: StagesTimelineProps) {
 
   return (
     <div className={s['info-section__stages']}>
-      <h3>{title}</h3>
+      <h3 className='glossy-lite text-silver-blue-dark h2'>{title}</h3>
       
       <div className={s['timeline-container']}>
         <button 

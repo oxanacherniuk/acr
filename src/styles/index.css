@@ -42,19 +42,11 @@ html {
   user-select: none;
 
   font-family: var(--manrope-font);
-}
 
-body,
-p,
-h1,
-h2,
-h3,
-ul,
-ol,
-button {
   margin: 0;
   padding: 0;
 }
+
 
 body {
   overflow-x: hidden;
@@ -63,9 +55,7 @@ body {
 .row {
   display: flex;
 }
-.h2{
-  
-}
+
 .container {
   width: 100%;
   max-width: 100%;
@@ -187,12 +177,38 @@ img {
 }
 
 h3 {
-  text-align: left;
+  /* text-align: left;
   font-family: var(--manrope-font);
   margin-bottom: 60px;
-  color: var(--accent-light);
-  font-size: 2.5rem;
+  color: var(--accent-light); */
+  font-size: clamp(16px, 2.5rem, 2.5rem);
 }
+
+.h2 {
+  font-size: clamp(18px, 3.5rem, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 60px;
+}
+
+.h3 {
+  font-size: clamp(16px, 2.5rem, 2.5rem);
+  margin-bottom: 30px;
+
+}
+.text{
+  font-size: clamp(14px, 1.5rem, 1.5rem);
+
+}
+.tBlue{
+  color: var(--accent-light);
+  opacity: .8;
+}
+.tCaps{
+  text-transform: uppercase;
+}
+/* декоративные элементы */
+
+/* декоративные элементы */
 /* хлебные крошки start */
 .breadCrumbs {
   display: flex;
@@ -208,14 +224,16 @@ h3 {
 }
 
 .breadCrumbs-item {
-  color: var(--accent-dark);
+  color: var(--silver-light);
   font-size: 1rem;
   font-family: var(--manrope-font);
   text-transform: uppercase;
 
   transition: 300ms;
 }
-
+.breadCrumbs-item ~ span {
+  color: var(--silver-light);
+}
 .breadCrumbs-item:hover {
   color: var(--accent-light);
 }
@@ -242,7 +260,7 @@ h3 {
   border-radius: var(--br);
   background: transparent;
   color: var(--accent-light);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 
   transition: all 0.3s ease;
 }
@@ -250,31 +268,40 @@ h3 {
 .butt:hover:not(:disabled) {
   background: transparent;
   color: var(--accent-light);
+  border-color: var(--accent-light);
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 136, 255, 0.3);
 }
-
+.butt:hover:not(:disabled) span {
+  color: var(--accent-light);
+  transform: scale(1.2);
+}
 .butt:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
 .butt::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 191, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: ripple 0.6s ease-out;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+}
+.butt span {
+  font-weight: 300;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  color: white;
 }
 /* стриль кнопки  end */
 
 /* ===== 1. Фоновый градиент (металлический / серебристо-голубой) ===== */
-
 
 .text-logo-on-white {
   font-size: 4.5rem;

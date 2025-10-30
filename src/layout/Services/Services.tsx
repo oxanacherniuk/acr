@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { websiteTypes } from "./variables";
 import { MoveLeft, MoveUp } from "../../components/Motions";
 import GradientHeadingLite from "../../components/GradientHeading/GradientHeading";
+import TextEffect from "../../components/HoverText";
 
 export function ServicesLayout() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -104,7 +105,7 @@ export function ServicesLayout() {
               as="h2"
               theme="onDark"
               track="element"
-              className={styles["developers-title"]}
+              className={"h2"}
             >
               услуги
             </GradientHeadingLite>
@@ -122,7 +123,7 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>РАЗРАБОТКА САЙТОВ</h3>
+                <TextEffect text="РАЗРАБОТКА САЙТОВ" className={styles["service-name"]}/>
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -142,7 +143,8 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>УМНЫЕ ЧАТ-БОТЫ</h3>
+                <TextEffect text="УМНЫЕ ЧАТ-БОТЫ" className={styles["service-name"]}/>
+
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -161,7 +163,7 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>ВНЕДРЕНИЕ ИИ</h3>
+                <TextEffect text="ВНЕДРЕНИЕ ИИ" className={styles["service-name"]}/>
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -181,9 +183,9 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>
-                  РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ
-                </h3>
+                <TextEffect text="РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ" className={styles["service-name"]}/>
+
+               
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -203,7 +205,8 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>ДИЗАЙН</h3>
+                <TextEffect text="ДИЗАЙН" className={styles["service-name"]}/>
+
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -223,7 +226,7 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <h3 className={styles["service-name"]}>DIGITAL-МАРКЕТИНГ</h3>
+                <TextEffect text="DIGITAL-МАРКЕТИНГ" className={styles["service-name"]}/>
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>

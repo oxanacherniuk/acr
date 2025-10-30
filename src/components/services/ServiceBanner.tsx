@@ -1,7 +1,7 @@
 import { Container } from "../ui/Container";
-import { useTypingTitle } from "../../hooks/useTypingTitle";
 import s from "../../styles/ServicePage.module.css";
 import { useEffect, useMemo, useState } from "react";
+import TextEffect from "../HoverText";
 
 type VideoSources = {
   webm?: string;
@@ -23,7 +23,7 @@ type Props = {
 };
 
 export function ServiceBanner({ title, subtitle, imageSrc, imageAlt, video }: Props) {
-  const { display, index } = useTypingTitle(title);
+  // const { display, index } = useTypingTitle(title);
   const [canPlayVideo, setCanPlayVideo] = useState(false);
 
   // Проверяем поддержку хотя бы одного из заявленных форматов
@@ -61,9 +61,11 @@ export function ServiceBanner({ title, subtitle, imageSrc, imageAlt, video }: Pr
     <Container>
       <div className={s["service-header"]}>
         <div className={s["service-header-content"]}>
-          <h1 className={s["service-title"]}>
+          <TextEffect text={title} className={s["service-title"]}/>
+
+          {/* <h1 className={s["service-title"]}>
             {display}{index < title.length && <span>|</span>}
-          </h1>
+          </h1> */}
           <p className={s["service-subtitle"]}>{subtitle}</p>
         </div>
 

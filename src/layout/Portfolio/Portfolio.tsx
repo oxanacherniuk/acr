@@ -204,7 +204,7 @@ export function PortfolioLayout() {
       <div className="container">
         <GradientHeadingLite
           as="p"
-          className={styles["portfolio-title"]}
+          className="h2"
           blueBoost={20}
           track="viewport"
           baseAngle={25}
