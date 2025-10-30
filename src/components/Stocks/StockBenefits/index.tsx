@@ -25,7 +25,7 @@ export default function StockBenefits({ data }: StockBenefitsProps) {
               as="h2"
               theme="onDark"
               track="element"
-              className="section-title"
+              className="h2"
             >
               Ключевые выгоды
             </GradientHeadingLite>
@@ -51,7 +51,7 @@ export default function StockBenefits({ data }: StockBenefitsProps) {
                   <div className="benefit-main">
                     <Icon className="benefit-icon" />
                     <div className="benefit-text">
-                      <h3 className="benefit-title">{benefit.title}</h3>
+                      <h3 className="h3 tBlue">{benefit.title}</h3>
                       <p className="benefit-description">{benefit.text}</p>
                     </div>
                   </div>

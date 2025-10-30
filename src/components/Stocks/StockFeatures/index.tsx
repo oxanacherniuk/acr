@@ -1,7 +1,7 @@
 import type { LucideProps } from "lucide-react";
 import type { ForwardRefExoticComponent } from "react";
 import "./css/style.css";
-import GradientHeadingLite from "../../GradientHeading/GradientHeading";
+// import GradientHeadingLite from "../../GradientHeading/GradientHeading";
 
 interface StockFeaturesProps {
   data: {
@@ -23,14 +23,9 @@ export default function StockFeatures({ data }: StockFeaturesProps) {
           {/* Левая часть - Заголовок */}
           <div className="header-section">
             <div className="header-content">
-              <GradientHeadingLite
-                as="h2"
-                theme="onDark"
-                track="element"
-                className="main-title"
-              >
+              <h2 className="glossy-lite text-silver-blue-dark h2">
                 Как это работает?
-              </GradientHeadingLite>
+              </h2>
               <div className="title-divider"></div>
             </div>
 

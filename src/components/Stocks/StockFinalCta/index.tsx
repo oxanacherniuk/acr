@@ -32,7 +32,7 @@ export default function StockFinalCta({ data }: StockFinalCtaProps) {
                   as="h2"
                   theme="onDark"
                   track="element"
-                  className="main-title"
+                  className="h2"
                 >
                   {data.title}
                 </GradientHeadingLite>
@@ -43,7 +43,7 @@ export default function StockFinalCta({ data }: StockFinalCtaProps) {
               </div>
 
               <div className="actions-section">
-                <button className="cta-button">
+                <button className="cta-button butt">
                   {data.button}
                   <ArrowRight className="button-icon" />
                 </button>

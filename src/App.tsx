@@ -11,7 +11,7 @@ import DeveloperPage from "./pages/developerPage";
 import ServiceDesign from "./pages/ServiceDesign";
 import { ServiceMobileApp } from "./pages/ServiceMobileApp";
 import ServiceAI from "./pages/ServiceAI";
-import { ServiceWebApp } from "./pages/ServiceWebApp";
+// import { ServiceWebApp } from "./pages/ServiceWebApp";
 import ServiceChatBots from "./pages/ServiceChatBots";
 import Services from "./pages/Services";
 import CompanyPage from "./pages/Company";
@@ -126,14 +126,14 @@ function AppRoutes() {
           </div>
         }
       />
-      <Route
+      {/* <Route
         path="/services/web-app"
         element={
           <div className="page-container">
             <ServiceWebApp />
           </div>
         }
-      />
+      /> */}
       <Route path="/services/chat-bots" element={<ServiceChatBots />} />
       <Route
         path="/services/ai"

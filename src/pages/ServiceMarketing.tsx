@@ -1,499 +1,268 @@
-import { useState, useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { HeaderLayout } from '../layout/Header/Header';
-import styles from './ServicePage.module.css';
-import TelegramIcon from '../assets/images/tg.svg';
-import ServiceImage from '../assets/images/marketing.webp';
-import { QuizLayout } from '../layout/Quiz/Quiz';
-import { FooterLayout } from '../layout/Footer/Footer';
-import { NavigationButton } from '../components/NavigationButton/NavigationButton';
-
-const schema = yup.object({
-    name: yup
-        .string()
-        .required('Имя обязательно для заполнения')
-        .min(2, 'Имя должно содержать минимум 2 символа')
-        .max(50, 'Имя слишком длинное')
-        .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/, 'Имя может содержать только буквы'),
-    email: yup
-        .string()
-        .required('Email обязателен для заполнения')
-        .email('Введите корректный email адрес'),
-    phone: yup
-        .string()
-        .required('Телефон обязателен для заполнения')
-        .min(4, 'Телефон должен содержать минимум 4 цифры')
-        .transform((value) => value.replace(/\D/g, ''))
-});
+import ServiceImage from "../assets/images/marketing.webp";
+import { ServiceLayout } from "../components/services/ServiceLayout";
+import { Breadcrumbs } from "../components/services/Breadcrumbs";
+import { ServiceBanner } from "../components/services/ServiceBanner";
+import { Section } from "../components/ui/Section";
+import { Container } from "../components/ui/Container";
+import { FeatureGrid } from "../components/services/FeatureGrid";
+import { FAQ } from "../components/services/FAQ";
+import "../styles/service.css";
+import s from "../styles/ServicePage.module.css";
+import ServiceHero from "../components/services/ServiceHero";
+import { ServiceTabs } from "../components/services/ServiceTabs";
+import * as yup from "yup";
+import { StagesTimeline } from "../components/services/StagesTimeline";
+import { ContactForm } from "../components/services/ContactForm";
+import { QuizLayout } from "../layout/Quiz/Quiz";
 
 export function ServiceMarketing() {
-    const [activeService, setActiveService] = useState('complex');
-    const [displayTitle, setDisplayTitle] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const tabsContentRef = useRef<HTMLDivElement>(null);
-    const tabsHeaderRef = useRef<HTMLDivElement>(null);
-    const tabBtnRefs = useRef<{
-        complex: HTMLButtonElement | null;
-        audit: HTMLButtonElement | null;
-        strategy: HTMLButtonElement | null;
-        smm: HTMLButtonElement | null;
-    }>({
-        complex: null,
-        audit: null,
-        strategy: null,
-        smm: null,
-    });
-    const fullText = "DIGITAL-МАРКЕТИНГ";
-    
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting, isValid },
-        reset,
-    } = useForm({
-        resolver: yupResolver(schema),
-        mode: 'onChange',
-        defaultValues: {
-            name: '',
-            email: '',
-            phone: '',
-        }
-    });
+  return (
+    <ServiceLayout>
+      <div className={s["service-top"]}>
+        <Breadcrumbs
+          title="DIGITAL-МАРКЕТИНГ"
+          links={[]}
+        />
+        <ServiceBanner
+          title="DIGITAL-МАРКЕТИНГ"
+          subtitle="Мы не просто настраиваем рекламу. Мы выстраиваем единую систему привлечения и удержания клиентов, где каждый рубль работает на окупаемость."
+        //   description="От стратегии до запуска и полной аналитики."
+          imageSrc={ServiceImage}
+          imageAlt="Digital-маркетинг"
+        />
+      </div>
+      
+      <div className={s["service-page"]}>
+        <Section id="hero">
+          <Container>
+            <ServiceHero
+              title="Digital-маркетинг, который <br /><span style='color:var(--accent-light)'>считает вашу прибыль</span>"
+              description="Мы выстраиваем комплексную систему продвижения, где все каналы работают согласованно на ваш результат."
+              buttonText="заказать аудит и стратегию"
+              buttonLink="https://t.me/KP888_Bot"
+            />
+          </Container>
+        </Section>
 
-    const centerActiveTab = (key: 'complex' | 'audit' | 'strategy' | 'smm') => {
-        const container = tabsHeaderRef.current;
-        const btn = tabBtnRefs.current[key];
-        if (!container || !btn) return;
+        <Section id="benefits">
+          <Container title="наша философия в маркетинге">
+            <FeatureGrid
+              items={[
+                {
+                  title: "Глубина прежде <br /> действий",
+                  text: "Мы не бросаемся в рекламу. Сначала мы проводим глубокий аудит, анализируем вашу ЦА и рынок. Каждая наша гипотеза основана на данных.",
+                },
+                {
+                  title: "Комплексность <br /> и синергия",
+                  text: "Мы связываем все каналы продвижения (SEO, контекст, SMM) в единую экосистему. Это убирает конфликт каналов и повышает общую эффективность.",
+                },
+                {
+                  title: "Прозрачность <br /> и результат",
+                  text: "Мы считаем деньги. Вы всегда видите, какой канал сколько принес и какова окупаемость. Наша цель — не потратить бюджет, а заработать для вас.",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const cRect = container.getBoundingClientRect();
-        const bRect = btn.getBoundingClientRect();
+        <Section id="services">
+          <Container title="Полный цикл услуг для вашего роста">
+            <ServiceTabs
+              initialTab="complex"
+              tabs={[
+                {
+                  id: "complex",
+                  title: "Комплексное продвижение",
+                  items: [
+                    { text: "SEO-оптимизация" },
+                    { text: "Ведение и стратегия контекстной рекламы (Яндекс.Директ)" },
+                    { text: "Настройка и ведение рекламы в социальных сетях" },
+                  ],
+                  additionalContent: {
+                    result: "Увеличение видимости вашего бренда в сети, постоянный поток целевых заявок со всех каналов.",
+                    target: "Компаниям, которые хотят получать стабильный поток заявок и контролировать рекламный бюджет.",
+                    price: "от 25 000 ₽",
+                    buttonText: "рассчитать под ключ",
+                    buttonLink: "https://t.me/KP888_Bot"
+                  }
+                },
+                {
+                  id: "audit",
+                  title: "Аудит и аналитика",
+                  items: [
+                    { text: "Аудит сайта, юзабилити, рекламных каналов и конкурентов" },
+                    { text: "Анализ воронки продаж и выявление «узких» мест" },
+                  ],
+                  additionalContent: {
+                    result: "Готовый план по оптимизации и развитию digital-направления с четким KPI.",
+                    target: "Тем, кто хочет понять, что не так с текущим продвижением, и получить дорожную карту для исправления.",
+                    price: "от 20 000 ₽",
+                    buttonText: "заказать аудит",
+                    buttonLink: "https://t.me/KP888_Bot"
+                  }
+                },
+                {
+                  id: "strategy",
+                  title: "Стратегия развития",
+                  items: [
+                    { text: "Разработка детальной годовой дорожной карты по digital-продвижению" },
+                    { text: "Определение целей, этапов, бюджета" },
+                    { text: "Прогноз по лидам и ROI" },
+                  ],
+                  additionalContent: {
+                    result: "Понимание, куда и зачем двигаться, и как распределять ресурсы на год вперед.",
+                    target: "Собственникам бизнеса и директорам по маркетингу для планирования и обоснования бюджета.",
+                    price: "от 60 000 ₽",
+                    buttonText: "разработать стратегию",
+                    buttonLink: "https://t.me/KP888_Bot"
+                  }
+                },
+                {
+                  id: "smm",
+                  title: "SMM",
+                  items: [
+                    { text: "Разработка контент-стратегии" },
+                    { text: "Создание креативов и текстов" },
+                    { text: "Ведение сообществ" },
+                    { text: "Запуск и ведение таргетированной рекламы" },
+                    { text: "Работа с вовлечением" },
+                  ],
+                  additionalContent: {
+                    result: "Узнаваемость бренда, лояльное комьюнити и постоянный поток лидов из соцсетей.",
+                    target: "Компаниям, которые хотят строить долгосрочные отношения с аудиторией в Instagram, VK, Telegram.",
+                    price: "от 40 000 ₽",
+                    buttonText: "продумать SMM",
+                    buttonLink: "https://t.me/KP888_Bot"
+                  }
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const currentLeft = container.scrollLeft;
-        const delta = (bRect.left - cRect.left) + bRect.width / 2 - cRect.width / 2; 
-        const target = currentLeft + delta;
+        <Section id="process">
+          <Container>
+            <StagesTimeline
+              title="как мы выстраиваем работу?"
+              stages={[
+                {
+                  stage: "этап 1",
+                  title: "Диагностика",
+                  description: "Проводим глубокий аудит текущей ситуации (если есть) и погружаемся в бизнес-процессы.",
+                },
+                {
+                  stage: "этап 2",
+                  title: "Стратегия",
+                  description: "Согласовываем цели, KPI и разрабатываем поэтапный план работ.",
+                },
+                {
+                  stage: "этап 3",
+                  title: "Реализация",
+                  description: "Запускаем и ведем рекламные каналы, оптимизируем сайт, наполняем соцсети.",
+                },
+                {
+                  stage: "этап 4",
+                  title: "Анализ",
+                  description: "Еженедельно и ежемесячно снимаем данные, анализируем эффективность, тестируем гипотезы.",
+                },
+                {
+                  stage: "этап 5",
+                  title: "Отчет и корректировка",
+                  description: "Предоставляем понятные отчеты о результатах и корректируем стратегию для увеличения ROI.",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        const max = container.scrollWidth - container.clientWidth;
-        const next = Math.max(0, Math.min(max, target));
+        <Section id="faq">
+          <Container title="ответы на частые вопросы">
+            <FAQ
+              items={[
+                {
+                  q: "Сколько времени нужно для получения первых результатов?",
+                  a: "Первые результаты от контекстной рекламы видны в течение 1-2 недель. SEO требует больше времени - от 1 до 3 месяцев для стабильного роста позиций.",
+                },
+                {
+                  q: "Как вы измеряете эффективность кампаний?",
+                  a: "Мы настраиваем сквозную аналитику и отслеживаем каждый этап воронки продаж - от клика до покупки. Вы получаете понятные отчеты с расчетом ROI.",
+                },
+                {
+                  q: "Работаете ли вы с небольшими бюджетами?",
+                  a: "Да, мы разрабатываем стратегии для разных бюджетов. Главное - правильное распределение средств по наиболее эффективным каналам.",
+                },
+              ]}
+            />
+          </Container>
+        </Section>
 
-        container.scrollTo({ left: next, behavior: 'smooth' });
-    };
+        <Section id="cta">
+          <Container>
+            <ContactForm
+              title="готовы выстроить маркетинг, который приносит деньги?"
+              description="Закажите бесплатный экспресс-аудит ваших рекламных каналов. Наш специалист проанализирует их и даст 3 рекомендации по улучшению уже завтра."
+              additionalText="Это ни к чему вас не обязывает. Только экспертное мнение."
+              fields={[
+                {
+                  name: "name",
+                  type: "text",
+                  placeholder: "Ваше имя",
+                  validation: yup
+                    .string()
+                    .required("Имя обязательно для заполнения")
+                    .min(2, "Имя должно содержать минимум 2 символа")
+                    .max(50, "Имя слишком длинное")
+                    .matches(
+                      /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
+                      "Имя может содержать только буквы",
+                    ),
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Ваш e-mail",
+                  validation: yup
+                    .string()
+                    .required("Email обязателен для заполнения")
+                    .email("Введите корректный email адрес"),
+                },
+                {
+                  name: "phone",
+                  type: "tel",
+                  placeholder: "Ваш номер телефона",
+                  validation: yup
+                    .string()
+                    .required("Телефон обязателен для заполнения")
+                    .min(4, "Телефон должен содержать минимум 4 цифры")
+                    .transform((value: string) => value.replace(/\D/g, "")),
+                },
+                {
+                  name: "website",
+                  type: "text",
+                  placeholder: "Ссылка на сайт",
+                  validation: yup.string().url("Введите корректный URL"),
+                },
+                {
+                  name: "service_type",
+                  type: "select",
+                  placeholder: "Интересующая услуга",
+                  validation: yup.string(),
+                  options: [
+                    { value: "complex", label: "Комплексное продвижение" },
+                    { value: "audit", label: "Аудит и аналитика" },
+                    { value: "strategy", label: "Стратегия развития" },
+                    { value: "smm", label: "SMM" },
+                    { value: "consultation", label: "Консультация" },
+                  ],
+                },
+              ]}
+              submitText="Получить бесплатный аудит"
+            />
+          </Container>
+        </Section>
 
-    useEffect(() => {
-        if (currentIndex < fullText.length) {
-            const timer = setTimeout(() => {
-                setDisplayTitle(prev => prev + fullText[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
-            }, 100);
-
-            return () => clearTimeout(timer);
-        }
-    }, [currentIndex, fullText]);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    useEffect(() => {
-        if (!isMobile) return;
-        requestAnimationFrame(() => centerActiveTab(activeService as 'complex' | 'audit' | 'strategy' | 'smm'));
-    }, [activeService, isMobile]);
-
-    const handleSwipe = (direction: 'left' | 'right') => {
-        const tabs = ['complex', 'audit', 'strategy', 'smm'];
-        const currentIndex = tabs.indexOf(activeService);
-        
-        if (direction === 'left' && currentIndex < tabs.length - 1) {
-            setActiveService(tabs[currentIndex + 1]);
-        } else if (direction === 'right' && currentIndex > 0) {
-            setActiveService(tabs[currentIndex - 1]);
-        }
-    };
-
-    const setupSwipe = (element: HTMLElement) => {
-        let startX: number;
-        let startY: number;
-        let distX: number;
-        let distY: number;
-        const threshold = 50;
-        const restraint = 100;
-        const allowedTime = 300;
-
-        let startTime: number;
-
-        element.addEventListener('touchstart', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            startX = touchObj.pageX;
-            startY = touchObj.pageY;
-            startTime = new Date().getTime();
-            e.preventDefault();
-        }, false);
-
-        element.addEventListener('touchend', (e: TouchEvent) => {
-            const touchObj = e.changedTouches[0];
-            distX = touchObj.pageX - startX;
-            distY = touchObj.pageY - startY;
-            const elapsedTime = new Date().getTime() - startTime;
-
-            if (elapsedTime <= allowedTime) {
-                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-                    if (distX > 0) {
-                        handleSwipe('right');
-                    } else {
-                        handleSwipe('left');
-                    }
-                }
-            }
-            e.preventDefault();
-        }, false);
-    };
-
-    useEffect(() => {
-        if (isMobile && tabsContentRef.current) {
-            const tabPanel = tabsContentRef.current.querySelector(`.${styles['tab-panel']}`);
-            if (tabPanel) {
-                setupSwipe(tabPanel as HTMLElement);
-            }
-        }
-    }, [isMobile, activeService]);
-
-    const onSubmit = async (data: { phone: string; }) => {
-        try {
-            const formattedData = {
-                ...data,
-                phone: data.phone.replace(/\D/g, '')
-            };
-
-            console.log('Данные формы:', formattedData);
-            
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            alert('Замечательно! Мы скоро с Вами свяжемся');
-            reset();
-        } catch (error) {
-            console.error('Ошибка отправки:', error);
-            alert('Произошла ошибка при отправке формы');
-        }
-    };
-
-    return (
-        <div>
-            <HeaderLayout />
-            <div className={styles['service-page__top']}> 
-                <div className='container'>
-                    <div className='breadCrumbs'>
-                        <a className='breadCrumbs-item' href="/services">услуги</a><span>|</span>
-                        <p className='breadCrumbs-item end'>
-                            {displayTitle}
-                        </p>
-                    </div>
-                    <div className={styles['service-header']}>
-                        <div className={styles['service-header-content']}>
-                            <h1 className={styles['service-title']}>
-                                {displayTitle}
-                                {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
-                            </h1>
-                            <p className={styles['service-subtitle']}>Мы не просто настраиваем рекламу. Мы выстраиваем единую систему привлечения и удержания клиентов, где каждый рубль работает на окупаемость. <br /> От стратегии до запуска и полной аналитики.</p>
-                        </div>
-                        
-                        <div className={styles['service-image']}>
-                            <img 
-                                src={ServiceImage}
-                                alt="Digital-маркетинг" 
-                                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles['service-page']}>
-                <div className='container'>
-                    <div className={styles['hero-block']}>
-                        <div className={styles['hero-content']}>
-                            <h2>Digital-маркетинг, который <span className={styles['blue-text']}>считает вашу прибыль</span></h2>
-                            <p>Мы выстраиваем комплексную систему продвижения, где все каналы работают согласованно на ваш результат.</p>
-                            <NavigationButton to={'https://t.me/KP888_Bot'} children={'заказать аудит и стратегию'} />
-                        </div>
-                    </div>
-
-                    <div className={styles['benefits-section']}>
-                        <h3>наша философия в маркетинге</h3>
-                        <div className={styles['benefits-grid']}>
-                            <div className={styles['benefit-item']}>
-                                <h4>Глубина прежде действий</h4>
-                                <p>Мы не бросаемся в рекламу. Сначала мы проводим глубокий аудит, анализируем вашу ЦА и рынок. Каждая наша гипотеза основана на данных.</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Комплексность и синергия</h4>
-                                <p>Мы связываем все каналы продвижения (SEO, контекст, SMM) в единую экосистему. Это убирает конфликт каналов и повышает общую эффективность.</p>
-                            </div>
-                            <div className={styles['benefit-item']}>
-                                <h4>Прозрачность и результат</h4>
-                                <p>Мы считаем деньги. Вы всегда видите, какой канал сколько принес и какова окупаемость. Наша цель — не потратить бюджет, а заработать для вас.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles['service-content']}>
-                        <div className={styles['service-info']}> 
-                            <div className={styles['info-section']}>
-                                <h3>Полный цикл услуг для вашего роста</h3>
-                                
-                                <div className={styles['tabs']}>
-                                    <div className={styles['tabs-header']} ref={tabsHeaderRef}>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.complex = el; }}
-                                            className={`${styles['tab-button']} ${activeService === 'complex' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveService('complex'); 
-                                                if (isMobile) centerActiveTab('complex'); 
-                                            }}
-                                        >
-                                            Комплексное продвижение
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.audit = el; }}
-                                            className={`${styles['tab-button']} ${activeService === 'audit' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveService('audit'); 
-                                                if (isMobile) centerActiveTab('audit'); 
-                                            }}
-                                        >
-                                            Аудит и аналитика
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.strategy = el; }}
-                                            className={`${styles['tab-button']} ${activeService === 'strategy' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveService('strategy'); 
-                                                if (isMobile) centerActiveTab('strategy'); 
-                                            }}
-                                        >
-                                            Стратегия развития
-                                        </button>
-                                        <button 
-                                            ref={(el) => { tabBtnRefs.current.smm = el; }}
-                                            className={`${styles['tab-button']} ${activeService === 'smm' ? styles['active'] : ''}`}
-                                            onClick={() => { 
-                                                setActiveService('smm'); 
-                                                if (isMobile) centerActiveTab('smm'); 
-                                            }}
-                                        >
-                                            SMM
-                                        </button>
-                                    </div>
-
-                                    <div className={styles['tabs-content']} ref={tabsContentRef}>
-                                        {activeService === 'complex' && (
-                                            <div className={styles['tab-panel']}>
-                                                <h4 className={styles['price-note']}>Что входит:</h4>
-                                                <ul>
-                                                    <li>SEO-оптимизация</li>
-                                                    <li>Ведение и стратегия контекстной рекламы (Яндекс.Директ)</li>
-                                                    <li>Настройка и ведение рекламы в социальных сетях</li>
-                                                </ul>
-                                                <h4 className={styles['price-note']}>Результат:</h4>
-                                                <p>Увеличение видимости вашего бренда в сети, постоянный поток целевых заявок со всех каналов.</p>
-                                                <h4 className={styles['price-note']}>Кому подходит:</h4>
-                                                <p>Компаниям, которые хотят получать стабильный поток заявок и контролировать рекламный бюджет.</p>
-                                                <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 25 000 ₽</span>
-                                                    <NavigationButton to={'https://t.me/KP888_Bot'} children={'рассчитать под ключ'} />
-                                                </div>
-                                            </div>
-                                        )}
-                                        {activeService === 'audit' && (
-                                            <div className={styles['tab-panel']}>
-                                                <h4 className={styles['price-note']}>Что входит:</h4>
-                                                <ul>
-                                                    <li>Аудит сайта, юзабилити, рекламных каналов и конкурентов</li>
-                                                    <li>Анализ воронки продаж и выявление «узких» мест</li>
-                                                </ul>
-                                                <h4 className={styles['price-note']}>Результат:</h4>
-                                                <p>Готовый план по оптимизации и развитию digital-направления с четким KPI.</p>
-                                                <h4 className={styles['price-note']}>Кому подходит:</h4>
-                                                <p>Тем, кто хочет понять, что не так с текущим продвижением, и получить дорожную карту для исправления.</p>
-                                                <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 20 000 ₽</span>
-                                                    <NavigationButton to={'https://t.me/KP888_Bot'} children={'заказать аудит'} />
-                                                </div>
-                                            </div>
-                                        )}
-                                        {activeService === 'strategy' && (
-                                            <div className={styles['tab-panel']}>
-                                                <h4 className={styles['price-note']}>Что входит:</h4>
-                                                <ul>
-                                                    <li>Разработка детальной годовой дорожной карты по digital-продвижению</li>
-                                                    <li>Определение целей, этапов, бюджета</li>
-                                                    <li>Прогноз по лидам и ROI</li>
-                                                </ul>
-                                                <h4 className={styles['price-note']}>Результат:</h4>
-                                                <p>Понимание, куда и зачем двигаться, и как распределять ресурсы на год вперед.</p>
-                                                <h4 className={styles['price-note']}>Кому подходит:</h4>
-                                                <p>Собственникам бизнеса и директорам по маркетингу для планирования и обоснования бюджета.</p>
-                                                <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 60 000 ₽</span>
-                                                    <NavigationButton to={''} children={'разработать стратегию'} />
-                                                </div>
-                                            </div>
-                                        )}
-                                        {activeService === 'smm' && (
-                                            <div className={styles['tab-panel']}>
-                                                <h4 className={styles['price-note']}>Что входит:</h4>
-                                                <ul>
-                                                    <li>Разработка контент-стратегии</li>
-                                                    <li>Создание креативов и текстов</li>
-                                                    <li>Ведение сообществ</li>
-                                                    <li>Запуск и ведение таргетированной рекламы</li>
-                                                    <li>Работа с вовлечением</li>
-                                                </ul>
-                                                <h4 className={styles['price-note']}>Результат:</h4>
-                                                <p>Узнаваемость бренда, лояльное комьюнити и постоянный поток лидов из соцсетей.</p>
-                                                <h4 className={styles['price-note']}>Кому подходит:</h4>
-                                                <p>Компаниям, которые хотят строить долгосрочные отношения с аудиторией в Instagram, VK, Telegram.</p>
-                                                <div className={styles['price-inner']}>
-                                                    <span className={styles['main-price']}>от 40 000 ₽</span>
-                                                    <NavigationButton to={''} children={'продумать SMM'} />
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section__stages']}>
-                                <h3>как мы выстраиваем работу?</h3>
-                                <div className={styles['timeline']}>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>этап 1</span>
-                                        <h4>Диагностика</h4>
-                                        <p>Проводим глубокий аудит текущей ситуации (если есть) и погружаемся в бизнес-процессы.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>этап 2</span>
-                                        <h4>Стратегия</h4>
-                                        <p>Согласовываем цели, KPI и разрабатываем поэтапный план работ.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>этап 3</span>
-                                        <h4>Реализация</h4>
-                                        <p>Запускаем и ведем рекламные каналы, оптимизируем сайт, наполняем соцсети.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>этап 4</span>
-                                        <h4>Анализ</h4>
-                                        <p>Еженедельно и ежемесячно снимаем данные, анализируем эффективность, тестируем гипотезы.</p>
-                                    </div>
-                                    <div className={styles['timeline-item']}>
-                                        <span className={styles['timeline-days']}>этап 5</span>
-                                        <h4>Отчет и корректировка</h4>
-                                        <p>Предоставляем понятные отчеты о результатах и корректируем стратегию для увеличения ROI.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles['info-section']}>
-                                <h3>готовы выстроить маркетинг, который приносит деньги?</h3>
-                                <p>Закажите бесплатный экспресс-аудит ваших рекламных каналов. Наш специалист проанализирует их и даст 3 рекомендации по улучшению уже завтра.</p>
-                                <p className={styles['privacy-note']}>Это ни к чему вас не обязывает. Только экспертное мнение.</p>
-                                
-                                <form 
-                                    className={styles['contact-form']} 
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                >
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваше имя' 
-                                            className={`${styles['contact-input']} ${errors.name ? styles['input-error'] : ''}`}
-                                            type="text"
-                                            {...register('name')}
-                                        />
-                                        {errors.name && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.name.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш e-mail' 
-                                            className={`${styles['contact-input']} ${errors.email ? styles['input-error'] : ''}`}
-                                            type="email"
-                                            {...register('email')}
-                                        />
-                                        {errors.email && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.email.message}
-                                            </span>
-                                        )}
-                                    </div>
-                                    
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ваш номер телефона' 
-                                            className={`${styles['contact-input']} ${errors.phone ? styles['input-error'] : ''}`}
-                                            type="tel"
-                                            {...register('phone')}
-                                        />
-                                        {errors.phone && (
-                                            <span className={styles['error-message']} role="alert">
-                                                {errors.phone.message}
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    <div className={styles['input-group']}>
-                                        <input 
-                                            placeholder='Ссылка на сайт' 
-                                            className={styles['contact-input']}
-                                            type="url"
-                                        />
-                                    </div>
-                                    
-                                    <div className={styles['form-footer']}>
-                                        <p className={styles['privacy-text']}>
-                                            Отправляя заявку, вы соглашаетесь с Политикой обработки персональных данных и Правилами пользования сайта
-                                        </p>
-                                        
-                                        <button 
-                                            type="submit" 
-                                            className={styles['contact-button']}
-                                            disabled={isSubmitting || !isValid}
-                                        >
-                                            {isSubmitting ? 'Отправка...' : 'Получить бесплатный аудит'}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className={styles['service-cta']}>
-                            <a 
-                                href="https://t.me/KP888_Bot" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className={styles['cta-button']}
-                            >
-                                Обсудить проект
-                                <img src={TelegramIcon} alt="Telegram" />
-                            </a>
-                        </div>
-                    </div>
-                    <QuizLayout />
-                </div>
-            </div>
-            <FooterLayout />
-        </div>
-    );
+        <QuizLayout />
+      </div>
+    </ServiceLayout>
+  );
 }

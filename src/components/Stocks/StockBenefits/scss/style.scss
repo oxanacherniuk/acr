@@ -15,7 +15,7 @@
 
     .vertical-divider {
       display: none;
-      
+
       @media (min-width: 1024px) {
         display: block;
         width: 1px;
@@ -26,17 +26,19 @@
 
     .header-content {
       flex: 1;
+      display: flex;
+
     }
 
     .section-title {
       font-size: 3rem;
       margin-bottom: 16px;
 
-      
+
       @media (min-width: 768px) {
         font-size: 3.5rem;
       }
-      
+
       @media (min-width: 1024px) {
         font-size: 4rem;
       }
@@ -53,7 +55,7 @@
   .benefits-grid {
     display: grid;
     gap: 80px 96px;
-    
+
     @media (min-width: 1024px) {
       grid-template-columns: 1fr 1fr;
     }
@@ -61,12 +63,12 @@
 
   .benefit-item {
     position: relative;
-    
+
     @media (min-width: 1024px) {
       &.even-item {
         padding-right: 48px;
       }
-      
+
       &.odd-item {
         padding-left: 48px;
       }
@@ -74,7 +76,7 @@
 
     .vertical-separator {
       display: none;
-      
+
       @media (min-width: 1024px) {
         display: block;
         position: absolute;
@@ -93,11 +95,11 @@
     }
 
     .benefit-number {
-    color: #fff;
+      color: #fff;
       font-size: 3.75rem;
       opacity: 0.2;
       transition: opacity 0.3s ease;
-      
+
       .benefit-item:hover & {
         opacity: 0.3;
       }
@@ -116,7 +118,7 @@
       color: white;
       opacity: 0.7;
       transition: opacity 0.3s ease;
-      
+
       .benefit-item:hover & {
         opacity: 1;
       }
@@ -134,10 +136,27 @@
     }
 
     .benefit-description {
-        font-family: var(--acr-text);
+      font-family: var(--acr-text);
       color: #9CA3AF;
       line-height: 1.75;
       font-size: 1.125rem;
+    }
+
+
+    &:hover {
+      .benefit-number {
+        opacity: 0.3;
+      }
+
+      .benefit-icon {
+        opacity: 1;
+      }
+
+      .h3 {
+        opacity: 1;
+      }
+
+      
     }
   }
 }

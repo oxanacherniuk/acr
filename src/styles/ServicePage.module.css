@@ -541,33 +541,12 @@
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 120px;
     justify-items: left;
 }
 
-.benefit-item {
-    text-align: center;
-}
 
-.benefit-item h4 {
-    font-size: 3.5rem;
-    margin-bottom: 25px;
-    max-width: 800px;
-    text-align: left;
-    color: #ffffff;
-    font-family: var(--manrope-font);
-    text-transform: uppercase;
-}
 
-.benefit-item p {
-    font-size: 2.2rem;
-    opacity: 0.8;
-    max-width: 800px;
-    text-align: left;
-    color: var(--accent-light);
-    margin: 0;
-    font-family: var(--acr-text);
-}
 
 .tabs-header {
     display: flex;
@@ -595,6 +574,12 @@
     font-family: var(--manrope-font);
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+.tab-button:hover{
+    background: #00bfffb3;
+    color: #000000;
+    border-color: var(--accent-light);
 }
 
 .tab-button.active {
@@ -916,7 +901,7 @@
     width: fit-content;
 }
 
-.timeline-item h4 {
+.timeline-item h4, .option-name {
     margin-bottom: 10px;
     font-family: var(--manrope-font);
     color: #ffffff;
@@ -1032,10 +1017,7 @@
         padding-top: 20px;
     }
 
-    .benefit-item h4 {
-        margin: auto;
-        margin-bottom: 20px;
-    }
+
 
     .tab-panel li:last-child {
         padding-bottom: 0;
@@ -1254,9 +1236,6 @@
         height: auto;
     }
 
-    .benefit-item h4, .hero-content h2 {
-        font-size: 3rem;
-    }
 
     .benefits-section, .info-section, .info-section__faq {
         margin: 80px 0 !important;
@@ -1270,14 +1249,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .info-section p, .info-section__tech p, .info-section__price p, .benefit-item p {
-        font-size: 1.7rem !important;
-        line-height: normal;
-    }
 
-    .hero-content h2, .benefit-item h4 {
-        font-size: 2.4rem;
-    }
 
     .main-price {
         font-size: 2.9rem;
@@ -1315,10 +1287,6 @@
         margin-top: 50px;
     }
 
-    .hero-content h2, .benefit-item h4 {
-        font-size: 1.5rem;
-    }
-
     .hero-content p {
         margin-bottom: 30px;
     }
@@ -1354,19 +1322,11 @@
         font-size: 2.2rem;
     }
 
-    .benefit-item h4 {
-        margin-bottom: 15px;
-    }
 
-    .benefit-item p {
-        font-size: 1.3rem !important;
-    }
 }
 
 @media screen and (max-width: 450px) {
-    .benefit-item h4 {
-        font-size: 1.5rem;
-    }
+
 
     .tab-button {
         font-size: 1rem;
@@ -1609,4 +1569,40 @@
         min-height: 200px;
         align-items: center;
     }
+}
+
+/* Добавьте эти стили в ваш ServicePage.module.css */
+
+
+
+.additional-options {
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.additional-options h4 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.additional-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.option-item {
+  padding: 15px;
+  background: #0d0d0d;
+  border-radius: 8px;
+}
+
+.additional-text {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  margin: 10px 0 20px 0;
+  line-height: 1.4;
 }

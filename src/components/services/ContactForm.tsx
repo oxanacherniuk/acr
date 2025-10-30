@@ -6,7 +6,7 @@ import s from "../../styles/ServicePage.module.css";
 
 export interface FormField {
   name: string;
-  type: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'url'; // Добавляем url тип
   label?: string;
   placeholder: string;
   validation: any;
@@ -16,6 +16,7 @@ export interface FormField {
 export interface ContactFormProps {
   title?: string;
   description?: string;
+  additionalText?: string;
   fields?: FormField[];
   submitText?: string;
   submittingText?: string;
@@ -62,6 +63,7 @@ const baseFields: FormField[] = [
 export function ContactForm({
   title = "Получить бесплатную консультацию",
   description = "Наш специалист свяжется с вами в течение 15 минут",
+  additionalText, // Добавляем новый пропс
   fields = baseFields,
   submitText = "Получить консультацию",
   submittingText = "Отправка...",
@@ -195,8 +197,13 @@ export function ContactForm({
 
   return (
     <div className={s['info-section']}>
-      {title && <h3 className='text-silver'>{title}</h3>}
+      {title && <h3 className='glossy-lite text-silver-blue-dark h2'>{title}</h3>}
       {description && <p className={s['info-section__text']}>{description}</p>}
+      
+      {/* Добавляем отображение дополнительного текста */}
+      {additionalText && (
+        <p className={s['additional-text']}>{additionalText}</p>
+      )}
       
       <form 
         className={s['contact-form']} 
@@ -215,9 +222,9 @@ export function ContactForm({
         ))}
         
         <div className={s['form-footer']}>
-          <p className={s['privacy-text']}>
+          <span className={s['privacy-text']}>
             {privacyText}
-          </p>
+          </span>
           
           <button 
             type="submit" 

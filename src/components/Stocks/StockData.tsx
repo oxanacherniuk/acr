@@ -16,9 +16,51 @@ import {
   // Новые иконки для продвижения
   Trophy, Target, TrendingUp as ChartTrendingUp, Award,
   Megaphone, Search as SearchIcon, MapPin, BarChart3,
-   FileText
+  FileText
 } from 'lucide-react';
 import type { ForwardRefExoticComponent } from 'react';
+
+// Импорты изображений для акции 1
+// import stock1Img from '../../assets/images/stocks/1.jpg';
+// import stock1ImgWebp from '../../assets/images/stocks/1.webp';
+// import stock1VideoMp4 from '../../assets/video/stocks/1.mp4';
+// import stock1VideoWebm from '../../assets/video/stocks/1.webm';
+
+// Импорты изображений для акции 2
+// import stock2Img from '../../assets/images/stocks/2.jpg';
+// import stock2ImgWebp from '../../assets/images/stocks/2.webp';
+// import stock2VideoMp4 from '../../assets/video/stocks/2.mp4';
+// import stock2VideoWebm from '../../assets/video/stocks/2.webm';
+
+// Импорты изображений для акции 3
+// import stock3Img from '../../assets/images/stocks/3.jpg';
+// import stock3ImgWebp from '../../assets/images/stocks/3.webp';
+// import stock3VideoMp4 from '../../assets/video/stocks/3.mp4';
+// import stock3VideoWebm from '../../assets/video/stocks/3.webm';
+
+// Импорты изображений для акции 4
+// import stock4Img from '../../assets/images/stocks/4.jpg';
+// import stock4ImgWebp from '../../assets/images/stocks/4.webp';
+// import stock4VideoMp4 from '../../assets/video/stocks/4.mp4';
+// import stock4VideoWebm from '../../assets/video/stocks/4.webm';
+
+// Импорты изображений для акции 5
+// import stock5Img from '../../assets/images/stocks/5.jpg';
+// import stock5ImgWebp from '../../assets/images/stocks/5.webp';
+import stock5VideoMp4 from '../../assets/video/stocks/5.mp4';
+import stock5VideoWebm from '../../assets/video/stocks/5.webm';
+
+// Импорты изображений для акции 6
+// import stock6Img from '../../assets/images/stocks/6.jpg';
+// import stock6ImgWebp from '../../assets/images/stocks/6.webp';
+import stock6VideoMp4 from '../../assets/video/stocks/6.mp4';
+import stock6VideoWebm from '../../assets/video/stocks/6.webm';
+
+// Импорты изображений для акции 7
+// import stock7Img from '../../assets/images/stocks/7.jpg';
+// import stock7ImgWebp from '../../assets/images/stocks/7.webp';
+// import stock7VideoMp4 from '../../assets/video/stocks/7.mp4';
+// import stock7VideoWebm from '../../assets/video/stocks/7.webm';
 
 interface StockData {
   id: number;
@@ -30,8 +72,8 @@ interface StockData {
     title: string;
     text: string;
     ctaButton: string;
-    img: string;
-    imgWebp: string;
+    img?: string;
+    imgWebp?: string;
     videoMp4?: string;
     videoWebm?: string;
   };
@@ -55,7 +97,6 @@ interface StockData {
     text: string;
     button: string;
   };
-  // Новые опциональные блоки
   pricing?: {
     title: string;
     text: string;
@@ -81,16 +122,14 @@ interface StockData {
     text: string;
     button: string;
   };
-
-    promotion?: {
+  promotion?: {
     discount: string;
     description: string;
     validUntil: string;
     conditions: string;
-    badge?: string; // опциональный бейдж "Хит", "Новинка" и т.д.
+    badge?: string;
   };
 }
-
 
 export const stockData: StockData[] = [
   {
@@ -103,12 +142,12 @@ export const stockData: StockData[] = [
       title: "Теряете заявки ночью и в выходные? Клиенты уходят, не дождавшись ответа?",
       text: "Мы разработаем умного чат-бота, который будет работать на вашем сайте 24/7, мгновенно отвечать на вопросы, консультировать и не упустит ни одного клиента, даже когда вы спите.",
       ctaButton: "Внедрить чат-бота 24/7",
-      img: "src/assets/images/stocks/1.jpg",
-      imgWebp: "src/assets/images/stocks/1.webp",
-      videoMp4: "src/assets/video/stocks/1.mp4",
-      videoWebm: "src/assets/video/stocks/1.webm"
+      // img: stock1Img,
+      // imgWebp: stock1ImgWebp,
+      // videoMp4: stock1VideoMp4,
+      // videoWebm: stock1VideoWebm
     },
-     promotion: {
+    promotion: {
       discount: "30%",
       description: "Первый чат-бот со скидкой. Внедрение вашего первого чат-бота с 30% скидкой на разработку.",
       validUntil: "31.12.2025",
@@ -177,12 +216,12 @@ export const stockData: StockData[] = [
       title: "Сайт тормозит? Вы теряете до 50% потенциальных клиентов!",
       text: "Каждая секунда загрузки стоит вам клиентов. Мы проведем полный аудит, оптимизируем код, изображения и сервер, чтобы ваш сайт летал.",
       ctaButton: "Заказать бесплатный аудит скорости",
-      img: "src/assets/images/stocks/2.jpg",
-      imgWebp: "src/assets/images/stocks/2.webp",
-      videoMp4: "src/assets/video/stocks/2.mp4",
-      videoWebm: "src/assets/video/stocks/2.webm"
+      // img: stock2Img,
+      // imgWebp: stock2ImgWebp,
+      // videoMp4: stock2VideoMp4,
+      // videoWebm: stock2VideoWebm
     },
-      promotion: {
+    promotion: {
       discount: "25%",
       description: "Ускорение сайта + SEO-аудит в подарок. Комплексная оптимизация с дополнительным анализом для поисковых систем.",
       validUntil: "15.03.2025",
@@ -250,12 +289,12 @@ export const stockData: StockData[] = [
       title: "80% клиентов смотрит сайт с телефона? Если он неудобен, они уходят!",
       text: "Мобильный трафик доминирует. Поисковики наказывают за отсутствие адаптации. Мы гарантируем, что ваш сайт будет выглядеть безупречно на любом устройстве.",
       ctaButton: "Сделать сайт мобильным!",
-      img: "src/assets/images/stocks/3.jpg",
-      imgWebp: "src/assets/images/stocks/3.webp",
-      videoMp4: "src/assets/video/stocks/3.mp4",
-      videoWebm: "src/assets/video/stocks/3.webm"
+      // img: stock3Img,
+      // imgWebp: stock3ImgWebp,
+      // videoMp4: stock3VideoMp4,
+      // videoWebm: stock3VideoWebm
     },
-        promotion: {
+    promotion: {
       discount: "20%",
       description: "Адаптация под все устройства. Гарантия корректного отображения на смартфонах, планшетах и десктопах.",
       validUntil: "28.02.2025",
@@ -322,10 +361,10 @@ export const stockData: StockData[] = [
       title: "Сайт скучный? Люди не задерживаются, потому что он выглядит как у всех!",
       text: "Современный дизайн требует движения. Эффектная, ненавязчивая анимация повысит интерес к контенту и подтолкнет посетителя к целевому действию.",
       ctaButton: "Добавить динамики на сайт",
-      img: "src/assets/images/stocks/4.jpg",
-      imgWebp: "src/assets/images/stocks/4.webp",
-      videoMp4: "src/assets/video/stocks/4.mp4",
-      videoWebm: "src/assets/video/stocks/4.webm"
+      // img: stock4Img,
+      // imgWebp: stock4ImgWebp,
+      // videoMp4: stock4VideoMp4,
+      // videoWebm: stock4VideoWebm
     },
     promotion: {
       discount: "15%",
@@ -395,12 +434,12 @@ export const stockData: StockData[] = [
       title: "Не пропустите новогодних посетителей! Создайте атмосферу для максимальных продаж.",
       text: "Праздничный период — пик продаж. Яркое, тематическое оформление выделит вас и настроит клиента на покупку подарков и услуг.",
       ctaButton: "Успеть заказать новогодний дизайн!",
-      img: "src/assets/images/stocks/5.jpg",
-      imgWebp: "src/assets/images/stocks/5.webp",
-      videoMp4: "src/assets/video/stocks/5.mp4",
-      videoWebm: "src/assets/video/stocks/5.webm"
+      // img: stock5Img,
+      // imgWebp: stock5ImgWebp,
+      videoMp4: stock5VideoMp4,
+      videoWebm: stock5VideoWebm
     },
-        promotion: {
+    promotion: {
       discount: "40%",
       description: "Новогодний дизайн + рассылка. Праздничное оформление и email-рассылка для клиентов.",
       validUntil: "15.12.2024",
@@ -468,12 +507,12 @@ export const stockData: StockData[] = [
       title: "Старый сайт — потеря клиентов. Он не выдерживает конкуренции!",
       text: "Мы проводим полную модернизацию: обновляем дизайн, улучшаем юзабилити, внедряем современный функционал и повышаем безопасность.",
       ctaButton: "Обновить мой сайт!",
-      img: "src/assets/images/stocks/6.jpg",
-      imgWebp: "src/assets/images/stocks/6.webp",
-      videoMp4: "src/assets/video/stocks/6.mp4",
-      videoWebm: "src/assets/video/stocks/6.webm"
+      // img: stock6Img,
+      // imgWebp: stock6ImgWebp,
+      videoMp4: stock6VideoMp4,
+      videoWebm: stock6VideoWebm
     },
-        promotion: {
+    promotion: {
       discount: "35%",
       description: "Полная модернизация с гарантией. Обновление дизайна, функционала и безопасности сайта.",
       validUntil: "31.01.2025",
@@ -541,12 +580,12 @@ export const stockData: StockData[] = [
       title: "Ваш сайт не видно в поиске? Конкуренты забирают всех клиентов!",
       text: "Мы предлагаем комплексное продвижение, которое гарантированно приведет ваш сайт на первые страницы Яндекса и Google, привлечет целевой трафик и увеличит ваши продажи.",
       ctaButton: "Вывести сайт в ТОП!",
-      img: "src/assets/images/stocks/7.jpg",
-      imgWebp: "src/assets/images/stocks/7.webp",
-      videoMp4: "src/assets/video/stocks/7.mp4",
-      videoWebm: "src/assets/video/stocks/7.webm"
+      // img: stock7Img,
+      // imgWebp: stock7ImgWebp,
+      // videoMp4: stock7VideoMp4,
+      // videoWebm: stock7VideoWebm
     },
-        promotion: {
+    promotion: {
       discount: "1 месяц",
       description: "Первый месяц продвижения бесплатно. Комплексное SEO и контекстная реклама с тестовым периодом.",
       validUntil: "20.03.2025",

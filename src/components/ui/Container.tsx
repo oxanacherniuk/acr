@@ -11,7 +11,7 @@ export function Container({
 }: ContainerProps) {
   return (
     <div className={`container ${className}`}>
-      {title && <h3 className="text-silver">{title}</h3>}
+      {title && <h3 className="glossy-lite text-silver-blue-dark h2">{title}</h3>}
       {children}
     </div>
   );

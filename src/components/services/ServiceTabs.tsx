@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import { useCenteredTabs } from "../../hooks/useCenteredTabs";
 import s from "../../styles/ServicePage.module.css";
+import { NavigationButton } from "../NavigationButton/NavigationButton";
 
 export interface TabItem {
   id: string;
@@ -10,6 +11,13 @@ export interface TabItem {
     text: string;
     subtext?: string;
   }[];
+  additionalContent?: {
+    result: string;
+    target: string;
+    price: string;
+    buttonText: string;
+    buttonLink: string;
+  };
 }
 
 interface ServiceTabsProps {
@@ -65,6 +73,23 @@ export function ServiceTabs({ tabs, initialTab }: ServiceTabsProps) {
             <ul>
               {currentTab.items.map(renderItem)}
             </ul>
+            
+            {currentTab.additionalContent && (
+              <div className={s['tab-additional-content']}>
+                <h4 className={s['price-note']}>Результат:</h4>
+                <p>{currentTab.additionalContent.result}</p>
+                
+                <h4 className={s['price-note']}>Кому подходит:</h4>
+                <p>{currentTab.additionalContent.target}</p>
+                
+                <div className={s['price-inner']}>
+                  <span className={s['main-price']}>{currentTab.additionalContent.price}</span>
+                  <NavigationButton to={currentTab.additionalContent.buttonLink}>
+                    {currentTab.additionalContent.buttonText}
+                  </NavigationButton>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

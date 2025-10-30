@@ -35,7 +35,7 @@ export function TechnologiesLayout() {
       <div className="container">
         <GradientHeadingLite
           as="p"
-          className={styles["slider-title"]}
+          className="h2"
           blueBoost={1}
           baseAngle={45}
         >

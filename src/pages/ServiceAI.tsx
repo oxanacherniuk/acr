@@ -31,7 +31,6 @@ export default function ServiceAI() {
             webm: ServiceWebm,
             mp4: ServiceMp4,
             poster: ServiceImage,
-            
           }}
         />
       </div>

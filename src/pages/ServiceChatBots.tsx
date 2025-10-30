@@ -11,7 +11,8 @@ import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
 import * as yup from 'yup';
-
+import ServiceMp4 from "../assets/video/chatBotQ.mp4";
+import ServiceWebm from "../assets/video/chatBotQ.webm";
 import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
@@ -28,6 +29,11 @@ export default function ServiceChatBots() {
           subtitle="Автоматизируйте продажи и поддержку 24/7 с помощью интеллектуальных ботов, которые не просто отвечают, а ведут диалог и решают бизнес-задачи"
           imageSrc={ServiceImage}
           imageAlt="Умные чат-боты"
+          video={{
+            webm: ServiceWebm,
+            mp4: ServiceMp4,
+            poster: ServiceImage,
+          }}
         />
       </div>
       <div className={s["service-page"]}>
