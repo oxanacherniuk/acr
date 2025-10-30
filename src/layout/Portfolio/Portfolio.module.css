@@ -17,239 +17,449 @@
     padding: 0 20px;
 }
 
+/* Основной контейнер */
 .portfolio-box {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin: auto;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 0 20px;
-}
-
-.portfolio-card {
-    width: 100%;
-    height: auto;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    animation: fadeIn 0.3s ease forwards;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.portfolio-image-container {
-    width: 100%;
-    height: 700px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-shrink: 0;
-}
-
-.portfolio-image {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    display: block;
-    object-fit: contain;
-}
-
-.portfolio-name {
-    padding: 30px 20px;
-    margin: 0;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-family: var(--manrope-font);
-    text-align: left;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.portfolio-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #ffffff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
     position: relative;
-    padding: 0;
-    font-size: 35px;
-    font-family: var(--manrope-font);
-    margin: 80px auto 0;
-    display: block;
-    width: fit-content;
+    justify-items: center;
 }
 
-.portfolio-button::before {
-    content: '';
+.portfolio-navigation {
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: #00bfff;
-    transition: width 0.3s ease;
+    left: 50px;
+    top: 43%;
+    transform: translateY(-50%);
+    width: 300px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 0.5px solid var(--accent-light);
+    z-index: 10;
+}
+
+/* Контейнеры устройств */
+.device-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.device-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    position: relative;
     z-index: 1;
 }
 
-.portfolio-button::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #00bfff;
-    transition: width 0.3s ease;
-    z-index: -1;
-    opacity: 0.1;
+/* Анимации */
+.slide-out-left {
+    animation: slideOutLeft 0.3s ease forwards;
 }
 
-.portfolio-button:hover {
-    color: #00bfff;
+.slide-out-right {
+    animation: slideOutRight 0.3s ease forwards;
 }
 
-.portfolio-button:hover::before {
-    width: 100%;
+.slide-in-left {
+    animation: slideInLeft 0.3s ease forwards;
 }
 
-.portfolio-button:hover::after {
-    width: 100%;
+.slide-in-right {
+    animation: slideInRight 0.3s ease forwards;
 }
 
-.portfolio-button.small {
-    font-size: 14px;
-    padding: 8px 16px;
-}
-
-.portfolio-button.medium {
-    font-size: 35px;
-    padding: 12px 24px;
-}
-
-.portfolio-button.large {
-    font-size: 18px;
-    padding: 16px 32px;
-}
-
-.portfolio-button.small::before {
-    bottom: -3px;
-}
-
-.portfolio-button.medium::before {
-    bottom: -4px;
-}
-
-.portfolio-button.large::before {
-    bottom: -5px;
-}
-
-@media screen and (max-width: 700px) {
-    .portfolio-button {
-        font-size: 25px;
-    }
-}
-
-@media screen and (max-width: 370px) {
-    .portfolio-button {
-        font-size: 22px;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
         opacity: 1;
-        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
     }
 }
 
-@media screen and (max-width: 1250px) {
-    .portfolio-title {
+@keyframes slideOutRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Общие стили для макетов */
+.maket-wrapper {
+    position: absolute;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.maket-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: white;
+}
+
+.portfolio-box__maket {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: none;
+}
+
+/* Стили для десктопа */
+.maket-wrapper--desktop {
+    top: 72px;
+    left: 90px;
+    width: 843px;
+    height: 480px;
+}
+
+/* Стили для ноутбука */
+.maket-wrapper--notebook {
+    top: 92px;
+    left: 153px;
+    width: 714px;
+    height: 476px;
+    border-radius: 14px;
+}
+
+/* Стили для мобильного */
+.maket-wrapper--mobile {
+    top: 72px;
+    left: 375px;
+    width: 275px;
+    height: 590px;
+    border-radius: 35px;
+}
+
+/* Кнопка "Перейти" */
+.go-button {
+    position: absolute;
+    bottom: 40px;
+    right: 0%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 3;
+}
+
+.go-button--hover {
+    opacity: 1;
+    animation: bounce 2s infinite;
+}
+
+.go-button__text {
+    transition: transform 0.3s ease;
+}
+
+.go-button__arrow {
+    transition: transform 0.3s ease;
+}
+
+.go-button:hover .go-button__arrow {
+    transform: translateX(4px);
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}
+
+/* Подкатегории */
+.subcategories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.subcategory-button {
+    background: transparent;
+    border-radius: 0px;
+    padding: 10px 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+}
+
+.subcategory-button:hover {
+    border-color: var(--accent-light);
+}
+
+.subcategory-button--active {
+    border-bottom: 1px solid var(--accent-light);
+}
+
+.current-site-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-details {
+    margin-bottom: 20px;
+}
+
+.site-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.site-category,
+.site-subcategory {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 3px;
+}
+
+/* Навигация между сайтами */
+.site-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.nav-button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.nav-button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-light);
+}
+
+.nav-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.site-counter {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Кнопки категорий */
+.categories-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.categories-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.category-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    background: transparent;
+    border-radius: 0px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    max-width: 220px;
+    text-align: center;
+}
+
+.category-button:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.category-button--active {
+    border-color: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.category-button:hover .category-icon {
+    border-color: var(--accent-light);
+}
+
+.category-button--active .category-icon {
+    border-color: var(--accent-light);
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.category-icon__image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+.category-button--active .category-icon__image {
+    filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(747%) hue-rotate(166deg) brightness(94%) contrast(101%);
+}
+
+/* Стилизация скроллбара */
+.maket-scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.maket-scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.maket-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--accent-light);
+    border-radius: 4px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .portfolio-navigation {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
         width: 100%;
+        margin-bottom: 30px;
     }
 
-    .portfolio-box {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 900px;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    .portfolio-title {
-        font-size: 2.5rem;
-        margin-bottom: 60px;
-    }
-
-    .portfolio-image-container {
-        height: 600px;
-    }
-}
-
-@media screen and (max-width: 820px) {
     .portfolio-box {
         grid-template-columns: 1fr;
-        max-width: 600px;
     }
+}
 
-    .portfolio-image-container {
-        height: 500px;
+@media (max-width: 768px) {
+    .portfolio {
+        padding: 60px 0;
     }
 
     .portfolio-title {
         font-size: 2rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .portfolio {
-        padding: 80px 0;
-    }
-
-    .portfolio-title {
-        font-size: 1.8rem;
         margin-bottom: 40px;
     }
 
-    .portfolio-image-container {
+    .maket-wrapper--desktop,
+    .maket-wrapper--notebook,
+    .maket-wrapper--mobile {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
         height: 400px;
+        margin-top: 20px;
     }
 
-    .portfolio-name {
-        padding: 20px;
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .portfolio {
-        padding: 30px 0;
+    .device-container--notebook,
+    .device-container--mobile {
+        max-width: 100%;
     }
 
-    .portfolio-title {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
+    .site-navigation {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .portfolio-image-container {
-        height: 300px;
+    .categories-wrapper {
+        gap: 10px;
     }
 
-    .portfolio-box {
-        gap: 20px;
-        padding: 0 15px;
-    }
-
-    .portfolio-name {
+    .category-button {
+        min-width: 140px;
         padding: 15px;
-        font-size: 0.9rem;
     }
 
+    .go-button {
+        bottom: -50px;
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
 }
