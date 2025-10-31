@@ -1,5 +1,5 @@
 import './css/style.css';
-import CompanyPhoto from "../../../assets/images/ofis/company-photo2.jpg";
+import CompanyPhoto from "../../../assets/images/ofis/companyTop.jpg";
 
 
 export function HeroSection() {
