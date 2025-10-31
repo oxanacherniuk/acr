@@ -17,7 +17,6 @@
     padding: 0 20px;
 }
 
-/* Основной контейнер */
 .portfolio-box {
     display: grid;
     grid-template-columns: 1fr;
@@ -237,7 +236,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     border-bottom: 1px solid transparent;
 }
 
@@ -607,5 +606,122 @@
 
     .portfolio-box {
         justify-content: center;
+    }
+}
+
+.navigation-buttons {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.nav-arrow {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    background: transparent;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+    color: var(--accent-light);
+    transform: scale(1.1);
+    border: 1px solid var(--accent-light);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+}
+
+.nav-arrow:active {
+    transform: scale(0.95);
+}
+
+.go-button {
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    color: var(--accent-light);
+    font-family: var(--manrope-font);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 3;
+}
+
+.go-button--hover {
+    opacity: 1;
+    animation: bounce 2s infinite;
+}
+
+@media (max-width: 1280px) {
+    .navigation-buttons {
+        bottom: 30px;
+    }
+
+    .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .go-button {
+        bottom: 30px;
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navigation-buttons {
+        bottom: 20px;
+        gap: 8px;
+    }
+
+    .nav-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .go-button {
+        bottom: 20px;
+        padding: 8px 16px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .navigation-buttons {
+        display: none;
+        bottom: 15px;
+        gap: 5px;
+    }
+
+    .nav-arrow {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+
+    .go-button {
+        bottom: 15px;
+        padding: 6px 12px;
+        font-size: 0.6rem;
+        display: none;
     }
 }

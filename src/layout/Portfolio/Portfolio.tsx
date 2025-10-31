@@ -19,6 +19,7 @@ export function PortfolioLayout() {
   const [animationClass, setAnimationClass] = useState('');
   const [, setPrevCategory] = useState('web');
   const [isHovered, setIsHovered] = useState(false);
+  const [currentSiteIndex, setCurrentSiteIndex] = useState(0);
   const navigate = useNavigate();
 
   const categories = [
@@ -71,9 +72,43 @@ export function PortfolioLayout() {
   const currentDevice = categories.find(cat => cat.id === activeCategory)?.device || 'desktop';
   const currentSubcategories = getSubcategories();
 
+  const filteredSites = sites.filter(site => {
+    if (activeCategory === 'web') {
+      return site.category === 'Разработка сайтов' && site.subcategory === activeSubcategory;
+    }
+    if (activeCategory === 'design') {
+      return (site.category === 'Дизайн' || site.category === 'Веб-дизайн' || site.category === 'веб-дизайн') && 
+        site.subcategory === activeSubcategory;
+    }
+    if (activeCategory === 'mobile') {
+      return site.category === 'Разработка мобильных приложений' && site.subcategory === activeSubcategory;
+    }
+    if (activeCategory === 'bot') {
+      return site.category === 'Разработка ботов' && site.subcategory === activeSubcategory;
+    }
+    return site.category === activeCategory;
+  });
+
   const handleDeviceClick = () => {
     if (selectedSite.link) {
       navigate(selectedSite.link);
+    }
+  };
+
+  // Функции для перелистывания сайтов
+  const nextSite = () => {
+    if (filteredSites.length > 1) {
+      const nextIndex = (currentSiteIndex + 1) % filteredSites.length;
+      setCurrentSiteIndex(nextIndex);
+      setSelectedSite(filteredSites[nextIndex]);
+    }
+  };
+
+  const prevSite = () => {
+    if (filteredSites.length > 1) {
+      const prevIndex = (currentSiteIndex - 1 + filteredSites.length) % filteredSites.length;
+      setCurrentSiteIndex(prevIndex);
+      setSelectedSite(filteredSites[prevIndex]);
     }
   };
 
@@ -89,6 +124,7 @@ export function PortfolioLayout() {
     
     setTimeout(() => {
       setActiveCategory(categoryId);
+      setCurrentSiteIndex(0);
       
       const newSubcategories = getSubcategories();
       const firstSubcategory = newSubcategories.length > 0 ? newSubcategories[0] : '';
@@ -145,6 +181,7 @@ export function PortfolioLayout() {
 
   const handleSubcategoryChange = (subcategory: string) => {
     setActiveSubcategory(subcategory);
+    setCurrentSiteIndex(0);
     
     const newFilteredSites = sites.filter(site => {
       if (activeCategory === 'web') {
@@ -257,7 +294,30 @@ export function PortfolioLayout() {
                 </div>
               </div>
               
-              {/* Анимированная надпись "Перейти" */}
+              {/* Кнопки перелистывания */}
+              {filteredSites.length > 1 && (
+                <div className={styles["navigation-buttons"]}>
+                  <button 
+                    className={styles["nav-arrow"]}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevSite();
+                    }}
+                  >
+                    ←
+                  </button>
+                  <button 
+                    className={styles["nav-arrow"]}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextSite();
+                    }}
+                  >
+                    →
+                  </button>
+                </div>
+              )}
+              
               {selectedSite.link && (
                 <div className={`${styles["go-button"]} ${isHovered ? styles["go-button--hover"] : ""}`}>
                   <span className={styles["go-button__text"]}>Перейти</span>

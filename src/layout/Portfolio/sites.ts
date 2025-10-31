@@ -8,7 +8,9 @@ import OksanaSite7 from '../../assets/images/oksana-site7.webp';
 import OksanaSite8 from '../../assets/images/oksana-site8.webp';
 import OksanaSite9 from '../../assets/images/oksana-site9.webp';
 import OksanaMobile10 from '../../assets/images/oksana-mobile10.webp';
-import OksanaMobile11 from '../../assets/images/oksana-mobile11.webp';
+import OksanaMobile11 from '../../assets/images/oksana-mobile14.png';
+import OksanaMobile12 from '../../assets/images/oksana-mobile12.webp';
+import OksanaMobile13 from '../../assets/images/oksana-mobile13.webp';
 import PavelSite1 from '../../assets/images/pavel-site1.webp';
 import PavelSite2 from '../../assets/images/pavel-site2.webp';
 import PavelSite3 from '../../assets/images/pavel-site3.webp';
@@ -162,4 +164,21 @@ export const sites = [
         subcategory: 'Боты бронирования',
         link: '/developer/platon',
     },
+    {
+        id: 19,
+        image: OksanaMobile12,
+        name: 'Оксана Ч.',
+        category: 'Разработка мобильных приложений',
+        subcategory: 'Нативное',
+        link: '/developer/oksana',
+    },
+    {
+        id: 20,
+        image: OksanaMobile13,
+        name: 'Оксана Ч.',
+        category: 'Разработка мобильных приложений',
+        subcategory: 'Нативное',
+        link: '/developer/oksana',
+    },
+
 ]
