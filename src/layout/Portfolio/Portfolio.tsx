@@ -50,7 +50,7 @@ export function PortfolioLayout() {
 
   const webSubcategories = ['Интернет-магазин', 'Лендинг', 'Корпоративный сайт'];
   const designSubcategories = ['Интернет-магазин', 'Лендинг', 'Корпоративный сайт'];
-  const mobileSubcategories = ['Нативные', 'Вебвью', 'Telegram Mini App'];
+  const mobileSubcategories = ['Нативные', 'Вебвью'];
   const botSubcategories = ['Чат-боты', 'Боты-информаторы', 'Боты бронирования'];
 
   const getSubcategories = () => {

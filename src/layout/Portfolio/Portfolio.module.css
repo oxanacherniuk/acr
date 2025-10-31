@@ -42,7 +42,6 @@
     z-index: 10;
 }
 
-/* Контейнеры устройств */
 .device-container {
     position: relative;
     display: inline-block;
@@ -123,7 +122,6 @@
     }
 }
 
-/* Общие стили для макетов */
 .maket-wrapper {
     position: absolute;
     background: #f0f0f0;
@@ -147,7 +145,6 @@
     max-width: none;
 }
 
-/* Стили для десктопа */
 .maket-wrapper--desktop {
     top: 72px;
     left: 90px;
@@ -155,7 +152,6 @@
     height: 480px;
 }
 
-/* Стили для ноутбука */
 .maket-wrapper--notebook {
     top: 92px;
     left: 153px;
@@ -164,7 +160,6 @@
     border-radius: 14px;
 }
 
-/* Стили для мобильного */
 .maket-wrapper--mobile {
     top: 72px;
     left: 375px;
@@ -173,7 +168,6 @@
     border-radius: 35px;
 }
 
-/* Кнопка "Перейти" */
 .go-button {
     position: absolute;
     bottom: 40px;
@@ -229,7 +223,6 @@
     }
 }
 
-/* Подкатегории */
 .subcategories-list {
     display: flex;
     flex-direction: column;
@@ -279,7 +272,6 @@
     margin-bottom: 3px;
 }
 
-/* Навигация между сайтами */
 .site-navigation {
     display: flex;
     align-items: center;
@@ -313,7 +305,6 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Кнопки категорий */
 .categories-container {
     display: flex;
     justify-content: center;
@@ -387,7 +378,6 @@
     filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(747%) hue-rotate(166deg) brightness(94%) contrast(101%);
 }
 
-/* Стилизация скроллбара */
 .maket-scroll-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -401,19 +391,63 @@
     border-radius: 4px;
 }
 
-/* Адаптивность */
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
     .portfolio-navigation {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        margin-bottom: 30px;
+        padding: 10px;
+        max-width: 240px;
+    }
+}
+
+@media (max-width: 1380px) {
+    .portfolio-navigation {
+        left: 0px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .device-image {
+        max-width: 800px;
     }
 
-    .portfolio-box {
-        grid-template-columns: 1fr;
+    .maket-wrapper--desktop {
+        top: 55px;
+        left: 70px;
+        width: 660px;
+        height: 380px;
+    }
+
+    .maket-wrapper--notebook {
+        top: 72px;
+        left: 120px;
+        width: 560px;
+        height: 372px;
+        border-radius: 14px;
+    }
+
+    .maket-wrapper--mobile {
+        top: 56px;
+        left: 296px;
+        width: 212px;
+        height: 457px;
+        border-radius: 25px;
+    }
+}
+
+@media (max-width: 880px) {
+    .categories-container {
+        margin-top: 0px;
+    }
+
+    .category-button {
+        padding: 5px;
+        min-width: 0px;
+    }
+
+    .categories-wrapper {
+        max-width: 500px;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -422,44 +456,156 @@
         padding: 60px 0;
     }
 
-    .portfolio-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
+    .device-image {
+        max-width: 500px;
     }
 
-    .maket-wrapper--desktop,
-    .maket-wrapper--notebook,
+    .maket-wrapper--desktop {
+        top: 37px;
+        left: 45px;
+        width: 412px;
+        height: 235px;
+    }
+
+    .maket-wrapper--notebook {
+        top: 46px;
+        left: 76px;
+        width: 350px;
+        height: 230px;
+        border-radius: 9px;
+    }
+
     .maket-wrapper--mobile {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
-        height: 400px;
-        margin-top: 20px;
+        top: 36px;
+        left: 186px;
+        width: 132px;
+        height: 287px;
+        border-radius: 15px;
     }
 
-    .device-container--notebook,
-    .device-container--mobile {
-        max-width: 100%;
-    }
-
-    .site-navigation {
-        flex-direction: column;
-        gap: 10px;
+    .maket-scroll-container::-webkit-scrollbar {
+        width: 4px;
     }
 
     .categories-wrapper {
-        gap: 10px;
+        display: flex;
+        gap: 25px;
     }
 
     .category-button {
-        min-width: 140px;
-        padding: 15px;
+        max-width: 100px;
     }
 
-    .go-button {
-        bottom: -50px;
-        padding: 10px 20px;
+    .category-button span {
+        font-size: 12px;
+    }
+
+    .portfolio-navigation {
+        position: relative;
+        width: 100%;
+        max-width: 550px;
+    }
+
+    .portfolio-box {
+        gap: 10px;
+    }
+
+    .subcategories-list {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .subcategory-button {
         font-size: 0.8rem;
+        padding: 5px 15px;
+    }
+
+    .subcategory-button {
+        border-left: 0.5px solid #474747;
+        border-right: 0.5px solid #474747;
+    }
+
+    .subcategory-button--active {
+        border-left: 0px;
+        border-right: 0px;
+    }
+
+    .portfolio-navigation {
+        border: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .device-image {
+        max-width: 320px;
+    }
+
+    .maket-wrapper--desktop {
+        top: 23px;
+        left: 29px;
+        width: 262px;
+        height: 150px;
+        border-radius: 5px;
+    }
+
+    .maket-wrapper--notebook {
+        top: 30px;
+        left: 49px;
+        width: 223px;
+        height: 150px;
+        border-radius: 4px;
+    }
+
+    .maket-wrapper--mobile {
+        top: 23px;
+        left: 117px;
+        width: 85px;
+        height: 184px;
+        border-radius: 10px;
+    }
+
+    .maket-scroll-container::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .portfolio-navigation {
+        max-width: 350px;
+    }
+
+    .subcategories-list {
+        gap: 0;
+    }
+
+    .subcategory-button {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .category-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .category-icon__image {
+        width: 20px;
+        height: 20px;
+    }
+
+    .category-button {
+        width: 80px;
+    }
+
+    .category-button span {
+        font-size: 9px;
+        text-align: center;
+    }
+
+    .categories-wrapper {
+        max-width: 335px;
+        gap: 0;
+    }
+
+    .portfolio-box {
+        justify-content: center;
     }
 }

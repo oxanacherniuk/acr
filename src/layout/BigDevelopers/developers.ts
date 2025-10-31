@@ -20,6 +20,7 @@ import PavelSite3 from '../../assets/images/pavel-site3.webp';
 import PavelSite4 from '../../assets/images/pavel-site4.webp';
 import PlatonBot1 from '../../assets/images/platonBot1.webp';
 import PlatonBot2 from '../../assets/images/platonBot2.webp';
+import PlatonBot3 from '../../assets/images/platonBot3.webp';
 
 export interface Developer {
     id: string;
@@ -63,7 +64,8 @@ export const developers: Developer[] = [
         photo: Platon,
         portfolio: [
             PlatonBot1,
-            PlatonBot2
+            PlatonBot2,
+            PlatonBot3
         ],
         description: 'Бэкенд-архитектор с глубокими знаниями в микросервисной архитектуре. Разрабатывает надежные серверные решения.'
     },

@@ -15,6 +15,7 @@ import PavelSite3 from '../../assets/images/pavel-site3.webp';
 import PavelSite4 from '../../assets/images/pavel-site4.webp';
 import PlatonBot1 from '../../assets/images/platonBot1.webp';
 import PlatonBot2 from '../../assets/images/platonBot2.webp';
+import PlatonBot3 from '../../assets/images/platonBot3.webp';
 
 export const sites = [
     {
@@ -155,7 +156,7 @@ export const sites = [
     },
     {
         id: 18,
-        image: PlatonBot1,
+        image: PlatonBot3,
         name: 'Платон Б.',
         category: 'Разработка ботов',
         subcategory: 'Боты бронирования',
