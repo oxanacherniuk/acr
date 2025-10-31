@@ -1,4 +1,6 @@
-import ServiceImage from "../assets/images/landing.webp";
+import ServiceImage from "../assets/images/service/lending.png";
+import ServiceImageWebp from "../assets/images/service/lending.webp";
+
 import { ServiceLayout } from "../components/services/ServiceLayout";
 import { Breadcrumbs } from "../components/services/Breadcrumbs";
 import { ServiceBanner } from "../components/services/ServiceBanner";
@@ -39,8 +41,11 @@ export default function ServiceLandings() {
         <ServiceBanner
           title="Лендинг"
           subtitle="Создадим функциональный одностраничный сайт, который сфокусирует внимание на вашем предложении и превратит посетителей в клиентов."
-          imageSrc={ServiceImage}
-          imageAlt="Продающий лендинг"
+          image={{
+            webp: ServiceImageWebp,
+            fallback: ServiceImage,
+            alt: "Продающий лендинг",
+          }}
 
            video={{
             webm: ServiceWebm,

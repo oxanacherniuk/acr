@@ -1,4 +1,5 @@
-import ServiceImage from "../assets/images/chat-bots-service.webp";
+import ServiceImage from "../assets/images/service/catbot.png";
+import ServiceImageWebp from "../assets/images/service/catbot.webp";
 import { ServiceLayout } from "../components/services/ServiceLayout";
 import { Breadcrumbs } from "../components/services/Breadcrumbs";
 import { ServiceBanner } from "../components/services/ServiceBanner";
@@ -10,9 +11,9 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from 'yup';
-import ServiceMp4 from "../assets/video/chatBotQ.mp4";
-import ServiceWebm from "../assets/video/chatBotQ.webm";
+import * as yup from "yup";
+import ServiceMp4 from "../assets/video/service/chatBot.mp4";
+import ServiceWebm from "../assets/video/service/chatBot.webm";
 import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
@@ -27,8 +28,11 @@ export default function ServiceChatBots() {
         <ServiceBanner
           title="Умные чат-боты"
           subtitle="Автоматизируйте продажи и поддержку 24/7 с помощью интеллектуальных ботов, которые не просто отвечают, а ведут диалог и решают бизнес-задачи"
-          imageSrc={ServiceImage}
-          imageAlt="Умные чат-боты"
+          image={{
+            webp: ServiceImageWebp,
+            fallback: ServiceImage,
+            alt: "Умные чат-боты",
+          }}
           video={{
             webm: ServiceWebm,
             mp4: ServiceMp4,
@@ -79,7 +83,9 @@ export default function ServiceChatBots() {
                   title: "Продажи и лиды",
                   items: [
                     { text: "Консультация и подбор товара/услуги" },
-                    { text: "Прием заказов и бронирование прямо в мессенджере" },
+                    {
+                      text: "Прием заказов и бронирование прямо в мессенджере",
+                    },
                     { text: "Проведение акций и сбор базы подписчиков" },
                     { text: "Генерация качественных лидов 24/7" },
                   ],
@@ -88,7 +94,9 @@ export default function ServiceChatBots() {
                   id: "service",
                   title: "Клиентский сервис",
                   items: [
-                    { text: "Ответы на частые вопросы (снижает нагрузку на менеджеров)" },
+                    {
+                      text: "Ответы на частые вопросы (снижает нагрузку на менеджеров)",
+                    },
                     { text: "Статус заказа, отслеживание доставки" },
                     { text: "Запись на услугу или прием" },
                     { text: "Техническая поддержка клиентов" },
@@ -107,7 +115,8 @@ export default function ServiceChatBots() {
                 {
                   stage: "Этап 1",
                   title: "Аудит и сценарий",
-                  description: "Изучаем бизнес-процессы, прописываем диалоги и логику",
+                  description:
+                    "Изучаем бизнес-процессы, прописываем диалоги и логику",
                 },
                 {
                   stage: "Этап 2",
@@ -140,9 +149,13 @@ export default function ServiceChatBots() {
         </Section>
 
         <Section id="technologies">
-          <Container className={s['info-section__tech']} title="технологии и платформы">
-            <p >
-              Разрабатываем для всех популярных платформ. Выберем оптимальное решение под ваши задачи.
+          <Container
+            className={s["info-section__tech"]}
+            title="технологии и платформы"
+          >
+            <p>
+              Разрабатываем для всех популярных платформ. Выберем оптимальное
+              решение под ваши задачи.
             </p>
             <FeatureGrid
               items={[
@@ -164,7 +177,7 @@ export default function ServiceChatBots() {
         </Section>
 
         <Section id="pricing">
-          <Container className={s['info-section__price']}>
+          <Container className={s["info-section__price"]}>
             <InfoSection
               title="что входит в стоимость?"
               description="Стоимость проекта зависит от сложности логики, количества интеграций и платформы."
@@ -172,9 +185,7 @@ export default function ServiceChatBots() {
               buttonLink="https://t.me/KP888_Bot"
               buttonText="узнать стоимость"
             />
-            <p >
-              Базовая комплектация включает:
-            </p>
+            <p>Базовая комплектация включает:</p>
             <div className={s["punct-panel"]} style={{ marginTop: "30px" }}>
               <ul className={s["puncts"]}>
                 <li>Проектирование сложного сценария с 10+ ветками диалога</li>
@@ -186,15 +197,22 @@ export default function ServiceChatBots() {
               </ul>
             </div>
 
-            <div className={s["additional-options"]} style={{ marginTop: "50px" }}>
-              <h3 style={{ textAlign: "center", marginBottom: "30px" }}>дополнительные опции</h3>
+            <div
+              className={s["additional-options"]}
+              style={{ marginTop: "50px" }}
+            >
+              <h3 style={{ textAlign: "center", marginBottom: "30px" }}>
+                дополнительные опции
+              </h3>
               <div className={s["additional-options-grid"]}>
                 <div className={s["option-item"]}>
                   <div className={s["option-name"]}>Интеграция с CRM</div>
                   <div className={s["option-price"]}>+20 000 ₽</div>
                 </div>
                 <div className={s["option-item"]}>
-                  <div className={s["option-name"]}>NLP (понимание вопросов)</div>
+                  <div className={s["option-name"]}>
+                    NLP (понимание вопросов)
+                  </div>
                   <div className={s["option-price"]}>+30 000 ₽</div>
                 </div>
                 <div className={s["option-item"]}>
@@ -202,9 +220,11 @@ export default function ServiceChatBots() {
                   <div className={s["option-price"]}>+40 000 ₽</div>
                 </div>
               </div>
-        
-              <NavigationButton to={'https://t.me/KP888_Bot'} children={'получить расчет'} />
-              
+
+              <NavigationButton
+                to={"https://t.me/KP888_Bot"}
+                children={"получить расчет"}
+              />
             </div>
           </Container>
         </Section>
@@ -241,50 +261,58 @@ export default function ServiceChatBots() {
               description="Опишите задачу, и наш специалист по AI бесплатно подготовит предварительный сценарий и расчет стоимости."
               fields={[
                 {
-                  name: 'name',
-                  type: 'text',
-                  placeholder: 'Ваше имя',
-                  validation: yup.string()
-                    .required('Имя обязательно для заполнения')
-                    .min(2, 'Имя должно содержать минимум 2 символа')
-                    .max(50, 'Имя слишком длинное')
-                    .matches(/^[a-zA-Zа-яА-ЯёЁ\s]+$/, 'Имя может содержать только буквы'),
+                  name: "name",
+                  type: "text",
+                  placeholder: "Ваше имя",
+                  validation: yup
+                    .string()
+                    .required("Имя обязательно для заполнения")
+                    .min(2, "Имя должно содержать минимум 2 символа")
+                    .max(50, "Имя слишком длинное")
+                    .matches(
+                      /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
+                      "Имя может содержать только буквы",
+                    ),
                 },
                 {
-                  name: 'email',
-                  type: 'email',
-                  placeholder: 'Ваш e-mail',
-                  validation: yup.string()
-                    .required('Email обязателен для заполнения')
-                    .email('Введите корректный email адрес'),
+                  name: "email",
+                  type: "email",
+                  placeholder: "Ваш e-mail",
+                  validation: yup
+                    .string()
+                    .required("Email обязателен для заполнения")
+                    .email("Введите корректный email адрес"),
                 },
                 {
-                  name: 'phone',
-                  type: 'tel',
-                  placeholder: 'Ваш номер телефона',
-                  validation: yup.string()
-                    .required('Телефон обязателен для заполнения')
-                    .min(4, 'Телефон должен содержать минимум 4 цифры')
-                    .transform((value: string) => value.replace(/\D/g, '')),
+                  name: "phone",
+                  type: "tel",
+                  placeholder: "Ваш номер телефона",
+                  validation: yup
+                    .string()
+                    .required("Телефон обязателен для заполнения")
+                    .min(4, "Телефон должен содержать минимум 4 цифры")
+                    .transform((value: string) => value.replace(/\D/g, "")),
                 },
                 {
-                  name: 'platform',
-                  type: 'select',
-                  placeholder: 'К какой платформе нужен бот?',
+                  name: "platform",
+                  type: "select",
+                  placeholder: "К какой платформе нужен бот?",
                   validation: yup.string(),
                   options: [
-                    { value: 'telegram', label: 'Telegram' },
-                    { value: 'whatsapp', label: 'WhatsApp' },
-                    { value: 'website', label: 'Виджет на сайт' },
-                    { value: 'vk', label: 'VK Мессенджер' },
-                    { value: 'multiple', label: 'Несколько платформ' },
+                    { value: "telegram", label: "Telegram" },
+                    { value: "whatsapp", label: "WhatsApp" },
+                    { value: "website", label: "Виджет на сайт" },
+                    { value: "vk", label: "VK Мессенджер" },
+                    { value: "multiple", label: "Несколько платформ" },
                   ],
                 },
                 {
-                  name: 'task',
-                  type: 'textarea',
-                  placeholder: 'Опишите задачу для бота...',
-                  validation: yup.string().max(500, 'Сообщение слишком длинное'),
+                  name: "task",
+                  type: "textarea",
+                  placeholder: "Опишите задачу для бота...",
+                  validation: yup
+                    .string()
+                    .max(500, "Сообщение слишком длинное"),
                 },
               ]}
               submitText="Обсудить разработку бота"

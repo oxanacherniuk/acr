@@ -1,0 +1,160 @@
+.process-section {
+  position: relative;
+  padding: 6rem 0;
+  &__container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  &__header {
+    margin-bottom: 5rem;
+  }
+
+  &__title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+
+  &__title-accent {
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(
+      to right,
+      rgb(209, 213, 219),
+      rgb(156, 163, 175)
+    );
+  }
+
+  &__subtitle {
+    color: rgb(156, 163, 175);
+    font-size: 1.25rem;
+    line-height: 1.75;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    position: relative;
+    
+    &--full-width {
+      @media (min-width: 768px) {
+        grid-column: span 2;
+      }
+
+      @media (min-width: 1024px) {
+        grid-column: span 1;
+      }
+    }
+  }
+
+  &__card-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2)
+    );
+    border-radius: 3px;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    
+    .process-section__card:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__card-content {
+    position: relative;
+    padding: 2rem;
+    background-color: rgb(15, 15, 20);
+    border: 1px solid rgb(55, 65, 81);
+    border-radius: 3px;
+    height: 100%;
+    transition: all 0.3s ease;
+
+    .process-section__card:hover & {
+      border-color: rgba(0, 191, 255, 0.5);
+    }
+  }
+
+  &__card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__icon-wrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 191, 255, 0.2),
+      rgba(0, 191, 255, 0.2)
+    );
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+
+    .process-section__card:hover & {
+      transform: scale(1.1);
+    }
+  }
+
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: rgb(0, 191, 255);
+  }
+
+  &__number {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: rgba(0, 191, 255, 0.3);
+    user-select: none;
+  }
+
+  &__card-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+    color: rgb(0, 191, 255);
+    font-weight: 600;
+  }
+
+  &__card-description {
+    color: rgb(156, 163, 175);
+    line-height: 1.625;
+  }
+}

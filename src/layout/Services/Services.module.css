@@ -304,7 +304,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 40px 20px 20px;
+    /* padding: 20px 40px 20px 20px; */
 }
 
 .popup-overlay-active {
@@ -333,10 +333,13 @@
 
 .popup-scroll-container {
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: calc(90vh - 120px);
     padding-right: 10px;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 191, 255, 0.3) transparent;
+
+        /* max-width: 80%; */
 }
 
 .popup-scroll-container::-webkit-scrollbar {
@@ -406,30 +409,16 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    
 }
 
-.website-type-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(0, 191, 255, 0.1) 50%,
-            transparent 100%);
-    transition: left 0.5s ease;
-    z-index: 1;
+.website-type-item .service-item{
+    padding: 20px 0;
+}
+.website-type-item .service-description{
+    max-width: 600px;
 }
 
-.website-type-item:hover::before {
-    left: 100%;
-}
-
-.website-type-item:hover {
-    transform: translateX(8px);
-}
 
 .website-type-content {
     display: flex;
@@ -529,7 +518,7 @@
 
 @media (max-width: 768px) {
     .popup-overlay {
-        padding: 15px;
+        /* padding: 15px; */
         align-items: flex-start;
     }
 

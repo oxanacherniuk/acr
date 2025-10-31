@@ -1,6 +1,6 @@
 import { DefinitionItem, DefinitionList, Section, Subsection } from "../components/PrivacyPolicy/PrivacyPolicyComponent";
 import style from "../components/PrivacyPolicy/PrivacyPolicy.module.css";
-import { FooterLayout } from "../layout/Footer/Footer";
+import Footer from "../layout/Footer/Footer";
 import { HeaderLayout } from "../layout/Header/Header";
 
 const PrivacyPolicy: React.FC = () => {
@@ -165,7 +165,7 @@ const PrivacyPolicy: React.FC = () => {
       </Section>
     </div>
     </div>
-    <FooterLayout/>
+    <Footer/>
     </>
   );
 };

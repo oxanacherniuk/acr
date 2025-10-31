@@ -300,7 +300,27 @@ h3 {
   color: white;
 }
 /* стриль кнопки  end */
+.hov{
+  position: relative;
+}
 
+.hov:hover {
+    color: var(--accent-light);
+}
+.hov::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent-light);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+.hov:hover::after {
+    width: 100%;
+}
 /* ===== 1. Фоновый градиент (металлический / серебристо-голубой) ===== */
 
 .text-logo-on-white {

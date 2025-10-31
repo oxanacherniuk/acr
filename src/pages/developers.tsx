@@ -1,5 +1,5 @@
 import { BigDevelopersLayout } from '../layout/BigDevelopers/BigDevelopers';
-import { FooterLayout } from '../layout/Footer/Footer';
+import Footer from '../layout/Footer/Footer';
 import { HeaderLayout } from '../layout/Header/Header';
 
 const DevelopersPage: React.FC = () => {
@@ -7,7 +7,7 @@ const DevelopersPage: React.FC = () => {
         <div>
             <HeaderLayout />
             <BigDevelopersLayout />
-            <FooterLayout />
+            <Footer/>
         </div>
     )
 };

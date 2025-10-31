@@ -4,13 +4,13 @@ import { DevelopersLayout } from '../layout/Developers/Developers';
 import { TechnologiesLayout } from '../layout/Technologies/Technologies';
 import { ReviewsLayout } from '../layout/Reviews/Reviews';
 import { DiscussionLayout } from '../layout/Discussion/Discussion';
-import { ContactLayout } from '../layout/ContactForm/ContactForm';
-import { FooterLayout } from '../layout/Footer/Footer';
+import Footer from '../layout/Footer/Footer';
 import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
 import BannnerMP4 from '../assets/video/bab.mp4';
 import { HeaderLayout } from '../layout/Header/Header';
 import { MoveUp } from '../components/Motions';
+import { ContactSection } from '../layout/FosForm';
 
 const IndexPage: React.FC = () => {
     return (
@@ -41,8 +41,9 @@ const IndexPage: React.FC = () => {
             <TechnologiesLayout />
             <ReviewsLayout />
             <PortfolioLayout />
-            <ContactLayout />
-            <FooterLayout />
+            <ContactSection/>
+            {/* <ContactLayout /> */}
+            <Footer/>
         </div>
     );
 };

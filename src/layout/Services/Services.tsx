@@ -67,25 +67,27 @@ export function ServicesLayout() {
               {websiteTypes.map((type, index) => (
                 <div
                   key={index}
-                  className={styles["website-type-item"]}
                   onClick={() => handleWebsiteTypeClick(type.link)}
+                  className={styles["service-link"] + " " + styles["website-type-item"]}
                 >
-                  <div className={styles["website-type-content"]}>
-                    <div className={styles["website-type-info"]}>
-                      <div className={styles["website-type-header"]}>
-                        <h4 className={styles["website-type-title"]}>
-                          {type.title}
-                        </h4>
-                        <span className={styles["website-type-price"]}>
-                          {type.price}
-                        </span>
-                      </div>
-                      <p className={styles["website-type-description"]}>
+                  <div className={styles["service-item"]}>
+                    <div className={styles["service-header"]}>
+                      <MoveLeft delays={0.5}>
+                        <div className={styles["service-arrow"]}>→</div>
+                      </MoveLeft>
+                    </div>
+                    <TextEffect
+                      text={type.title}
+                      className={styles["service-name"]}
+                    />
+
+                    <div className={styles["service-line"]}></div>
+                    <div className={styles["service-content"]}>
+                      <p className={styles["service-description"]}>
                         {type.description}
                       </p>
                     </div>
                   </div>
-                  <div className={styles["website-type-link"]}>Подробнее →</div>
                 </div>
               ))}
             </div>
@@ -123,7 +125,10 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <TextEffect text="РАЗРАБОТКА САЙТОВ" className={styles["service-name"]}/>
+                <TextEffect
+                  text="РАЗРАБОТКА САЙТОВ"
+                  className={styles["service-name"]}
+                />
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -143,7 +148,10 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <TextEffect text="УМНЫЕ ЧАТ-БОТЫ" className={styles["service-name"]}/>
+                <TextEffect
+                  text="УМНЫЕ ЧАТ-БОТЫ"
+                  className={styles["service-name"]}
+                />
 
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
@@ -155,7 +163,7 @@ export function ServicesLayout() {
               </div>
             </Link>
           </MoveUp>
-          <MoveUp>
+          {/* <MoveUp>
             <Link to="/services/ai" className={styles["service-link"]}>
               <div className={styles["service-item"]}>
                 <div className={styles["service-header"]}>
@@ -173,7 +181,7 @@ export function ServicesLayout() {
                 </div>
               </div>
             </Link>
-          </MoveUp>
+          </MoveUp> */}
 
           <MoveUp>
             <Link to="/services/mobile-app" className={styles["service-link"]}>
@@ -183,9 +191,11 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <TextEffect text="РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ" className={styles["service-name"]}/>
+                <TextEffect
+                  text="РАЗРАБОТКА МОБИЛЬНЫХ ПРИЛОЖЕНИЙ"
+                  className={styles["service-name"]}
+                />
 
-               
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>
@@ -205,7 +215,7 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <TextEffect text="ДИЗАЙН" className={styles["service-name"]}/>
+                <TextEffect text="ДИЗАЙН" className={styles["service-name"]} />
 
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
@@ -226,7 +236,10 @@ export function ServicesLayout() {
                     <div className={styles["service-arrow"]}>→</div>
                   </MoveLeft>
                 </div>
-                <TextEffect text="DIGITAL-МАРКЕТИНГ" className={styles["service-name"]}/>
+                <TextEffect
+                  text="DIGITAL - МАРКЕТИНГ"
+                  className={styles["service-name"]}
+                />
                 <div className={styles["service-line"]}></div>
                 <div className={styles["service-content"]}>
                   <p className={styles["service-description"]}>

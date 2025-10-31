@@ -1,0 +1,99 @@
+.requisites-section {
+  position: relative;
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, transparent, rgba(17, 24, 39, 0.2), transparent);
+}
+.requisites-section__container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.requisites-section__title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .requisites-section__title {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+.requisites-section__title-accent {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, rgb(209, 213, 219), rgb(156, 163, 175));
+}
+.requisites-section__content {
+  margin-left: auto;
+  margin-right: auto;
+}
+.requisites-section__features {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+  .requisites-section__features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.requisites-section__feature-card {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.5), rgba(17, 24, 39, 0.3));
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 3px;
+  text-align: center;
+}
+.requisites-section__feature-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: rgb(0, 191, 255);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+.requisites-section__feature-title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: rgb(0, 191, 255);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.requisites-section__feature-description {
+  color: rgb(156, 163, 175);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.requisites-section__details {
+  padding: 2rem;
+  background-color: rgb(15, 15, 20);
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 3px;
+}
+.requisites-section__details-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .requisites-section__details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.requisites-section__detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.requisites-section__detail-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(0, 191, 255);
+}
+.requisites-section__detail-value {
+  color: rgb(209, 213, 219);
+}

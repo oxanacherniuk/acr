@@ -1,4 +1,6 @@
-import ServiceImage from "../assets/images/internet-shop.webp";
+import ServiceImage from "../assets/images/service/iShop.png";
+import ServiceImageWebp from "../assets/images/service/iShop.webp";
+
 import { ServiceLayout } from "../components/services/ServiceLayout";
 import { Breadcrumbs } from "../components/services/Breadcrumbs";
 import { ServiceBanner } from "../components/services/ServiceBanner";
@@ -15,7 +17,8 @@ import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
-
+import ServiceMp4 from "../assets/video/service/iShop.mp4";
+import ServiceWebm from "../assets/video/service/iShop.webm";
 export function ServiceEcommerce() {
   return (
     <ServiceLayout>
@@ -38,12 +41,20 @@ export function ServiceEcommerce() {
         <ServiceBanner
           title="Интернет-магазин"
           subtitle="Запустите мощный интернет-магазин, который продает 24/7. Всё включено — от домена до маркетинга и онлайн-кассы."
-        //   description="Вы сосредотачиваетесь на товарах, мы берём на себя всю техническую часть."
-          imageSrc={ServiceImage}
-          imageAlt="Современный интернет-магазин"
+          //   description="Вы сосредотачиваетесь на товарах, мы берём на себя всю техническую часть."
+          image={{
+            webp: ServiceImageWebp,
+            fallback: ServiceImage,
+            alt: "Продающий лендинг",
+          }}
+          video={{
+            webm: ServiceWebm,
+            mp4: ServiceMp4,
+            poster: ServiceImage,
+          }}
         />
       </div>
-      
+
       <div className={s["service-page"]}>
         <Section id="hero">
           <Container>
@@ -93,7 +104,9 @@ export function ServiceEcommerce() {
                     { text: "Домен и хостинг на 1 год в подарок" },
                     { text: "Установка SSL сертификата" },
                     { text: "Система управления сайтом (CMS)" },
-                    { text: "Соответствие ФЗ «О персональных данных» (152-ФЗ)" },
+                    {
+                      text: "Соответствие ФЗ «О персональных данных» (152-ФЗ)",
+                    },
                     { text: "Подключение онлайн-кассы и соответствие 54-ФЗ" },
                   ],
                 },
@@ -163,8 +176,11 @@ export function ServiceEcommerce() {
                 items: [
                   { name: "Размер каталога", price: "Количество товаров" },
                   { name: "Сложность интеграций", price: "CRM, 1C, ERP" },
-                  { name: "Уникальный функционал", price: "Нестандартные модули" },
-                ]
+                  {
+                    name: "Уникальный функционал",
+                    price: "Нестандартные модули",
+                  },
+                ],
               }}
               buttonLink="https://t.me/KP888_Bot"
               buttonText="узнать стоимость"
@@ -195,7 +211,8 @@ export function ServiceEcommerce() {
                 {
                   stage: "Этап 4",
                   title: "Разработка",
-                  description: "Верстка, программирование и подключение функционала",
+                  description:
+                    "Верстка, программирование и подключение функционала",
                 },
                 {
                   stage: "Этап 5",

@@ -1,4 +1,5 @@
-import ServiceImage from "../assets/images/marketing.webp";
+import ServiceImage from "../assets/images/service/marketing.png";
+import ServiceImageWebp from "../assets/images/service/marketing.webp";
 import { ServiceLayout } from "../components/services/ServiceLayout";
 import { Breadcrumbs } from "../components/services/Breadcrumbs";
 import { ServiceBanner } from "../components/services/ServiceBanner";
@@ -14,21 +15,34 @@ import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
 import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
+import ServiceMp4 from "../assets/video/service/marketing.mp4";
+import ServiceWebm from "../assets/video/service/marketing.webm"
+
 
 export function ServiceMarketing() {
   return (
     <ServiceLayout>
       <div className={s["service-top"]}>
         <Breadcrumbs
-          title="DIGITAL-МАРКЕТИНГ"
+          title="DIGITAL - МАРКЕТИНГ"
           links={[]}
         />
         <ServiceBanner
           title="DIGITAL-МАРКЕТИНГ"
           subtitle="Мы не просто настраиваем рекламу. Мы выстраиваем единую систему привлечения и удержания клиентов, где каждый рубль работает на окупаемость."
         //   description="От стратегии до запуска и полной аналитики."
-          imageSrc={ServiceImage}
-          imageAlt="Digital-маркетинг"
+          image={{
+            webp: ServiceImageWebp,
+            fallback: ServiceImage,
+            alt: "Продающий лендинг",
+          }}
+
+           video={{
+            webm: ServiceWebm,
+            mp4: ServiceMp4,
+            poster: ServiceImage,
+            
+          }}
         />
       </div>
       

@@ -10,7 +10,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import DeveloperPage from "./pages/developerPage";
 import ServiceDesign from "./pages/ServiceDesign";
 import { ServiceMobileApp } from "./pages/ServiceMobileApp";
-import ServiceAI from "./pages/ServiceAI";
+// import ServiceAI from "./pages/ServiceAI";
 // import { ServiceWebApp } from "./pages/ServiceWebApp";
 import ServiceChatBots from "./pages/ServiceChatBots";
 import Services from "./pages/Services";
@@ -135,14 +135,14 @@ function AppRoutes() {
         }
       /> */}
       <Route path="/services/chat-bots" element={<ServiceChatBots />} />
-      <Route
+      {/* <Route
         path="/services/ai"
         element={
           <div className="page-container">
             <ServiceAI />
           </div>
         }
-      />
+      /> */}
       <Route
         path="/services/mobile-app"
         element={

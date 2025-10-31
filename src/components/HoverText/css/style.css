@@ -4,7 +4,8 @@
   position: relative;
   z-index: 10;
   display: flex;
-  gap: 20px;
+  gap: 15px;
+  column-gap: 30px;
   flex-wrap: wrap;
 }
 
@@ -15,8 +16,13 @@
 .text-effect .word {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0;
+  gap: 5px;
   align-items: baseline;
+}
+@media (max-width: 768px) {
+  .text-effect .word {
+    gap: 3px;
+  }
 }
 
 .text-effect .wrapper {

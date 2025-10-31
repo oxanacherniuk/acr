@@ -27,8 +27,10 @@ export function ServiceMobileApp() {
         <ServiceBanner
           title="Мобильные приложения"
           subtitle="Создаем нативные и кроссплатформенные мобильные приложения для iOS и Android с фокусом на пользовательский опыт и производительность."
-          imageSrc={ServiceImage}
-          imageAlt="Разработка мобильных приложений"
+         image={{
+            fallback: ServiceImage,
+            alt: "Digital-маркетинг",
+          }}
         />
       </div>
       

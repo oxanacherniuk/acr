@@ -25,8 +25,10 @@ export default function ServiceDesign() {
         <ServiceBanner
           title="ДИЗАЙН"
           subtitle="Разрабатываем современный и функциональный дизайн для цифровых продуктов, брендов и маркетинговых материалов."
-          imageSrc={ServiceImage}
-          imageAlt="Дизайн услуг"
+          image={{
+            fallback: ServiceImage,
+            alt: "Дизайн услуг",
+          }}
 
           video={{
             webm: ServiceWebm,

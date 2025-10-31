@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { developers } from '../layout/BigDevelopers/developers';
 import styles from '../layout/BigDevelopers/Developer.module.css';
 import { HeaderLayout } from '../layout/Header/Header';
-import { FooterLayout } from '../layout/Footer/Footer';
+import Footer from '../layout/Footer/Footer';
 
 export default function DeveloperPage() {
     const { id } = useParams<{ id: string }>();
@@ -61,7 +61,7 @@ export default function DeveloperPage() {
                     </div>
                 </div>
             </div>
-            <FooterLayout />
+            <Footer/>
         </div>
     );
 }
