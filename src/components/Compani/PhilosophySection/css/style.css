@@ -72,7 +72,6 @@
 .philosophy-section__icon-wrapper {
   width: 4rem;
   height: 4rem;
-  background: linear-gradient(135deg, rgb(0, 191, 255), rgb(0, 191, 255));
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -84,9 +83,9 @@
   transform: scale(1.1);
 }
 .philosophy-section__icon {
-  width: 2rem;
-  height: 2rem;
-  color: white;
+  width: 4rem;
+  height: 4rem;
+  color: rgb(0, 191, 255);
 }
 .philosophy-section__card-title {
   font-size: 1.5rem;

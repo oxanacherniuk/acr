@@ -1,24 +1,30 @@
-import './css/style.css';
+import './scss/style.scss';
 
 export function StatsSection() {
   const stats = [
     {
       value: "1.5х",
-      label: "Увеличение конверсии в среднем"
+      label: "Увеличение конверсии в среднем",
+      icon: "↑"
     },
     {
       value: "99%",
-      label: "Довольных клиентов"
+      label: "Довольных клиентов",
+      icon: "★"
     },
     {
       value: "1 год",
-      label: "Средняя длительность партнёрства"
+      label: "Средняя длительность партнёрства",
+      icon: "∞"
     }
   ];
 
   return (
     <section className="stats-section">
       <div className="stats-section__background-overlay" />
+      
+      {/* Декоративные элементы */}
+      <div className="stats-section__decorative-circle" />
       
       <div className="container">
         <h2 className="glossy-lite text-silver-blue-dark h2">
@@ -31,16 +37,37 @@ export function StatsSection() {
               key={index}
               className="stats-section__card"
             >
+              {/* Светящийся фон при наведении */}
               <div className="stats-section__card-glow" />
               
               <div className="stats-section__card-content">
-                <div className="stats-section__value">
+                {/* Иконка сверху */}
+                <div className="stats-section__card-icon">
+                  {stat.icon}
+                </div>
+                
+                {/* Значение */}
+                <div className="stats-section__card-value">
                   {stat.value}
                 </div>
-                <p className="stats-section__label">{stat.label}</p>
+                
+                {/* Разделитель */}
+                <div className="stats-section__card-divider" />
+                
+                {/* Описание */}
+                <p className="stats-section__card-label">{stat.label}</p>
+
+              
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Дополнительный текст */}
+        <div className="stats-section__footer">
+          <p className="stats-section__footer-text">
+            Каждый проект для нас — это возможность создать что-то действительно ценное и увидеть, как растёт бизнес наших партнёров
+          </p>
         </div>
       </div>
     </section>

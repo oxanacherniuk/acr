@@ -102,11 +102,11 @@
   &__icon-wrapper {
     width: 4rem;
     height: 4rem;
-    background: linear-gradient(
-      135deg,
-      rgb(0, 191, 255),
-      rgb(0, 191, 255)
-    );
+    // background: linear-gradient(
+    //   135deg,
+    //   rgb(0, 191, 255),
+    //   rgb(0, 191, 255)
+    // );
     border-radius: 3px;
     display: flex;
     align-items: center;
@@ -120,9 +120,9 @@
   }
 
   &__icon {
-    width: 2rem;
-    height: 2rem;
-    color: white;
+    width: 4rem;
+    height: 4rem;
+    color:rgb(0, 191, 255);
   }
 
   &__card-title {

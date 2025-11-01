@@ -11,14 +11,14 @@ export function AboutSection() {
         <div className="about-section__content">
           <div className="about-section__header">
             <h2 className="glossy-lite text-silver-blue-dark h2">
-              Аналитический Центр <span className="about-section__title-accent">Развития</span>
+              Аналитический Центр Развитие
             </h2>
           </div>
 
           <div className="about-section__text-blocks">
             <div className="about-section__text-block">
               <p className="about-section__text">
-                «Аналитический центр развития» — это команда экспертов по цифровым технологиям, которые на основе глубокого анализа строят эффективные онлайн-решения, приносящие нашим клиентам прибыль и устойчивый рост.
+                «Аналитический центр развитие» — это команда экспертов по цифровым технологиям, которые на основе глубокого анализа строят эффективные онлайн-решения, приносящие нашим клиентам прибыль и устойчивый рост.
               </p>
             </div>
 

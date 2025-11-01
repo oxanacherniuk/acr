@@ -1,5 +1,5 @@
 import { ImageIcon, Snowflake, Palette, Gift } from "lucide-react";
-import './css/style.css';
+import './scss/style.scss';
 
 export function HowItWorksSection() {
   const steps = [
@@ -36,31 +36,44 @@ export function HowItWorksSection() {
           Элементы праздничного преображения
         </p>
 
-        <div className="how-it-works-section__grid">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={index}
-                className="how-it-works-section__card"
-              >
-                <div className="how-it-works-section__card-glow" />
-                
-                <div className="how-it-works-section__card-content">
-                  <div className="how-it-works-section__card-body">
-                    <div className="how-it-works-section__icon-wrapper">
-                      <Icon className="how-it-works-section__icon" />
+        <div className="how-it-works-section__content">
+          <div className="how-it-works-section__grid">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              const isEven = index % 2 === 0;
+              
+              return (
+                <div
+                  key={index}
+                  className={`how-it-works-section__card ${
+                    isEven ? 'how-it-works-section__card--even' : 'how-it-works-section__card--odd'
+                  }`}
+                >
+                  {/* Декоративный элемент сзади */}
+                  <div className="how-it-works-section__card-decoration" />
+                  
+                  <div className="how-it-works-section__card-glow" />
+                  
+                  <div className="how-it-works-section__card-content">
+                    <div className="how-it-works-section__card-body">
+                      <div className="how-it-works-section__icon-wrapper">
+                        <Icon className="how-it-works-section__icon" />
+                      </div>
+                      
+                      <div className="how-it-works-section__text-content">
+                        <div className="how-it-works-section__step-number">Шаг {index + 1}</div>
+                        <h3 className="how-it-works-section__card-title">{step.title}</h3>
+                        <p className="how-it-works-section__card-description">{step.description}</p>
+                      </div>
                     </div>
-                    
-                    <div className="how-it-works-section__text-content">
-                      <h3 className="how-it-works-section__card-title">{step.title}</h3>
-                      <p className="how-it-works-section__card-description">{step.description}</p>
-                    </div>
+
+                    {/* Декоративная линия внизу */}
+                    <div className="how-it-works-section__card-line" />
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -40,11 +40,7 @@ export function ProcessSection() {
       <div className="container">
         <div className="process-section__header">
           <h2 className="glossy-lite text-silver-blue-dark h2">
-            НАШ ПРОЦЕСС — ЭТО{" "}
-            ЧЁТКОСТЬ{" "}
-            И{" "}
-            ПРЕДСКАЗУЕМОСТЬ
-            РЕЗУЛЬТАТА
+            НАШ ПРОЦЕСС — ЭТО ЧЁТКОСТЬ И ПРЕДСКАЗУЕМОСТЬ РЕЗУЛЬТАТА
           </h2>
           <p className="process-section__subtitle">
             Мы работаем по проверенной методологии, которая позволяет нам гарантировать качество и сроки

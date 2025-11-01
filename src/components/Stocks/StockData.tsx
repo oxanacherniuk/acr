@@ -21,10 +21,10 @@ import {
 import type { ForwardRefExoticComponent } from 'react';
 
 // Импорты изображений для акции 1
-// import stock1Img from '../../assets/images/stocks/1.jpg';
-// import stock1ImgWebp from '../../assets/images/stocks/1.webp';
-// import stock1VideoMp4 from '../../assets/video/stocks/1.mp4';
-// import stock1VideoWebm from '../../assets/video/stocks/1.webm';
+import stock1Img from '../../assets/images/service/catbot.png'
+import stock1ImgWebp from '../../assets/images/service/catbot.webp';
+import stock1VideoMp4 from '../../assets/video/service/chatBot.mp4';
+import stock1VideoWebm from '../../assets/video/service/chatBot.webm';
 
 // Импорты изображений для акции 2
 // import stock2Img from '../../assets/images/stocks/2.jpg';
@@ -142,10 +142,10 @@ export const stockData: StockData[] = [
       title: "Теряете заявки ночью и в выходные? Клиенты уходят, не дождавшись ответа?",
       text: "Мы разработаем умного чат-бота, который будет работать на вашем сайте 24/7, мгновенно отвечать на вопросы, консультировать и не упустит ни одного клиента, даже когда вы спите.",
       ctaButton: "Внедрить чат-бота 24/7",
-      // img: stock1Img,
-      // imgWebp: stock1ImgWebp,
-      // videoMp4: stock1VideoMp4,
-      // videoWebm: stock1VideoWebm
+      img: stock1Img,
+      imgWebp: stock1ImgWebp,
+      videoMp4: stock1VideoMp4,
+      videoWebm: stock1VideoWebm
     },
     promotion: {
       discount: "30%",
@@ -504,7 +504,7 @@ export const stockData: StockData[] = [
     subtitle: "Ваш старый сайт небезопасен и неудобен? Мы превратим его в современный, эффективный маркетинговый инструмент.",
     hero: {
       visual: "Сравнение 'До' (старый, громоздкий дизайн) и 'После' (чистый, современный, адаптивный дизайн)",
-      title: "Старый сайт — потеря клиентов. Он не выдерживает конкуренции!",
+      title: "Модернизация Сайта: Старый сайт — потеря клиентов. Он не выдерживает конкуренции!",
       text: "Мы проводим полную модернизацию: обновляем дизайн, улучшаем юзабилити, внедряем современный функционал и повышаем безопасность.",
       ctaButton: "Обновить мой сайт!",
       // img: stock6Img,

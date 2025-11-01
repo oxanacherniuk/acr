@@ -15,9 +15,7 @@ export function HeroSection() {
           {/* Right side - Text */}
           <div className="hero-section__content">
             <h1 className="glossy-lite text-silver-blue-dark h2">
-              МЫ НЕ ПРОСТО СОЗДАЁМ САЙТЫ
-                МЫ РАЗВИВАЕМ БИЗНЕС
-              С ПОМОЩЬЮ DIGITAL-ИНСТРУМЕНТОВ
+              РАЗРАБАТЫВАЕМ ЦИФРОВЫЕ ПРОДУКТЫ <br/> ДЛЯ РОСТА ВАШЕГО БИЗНЕСА 
             </h1>
           </div>
           <div className="hero-section__image-wrapper">
