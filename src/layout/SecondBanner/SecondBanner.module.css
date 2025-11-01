@@ -137,6 +137,7 @@
 
 @media (max-width: 768px) {
     .banner {
+        padding-top: 80px;
         padding-bottom: 40px;
         min-height: 60vh;
     }
@@ -219,6 +220,7 @@
 
 @media (max-width: 480px) {
     .banner {
+        padding-top: 60px;
         min-height: 50vh;
     }
 
