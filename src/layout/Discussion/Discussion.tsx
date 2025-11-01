@@ -1,7 +1,8 @@
 import { useState, useRef, type MouseEvent } from "react";
 import styles from "./Discussion.module.css";
-import { LinkButton } from "../../components/LinkButton/LinkButton";
-import telegramImg from "../../assets/images/telegram.png";
+import telegramImg from "../../assets/images/telegram.svg";
+import whatsappImg from "../../assets/images/whatsap.svg";
+import maxImg from "../../assets/images/max color.svg";
 import { MoveUp } from "../../components/Motions";
 import GradientHeadingLite from "../../components/GradientHeading/GradientHeading";
 
@@ -15,7 +16,7 @@ export function DiscussionLayout() {
 
   const handleYesClick = () => {
     setIsAnimating(true);
-    setShowWhiteBackground(true); // Сразу меняем фон на белый
+    setShowWhiteBackground(true);
 
     if (contentRef.current) {
       contentRef.current.style.opacity = "0";
@@ -118,15 +119,34 @@ export function DiscussionLayout() {
             </div>
           ) : (
             <div className={styles["success-content"]}>
-              <div className={styles["connect-buttons-container"]}>
-                <LinkButton
-                  target="_blank"
-                  to={"https://t.me/KP888_Bot"}
-                  icon={telegramImg}
-                  className={styles["connect-button"]}
-                >
-                  Связаться
-                </LinkButton>
+              <div className={styles["social-buttons-container"]}>
+                <h3 className={styles["connect-title"]}>Связаться</h3>
+                <div className={styles["social-buttons"]}>
+                  <a 
+                    href="https://t.me/KP888_Bot" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles["social-button"]}
+                  >
+                    <img src={telegramImg} alt="Telegram" className={styles["social-icon"]} />
+                  </a>
+                  <a 
+                    href="" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles["social-button"]}
+                  >
+                    <img src={whatsappImg} alt="WhatsApp" className={styles["social-icon"]} />
+                  </a>
+                  <a 
+                    href="" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles["social-button"]}
+                  >
+                    <img src={maxImg} alt="Max" className={styles["social-icon"]} />
+                  </a>
+                </div>
               </div>
             </div>
           )}
