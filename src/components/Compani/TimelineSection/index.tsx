@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import './css/style.css';
+import './scss/style.scss';
 
 export function TimelineSection() {
   const [isVisible, setIsVisible] = useState(false);

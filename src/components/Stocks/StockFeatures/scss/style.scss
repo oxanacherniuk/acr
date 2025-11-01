@@ -143,10 +143,9 @@
         position: relative;
 
         .feature-icon {
-          width: 48px;
-          height: 48px;
-          color: #fff;
-          opacity: 0.5;
+          width: 4rem;
+          height: 4rem;
+          color: var(--accent-light);
           transition: opacity 0.3s ease;
 
           

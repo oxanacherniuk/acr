@@ -1,5 +1,5 @@
 import { Building2, FileText, CreditCard } from "lucide-react";
-import './css/style.css';
+import './scss/style.scss';
 
 export function RequisitesSection() {
   const requisites = [

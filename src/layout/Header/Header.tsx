@@ -105,7 +105,7 @@ export function HeaderLayout() {
 
           <div className={styles['contact-info']}>
             <div className={styles['contact-column']}>
-              <a href="tel:+79053491449"><p className={styles['contact-item']}>+7 (905) 349-14-49</p></a>
+              <a href="tel:+79656966565"><p className={styles['contact-item']}>+7 (965) 696-65-65</p></a>
               <a href="mailto:acr-agency@yandex.ru"><p className={styles['contact-item']}>acr-agency@yandex.ru</p></a>
             </div>
             <div className={styles['contact-column']}>

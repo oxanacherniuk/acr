@@ -12,19 +12,18 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
-import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
 import ServiceMp4 from "../assets/video/service/iShop.mp4";
 import ServiceWebm from "../assets/video/service/iShop.webm";
+import { ContactSection } from "../layout/FosForm";
 export function ServiceEcommerce() {
   return (
     <ServiceLayout>
       <div className={s["service-top"]}>
         <Breadcrumbs
-          title="Интернет-магазин"
+          title="Интернет магазин"
           links={[
             {
               href: "/services/corporate",
@@ -39,7 +38,7 @@ export function ServiceEcommerce() {
           ]}
         />
         <ServiceBanner
-          title="Интернет-магазин"
+          title="Интернет магазин"
           subtitle="Запустите мощный интернет-магазин, который продает 24/7. Всё включено — от домена до маркетинга и онлайн-кассы."
           //   description="Вы сосредотачиваетесь на товарах, мы берём на себя всю техническую часть."
           image={{
@@ -250,7 +249,7 @@ export function ServiceEcommerce() {
           </Container>
         </Section>
 
-        <Section id="cta">
+        {/* <Section id="cta">
           <Container>
             <ContactForm
               title="готовы увеличить свои продажи?"
@@ -318,8 +317,8 @@ export function ServiceEcommerce() {
               submitText="Получить КП"
             />
           </Container>
-        </Section>
-
+        </Section> */}
+<ContactSection/>
         <QuizLayout />
       </div>
     </ServiceLayout>

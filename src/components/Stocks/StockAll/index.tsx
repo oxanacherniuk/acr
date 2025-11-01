@@ -1,6 +1,6 @@
 import { ChevronRight, Calendar, Tag, ArrowRight } from 'lucide-react';
 
-import './css/style.css';
+import './scss/style.scss';
 import { stockData } from '../StockData';
 
 export default function StockAll() {

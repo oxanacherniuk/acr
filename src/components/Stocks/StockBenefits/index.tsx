@@ -11,7 +11,7 @@ interface StockBenefitsProps {
 
 import type { ForwardRefExoticComponent } from "react";
 import GradientHeadingLite from "../../GradientHeading/GradientHeading";
-import "./css/style.css";
+import "./scss/style.scss";
 import type { LucideProps } from "lucide-react";
 
 export default function StockBenefits({ data }: StockBenefitsProps) {

@@ -10,11 +10,10 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
-import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
+import { ContactSection } from "../layout/FosForm";
 
 export function ServiceMobileApp() {
   return (
@@ -206,77 +205,7 @@ export function ServiceMobileApp() {
             />
           </Container>
         </Section>
-
-        <Section id="cta">
-          <Container>
-            <ContactForm
-              title="создайте мобильное приложение для вашего бизнеса!"
-              description="Оставьте контакты, и наш менеджер подготовит для вас индивидуальное коммерческое предложение в течение дня."
-              fields={[
-                {
-                  name: "name",
-                  type: "text",
-                  placeholder: "Ваше имя",
-                  validation: yup
-                    .string()
-                    .required("Имя обязательно для заполнения")
-                    .min(2, "Имя должно содержать минимум 2 символа")
-                    .max(50, "Имя слишком длинное")
-                    .matches(
-                      /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
-                      "Имя может содержать только буквы",
-                    ),
-                },
-                {
-                  name: "email",
-                  type: "email",
-                  placeholder: "Ваш e-mail",
-                  validation: yup
-                    .string()
-                    .required("Email обязателен для заполнения")
-                    .email("Введите корректный email адрес"),
-                },
-                {
-                  name: "phone",
-                  type: "tel",
-                  placeholder: "Ваш номер телефона",
-                  validation: yup
-                    .string()
-                    .required("Телефон обязателен для заполнения")
-                    .min(4, "Телефон должен содержать минимум 4 цифры")
-                    .transform((value: string) => value.replace(/\D/g, "")),
-                },
-                {
-                  name: "platform",
-                  type: "select",
-                  placeholder: "Целевые платформы",
-                  validation: yup.string(),
-                  options: [
-                    { value: "ios", label: "iOS" },
-                    { value: "android", label: "Android" },
-                    { value: "both", label: "iOS и Android" },
-                    { value: "cross", label: "Кроссплатформенное" },
-                  ],
-                },
-                {
-                  name: "app_type",
-                  type: "select",
-                  placeholder: "Тип приложения",
-                  validation: yup.string(),
-                  options: [
-                    { value: "business", label: "Бизнес-приложение" },
-                    { value: "ecommerce", label: "Интернет-магазин" },
-                    { value: "service", label: "Сервисное приложение" },
-                    { value: "social", label: "Социальная сеть" },
-                    { value: "game", label: "Игра" },
-                    { value: "other", label: "Другое" },
-                  ],
-                },
-              ]}
-              submitText="Получить КП"
-            />
-          </Container>
-        </Section>
+        <ContactSection/>
 
         <QuizLayout />
       </div>

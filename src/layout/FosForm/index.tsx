@@ -53,11 +53,11 @@ export function ContactSection() {
               
               <div className="contact-section__contacts">
                 {/* Phone */}
-                <a href="tel:+79053491449" className="contact-section__contact-item">
+                <a href="tel:+79656966565" className="contact-section__contact-item">
                   <div className="contact-section__icon-wrapper">
                     <Phone className="contact-section__icon" />
                   </div>
-                  <span className="contact-section__contact-text hov">+7 (905) 349-14-49</span>
+                  <span className="contact-section__contact-text hov">8-965-696-65-65</span>
                 </a>
 
                 {/* Email */}

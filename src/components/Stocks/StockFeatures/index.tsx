@@ -1,6 +1,6 @@
 import type { LucideProps } from "lucide-react";
 import type { ForwardRefExoticComponent } from "react";
-import "./css/style.css";
+import "./scss/style.scss";
 // import GradientHeadingLite from "../../GradientHeading/GradientHeading";
 
 interface StockFeaturesProps {

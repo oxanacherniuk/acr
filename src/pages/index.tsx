@@ -7,7 +7,7 @@ import { DiscussionLayout } from '../layout/Discussion/Discussion';
 import Footer from '../layout/Footer/Footer';
 import { PortfolioLayout } from '../layout/Portfolio/Portfolio';
 import { SecondBannerLayout } from '../layout/SecondBanner/SecondBanner';
-import BannnerMP4 from '../assets/video/bab.mp4';
+import BannnerMP4 from '../assets/video/bab2.mp4';
 import { HeaderLayout } from '../layout/Header/Header';
 import { MoveUp } from '../components/Motions';
 import { ContactSection } from '../layout/FosForm';

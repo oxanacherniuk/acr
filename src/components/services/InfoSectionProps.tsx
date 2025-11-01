@@ -49,7 +49,7 @@ export function InfoSection({
 
         {additionalOptions && (
           <div className={s['additional-options']}>
-            <h3>{additionalOptions.title}</h3>
+            <h3 className="h3">{additionalOptions.title}</h3>
             <div className={s['additional-options-grid']}>
               {additionalOptions.items.map((option, index) => (
                 <div key={index} className={s['option-item']}>

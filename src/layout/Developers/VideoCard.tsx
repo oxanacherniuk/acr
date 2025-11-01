@@ -109,7 +109,8 @@ export function VideoCard({
           className={styles["card-link-layer"]}
           onDragStart={(e) => e.preventDefault()}
         >
-          <video
+          <div className={styles["card-shedow"]}>
+            <video
             ref={videoRef}
             className={getVideoClass()}
             playsInline
@@ -124,6 +125,7 @@ export function VideoCard({
             {webm && <source src={webm} type="video/webm" />}
             <source src={mp4} type="video/mp4" />
           </video>
+          </div>
 
           <div className={styles["card-bottom"]}>
             <p className={getNameClass()}>{name}</p>

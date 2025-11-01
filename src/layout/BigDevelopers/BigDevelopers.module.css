@@ -152,7 +152,7 @@
     position: absolute;
     right: 16px;
     top: 15px;
-    border-radius: 50%;
+    border-radius: var(--br);
     border: 1px solid #616161;
     width: 54px;
     height: 54px;
@@ -265,7 +265,7 @@
     align-items: center;
     justify-content: center;
     background: #fff;
-    border-radius: 50%;
+    border-radius: var(--br);
 }
 
 .portfolio-button:hover {

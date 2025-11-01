@@ -1,4 +1,4 @@
-import './css/style.css';
+import './scss/style.scss';
 import { Target, TrendingUp, Users, Zap } from "lucide-react";
 
 export function PhilosophySection() {

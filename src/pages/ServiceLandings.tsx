@@ -12,13 +12,12 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
-import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
 import ServiceMp4 from "../assets/video/lending2.mp4";
 import ServiceWebm from "../assets/video/lending2.webm"
+import { ContactSection } from "../layout/FosForm";
 export default function ServiceLandings() {
   return (
     <ServiceLayout>
@@ -239,7 +238,7 @@ export default function ServiceLandings() {
           </Container>
         </Section>
 
-        <Section id="cta">
+        {/* <Section id="cta">
           <Container>
             <ContactForm
               title="получите поток заявок с вашего первого лендинга!"
@@ -306,8 +305,8 @@ export default function ServiceLandings() {
               submitText="Оставить заявку"
             />
           </Container>
-        </Section>
-
+        </Section> */}
+              <ContactSection/>
         <QuizLayout />
       </div>
     </ServiceLayout>

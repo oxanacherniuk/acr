@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import "./css/style.css";
+import "./scss/style.scss";
 import GradientHeadingLite from "../../GradientHeading/GradientHeading";
 
 interface StockFinalCtaProps {
@@ -12,7 +12,7 @@ interface StockFinalCtaProps {
 
 export default function StockFinalCta({ data }: StockFinalCtaProps) {
   return (
-    <section className="StockFinalCta">
+    <section id="StockFinalCta" className="StockFinalCta">
       <div className="top-decorative-line"></div>
 
       <div className="container">
@@ -43,10 +43,10 @@ export default function StockFinalCta({ data }: StockFinalCtaProps) {
               </div>
 
               <div className="actions-section">
-                <button className="cta-button butt">
+                <a href="tel:+79656966565" className="cta-button butt">
                   {data.button}
                   <ArrowRight className="button-icon" />
-                </button>
+                </a>
 
                 <div className="additional-info">
                   <p className="info-text">Бесплатная консультация</p>

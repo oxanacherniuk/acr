@@ -7,7 +7,7 @@ import StockFeatures from "../../components/Stocks/StockFeatures";
 import StockFinalCta from "../../components/Stocks/StockFinalCta";
 import Footer from "../../layout/Footer/Footer";
 
-import "./css/style.css";
+import "./scss/style.scss";
 
 export default function StockPage() {
   const { url } = useParams<{ url: string }>();
@@ -27,7 +27,7 @@ export default function StockPage() {
     <>
       <HeaderLayout />
       <div className="StockPage">
-        <StockHero data={stock.hero} />
+        <StockHero title={stock.title} data={stock.hero} />
         {stock.benefits && <StockBenefits data={stock.benefits} />}
         {stock.features && <StockFeatures data={stock.features} />}
         {stock.finalCta && <StockFinalCta data={stock.finalCta} />}

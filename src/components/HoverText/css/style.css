@@ -66,6 +66,9 @@
 .text-effect .wrapper span.letter-1:hover ~ .letter-2 {
   top: 3px;
   right: 3px;
+
+  filter: blur(6px);
+    opacity: 0.7;
 }
 
 .text-effect .wrapper span.space {

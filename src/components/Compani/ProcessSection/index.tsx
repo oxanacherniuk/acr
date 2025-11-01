@@ -1,5 +1,5 @@
 import { Search, Lightbulb, Code, Rocket, BarChart } from "lucide-react";
-import './css/style.css';
+import './scss/style.scss';
 
 export function ProcessSection() {
   const steps = [

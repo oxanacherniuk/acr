@@ -11,41 +11,34 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
-import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import ServiceMp4 from "../assets/video/service/marketing.mp4";
-import ServiceWebm from "../assets/video/service/marketing.webm"
-
+import ServiceWebm from "../assets/video/service/marketing.webm";
+import { ContactSection } from "../layout/FosForm";
 
 export function ServiceMarketing() {
   return (
     <ServiceLayout>
       <div className={s["service-top"]}>
-        <Breadcrumbs
-          title="DIGITAL - МАРКЕТИНГ"
-          links={[]}
-        />
+        <Breadcrumbs title="DIGITAL - МАРКЕТИНГ" links={[]} />
         <ServiceBanner
           title="DIGITAL-МАРКЕТИНГ"
           subtitle="Мы не просто настраиваем рекламу. Мы выстраиваем единую систему привлечения и удержания клиентов, где каждый рубль работает на окупаемость."
-        //   description="От стратегии до запуска и полной аналитики."
+          //   description="От стратегии до запуска и полной аналитики."
           image={{
             webp: ServiceImageWebp,
             fallback: ServiceImage,
             alt: "Продающий лендинг",
           }}
-
-           video={{
+          video={{
             webm: ServiceWebm,
             mp4: ServiceMp4,
             poster: ServiceImage,
-            
           }}
         />
       </div>
-      
+
       <div className={s["service-page"]}>
         <Section id="hero">
           <Container>
@@ -89,47 +82,59 @@ export function ServiceMarketing() {
                   title: "Комплексное продвижение",
                   items: [
                     { text: "SEO-оптимизация" },
-                    { text: "Ведение и стратегия контекстной рекламы (Яндекс.Директ)" },
+                    {
+                      text: "Ведение и стратегия контекстной рекламы (Яндекс.Директ)",
+                    },
                     { text: "Настройка и ведение рекламы в социальных сетях" },
                   ],
                   additionalContent: {
-                    result: "Увеличение видимости вашего бренда в сети, постоянный поток целевых заявок со всех каналов.",
-                    target: "Компаниям, которые хотят получать стабильный поток заявок и контролировать рекламный бюджет.",
+                    result:
+                      "Увеличение видимости вашего бренда в сети, постоянный поток целевых заявок со всех каналов.",
+                    target:
+                      "Компаниям, которые хотят получать стабильный поток заявок и контролировать рекламный бюджет.",
                     price: "от 25 000 ₽",
                     buttonText: "рассчитать под ключ",
-                    buttonLink: "https://t.me/KP888_Bot"
-                  }
+                    buttonLink: "https://t.me/KP888_Bot",
+                  },
                 },
                 {
                   id: "audit",
                   title: "Аудит и аналитика",
                   items: [
-                    { text: "Аудит сайта, юзабилити, рекламных каналов и конкурентов" },
+                    {
+                      text: "Аудит сайта, юзабилити, рекламных каналов и конкурентов",
+                    },
                     { text: "Анализ воронки продаж и выявление «узких» мест" },
                   ],
                   additionalContent: {
-                    result: "Готовый план по оптимизации и развитию digital-направления с четким KPI.",
-                    target: "Тем, кто хочет понять, что не так с текущим продвижением, и получить дорожную карту для исправления.",
+                    result:
+                      "Готовый план по оптимизации и развитию digital-направления с четким KPI.",
+                    target:
+                      "Тем, кто хочет понять, что не так с текущим продвижением, и получить дорожную карту для исправления.",
                     price: "от 20 000 ₽",
                     buttonText: "заказать аудит",
-                    buttonLink: "https://t.me/KP888_Bot"
-                  }
+                    buttonLink: "https://t.me/KP888_Bot",
+                  },
                 },
                 {
                   id: "strategy",
                   title: "Стратегия развития",
                   items: [
-                    { text: "Разработка детальной годовой дорожной карты по digital-продвижению" },
+                    {
+                      text: "Разработка детальной годовой дорожной карты по digital-продвижению",
+                    },
                     { text: "Определение целей, этапов, бюджета" },
                     { text: "Прогноз по лидам и ROI" },
                   ],
                   additionalContent: {
-                    result: "Понимание, куда и зачем двигаться, и как распределять ресурсы на год вперед.",
-                    target: "Собственникам бизнеса и директорам по маркетингу для планирования и обоснования бюджета.",
+                    result:
+                      "Понимание, куда и зачем двигаться, и как распределять ресурсы на год вперед.",
+                    target:
+                      "Собственникам бизнеса и директорам по маркетингу для планирования и обоснования бюджета.",
                     price: "от 60 000 ₽",
                     buttonText: "разработать стратегию",
-                    buttonLink: "https://t.me/KP888_Bot"
-                  }
+                    buttonLink: "https://t.me/KP888_Bot",
+                  },
                 },
                 {
                   id: "smm",
@@ -142,12 +147,14 @@ export function ServiceMarketing() {
                     { text: "Работа с вовлечением" },
                   ],
                   additionalContent: {
-                    result: "Узнаваемость бренда, лояльное комьюнити и постоянный поток лидов из соцсетей.",
-                    target: "Компаниям, которые хотят строить долгосрочные отношения с аудиторией в Instagram, VK, Telegram.",
+                    result:
+                      "Узнаваемость бренда, лояльное комьюнити и постоянный поток лидов из соцсетей.",
+                    target:
+                      "Компаниям, которые хотят строить долгосрочные отношения с аудиторией в Instagram, VK, Telegram.",
                     price: "от 40 000 ₽",
                     buttonText: "продумать SMM",
-                    buttonLink: "https://t.me/KP888_Bot"
-                  }
+                    buttonLink: "https://t.me/KP888_Bot",
+                  },
                 },
               ]}
             />
@@ -162,27 +169,32 @@ export function ServiceMarketing() {
                 {
                   stage: "этап 1",
                   title: "Диагностика",
-                  description: "Проводим глубокий аудит текущей ситуации (если есть) и погружаемся в бизнес-процессы.",
+                  description:
+                    "Проводим глубокий аудит текущей ситуации (если есть) и погружаемся в бизнес-процессы.",
                 },
                 {
                   stage: "этап 2",
                   title: "Стратегия",
-                  description: "Согласовываем цели, KPI и разрабатываем поэтапный план работ.",
+                  description:
+                    "Согласовываем цели, KPI и разрабатываем поэтапный план работ.",
                 },
                 {
                   stage: "этап 3",
                   title: "Реализация",
-                  description: "Запускаем и ведем рекламные каналы, оптимизируем сайт, наполняем соцсети.",
+                  description:
+                    "Запускаем и ведем рекламные каналы, оптимизируем сайт, наполняем соцсети.",
                 },
                 {
                   stage: "этап 4",
                   title: "Анализ",
-                  description: "Еженедельно и ежемесячно снимаем данные, анализируем эффективность, тестируем гипотезы.",
+                  description:
+                    "Еженедельно и ежемесячно снимаем данные, анализируем эффективность, тестируем гипотезы.",
                 },
                 {
                   stage: "этап 5",
                   title: "Отчет и корректировка",
-                  description: "Предоставляем понятные отчеты о результатах и корректируем стратегию для увеличения ROI.",
+                  description:
+                    "Предоставляем понятные отчеты о результатах и корректируем стратегию для увеличения ROI.",
                 },
               ]}
             />
@@ -210,7 +222,7 @@ export function ServiceMarketing() {
           </Container>
         </Section>
 
-        <Section id="cta">
+        {/* <Section id="cta">
           <Container>
             <ContactForm
               title="готовы выстроить маркетинг, который приносит деньги?"
@@ -273,8 +285,8 @@ export function ServiceMarketing() {
               submitText="Получить бесплатный аудит"
             />
           </Container>
-        </Section>
-
+        </Section> */}
+        <ContactSection />
         <QuizLayout />
       </div>
     </ServiceLayout>

@@ -10,11 +10,10 @@ import "../styles/service.css";
 import s from "../styles/ServicePage.module.css";
 import ServiceHero from "../components/services/ServiceHero";
 import { ServiceTabs } from "../components/services/ServiceTabs";
-import * as yup from "yup";
 import { StagesTimeline } from "../components/services/StagesTimeline";
-import { ContactForm } from "../components/services/ContactForm";
 import { QuizLayout } from "../layout/Quiz/Quiz";
 import { InfoSection } from "../components/services/InfoSectionProps";
+import { ContactSection } from "../layout/FosForm";
 // import { InfoSection } from "../components/services/InfoSection";
 
 export function ServiceCorporate() {
@@ -219,7 +218,7 @@ export function ServiceCorporate() {
           </Container>
         </Section>
 
-        <Section id="cta">
+        {/* <Section id="cta">
           <Container>
             <ContactForm
               title="сделайте первый шаг к сильному имиджу в сети!"
@@ -262,8 +261,8 @@ export function ServiceCorporate() {
               submitText="Оставить заявку"
             />
           </Container>
-        </Section>
-
+        </Section> */}
+        <ContactSection/>
         <QuizLayout />
       </div>
     </ServiceLayout>

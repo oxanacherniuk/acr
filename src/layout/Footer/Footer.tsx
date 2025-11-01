@@ -224,10 +224,10 @@ export default function Footer() {
                   <ul className="footer__contact-info">
                     <li className="footer__contact-item">
                       <a
-                        href="tel:+74951234567"
+                        href="tel:+79656966565"
                         className="footer__contact-link"
                       >
-                        +7 (495) 123-45-67
+                        +7 (965) 696-65-65
                       </a>
                     </li>
                     <li className="footer__contact-item">
