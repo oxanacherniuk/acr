@@ -108,7 +108,7 @@ export function ReviewsLayout() {
         <div className={styles['reviews']}>
             <div className='container'>
                 <GradientHeadingLite as='p' className="h2"  blueBoost={1} baseAngle={45}>
-отзывы
+                    отзывы
                 </GradientHeadingLite>
                 
                 <div className={styles['review-container']}>

@@ -5,13 +5,18 @@
     display: flex;
     align-items: center;
     padding-bottom: 60px;
-    
+    padding-top: 120px;
     position: relative;
 }
 
 .banner-content {
     width: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
 }
 
 .banner-content .link-button {
@@ -25,14 +30,190 @@
     opacity: 1;
 }
 
+.arrow-left,
+.arrow-right {
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.8s ease 0.6s;
+}
+
+.arrow-left.arrow-visible,
+.arrow-right.arrow-visible {
+    opacity: 0.5;
+}
+
+.arrow-left {
+    transform: translateX(-20px);
+}
+
+.arrow-right {
+    transform: translateX(20px) rotate(180deg);
+}
+
+.arrow-left.arrow-visible {
+    transform: translateX(0);
+    animation: pulseLeft 2s ease-in-out infinite;
+}
+
+.arrow-right.arrow-visible {
+    transform: translateX(0) rotate(180deg);
+    animation: pulseRight 2s ease-in-out infinite;
+}
+
+.service-arrow {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+@keyframes pulseLeft {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-35px);
+    }
+}
+
+@keyframes pulseRight {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(180deg);
+    }
+
+    50% {
+        transform: translateX(35px) rotate(180deg);
+    }
+}
+
+@media (max-width: 1200px) {
+    .banner-content {
+        gap: 30px;
+    }
+
+    .service-arrow {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .banner-content {
+        gap: 25px;
+    }
+
+    .service-arrow {
+        font-size: 2.2rem;
+    }
+
+    @keyframes pulseLeft {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-12px);
+        }
+    }
+
+    @keyframes pulseRight {
+
+        0%,
+        100% {
+            transform: translateX(0) rotate(180deg);
+        }
+
+        50% {
+            transform: translateX(12px) rotate(180deg);
+        }
+    }
+}
+
 @media (max-width: 768px) {
     .banner {
         padding-bottom: 40px;
         min-height: 60vh;
     }
 
+    .banner-content {
+        gap: 20px;
+    }
+
     .banner-content .link-button {
         transform: translateY(60px) scale(0.9);
+    }
+
+    .service-arrow {
+        font-size: 1.8rem;
+    }
+
+    .arrow-left,
+    .arrow-right {
+        transition-delay: 0.4s;
+    }
+
+    @keyframes pulseLeft {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-10px);
+        }
+    }
+
+    @keyframes pulseRight {
+
+        0%,
+        100% {
+            transform: translateX(0) rotate(180deg);
+        }
+
+        50% {
+            transform: translateX(10px) rotate(180deg);
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .banner-content {
+        gap: 15px;
+    }
+
+    .service-arrow {
+        font-size: 1.5rem;
+    }
+
+    @keyframes pulseLeft {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-8px);
+        }
+    }
+
+    @keyframes pulseRight {
+
+        0%,
+        100% {
+            transform: translateX(0) rotate(180deg);
+        }
+
+        50% {
+            transform: translateX(8px) rotate(180deg);
+        }
     }
 }
 
@@ -41,15 +222,55 @@
         min-height: 50vh;
     }
 
+    .banner-content {
+        gap: 10px;
+    }
+
     .banner-content .link-button {
         transform: translateY(40px) scale(0.9);
+    }
+
+    .service-arrow {
+        font-size: 1.2rem;
+    }
+
+    @keyframes pulseLeft {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-6px);
+        }
+    }
+
+    @keyframes pulseRight {
+
+        0%,
+        100% {
+            transform: translateX(0) rotate(180deg);
+        }
+
+        50% {
+            transform: translateX(6px) rotate(180deg);
+        }
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .banner-content .link-button {
+
+    .banner-content .link-button,
+    .arrow-left,
+    .arrow-right {
         transition: none;
         opacity: 1;
         transform: none;
+        animation: none;
+    }
+
+    .arrow-right {
+        transform: rotate(180deg);
     }
 }
