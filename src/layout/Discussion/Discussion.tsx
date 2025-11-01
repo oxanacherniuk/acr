@@ -123,20 +123,20 @@ export function DiscussionLayout() {
                 <h3 className={styles["connect-title"]}>Связаться</h3>
                 <div className={styles["social-buttons"]}>
                   <a 
-                    href="https://t.me/KP888_Bot" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={styles["social-button"]}
-                  >
-                    <img src={telegramImg} alt="Telegram" className={styles["social-icon"]} />
-                  </a>
-                  <a 
                     href="" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className={styles["social-button"]}
                   >
                     <img src={whatsappImg} alt="WhatsApp" className={styles["social-icon"]} />
+                  </a>
+                  <a 
+                    href="https://t.me/KP888_Bot" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles["social-button"]}
+                  >
+                    <img src={telegramImg} alt="Telegram" className={styles["social-icon"]} />
                   </a>
                   <a 
                     href="" 
