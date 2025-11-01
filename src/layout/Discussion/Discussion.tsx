@@ -8,13 +8,14 @@ import GradientHeadingLite from "../../components/GradientHeading/GradientHeadin
 export function DiscussionLayout() {
   const [isAccepted, setIsAccepted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showBlackBackground, setShowBlackBackground] = useState(false);
+  const [showWhiteBackground, setShowWhiteBackground] = useState(false);
   const noButtonRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const discussionRef = useRef<HTMLDivElement>(null);
 
   const handleYesClick = () => {
     setIsAnimating(true);
+    setShowWhiteBackground(true); // Сразу меняем фон на белый
 
     if (contentRef.current) {
       contentRef.current.style.opacity = "0";
@@ -23,7 +24,6 @@ export function DiscussionLayout() {
     setTimeout(() => {
       setIsAccepted(true);
       setIsAnimating(false);
-      setShowBlackBackground(true);
     }, 1000);
   };
 
@@ -62,7 +62,7 @@ export function DiscussionLayout() {
   return (
     <div
       ref={discussionRef}
-      className={`${styles.discussion} ${isAnimating ? styles["is-animating"] : ""} ${showBlackBackground ? styles["black-background"] : ""}`}
+      className={`${styles.discussion} ${isAnimating ? styles["is-animating"] : ""} ${showWhiteBackground ? styles["white-background"] : ""}`}
     >
       <div className="container">
         {isAnimating && (
@@ -93,9 +93,6 @@ export function DiscussionLayout() {
                   обсудим ваш проект?
                 </GradientHeadingLite>
               </MoveUp>
-              {/* <h2 className={styles["discussion-title"]}>
-                обсудим ваш проект?
-              </h2> */}
               <div className={styles["buttons-container"]}>
                 <MoveUp opacity={0} delays={0.5}>
                   <button
@@ -130,22 +127,6 @@ export function DiscussionLayout() {
                 >
                   Связаться
                 </LinkButton>
-                {/* <LinkButton 
-                                    target='_blank' 
-                                    to={'https://wa.me/your-number'} 
-                                    icon={maxImg} 
-                                    className={styles['connect-button']}
-                                >
-                                    Связаться
-                                </LinkButton>
-                                <LinkButton 
-                                    target='_blank' 
-                                    to={'https://vk.com/your-page'} 
-                                    icon={vkImg} 
-                                    className={styles['connect-button']}
-                                >
-                                    Связаться
-                                </LinkButton> */}
               </div>
             </div>
           )}
