@@ -30,14 +30,6 @@ export const sites = [
     },
     {
         id: 2,
-        image: OksanaSite2,
-        name: 'Оксана Ч.',
-        category: 'Дизайн',
-        subcategory: 'Корпоративный сайт',
-        link: '/developer/oksana',
-    },
-    {
-        id: 3,
         image: OksanaSite3,
         name: 'Оксана Ч.',
         category: 'Дизайн',
@@ -45,8 +37,16 @@ export const sites = [
         link: '/developer/oksana',
     },
     {
+        id: 3,
+        image: OksanaSite2,
+        name: 'Оксана Ч.',
+        category: 'Дизайн',
+        subcategory: 'Корпоративный сайт',
+        link: '/developer/oksana',
+    },
+    {
         id: 4,
-        image: OksanaSite4,
+        image: OksanaSite5,
         name: 'Оксана Ч.',
         category: 'Разработка сайтов',
         subcategory: 'Корпоративный сайт',
@@ -54,7 +54,7 @@ export const sites = [
     },
     {
         id: 5,
-        image: OksanaSite5,
+        image: OksanaSite4,
         name: 'Оксана Ч.',
         category: 'Разработка сайтов',
         subcategory: 'Корпоративный сайт',
@@ -66,7 +66,7 @@ export const sites = [
         name: 'Павел Л.',
         link: '/developer/pavel',
         category: 'Разработка сайтов',
-        subcategory: 'Лендинг'
+        subcategory: 'Интернет-магазин'
     },
     {
         id: 7,
@@ -90,7 +90,7 @@ export const sites = [
         name: 'Павел Л.',
         link: '/developer/pavel',
         category: 'Разработка сайтов',
-        subcategory: 'Интернет-магазин'
+        subcategory: 'Лендинг'
     },
     {
         id: 10,
@@ -105,7 +105,7 @@ export const sites = [
         image: OksanaSite7,
         name: 'Оксана Ч.',
         category: 'Дизайн',
-        subcategory: 'Корпоративный сайт',
+        subcategory: 'Интернет-магазин',
         link: '/developer/oksana',
     },
     {
@@ -129,7 +129,7 @@ export const sites = [
         image: OksanaMobile10,
         name: 'Оксана Ч.',
         category: 'Разработка мобильных приложений',
-        subcategory: 'Нативное',
+        subcategory: 'Нативные',
         link: '/developer/oksana',
     },
     {
@@ -169,7 +169,7 @@ export const sites = [
         image: OksanaMobile12,
         name: 'Оксана Ч.',
         category: 'Разработка мобильных приложений',
-        subcategory: 'Нативное',
+        subcategory: 'Нативные',
         link: '/developer/oksana',
     },
     {
@@ -177,8 +177,7 @@ export const sites = [
         image: OksanaMobile13,
         name: 'Оксана Ч.',
         category: 'Разработка мобильных приложений',
-        subcategory: 'Нативное',
+        subcategory: 'Нативные',
         link: '/developer/oksana',
     },
-
 ]
