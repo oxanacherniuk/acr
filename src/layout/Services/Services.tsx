@@ -237,7 +237,7 @@ export function ServicesLayout() {
                   </MoveLeft>
                 </div>
                 <TextEffect
-                  text="DIGITAL - МАРКЕТИНГ"
+                  text="DIGITAL- МАРКЕТИНГ"
                   className={styles["service-name"]}
                 />
                 <div className={styles["service-line"]}></div>

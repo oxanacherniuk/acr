@@ -1,4 +1,4 @@
-import ServiceImage from "../assets/images/corporate.webp";
+import ServiceImage from "../assets/images/service/korperativ.jpg";
 import { ServiceLayout } from "../components/services/ServiceLayout";
 import { Breadcrumbs } from "../components/services/Breadcrumbs";
 import { ServiceBanner } from "../components/services/ServiceBanner";

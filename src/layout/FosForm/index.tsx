@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, Send, TimerIcon } from 'lucide-react';
 import { useState } from 'react';
-import './css/style.css';
+import './scss/style.scss';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -8,10 +8,35 @@ export function ContactSection() {
     contact: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsLoading(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://api.acr-agency.ru/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', contact: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -75,12 +100,12 @@ export function ContactSection() {
                   </div>
                   <span className="contact-section__contact-text hov">г. Ульяновск, ул. Чайковского, д. 1</span>
                 </a>
-                 <p className="contact-section__contact-item">
+                 <div className="contact-section__contact-item">
                   <div className="contact-section__icon-wrapper">
                     <TimerIcon className="contact-section__icon" />
                   </div>
                   <span className="contact-section__contact-text">Пн-Пт: 9:00 - 18:00</span>
-                </p>
+                </div>
               </div>
             </div>
 
@@ -88,15 +113,6 @@ export function ContactSection() {
             <div className="contact-section__social">
               <h4 className="contact-section__social-title">Социальные сети</h4>
               <div className="contact-section__social-links">
-                {/* <a href="#" className="contact-section__social-link">
-                  <Facebook className="contact-section__social-icon" />
-                </a>
-                <a href="#" className="contact-section__social-link">
-                  <MessageCircle className="contact-section__social-icon" />
-                </a>
-                <a href="#" className="contact-section__social-link">
-                  <Instagram className="contact-section__social-icon" />
-                </a> */}
                 <a href="https://t.me/KP888_Bot" className="contact-section__social-link">
                   <Send className="contact-section__social-icon" />
                 </a>
@@ -112,6 +128,19 @@ export function ContactSection() {
             <div>
               <h3 className="contact-section__subtitle">Форма обратной связи:</h3>
               
+              {/* Сообщения о статусе отправки */}
+              {submitStatus === 'success' && (
+                <div className="contact-section__alert contact-section__alert--success">
+                  Сообщение успешно отправлено!
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="contact-section__alert contact-section__alert--error">
+                  Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="contact-section__form">
                 <div>
                   <input
@@ -120,6 +149,8 @@ export function ContactSection() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="contact-section__input"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
 
@@ -130,6 +161,8 @@ export function ContactSection() {
                     value={formData.contact}
                     onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                     className="contact-section__input"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
 
@@ -139,15 +172,18 @@ export function ContactSection() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="contact-section__textarea"
+                    required
+                    disabled={isLoading}
                   />
                 </div>
 
                 <button 
                   type="submit"
                   className="contact-section__submit-button butt"
+                  disabled={isLoading}
                 >
                   <span>
-                    Отправить сообщение
+                    {isLoading ? 'Отправка...' : 'Отправить сообщение'}
                   </span>
                 </button>
 
@@ -161,20 +197,16 @@ export function ContactSection() {
 
         {/* Map Section */}
         <div className="contact-section__map">
-          {/* Map placeholder with dark overlay */}
           <div className="contact-section__map-overlay" />
           
-          
-
-          {/* Decorative lines */}
           <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A148b4d8d414a5d6710d30e4ed0cd3105f6c07ae2a085ef7f991f8776be183475&amp;source=constructor"
-                  
-                  title="Карта расположения компании"
-                  loading="lazy"
-                  width="100%"
-                  height="400"
-                ></iframe>
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A148b4d8d414a5d6710d30e4ed0cd3105f6c07ae2a085ef7f991f8776be183475&amp;source=constructor"
+            title="Карта расположения компании"
+            loading="lazy"
+            width="100%"
+            height="400"
+          ></iframe>
+          
           <svg className="contact-section__map-lines">
             <defs>
               <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">

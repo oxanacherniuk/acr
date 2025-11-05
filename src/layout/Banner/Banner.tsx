@@ -1,9 +1,8 @@
-import GradientHeadingLite from '../../components/GradientHeading/GradientHeading';
+import TextEffect from '../../components/HoverText';
 import styles from './Banner.module.css';
 import { useEffect, useState } from 'react';
 
 export function BannerLayout() {
-    const [displayText, setDisplayText] = useState('');
     const [displayTextMini, setDisplayTextMini] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentIndexMini, setCurrentIndexMini] = useState(0);
@@ -14,7 +13,6 @@ export function BannerLayout() {
     useEffect(() => {
         if (currentIndex < fullText.length) {
             const timer = setTimeout(() => {
-                setDisplayText(prev => prev + fullText[currentIndex]);
                 setCurrentIndex(prev => prev + 1);
             }, 100)
 
@@ -39,10 +37,8 @@ export function BannerLayout() {
         <div className={styles['banner']}>
             <div className='container'>
                 <div className={styles['banner-content']}>
-                    <GradientHeadingLite baseAngle={45} track="viewport" as='span' className={styles['banner-bigtitle'] + " banner-subtitle"}>
-                        {displayText}
-                        {currentIndex < fullText.length && <span className={styles['cursor']}>|</span>}
-                    </GradientHeadingLite>
+                    <TextEffect text={fullText} className={styles['banner-bigtitle'] + " banner-subtitle"}/>
+                    
                     <h1 className={styles['banner-title']}>
                         {displayTextMini}
                         {startMiniTyping && currentIndexMini < fullTextMini.length && <span className={styles['cursor']}>|</span>}

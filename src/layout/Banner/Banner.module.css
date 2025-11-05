@@ -21,7 +21,6 @@
   transform: none;
   animation: none;
   max-width: 680px;
-
 }
 
 .banner-subtitle {
@@ -42,18 +41,19 @@
 }
 
 .banner-bigtitle {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1.1;
   font-family: var(--manrope-font);
   margin: 0;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.08em;
   padding-bottom: 35px;
   max-width: 1240px;
   position: relative;
   display: inline-block;
 
-  text-transform: capitalize;
+
+  text-transform: uppercase;
 }
 
 .cursor {

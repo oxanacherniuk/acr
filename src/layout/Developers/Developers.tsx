@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useCallback, type JSX } from "react";
 import styles from "./Developers.module.css";
 import Pavel from "../../assets/images/pavel.jpg";
-import Oksana from "../../assets/images/oksana.jpg";
 import Maxim from "../../assets/images/maksim.jpg";
 import Irina from "../../assets/images/irina.jpg";
 import Platon from "../../assets/images/platon.jpg";
@@ -17,8 +16,6 @@ import paMp4 from "../../assets/video/pa.mp4";
 import paWebm from "../../assets/video/pa.webm";
 import platonMp4 from "../../assets/video/platon.mp4";
 import platonWebm from "../../assets/video/platon.webm";
-import oxMp4 from "../../assets/video/ox2.mp4";
-import oxWebm from "../../assets/video/ox2.webm";
 import maxMp4 from "../../assets/video/max.mp4";
 import maxWebm from "../../assets/video/max.webm";
 import iraMp4 from "../../assets/video/ira.mp4";
@@ -54,7 +51,6 @@ export function DevelopersLayout(): JSX.Element {
         { id: 1, name: 'Ева', link: '/developer/ai', mp4: evaMp4, webm: evaWebm, poster: Eva },
         { id: 2, name: 'Павел', mp4: paMp4, webm: paWebm, poster: Pavel, link: '/developer/pavel' },
         { id: 3, name: 'Платон', mp4: platonMp4, webm: platonWebm, poster: Platon, link: '/developer/platon' },
-        { id: 4, name: 'Оксана', mp4: oxMp4, webm: oxWebm, poster: Oksana, link: '/developer/oksana' },
         { id: 5, name: 'Максим', mp4: maxMp4, webm: maxWebm, poster: Maxim, link: '/developer/maksim' },
         { id: 6, name: 'Ирина', mp4: iraMp4, webm: iraWebm, poster: Irina, link: '/developer/irina' },
         { id: 7, name: 'Елена', mp4: elenaMp4, webm: elenaWebm, poster: Elena, link: '/developer/elena' },

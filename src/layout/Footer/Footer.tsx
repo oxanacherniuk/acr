@@ -32,7 +32,7 @@ export default function Footer() {
     company: [
       { name: "О компании", href: "/company" },
       { name: "Наша команда", href: "/developers" },
-      // { name: "Портфолио", href: "#" },
+      { name: "Акции", href: "/stocks" },
       { name: "Контакты", href: "/contact" },
     ],
     legal: [

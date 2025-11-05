@@ -23,9 +23,9 @@ export default function StockAll() {
           {stockData.map((feature, index) => {
             const imageSrc = feature.hero?.imgWebp || feature.hero?.img;
             return (
-              <div
+              <NavLink to={`/stock/${feature.url}`}
                 key={index}
-                className="stock-all__feature-card"
+                className="stock-all__feature-card butt"
               >
                 <div className="stock-all__feature-content">
                   <div className="stock-all__feature-icon-wrapper">
@@ -38,7 +38,7 @@ export default function StockAll() {
                         />
                       ) : (
                         <div className="stock-all__feature-placeholder">
-                          {feature.title.charAt(0)}
+                          {feature.title.charAt(6)}
                         </div>
                       )}
                     </div>
@@ -46,20 +46,19 @@ export default function StockAll() {
 
                   {/* Content */}
                   <div className="stock-all__feature-text">
-                    <h3 className="stock-all__feature-title">
-                      {feature.title}
+                    <h3 dangerouslySetInnerHTML={{__html:feature.title}} className="stock-all__feature-title">
                     </h3>
                     <p className="stock-all__feature-description">
                       {feature.subtitle}
                     </p>
-                    <NavLink to={`/stock/${feature.url}`}
-                      className="butt"
+                    <button
+                      className="stock-all__feature-button"
                     >
-                      Узнать больше
-                    </NavLink>
+                      {feature.hero.ctaButton}
+                    </button>
                   </div>
                 </div>
-              </div>
+              </NavLink>
             );
           })}
         </div>
