@@ -82,9 +82,9 @@ const MediaWithFallback = React.memo(
                 onError={handleVideoError}
                 preload="metadata" // Добавляем preload для оптимизации
               >
-                {/* {data.videoWebm && (
+                {data.videoWebm && (
                   <source src={data.videoWebm} type="video/webm" />
-                )} */}
+                )}
                 {data.videoMp4 && (
                   <source src={data.videoMp4} type="video/mp4" />
                 )}

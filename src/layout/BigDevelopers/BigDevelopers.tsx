@@ -18,7 +18,7 @@ export function BigDevelopersLayout() {
       <div className={styles["developers-page"]}>
         <div className="container">
           <div className={styles["developers-header"]}>
-            <h1 className={styles["developers-title"]}>наша команда</h1>
+            <h1 className='glossy-lite text-silver-blue-dark h2'>наша команда</h1>
             <div className={styles["title-decoration"]}></div>
           </div>
 

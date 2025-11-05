@@ -455,9 +455,11 @@
 
 @media (max-width: 480px) {
     .developers-page {
-        padding: 100px 0 60px;
+        padding: 120px 0 60px;
     }
-
+.developers-page .container{
+    padding: 0;
+}
     .material-card.mc-active .mc-btn-action {
         top: 82px;
     }

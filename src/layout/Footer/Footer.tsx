@@ -22,8 +22,8 @@ export default function Footer() {
   const links = {
     services: [
       { name: "Лендинг", href: "/services/landings" },
-      { name: "Корпаративный сайт", href: "#" },
-      { name: "Интернет магазины", href: "#" },
+      { name: "Корпаративный сайт", href: "/services/corporate" },
+      { name: "Интернет магазины", href: "/services/ecommerce" },
       { name: "Умные чат-боты ", href: "/services/chat-bots" },
       { name: "Разработка моб. приложений", href: "/services/mobile-app" },
       { name: "Дизайн", href: "/services/design" },

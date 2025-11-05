@@ -4,6 +4,9 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+    @media (max-width: 700px) {
+      padding-top: 120px;
+    }
 
   &__background-overlay {
     position: absolute;

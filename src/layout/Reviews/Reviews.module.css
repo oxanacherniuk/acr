@@ -245,10 +245,6 @@
         font-size: 1.5rem;
     }
 
-    .review-navigation {
-        display: none;
-    }
-
     .review-counter {
         font-size: 1.1rem;
     }
@@ -558,10 +554,6 @@
         bottom: 20px;
         font-size: 0.9rem;
         padding: 6px 12px;
-    }
-
-    .review-navigation {
-        display: none;
     }
 }
 

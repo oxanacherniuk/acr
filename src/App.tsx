@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import Contact from "./pages/contact";
 import StockPage from "./pages/StockPage";
+import StocksPage from "./pages/StocksPage";
 
 function AppRoutes() {
   const location = useLocation();
@@ -172,6 +173,14 @@ function AppRoutes() {
         element={
           <div className="page-container">
             <Contact />
+          </div>
+        }
+      />
+      <Route
+        path="/stocks"
+        element={
+          <div className="page-container">
+            <StocksPage />
           </div>
         }
       />
