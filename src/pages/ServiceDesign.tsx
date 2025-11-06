@@ -261,7 +261,7 @@ export default function ServiceDesign() {
           </Container>
         </Section> */}
         <ContactSection/>
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

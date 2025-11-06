@@ -23,7 +23,7 @@ export default function ServiceHero({
       <div className={s['hero-content']}>
         <h2 dangerouslySetInnerHTML={{ __html: title }} />
         <p>{description}</p>
-        <NavigationButton to={buttonLink}>{buttonText}</NavigationButton>
+        <a className={s['hero-but'] + " butt"} href={buttonLink}>{buttonText}</a>
       </div>
     </div>
 

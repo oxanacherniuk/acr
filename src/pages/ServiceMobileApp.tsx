@@ -207,7 +207,7 @@ export function ServiceMobileApp() {
         </Section>
         <ContactSection/>
 
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

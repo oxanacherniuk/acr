@@ -1,4 +1,5 @@
 import styles from "./Services.module.css";
+import pops from "./Popup.module.css";
 import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { websiteTypes } from "./variables";
@@ -12,25 +13,17 @@ export function ServicesLayout() {
   const [currentPopup, setCurrentPopup] = useState<"websites" | null>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  // Исправленный useEffect для блокировки скролла
+useEffect(() => {
     if (isPopupOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
       document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
     } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflow = "";
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
 
     return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflow = "";
     };
@@ -63,34 +56,31 @@ export function ServicesLayout() {
       case "websites":
         return (
           <>
-            <div className={styles["website-types"]}>
-              {websiteTypes.map((type, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleWebsiteTypeClick(type.link)}
-                  className={styles["service-link"] + " " + styles["website-type-item"]}
-                >
-                  <div className={styles["service-item"]}>
-                    <div className={styles["service-header"]}>
-                      <MoveLeft delays={0.5}>
-                        <div className={styles["service-arrow"]}>→</div>
-                      </MoveLeft>
-                    </div>
-                    <TextEffect
-                      text={type.title}
-                      className={styles["service-name"]}
-                    />
-
-                    <div className={styles["service-line"]}></div>
-                    <div className={styles["service-content"]}>
-                      <p className={styles["service-description"]}>
-                        {type.description}
-                      </p>
-                    </div>
+            {websiteTypes.map((type, index) => (
+              <div
+                key={index}
+                onClick={() => handleWebsiteTypeClick(type.link)}
+                className={pops["website-type-item"]} // Используем pops вместо styles
+              >
+                <div className={styles["service-item"]}>
+                  <div className={styles["service-header"]}>
+                    <MoveLeft delays={0.5}>
+                      <div className={styles["service-arrow"]}>→</div>
+                    </MoveLeft>
+                  </div>
+                  <TextEffect
+                    text={type.title}
+                    className={styles["service-name"]}
+                  />
+                  <div className={styles["service-line"]}></div>
+                  <div className={styles["service-content"]}>
+                    <p className={styles["service-description"]}>
+                      {type.description}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </>
         );
       default:
@@ -254,19 +244,17 @@ export function ServicesLayout() {
       </div>
       {isPopupOpen && (
         <div
-          className={`${styles["popup-overlay"]} ${isPopupOpen ? styles["popup-overlay-active"] : ""}`}
+          className={`${pops["popup-overlay"]} ${isPopupOpen ? pops["popup-overlay-active"] : ""}`}
+          onClick={handleClosePopup}
         >
-          <div className={styles["popup-content"]} onClick={handleClosePopup}>
+          <div className={pops["popup-content"]} onClick={handlePopupClick}>
             <button
-              className={styles["popup-close"]}
+              className={pops["popup-close"]}
               onClick={handleClosePopup}
             >
               ×
             </button>
-            <div
-              onClick={handlePopupClick}
-              className={styles["popup-scroll-container"]}
-            >
+            <div className={pops["popup-scroll-container"]}>
               {renderPopupContent()}
             </div>
           </div>

@@ -16,7 +16,7 @@ export default function StockPage() {
     return (
       <div>
         <div className="container">
-          <h1>Акция не найдена</h1>
+          <h1 className="glossy-lite text-silver-blue-dark h2">Акция не найдена</h1>
           <Link to="/developers">Вернуться к списку акций</Link>
         </div>
       </div>

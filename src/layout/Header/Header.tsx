@@ -97,9 +97,9 @@ export function HeaderLayout() {
           <nav id="fullscreen-nav" className={styles['fullscreen-nav']}>
             <ul className={styles['fullscreen-nav-list']}>
               <li><a href="/stocks" style={{color:"var(--accent-light)"}} className={styles['fullscreen-nav-link']}>Акции</a></li>
+              <li><a href="/services" className={styles['fullscreen-nav-link']}>Услуги</a></li>
 
               <li><a href="/developers" className={styles['fullscreen-nav-link']}>Команда</a></li>
-              <li><a href="/services" className={styles['fullscreen-nav-link']}>Услуги</a></li>
               <li><a href="/company" className={styles['fullscreen-nav-link']}>О компании</a></li>
             </ul>
           </nav>

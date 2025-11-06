@@ -307,7 +307,7 @@ export default function ServiceLandings() {
           </Container>
         </Section> */}
               <ContactSection/>
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

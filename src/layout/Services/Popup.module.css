@@ -1,0 +1,197 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-overlay-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  padding: 20px 40px 20px 20px;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  position: relative;
+  color: #fff;
+  animation: popupFadeInUp 0.5s ease;
+  filter: drop-shadow(0px 4px 20px rgba(0, 191, 255, 0.2));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+}
+
+.popup-scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 191, 255, 0.3) transparent;
+  height: 100%;
+  position: relative;
+  pointer-events: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; /* Добавляем это */
+}
+
+.popup-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.popup-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 191, 255, 0.3);
+  border-radius: 3px;
+}
+
+.popup-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 191, 255, 0.5);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 7px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.popup-close::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.popup-close:hover::before {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.website-type-item {
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.website-type-item .service-item {
+  padding: 20px 0;
+}
+
+.website-type-item .service-description {
+  max-width: 600px;
+}
+
+@keyframes popupFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Медиа-запросы остаются без изменений */
+@media (max-width: 1024px) {
+  .popup-content {
+    padding: 50px 30px;
+    max-width: 800px;
+    margin: 20px;
+  }
+
+  .website-type-item {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .popup-overlay {
+    align-items: flex-start;
+  }
+
+  .popup-content {
+    padding: 50px 20px 30px;
+    margin: 10px;
+    max-height: 85vh;
+  }
+
+  .popup-close {
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .website-type-item {
+    padding: 20px;
+  }
+
+  .website-type-item:hover {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-overlay {
+    padding: 10px;
+  }
+
+  .popup-content {
+    padding: 45px 15px 25px;
+    margin: 5px;
+    max-height: 80vh;
+  }
+
+  .popup-close {
+    top: 12px;
+    right: 12px;
+    font-size: 1.8rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .website-type-item {
+    padding: 18px;
+  }
+}

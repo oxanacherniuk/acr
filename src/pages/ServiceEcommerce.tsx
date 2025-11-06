@@ -319,7 +319,7 @@ export function ServiceEcommerce() {
           </Container>
         </Section> */}
 <ContactSection/>
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

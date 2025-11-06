@@ -12,7 +12,7 @@ export const websiteTypes = [
         link: "/services/corporate",
     },
     {
-        title: "Интернет - магазины",
+        title: "Интернет- магазины",
         price: "от 120 000 ₽",
         description: "Полноценный канал продаж 24/7. Под ключ с интеграцией всех платежных и маркетинговых систем.",
         link: "/services/ecommerce",

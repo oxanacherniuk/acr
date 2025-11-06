@@ -21,10 +21,10 @@ import {
 import type { ForwardRefExoticComponent } from 'react';
 
 // Импорты изображений для акции 1
-import stock1Img from '../../assets/images/service/catbot.png'
-import stock1ImgWebp from '../../assets/images/service/catbot.webp';
-import stock1VideoMp4 from '../../assets/video/service/chatBot.mp4';
-import stock1VideoWebm from '../../assets/video/service/chatBot.webm';
+import stock1Img from '../../assets/images/stocks/1.png'
+import stock1ImgWebp from '../../assets/images/stocks/1.webp';
+import stock1VideoMp4 from '../../assets/video/stocks/1.mp4';
+import stock1VideoWebm from '../../assets/video/stocks/1.webm';
 
 // Импорты изображений для акции 2
 import stock2Img from '../../assets/images/stocks/2.png';
@@ -57,12 +57,12 @@ import stock6VideoMp4 from '../../assets/video/stocks/6.mp4';
 import stock6VideoWebm from '../../assets/video/stocks/6.webm';
 
 // Импорты изображений для акции 7
-// import stock7Img from '../../assets/images/stocks/7.jpg';
-// import stock7ImgWebp from '../../assets/images/stocks/7.webp';
-// import stock7VideoMp4 from '../../assets/video/stocks/7.mp4';
-// import stock7VideoWebm from '../../assets/video/stocks/7.webm';
+import stock7Img from '../../assets/images/stocks/7.png';
+import stock7ImgWebp from '../../assets/images/stocks/7.webp';
+import stock7VideoMp4 from '../../assets/video/stocks/7.mp4';
+import stock7VideoWebm from '../../assets/video/stocks/7.webm';
 
-interface StockData {
+export interface StockData {
   id: number;
   title: string;
   url: string;
@@ -134,7 +134,7 @@ interface StockData {
 export const stockData: StockData[] = [
   {
     id: 1,
-    title: "<span>Чат-бот 24/7 — </span>Ваш Неутомимый Менеджер по Продажам и Поддержке",
+    title: "<span>Чат-бот 24/7</span> — Ваш Неутомимый Менеджер по Продажам и Поддержке",
     url: "chat-bots",
     subtitle: "Разработаем умного чат-бота, который отвечает на вопросы, собирает заявки и консультирует клиентов в любое время, экономя время ваших менеджеров.",
     hero: {
@@ -288,10 +288,10 @@ export const stockData: StockData[] = [
       title: "Ваш сайт не видно в поиске? Конкуренты забирают всех клиентов!",
       text: "Мы предлагаем комплексное продвижение, которое гарантированно приведет ваш сайт на первые страницы Яндекса и Google, привлечет целевой трафик и увеличит ваши продажи.",
       ctaButton: "Вывести сайт в ТОП!",
-      // img: stock7Img,
-      // imgWebp: stock7ImgWebp,
-      // videoMp4: stock7VideoMp4,
-      // videoWebm: stock7VideoWebm
+      img: stock7Img,
+      imgWebp: stock7ImgWebp,
+      videoMp4: stock7VideoMp4,
+      videoWebm: stock7VideoWebm
     },
     promotion: {
       discount: "1 месяц",

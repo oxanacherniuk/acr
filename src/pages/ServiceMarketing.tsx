@@ -287,7 +287,7 @@ export function ServiceMarketing() {
           </Container>
         </Section> */}
         <ContactSection />
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

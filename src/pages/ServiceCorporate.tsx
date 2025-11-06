@@ -263,7 +263,7 @@ export function ServiceCorporate() {
           </Container>
         </Section> */}
         <ContactSection/>
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );

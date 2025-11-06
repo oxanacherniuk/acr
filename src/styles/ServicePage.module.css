@@ -258,7 +258,10 @@
   height: 35px;
   transition: transform 0.3s ease;
 }
-
+.hero-but{
+  padding: 20px 30px;
+  text-transform: uppercase;
+}
 .cta-button:hover img {
   transform: translateX(8px);
 }
@@ -500,6 +503,9 @@
   margin: 80px 0;
   border-radius: 20px;
 }
+
+
+
 /* .hero-block::before {
     content: '';
     position: absolute;

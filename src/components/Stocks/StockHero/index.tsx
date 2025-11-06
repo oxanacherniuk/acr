@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import "./scss/style.scss";
 import TextEffect from "../../HoverText";
+import Breadcrumbs from "../../Breadcrumbs/Breadcrumbs";
+import { extractSpanContent } from "../../../utils/spanUtils";
 
 interface StockHeroProps {
   title: string;
@@ -147,7 +149,11 @@ function StockHero({ data, title }: StockHeroProps) {
       data.videoWebm,
     ],
   );
-
+  let tit = extractSpanContent(title);
+const breadcrumbItems = [
+    { label: 'Акции', href: '/stocks' },
+    { label:  tit, href: '/stocks' },
+  ];
   return (
     <section className="StockHero">
       <div className="container">
@@ -155,6 +161,7 @@ function StockHero({ data, title }: StockHeroProps) {
           {/* Левая колонка - Контент */}
           <div className="content-column">
             <div className="text-content">
+              <Breadcrumbs items={breadcrumbItems} />
               <TextEffect text={title} className="subtitle h2" />
               <div className="title-divider"></div>
             </div>

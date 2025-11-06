@@ -319,7 +319,7 @@ export default function ServiceChatBots() {
           </Container>
         </Section> */}
         <ContactSection/>
-        <QuizLayout />
+        {/* <QuizLayout /> */}
       </div>
     </ServiceLayout>
   );
